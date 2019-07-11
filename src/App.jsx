@@ -1,35 +1,27 @@
 import React from "react";
 import Users from "./Users";
-import logo from "./logo.svg";
 import axios from "axios";
 import GoogleLogin from "react-google-login";
 import "./App.css";
 
 function App() {
   const responseGoogle = res => {
+    console.log(res.googleId);
     axios.post(
-      "http://localhost:8000/test",
-      {},
-      { headers: { Authorization: res.tokenId } }
-    );
+      "http://localhost:8000/api/auth",
+      {googleId: res.googleId},
+      {
+        headers: {
+          Authorization: res.tokenId
+        }
+      }
+    ) .then(data => {
+      console.log(data)
+    })
   };
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
       <Users />
       <GoogleLogin
         clientId="945370196700-q8bac43bki2md0o4aeq5roh2fe7o2vli.apps.googleusercontent.com"
