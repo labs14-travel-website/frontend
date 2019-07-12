@@ -1,35 +1,69 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Users from "./Users";
 import axios from "axios";
-import GoogleLogin from "react-google-login";
+import { GoogleLogin, GoogleLogout } from "react-google-login";
+import store from "./utils/jwt-store";
 import "./App.css";
 
 function App() {
+  const [state, setState] = useState({ loggedIn: false });
+  useEffect(() => {
+    const token = store.get();
+
+    console.log("Store.get:  ", token);
+    if (!!token) {
+      setState(state => ({
+        ...state,
+        loggedIn: true
+      }));
+    }
+    console.log("Logged In");
+  }, []);
+
   const responseGoogle = res => {
     console.log(res.googleId);
-    axios.post(
-      "http://localhost:8000/api/auth",
-      {googleId: res.googleId},
-      {
-        headers: {
-          Authorization: res.tokenId
+    store.add(res.tokenId);
+    setState(state => ({
+      ...state,
+      loggedIn: true
+    }));
+    axios
+      .post(
+        "http://localhost:8000/api/auth",
+        {},
+        {
+          headers: {
+            Authorization: res.tokenId
+          }
         }
-      }
-    ) .then(data => {
-      console.log(data)
-    })
+      )
+      .then(data => {
+        console.log(data);
+      });
+  };
+
+  const logout =() => {
+    store.remove();   
+    setState(state => ({
+      ...state,
+      loggedIn: false
+    }));
   };
 
   return (
     <div className="App">
       <Users />
-      <GoogleLogin
-        clientId="945370196700-q8bac43bki2md0o4aeq5roh2fe7o2vli.apps.googleusercontent.com"
-        buttonText="Login"
-        onSuccess={responseGoogle}
-        onFailure={responseGoogle}
-        cookiePolicy={"single_host_origin"}
-      />
+      {!state.loggedIn ? (
+        <GoogleLogin
+          clientId="945370196700-q8bac43bki2md0o4aeq5roh2fe7o2vli.apps.googleusercontent.com"
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseGoogle}
+          cookiePolicy={"single_host_origin"}
+        />
+      ) : (
+        <GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />
+      )}
     </div>
   );
 }
