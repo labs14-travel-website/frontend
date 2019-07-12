@@ -3,7 +3,7 @@ import Users from "./Users";
 import axios from "axios";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
 import store from "./utils/jwt-store";
-import "./App.css";
+import style from "./App.module.scss";
 
 function App() {
   const [state, setState] = useState({ loggedIn: false });
@@ -51,7 +51,7 @@ function App() {
   };
 
   return (
-    <div className="App">
+    <div className={style.App}>
       <Users />
       {!state.loggedIn ? (
         <GoogleLogin
