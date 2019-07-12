@@ -40,6 +40,10 @@ function App() {
       });
   };
 
+  const responseFail = res => {
+    console.log(res);
+  }
+
   const logout =() => {
     store.remove();   
     setState(state => ({
@@ -57,7 +61,7 @@ function App() {
             clientId={state.clientId}
             buttonText="Login"
             onSuccess={responseGoogle}
-            onFailure={responseGoogle}
+            onFailure={responseFail}
             cookiePolicy={"single_host_origin"}
           />)
           : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />)
