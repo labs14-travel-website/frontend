@@ -6,16 +6,14 @@ const Users = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    console.log("Get:  ", store.get());
     const getUsers = async () => {
-      const { data: { users }} = await axios.get('http://localhost:8000/api/users',
+      const { data: { users }} = await axios.get(`${process.env.REACT_APP_ENDPOINT}/api/users`,
           {
         headers: {
           Authorization: store.get()
         }
       }
       );
-      console.log("Users: ", users);
       setUsers(users);
     };
     getUsers();
