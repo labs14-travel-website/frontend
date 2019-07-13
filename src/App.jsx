@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
+import { Mixpanel as mp } from './utils/mixpanel';
 import ga from 'react-ga';
 import axios from "axios";
 
@@ -24,13 +25,17 @@ function App() {
     
     // DISCUSSION: Should this be moved to env vars? E.g. ga.initialize(process.env.GA_ID)
     /*
-      Alternatively we could just run in production--if there is no benefit to getting analytics on staging
-      if (process.env.DB_ENV === 'production') {
-        ga.initialize('UA-143824465-1');
-      }
+    Alternatively we could just run in production--if there is no benefit to getting analytics on staging
+    if (process.env.DB_ENV === 'production') {
+      ga.initialize('UA-143824465-1');
+      
+    }
     */
-    ga.initialize('UA-143824465-1', { debug: true });
-    ga.pageview('/');
+   ga.initialize('UA-143824465-1', { debug: true });
+   ga.pageview('/');
+   mp.track('Page View', {
+     path: '/',
+   });
   }, []);
 
   const responseGoogle = res => {
