@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
-import { Mixpanel as mp } from './utils/mixpanel';
-import ga from 'react-ga';
+import track from './utils/analytics.js';
 import axios from "axios";
 
 import Users from "./Users";
@@ -22,20 +21,13 @@ function App() {
         loggedIn: true
       }));
     }
-    
-    // DISCUSSION: Should this be moved to env vars? E.g. ga.initialize(process.env.GA_ID)
-    /*
-    Alternatively we could just run in production--if there is no benefit to getting analytics on staging
-    if (process.env.DB_ENV === 'production') {
-      ga.initialize('UA-143824465-1');
-      
-    }
-    */
-   ga.initialize('UA-143824465-1', { debug: true });
-   ga.pageview('/');
-   mp.track('Page View', {
-     path: '/',
-   });
+
+    // TODO: This is temporary tracking to validate setup.
+    track.pageview('/');
+    track.event({
+      category: 'Main',
+      action: 'Generic Action',
+    });
   }, []);
 
   const responseGoogle = res => {
