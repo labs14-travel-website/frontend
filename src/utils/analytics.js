@@ -1,13 +1,14 @@
 import mixpanel from 'mixpanel-browser';
 import ga from 'react-ga';
 
-// initialize trackers
-mixpanel.init(process.env.REACT_APP_MP_TOKEN);
-ga.initialize(process.env.REACT_APP_GA_TOKEN);
-
 // limit tracking to production
 let enabled = process.env.REACT_APP_ENV === 'production';
 
+// initialize trackers
+if (enabled) {
+  mixpanel.init(process.env.REACT_APP_MP_TOKEN);
+  ga.initialize(process.env.REACT_APP_GA_TOKEN);
+}
 
 /**
  * Identifies a user for analytics, user must be logged in
