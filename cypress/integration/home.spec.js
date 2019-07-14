@@ -1,5 +1,6 @@
 context('Window', () => {
   beforeEach(() => {
+    // TODO: We'll have to do some environment handling for local versus staging
     cy.visit('http://localhost:3000');
   });
 
