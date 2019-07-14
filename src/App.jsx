@@ -1,11 +1,11 @@
-import React, { useState, useEffect } from "react";
-import { GoogleLogin, GoogleLogout } from "react-google-login";
-import track from './utils/analytics.js';
-import axios from "axios";
+import React, { useState, useEffect } from 'react';
+import { GoogleLogin, GoogleLogout } from 'react-google-login';
+import axios from 'axios';
+import track from './utils/analytics';
 
-import Users from "./Users";
-import store from "./utils/jwt-store";
-import style from "./App.module.scss";
+import Users from './Users';
+import store from './utils/jwt-store';
+import style from './App.module.scss';
 
 function App() {
   const [state, setState] = useState({
@@ -15,10 +15,10 @@ function App() {
 
   useEffect(() => {
     const token = store.get();
-    if (!!token) {
-      setState(state => ({
-        ...state,
-        loggedIn: true
+    if (token) {
+      setState(prevState => ({
+        ...prevState,
+        loggedIn: true,
       }));
     }
 
@@ -30,34 +30,34 @@ function App() {
     });
   }, []);
 
-  const responseGoogle = res => {
+  const responseGoogle = (res) => {
     store.add(res.tokenId);
-    setState(state => ({
-      ...state,
-      loggedIn: true
+    setState(prevState => ({
+      ...prevState,
+      loggedIn: true,
     }));
     axios.post(
-        `${process.env.REACT_APP_ENDPOINT}/api/auth`,
-        {},
-        {
-          headers: {
-            Authorization: res.tokenId
-          }
-        }
-      ).then(data => {
-        console.log(data);
-      });
+      `${process.env.REACT_APP_ENDPOINT}/api/auth`,
+      {},
+      {
+        headers: {
+          Authorization: res.tokenId,
+        },
+      },
+    ).then((data) => {
+      console.log(data); // eslint-disable-line
+    });
   };
 
-  const responseFail = res => {
-    console.log(res);
-  }
+  const responseFail = (res) => {
+    console.log(res); // eslint-disable-line
+  };
 
-  const logout =() => {
-    store.remove();   
-    setState(state => ({
-      ...state,
-      loggedIn: false
+  const logout = () => {
+    store.remove();
+    setState(prevState => ({
+      ...prevState,
+      loggedIn: false,
     }));
   };
 
@@ -66,13 +66,15 @@ function App() {
       <Users />
       {
         !state.loggedIn
-          ? (<GoogleLogin
-            clientId={state.clientId}
-            buttonText="Login"
-            onSuccess={responseGoogle}
-            onFailure={responseFail}
-            cookiePolicy={"single_host_origin"}
-          />)
+          ? (
+            <GoogleLogin
+              clientId={state.clientId}
+              buttonText="Login"
+              onSuccess={responseGoogle}
+              onFailure={responseFail}
+              cookiePolicy="single_host_origin"
+            />
+          )
           : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />)
       }
     </div>
