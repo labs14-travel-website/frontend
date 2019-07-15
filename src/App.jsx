@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
-import Users from "./Users";
-import axios from "axios";
 import { GoogleLogin, GoogleLogout } from "react-google-login";
+import track from './utils/analytics.js';
+import axios from "axios";
+
+import Users from "./Users";
 import store from "./utils/jwt-store";
 import style from "./App.module.scss";
 
@@ -19,6 +21,13 @@ function App() {
         loggedIn: true
       }));
     }
+
+    // TODO: This is temporary tracking to validate setup.
+    track.pageview('/');
+    track.event({
+      category: 'Main',
+      action: 'Generic Action',
+    });
   }, []);
 
   const responseGoogle = res => {
