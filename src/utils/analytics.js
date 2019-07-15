@@ -2,7 +2,7 @@ import mixpanel from 'mixpanel-browser';
 import ga from 'react-ga';
 
 // limit tracking to production
-let enabled = process.env.REACT_APP_ENV === 'production';
+const enabled = process.env.REACT_APP_ENV === 'production';
 
 // initialize trackers
 if (enabled) {
@@ -16,7 +16,7 @@ if (enabled) {
  * @param {string} type - Option type of user E.g. "Admin", "Pro" default: "User"
  * @return {undefined}
  */
-const identify = (id, type = "User") => {
+const identify = (id, type = 'User') => {
   if (enabled) {
     // TODO: Hash provided user ID for analytics
     mixpanel.people.set({ type });
@@ -35,7 +35,9 @@ const identify = (id, type = "User") => {
  * @return {undefined}
  */
 // TODO: Set up useful logging: category and action are REQUIRED.
-const event = ({ category, action, label = 'Generic', value }) => {
+const event = ({
+  category, action, label = 'Generic', value,
+}) => {
   if (enabled) {
     mixpanel.track(label, {
       category,
@@ -47,7 +49,7 @@ const event = ({ category, action, label = 'Generic', value }) => {
       category,
       action,
       label,
-      value
+      value,
     });
   }
 };
@@ -57,7 +59,7 @@ const event = ({ category, action, label = 'Generic', value }) => {
  * @param {string} path Path for the page being viewed.
  * @return {undefined}
  */
-const pageview = path => {
+const pageview = (path) => {
   if (enabled) {
     mixpanel.track('Page View', {
       path,
