@@ -1,5 +1,6 @@
 import mixpanel from 'mixpanel-browser';
 import ga from 'react-ga';
+import { FullStoryAPI as fs } from 'react-fullstory';
 
 // limit tracking to production
 const enabled = process.env.REACT_APP_ENV === 'production';
@@ -13,15 +14,19 @@ if (enabled) {
 /**
  * Identifies a user for analytics, user must be logged in
  * @param {string} id - Id of the current user
- * @param {string} type - Option type of user E.g. "Admin", "Pro" default: "User"
+ * @param {string} data - Option type of user E.g. "Admin", "Pro" default: "User"
  * @return {undefined}
  */
-const identify = (id, type = 'User') => {
+const identify = (id, data = { type: 'User' }) => {
   if (enabled) {
     // TODO: Hash provided user ID for analytics
-    mixpanel.people.set({ type });
+    mixpanel.people.set({ ...data });
     mixpanel.identify(id);
-    ga.set({ user: id, type });
+
+    ga.set({ user: id, type: data.type });
+
+    fs('identify', id);
+    fs('setUserVars', { ...data });
   }
 };
 
