@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import * as sentry from '@sentry/browser';
+// TODO This should probably be updated to similar init as react/mixpanel
+import FullStory from 'react-fullstory';
+
 import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
@@ -12,10 +15,13 @@ if (env === 'production' || env === 'staging') {
 }
 
 ReactDOM.render((
-  <App />
+  <>
+    <FullStory org={process.env.REACT_APP_FS_TOKEN} />
+    <App />
+  </>
 ), document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
+// unregister() to register() below. Note this comes with some pitfalls
 // Learn more about service workers: https://bit.ly/CRA-PWA
 serviceWorker.unregister();
