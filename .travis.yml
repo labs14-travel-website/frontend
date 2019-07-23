@@ -30,7 +30,7 @@ jobs:
         - npm run lint:start
         - npm run jest:coverage
         - $(npm bin)/cypress install
-        - $(npm bin)/cypress run
+        - "CYPRESS_baseUrl=https://staging.app.com cypress run"
 
     - stage: production
       if: type = pull_request AND branch = master
