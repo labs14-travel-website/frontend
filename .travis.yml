@@ -1,0 +1,42 @@
+language: node_js
+
+node_js:
+  - "stable"
+
+addons:
+  apt:
+    packages:
+      - libgconf-2-4
+
+cache:
+  directories:
+    - node_modules
+    - ~/.cache
+
+install:
+  - npm install
+
+jobs:
+  include:
+    - stage: feature
+      if: type = pull_request AND branch =~ /^(\w*)-staging$/
+      script:
+        - npm run lint:start
+        - npm run jest:start
+
+    - stage: staging
+      if: type = pull_request AND branch = staging
+      script:
+        - npm run lint:start
+        - npm run jest:coverage
+        - $(npm bin)/cypress install
+        - $(npm bin)/cypress run
+
+    - stage: production
+      if: type = pull_request AND branch = master
+      script:
+        - npm run lint:start
+        - npm run jest:coverage
+        - npm run build
+        - $(npm bin)/cypress install
+        - $(npm bin)/cypress run

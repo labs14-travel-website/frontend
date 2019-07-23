@@ -18,9 +18,11 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "coverage": "react-scripts test --coverage",
-    "cypress": "cypress run",
-    "lint": "eslint --ext .js --ext .jsx ."
+    "jest:coverage": "react-scripts test --coverage",
+    "jest:start": "react-scripts test",
+    "cypress:start": "cypress run",
+    "lint:start": "eslint --ext .js --ext .jsx .",
+    "lint:fix": "eslint --ext .js --ext .jsx . --fix"
   },
   "eslintConfig": {
     "extends": "react-app"
