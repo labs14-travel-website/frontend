@@ -15,7 +15,6 @@ cache:
 
 install:
   - npm install
-  - npm install netlify-cli
 
 jobs:
   include:
