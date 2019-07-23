@@ -1,13 +1,10 @@
 import React from 'react';
 import Landing from './Landing';
 
-const index = () => {
-    return (
-        <div>
-            <Landing />
-        </div>
-    );
-}
+const index = () => (
+  <div>
+    <Landing />
+  </div>
+);
 
 export default index;
-

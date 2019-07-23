@@ -3,42 +3,42 @@ import React, { useState, useEffect } from 'react';
 function Landing() {
   const [destination, setDestination] = useState('');
 
-  const handleOnChange = event => {
-    setDestination(event.target.value)
-  }
+  const handleOnChange = (event) => {
+    setDestination(event.target.value);
+  };
 
-  
-  const handleOnSubmit = event => {
+
+  const handleOnSubmit = (event) => {
     event.preventDefault();
-    console.log(`I am roaming ${destination}`);
-  }
+    console.log(`I am roaming ${destination}`); // eslint-disable-line
+  };
 
   useEffect(() => {
-    console.log(destination);
-  })
+    console.log(destination); // eslint-disable-line
+  });
 
   return (
     <>
-      <div className='search'>
+      <div className="search">
         <form onSubmit={handleOnSubmit}>
           <input
             type="text"
             onChange={handleOnChange}
             value={destination}
-            autoComplete='off'
-            placeholder='Destination'  
+            autoComplete="off"
+            placeholder="Destination"
           />
 
-          <button>Roam</button>
+          <button type="submit">Roam</button>
         </form>
 
       </div>
 
-      <div className='destinations'>
+      <div className="destinations">
         SEARCHED DESTINATIONS HERE
-        </div>
+      </div>
     </>
-  )
+  );
 }
 
 export default Landing;
