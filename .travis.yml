@@ -4,8 +4,22 @@ node_js:
  - "stable"
 
 cache:
-directories:
-  - "node_modules"
+  directories:
+    - "node_modules"
 
-script:
-  - echo "Testing Travis"
+install:
+  - yarn install
+  - yarn install netlify-cli
+
+jobs:
+  include:
+    - stage: "staging"
+      if: type = "push"
+      script:
+        - npm run lint:start
+        - npm run jest:start
+    - stage: "production"
+      if: type = pull_request
+      script:
+        - npm run lint:start
+        - npm run jest:coverage
