@@ -1,1 +1,5 @@
 src/serviceWorker.js
+coverage/
+cypress/*
+cypress/integration/examples
+!cypress/integration
