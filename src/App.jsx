@@ -65,7 +65,6 @@ function App() {
   return (
     <div className={style.App}>
       <Users />
-      <PopularDestinations />
       {
         !state.loggedIn
           ? (
@@ -79,6 +78,7 @@ function App() {
           )
           : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />)
       }
+      <PopularDestinations />
     </div>
   );
 }
