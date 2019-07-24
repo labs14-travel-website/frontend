@@ -5,7 +5,7 @@ import axios from 'axios';
 function Landing() {
   // User-Input state
   const [destination, setDestination] = useState('');
-  const [searchedDestination, setSearch] = useState('')
+  const [searchedDestination, setSearch] = useState('');
 
   // Sets the state to user-input
   const handleOnChange = (event) => {
@@ -21,7 +21,7 @@ function Landing() {
     axios.get('http://localhost:8000/', destination)
       .then((response) => {
           console.log(response);  // eslint-disable-line
-          setSearch(response.data)
+        setSearch(response.data);
       })
       .catch((error) => {
           console.log(error);  // eslint-disable-line
