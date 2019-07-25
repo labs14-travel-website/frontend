@@ -5,7 +5,7 @@ import axios from 'axios';
 function Landing() {
   // User-Input state
   const [destination, setDestination] = useState('');
-  const [searchedDestination, setSearch] = useState('');
+  const [searchedDestination, setSearchedDestination] = useState('');
 
   // Sets the state to user-input
   const handleOnChange = (event) => {
@@ -18,10 +18,10 @@ function Landing() {
     console.log(`I am roaming ${destination}`); // eslint-disable-line
 
     // Request to backend that will request to API and send back the data?
-    axios.get('http://localhost:8000/', destination)
+    axios.get(`${process.env.REACT_APP_ENDPOINT}`, destination)
       .then((response) => {
           console.log(response);  // eslint-disable-line
-        setSearch(response.data);
+          setSearchedDestination(response.data);
       })
       .catch((error) => {
           console.log(error);  // eslint-disable-line
