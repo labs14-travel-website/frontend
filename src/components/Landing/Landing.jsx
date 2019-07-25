@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-// Landing is the initial page that users will see when they enter the application
+/**
+ * @description Landing is a component that returns an input form and attraction cards
+ */
 function Landing() {
   // User-Input state
   const [destination, setDestination] = useState('');
@@ -26,6 +28,7 @@ function Landing() {
       .catch((error) => {
           console.log(error);  // eslint-disable-line
       });
+    setDestination('');
   };
 
   // Check the state
