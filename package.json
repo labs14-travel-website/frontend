@@ -12,6 +12,7 @@
     "react-fullstory": "^1.3.0",
     "react-ga": "^2.6.0",
     "react-google-login": "^5.0.4",
+    "react-native-heap-analytics": "^2.4.0",
     "react-scripts": "3.0.1"
   },
   "scripts": {
