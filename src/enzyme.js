@@ -3,7 +3,7 @@ import Enzyme, {
 } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-// This file sets up enzyme for use with your testing files. 
+// This file sets up enzyme for use with your testing files.
 // Just import this into whatever file you need to use it, along with any method you need.
 
 configure({ adapter: new Adapter() });

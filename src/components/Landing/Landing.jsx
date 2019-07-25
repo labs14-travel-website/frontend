@@ -21,7 +21,7 @@ function Landing() {
     axios.get(`${process.env.REACT_APP_ENDPOINT}`, destination)
       .then((response) => {
           console.log(response);  // eslint-disable-line
-          setSearchedDestination(response.data);
+        setSearchedDestination(response.data);
       })
       .catch((error) => {
           console.log(error);  // eslint-disable-line
