@@ -26,15 +26,16 @@ const PopularDestinations = () => {
 
   const selectedLocations = shuffled.slice(0, 4);
 
-  const handleClick = () => {
-    // console.log('clicked', e.target);
-  };
-
   return (
     <div>
       <h2>Popular Destinations</h2>
       {selectedLocations.map(location => (
-        <div onClick={handleClick}>{location.city}, {location.country}</div>
+        <div key={location.city}>
+          {location.city}
+,
+          {' '}
+          {location.country}
+        </div>
         // <div><CardDisplay location={each} /></div> //TODO pass locations to CardDisplay
       ))}
     </div>
