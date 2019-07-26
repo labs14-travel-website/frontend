@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import axios from 'axios';
 
 /**
@@ -30,11 +30,6 @@ function Landing() {
       });
     setDestination('');
   };
-
-  // Check the state
-  useEffect(() => {
-    console.log(destination); // eslint-disable-line
-  });
 
   return (
     <>
