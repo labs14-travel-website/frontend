@@ -1,5 +1,5 @@
 import React from 'react';
-import Landing from './Landing';
+import Landing from './Search';
 
 const index = () => (
   <div>
