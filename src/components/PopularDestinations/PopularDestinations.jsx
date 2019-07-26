@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const PopularDestinations = () => {
   const locations = [
@@ -26,17 +26,15 @@ const PopularDestinations = () => {
 
   const selectedLocations = shuffled.slice(0, 4);
 
-  useEffect(() => {
-    console.log('hi');
-    // make axios call to backend
-
-  });
+  const handleClick = () => {
+    // console.log('clicked', e.target);
+  };
 
   return (
     <div>
       <h2>Popular Destinations</h2>
       {selectedLocations.map(location => (
-        <div>{location.city}, {location.country}</div>
+        <div onClick={handleClick}>{location.city}, {location.country}</div>
         // <div><CardDisplay location={each} /></div> //TODO pass locations to CardDisplay
       ))}
     </div>
