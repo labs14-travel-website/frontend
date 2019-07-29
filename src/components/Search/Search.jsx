@@ -7,6 +7,7 @@ import axios from 'axios';
 function Search() {
   // User-Input state
   const [destination, setDestination] = useState('');
+  // API returned destination attractions
   const [searchedDestination, setSearchedDestination] = useState('');
 
   // Sets the state to user-input
