@@ -1,7 +1,6 @@
 import React from 'react';
 import CardDisplay from '../CardDisplay';
 
-
 const PopularDestinations = () => {
   const locations = [
     { city: 'Hong Kong', country: 'China' },
@@ -28,21 +27,22 @@ const PopularDestinations = () => {
 
   const selectedLocations = shuffled.slice(0, 4);
 
-  return (
+  const handleClick = () => {
+    // console.log('clicked', e.target);
+  };
 
+  return (
     <div>
       <h2>Popular Destinations</h2>
       {selectedLocations.map(location => (
-        <div>
+        <div onClick={handleClick}>
           {location.city}
-,
           {' '}
           {location.country}
           <CardDisplay location={location} />
         </div> // TODO pass locations to CardDisplay
       ))}
     </div>
-
   );
 };
 
