@@ -6,6 +6,7 @@ import track from './utils/analytics';
 import Users from './Users';
 import store from './utils/jwt-store';
 import style from './App.module.scss';
+// import CardDisplay from './components/CardDisplay';
 import PopularDestinations from './components/PopularDestinations';
 
 function App() {

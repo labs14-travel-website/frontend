@@ -1,4 +1,5 @@
 import React from 'react';
+import CardDisplay from '../CardDisplay';
 
 const PopularDestinations = () => {
   const locations = [
@@ -12,7 +13,7 @@ const PopularDestinations = () => {
     { city: 'Shenzhen', country: 'China' },
     { city: 'Phuket', country: 'Thailand' },
     { city: 'Istanbul', country: 'Turkey' },
-    { city: 'Delhi', country: 'India' },
+    { city: 'New Delhi', country: 'India' },
     { city: 'Tokyo', country: 'Japan' },
     { city: 'Rome', country: 'Italy' },
     { city: 'Antalya', country: 'Turkey' },
@@ -26,17 +27,20 @@ const PopularDestinations = () => {
 
   const selectedLocations = shuffled.slice(0, 4);
 
+  const handleClick = () => {
+    // console.log('clicked', e.target);
+  };
+
   return (
     <div>
       <h2>Popular Destinations</h2>
       {selectedLocations.map(location => (
-        <div key={location.city}>
+        <div onClick={handleClick}>
           {location.city}
-,
           {' '}
           {location.country}
-        </div>
-        // <div><CardDisplay location={each} /></div> //TODO pass locations to CardDisplay
+          <CardDisplay location={location} />
+        </div> // TODO pass locations to CardDisplay
       ))}
     </div>
   );
