@@ -1,7 +1,6 @@
 import React from 'react';
 import CardDisplay from '../CardDisplay';
 
-
 const PopularDestinations = () => {
   const locations = [
     { city: 'Hong Kong', country: 'China' },
@@ -14,7 +13,7 @@ const PopularDestinations = () => {
     { city: 'Shenzhen', country: 'China' },
     { city: 'Phuket', country: 'Thailand' },
     { city: 'Istanbul', country: 'Turkey' },
-    { city: 'Delhi', country: 'India' },
+    { city: 'New Delhi', country: 'India' },
     { city: 'Tokyo', country: 'Japan' },
     { city: 'Rome', country: 'Italy' },
     { city: 'Antalya', country: 'Turkey' },
@@ -33,20 +32,17 @@ const PopularDestinations = () => {
   };
 
   return (
-
     <div>
       <h2>Popular Destinations</h2>
       {selectedLocations.map(location => (
         <div onClick={handleClick}>
           {location.city}
-,
           {' '}
           {location.country}
           <CardDisplay location={location} />
         </div> // TODO pass locations to CardDisplay
       ))}
     </div>
-
   );
 };
 
