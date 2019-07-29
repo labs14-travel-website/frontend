@@ -1,9 +1,9 @@
 import React from 'react';
-import Landing from './Landing';
+import Search from './Search';
 
 const index = () => (
   <div>
-    <Landing />
+    <Search />
   </div>
 );
 

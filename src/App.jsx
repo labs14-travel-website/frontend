@@ -6,7 +6,7 @@ import track from './utils/analytics';
 import Users from './Users';
 import store from './utils/jwt-store';
 import style from './App.module.scss';
-import Landing from './components/Landing';
+import Landing from './components/Search';
 
 function App() {
   const [state, setState] = useState({

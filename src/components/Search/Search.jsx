@@ -4,9 +4,10 @@ import axios from 'axios';
 /**
  * @description Landing is a component that returns an input form and attraction cards
  */
-function Landing() {
+function Search() {
   // User-Input state
   const [destination, setDestination] = useState('');
+  // API returned destination attractions
   const [searchedDestination, setSearchedDestination] = useState('');
 
   // Sets the state to user-input
@@ -56,4 +57,4 @@ function Landing() {
   );
 }
 
-export default Landing;
+export default Search;
