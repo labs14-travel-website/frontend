@@ -6,7 +6,8 @@ import track from './utils/analytics';
 import Users from './Users';
 import store from './utils/jwt-store';
 import style from './App.module.scss';
-import CardDisplay from './components/CardDisplay';
+// import CardDisplay from './components/CardDisplay';
+import PopularDestinations from './components/PopularDestinations';
 
 function App() {
   const [state, setState] = useState({
@@ -64,7 +65,6 @@ function App() {
 
   return (
     <div className={style.App}>
-      <CardDisplay />
       <Users />
       {
         !state.loggedIn
@@ -79,6 +79,7 @@ function App() {
           )
           : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />)
       }
+      <PopularDestinations />
     </div>
   );
 }
