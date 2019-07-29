@@ -14,7 +14,7 @@ const PopularDestinations = () => {
     { city: 'Shenzhen', country: 'China' },
     { city: 'Phuket', country: 'Thailand' },
     { city: 'Istanbul', country: 'Turkey' },
-    { city: 'Delhi', country: 'India' },
+    { city: 'New Delhi', country: 'India' },
     { city: 'Tokyo', country: 'Japan' },
     { city: 'Rome', country: 'Italy' },
     { city: 'Antalya', country: 'Turkey' },
