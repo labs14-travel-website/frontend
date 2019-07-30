@@ -1,5 +1,4 @@
 import React from 'react';
-
 /**
  * @description This will display the attraction cards
  */

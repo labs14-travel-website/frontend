@@ -1,0 +1,40 @@
+import React, { Component } from "react";
+import Modal from "./index";
+import "./modal.css";
+
+class TestModal extends React.Component {
+  state = {
+    show: false
+  };
+  showModal = e => {
+    this.setState({
+      show: !this.state.show
+    });
+  };
+  render() {
+    return (
+      <div className="App">
+        <button
+          class="toggle-button"
+          id="centered-toggle-button"
+          onClick={e => {
+            this.showModal(e);
+          }}
+        >
+          {" "}
+          Test Modal{" "}
+        </button>
+
+        <Modal onClose={this.showModal} show={this.state.show}>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
+          deserunt corrupti, ut fugit magni qui quasi nisi amet repellendus non
+          fuga omnis a sed impedit explicabo accusantium nihil doloremque
+          consequuntur.
+        </Modal>
+      </div>
+    );
+  }
+}
+
+export default TestModal;
+

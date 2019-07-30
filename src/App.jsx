@@ -1,17 +1,18 @@
-import React, { useState, useEffect } from 'react';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
-import axios from 'axios';
-import track from './utils/analytics';
+import React, { useState, useEffect } from "react";
+import { GoogleLogin, GoogleLogout } from "react-google-login";
+import axios from "axios";
+import track from "./utils/analytics";
 
-import Users from './Users';
-import store from './utils/jwt-store';
-import style from './App.module.scss';
-import Landing from './components/Search';
+import Users from "./Users";
+import store from "./utils/jwt-store";
+import style from "./App.module.scss";
+import Landing from "./components/Search";
+import TestModal from "./components/Modal/modalTest";
 
 function App() {
   const [state, setState] = useState({
     loggedIn: false,
-    clientId: process.env.REACT_APP_OAUTH_GOOGLE_ID,
+    clientId: process.env.REACT_APP_OAUTH_GOOGLE_ID
   });
 
   useEffect(() => {
@@ -19,38 +20,40 @@ function App() {
     if (token) {
       setState(prevState => ({
         ...prevState,
-        loggedIn: true,
+        loggedIn: true
       }));
     }
 
     // TODO: This is temporary tracking to validate setup.
-    track.pageview('/');
+    track.pageview("/");
     track.event({
-      category: 'Main',
-      action: 'Generic Action',
+      category: "Main",
+      action: "Generic Action"
     });
   }, []);
 
-  const responseGoogle = (res) => {
+  const responseGoogle = res => {
     store.add(res.tokenId);
     setState(prevState => ({
       ...prevState,
-      loggedIn: true,
+      loggedIn: true
     }));
-    axios.post(
-      `${process.env.REACT_APP_ENDPOINT}/api/auth`,
-      {},
-      {
-        headers: {
-          Authorization: res.tokenId,
-        },
-      },
-    ).then((data) => {
-      console.log(data); // eslint-disable-line
-    });
+    axios
+      .post(
+        `${process.env.REACT_APP_ENDPOINT}/api/auth`,
+        {},
+        {
+          headers: {
+            Authorization: res.tokenId
+          }
+        }
+      )
+      .then(data => {
+        console.log(data); // eslint-disable-line
+      });
   };
 
-  const responseFail = (res) => {
+  const responseFail = res => {
     console.log(res); // eslint-disable-line
   };
 
@@ -58,28 +61,28 @@ function App() {
     store.remove();
     setState(prevState => ({
       ...prevState,
-      loggedIn: false,
+      loggedIn: false
     }));
   };
+
 
   return (
     <div className={style.App}>
       <Users />
-      {
-        !state.loggedIn
-          ? (
-            <GoogleLogin
-              clientId={state.clientId}
-              buttonText="Login"
-              onSuccess={responseGoogle}
-              onFailure={responseFail}
-              cookiePolicy="single_host_origin"
-            />
-          )
-          : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />)
-      }
+      {!state.loggedIn ? (
+        <GoogleLogin
+          clientId={state.clientId}
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseFail}
+          cookiePolicy="single_host_origin"
+        />
+      ) : (
+        <GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />
+      )}
 
       <Landing />
+      <TestModal />
     </div>
   );
 }
