@@ -1,6 +1,7 @@
 import React from 'react';
-import CardDisplay from '../CardDisplay';
 import axios from 'axios';
+
+import CardDisplay from '../CardDisplay';
 
 const PopularDestinations = () => {
   const locations = [
