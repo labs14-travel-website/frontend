@@ -42,6 +42,6 @@ describe('Destination Results', () => {
 
   it('Destination text', () => {
     const component = shallow(<Search />);
-    expect(component.find('[className="destinations"]').text()).toEqual('SEARCHED DESTINATIONS HERE');
+    expect(component.find('[className="destinations"]').text()).toEqual('SEARCHED DESTINATIONS HERE<index />');
   });
 });
