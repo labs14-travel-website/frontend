@@ -11,6 +11,21 @@ function Search() {
   // API returned destination attractions
   const [searchedDestination, setSearchedDestination] = useState([]);
 
+  const example = [{
+    "name":"Escape My Room",
+    "placeId":"ChIJ-cdaX96lIIYReBSWpXVNalQ",
+    "rating":4.9,
+    "types":["museum","point_of_interest","establishment"],
+    "picture":"https://false/p/AF1QipOrLq7jYuMZ4OzEgYUWrrKkkFRnekQpB7mbnd_E=s1600-w400"
+  },
+  {
+    "name":"Escape My Room II",
+    "placeId":"ChIJ-cdaX96lIIYReBSWpXVNalQ",
+    "rating":4.9,
+    "types":["museum","point_of_interest","establishment"],
+    "picture":"https://false/p/AF1QipOrLq7jYuMZ4OzEgYUWrrKkkFRnekQpB7mbnd_E=s1600-w400"
+  }]
+
   // Sets the state to user-input
   const handleOnChange = (event) => {
     setDestination(event.target.value);
@@ -36,7 +51,7 @@ function Search() {
   return (
     <>
       <div className="search">
-        <form onSubmit={handleOnSubmit}>
+        <form onSubmit={handleOnSubmit} >
           <input
             type="text"
             onChange={handleOnChange}
@@ -52,7 +67,7 @@ function Search() {
 
       <div className="destinations">
         SEARCHED DESTINATIONS HERE
-        <Attractions attraction={searchedDestination} />
+        <Attractions attraction={example} />
       </div>
 
     </>
