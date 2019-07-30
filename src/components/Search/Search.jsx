@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Attractions from '../Attractions';
+import Attractions from '../Attractions/index';
 
 /**
  * @description Landing is a component that returns an input form and attraction cards
