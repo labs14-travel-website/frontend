@@ -34,14 +34,11 @@ const PopularDestinations = () => {
   return (
     <div>
       <h2>Popular Destinations</h2>
-      {selectedLocations.map(location => (
-        <div onClick={handleClick}>
-          {location.city}
-          {' '}
-          {location.country}
-          <CardDisplay location={location} />
-        </div> // TODO pass locations to CardDisplay
-      ))}
+      {
+        selectedLocations.map(location => (
+          <CardDisplay location={location} handleClick={handleClick} />
+        ))
+      }
     </div>
   );
 };

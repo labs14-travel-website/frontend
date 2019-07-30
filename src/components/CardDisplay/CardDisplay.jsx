@@ -1,22 +1,16 @@
-import React, { Suspense } from 'react';
-import Loader from 'react-loader-spinner';
+import React from 'react';
 import PropTypes from 'prop-types';
 
-const CardDisplay = ({ location }) => (
-  <div className="container">
-
-    <Suspense
-      fallback={
-        <Loader type="Ball-Triangle" color="#00BFFF" height="90" width="60" />
-        }
-    >
-      <h2>{location}</h2>
-    </Suspense>
+const CardDisplay = ({ location, handleClick }) => (
+  <div onClick={handleClick}>
+    <h2>{location.city}</h2>
+    <div>{location.country}</div>
   </div>
 );
 
 CardDisplay.propTypes = {
-  location: PropTypes.string.isRequired,
+  location: PropTypes.objectOf(PropTypes.string).isRequired,
+  handleClick: PropTypes.func.isRequired,
 };
 
 export default CardDisplay;
