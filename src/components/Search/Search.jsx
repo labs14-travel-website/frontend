@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import Attractions from '../Attractions/index';
 
 /**
  * @description Landing is a component that returns an input form and attraction cards
@@ -8,7 +9,7 @@ function Search() {
   // User-Input state
   const [destination, setDestination] = useState('');
   // API returned destination attractions
-  const [searchedDestination, setSearchedDestination] = useState('');
+  const [searchedDestination, setSearchedDestination] = useState([]);
 
   // Sets the state to user-input
   const handleOnChange = (event) => {
@@ -21,13 +22,13 @@ function Search() {
     console.log(`I am roaming ${destination}`); // eslint-disable-line
 
     // Request to backend that will request to API and send back the data?
-    axios.get(`${process.env.REACT_APP_ENDPOINT}`, destination)
+    axios.get(`https://roamly-staging.herokuapp.com/a?q=${destination}`)
       .then((response) => {
-          console.log(response);  // eslint-disable-line
-        setSearchedDestination(response.data);
+        console.log(response);  // eslint-disable-line
+        setSearchedDestination(response.data.places);
       })
       .catch((error) => {
-          console.log(error);  // eslint-disable-line
+        console.log(error);  // eslint-disable-line
       });
     setDestination('');
   };
@@ -51,8 +52,9 @@ function Search() {
 
       <div className="destinations">
         SEARCHED DESTINATIONS HERE
-        <p>{searchedDestination}</p>
+        <Attractions attraction={searchedDestination} />
       </div>
+
     </>
   );
 }
