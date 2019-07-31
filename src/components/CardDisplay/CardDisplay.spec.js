@@ -1,9 +1,3 @@
-// it('renders without crashing', () => {
-//   expect(1).toBe(1);
-// });
-// work on tests
-// enzyme??
-// cypress??
 import React from 'react';
 import Enzyme, { shallow, mount } from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
@@ -42,6 +36,3 @@ describe('Confirm CardDisplay Mounts', () => {
     expect(mockCity.text()).toEqual('New York');
   });
 });
-
-// test if mock function is fired when clicking on a destination
-// test that passed in location is properly displayed
