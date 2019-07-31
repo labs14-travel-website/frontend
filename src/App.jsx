@@ -2,11 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import axios from 'axios';
 import track from './utils/analytics';
-
+import Users from './Users';
 import store from './utils/jwt-store';
 import style from './App.module.scss';
 import Search from './components/Search';
 import PopularDestinations from './components/PopularDestinations';
+import Landing from './components/Search';
+import TestModal from './components/Modal/modalTest';
 
 function App() {
   const [state, setState] = useState({
@@ -37,17 +39,19 @@ function App() {
       ...prevState,
       loggedIn: true,
     }));
-    axios.post(
-      `${process.env.REACT_APP_ENDPOINT}/api/auth`,
-      {},
-      {
-        headers: {
-          Authorization: res.tokenId,
+    axios
+      .post(
+        `${process.env.REACT_APP_ENDPOINT}/api/auth`,
+        {},
+        {
+          headers: {
+            Authorization: res.tokenId,
+          },
         },
-      },
-    ).then((data) => {
-      console.log(data); // eslint-disable-line
-    });
+      )
+      .then((data) => {
+        console.log(data); // eslint-disable-line
+      });
   };
 
   const responseFail = (res) => {
@@ -61,6 +65,7 @@ function App() {
       loggedIn: false,
     }));
   };
+
 
   return (
     <div className={style.App}>
@@ -80,6 +85,21 @@ function App() {
 
       <Search />
       <PopularDestinations />
+      <Users />
+      {!state.loggedIn ? (
+        <GoogleLogin
+          clientId={state.clientId}
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseFail}
+          cookiePolicy="single_host_origin"
+        />
+      ) : (
+        <GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />
+      )}
+
+      <Landing />
+      <TestModal />
     </div>
   );
 }

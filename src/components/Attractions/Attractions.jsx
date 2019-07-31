@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-
+import Modal from "../Modal/index";
 /**
  * @description This will display the attraction cards component when they are ready
  */
