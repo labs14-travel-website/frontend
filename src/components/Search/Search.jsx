@@ -34,17 +34,20 @@ function Search() {
 
   return (
     <div className={styles.Hero}>
-      <div className="search">
-        <form onSubmit={handleOnSubmit}>
-          <input
-            type="text"
-            onChange={handleOnChange}
-            value={destination}
-            autoComplete="off"
-            placeholder="Destination"
-          />
-          <button type="submit">Roam</button>
-        </form>
+      <div className={styles.container}>
+        <div className={styles.Hero__search}>
+          <form onSubmit={handleOnSubmit} className={styles.Hero__search_form}>
+            <input
+              className={styles.Hero__search_form__input}
+              type="text"
+              onChange={handleOnChange}
+              value={destination}
+              autoComplete="off"
+              placeholder="Destination"
+            />
+            <button type="submit" className={styles.Hero__search_form__submit}>Roam</button>
+          </form>
+        </div>
       </div>
     </div>
   );
