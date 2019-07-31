@@ -32,7 +32,7 @@ const PopularDestinations = () => {
   const handleClick = async (query) => {
     console.log('Lookup attractions'); // eslint-disable-line
     // const attractions = await axios.get(`https://roamly-staging.herokuapp.com/a?q=${query}`);
-    console.log(attractions); // eslint-disable-line
+    // console.log(attractions); // eslint-disable-line
   };
 
   return (

@@ -2,11 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import axios from 'axios';
 import track from './utils/analytics';
-
 import store from './utils/jwt-store';
 import style from './App.module.scss';
 import Search from './components/Search';
 import PopularDestinations from './components/PopularDestinations';
+
 
 function App() {
   const [state, setState] = useState({
