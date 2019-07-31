@@ -8,7 +8,7 @@ Enzyme.configure({ adapter: new Adapter() });
 
 describe('PopularDestinations', () => {
   it('mounts', () => {
-    const wrapper = shallow(<PopularDestinations />); 
+    const wrapper = shallow(<PopularDestinations />);
     expect(wrapper.exists()).toBe(true);
   });
 
