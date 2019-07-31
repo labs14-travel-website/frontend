@@ -1,0 +1,8 @@
+@import './master';
+
+// TODO: set global font-family (need google font dependency?)
+
+html, body {
+  background: $secondary;
+  color: $mono-light;
+}
