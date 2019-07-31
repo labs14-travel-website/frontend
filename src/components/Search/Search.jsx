@@ -1,31 +1,30 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Attractions from '../Attractions/index';
+
+import styles from './Search.module.scss';
 
 /**
  * @description Landing is a component that returns an input form and attraction cards
  */
 function Search() {
-  // User-Input state
+  // user-input state
   const [destination, setDestination] = useState('');
-  // API returned destination attractions
-  const [searchedDestination, setSearchedDestination] = useState([]);
+  const [, setSearchedDestination] = useState([]);
 
-  // Sets the state to user-input
-  const handleOnChange = (event) => {
-    setDestination(event.target.value);
+  // sets the state to user-input
+  const handleOnChange = ({ target: { value } }) => {
+    setDestination(value);
   };
 
-  // Performs action when user clicks the ROAM button
+  // performs action when user clicks the ROAM button
+  // TODO: this should be handled in parent to better handle integration between components
   const handleOnSubmit = (event) => {
     event.preventDefault();
-    console.log(`I am roaming ${destination}`); // eslint-disable-line
 
-    // Request to backend that will request to API and send back the data?
-    axios.get(`https://roamly-staging.herokuapp.com/a?q=${destination}`)
-      .then((response) => {
-        console.log(response);  // eslint-disable-line
-        setSearchedDestination(response.data.places);
+    // request to backend that will request to API and send back the data
+    axios.get(`${process.env.REACT_APP_ENDPOINT}/a?q=${destination}`)
+      .then(({ data: { places } }) => {
+        setSearchedDestination(places);
       })
       .catch((error) => {
         console.log(error);  // eslint-disable-line
@@ -34,7 +33,7 @@ function Search() {
   };
 
   return (
-    <>
+    <div className={styles.Hero}>
       <div className="search">
         <form onSubmit={handleOnSubmit}>
           <input
@@ -44,18 +43,10 @@ function Search() {
             autoComplete="off"
             placeholder="Destination"
           />
-
           <button type="submit">Roam</button>
         </form>
-
       </div>
-
-      <div className="destinations">
-        SEARCHED DESTINATIONS HERE
-        <Attractions attraction={searchedDestination} />
-      </div>
-
-    </>
+    </div>
   );
 }
 
