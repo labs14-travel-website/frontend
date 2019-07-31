@@ -6,6 +6,8 @@ import track from './utils/analytics';
 import Users from './Users';
 import store from './utils/jwt-store';
 import style from './App.module.scss';
+import Landing from './components/Search';
+import TestModal from './components/Modal/modalTest';
 
 function App() {
   const [state, setState] = useState({
@@ -36,17 +38,19 @@ function App() {
       ...prevState,
       loggedIn: true,
     }));
-    axios.post(
-      `${process.env.REACT_APP_ENDPOINT}/api/auth`,
-      {},
-      {
-        headers: {
-          Authorization: res.tokenId,
+    axios
+      .post(
+        `${process.env.REACT_APP_ENDPOINT}/api/auth`,
+        {},
+        {
+          headers: {
+            Authorization: res.tokenId,
+          },
         },
-      },
-    ).then((data) => {
-      console.log(data); // eslint-disable-line
-    });
+      )
+      .then((data) => {
+        console.log(data); // eslint-disable-line
+      });
   };
 
   const responseFail = (res) => {
@@ -61,22 +65,24 @@ function App() {
     }));
   };
 
+
   return (
     <div className={style.App}>
       <Users />
-      {
-        !state.loggedIn
-          ? (
-            <GoogleLogin
-              clientId={state.clientId}
-              buttonText="Login"
-              onSuccess={responseGoogle}
-              onFailure={responseFail}
-              cookiePolicy="single_host_origin"
-            />
-          )
-          : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />)
-      }
+      {!state.loggedIn ? (
+        <GoogleLogin
+          clientId={state.clientId}
+          buttonText="Login"
+          onSuccess={responseGoogle}
+          onFailure={responseFail}
+          cookiePolicy="single_host_origin"
+        />
+      ) : (
+        <GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />
+      )}
+
+      <Landing />
+      <TestModal />
     </div>
   );
 }
