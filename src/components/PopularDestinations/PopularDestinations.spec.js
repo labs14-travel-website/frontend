@@ -17,3 +17,7 @@ describe('PopularDestinations', () => {
     expect(wrapper.find(CardDisplay).length).toEqual(4);
   });
 });
+
+
+// test that it mounts
+// test that it displays locations (if getting 4 divs should be good)

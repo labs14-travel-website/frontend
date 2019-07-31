@@ -28,21 +28,21 @@ const PopularDestinations = () => {
   const shuffled = locations.sort(() => 0.5 - Math.random());
 
   const selectedLocations = shuffled.slice(0, 4);
-
+  console.log(selectedLocations); // eslint-disable-line
   const handleClick = async (query) => {
-    console.log('Lookup attractions'); // eslint-disable-line
-    const attractions = await axios.get(`https://roamly-staging.herokuapp.com/a?q=${query}`);
+    console.log("Lookup attractions"); // eslint-disable-line
+    const attractions = await axios.get(
+      `https://roamly-staging.herokuapp.com/a?q=${query}`,
+    );
     console.log(attractions); // eslint-disable-line
   };
 
   return (
     <div>
       <h2>Popular Destinations</h2>
-      {
-        selectedLocations.map(location => (
-          <CardDisplay key={location.city} location={location} handleClick={handleClick} />
-        ))
-      }
+      {selectedLocations.map(
+        location => location && <CardDisplay location={location} handleClick={handleClick} />,
+      )}
     </div>
   );
 };
