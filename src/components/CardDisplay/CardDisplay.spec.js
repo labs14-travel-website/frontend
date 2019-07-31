@@ -24,12 +24,20 @@ describe('Confirm CardDisplay Mounts', () => {
   });
 
   it('receives passed in location as props', () => {
-    const wrapper = shallow(<CardDisplay location={location} />);
-    // const test = wrapper.find('New York')
+    const wrapper = shallow(<CardDisplay location={location} handleClick={() => true} />);
     expect(wrapper.prop('location')).toEqual(location);
   });
-  it('displays passed in location as to the DOM', () => {
-    const wrapper = mount(<CardDisplay location={location} />);
+
+  it('fires function on click', () => {
+    const mockCallBack = jest.fn();
+
+    const wrapper = mount(<CardDisplay location={location} handleClick={mockCallBack} />);
+    wrapper.find('.card').simulate('click');
+    expect(mockCallBack).toHaveBeenCalled();
+  });
+
+  it('displays passed in location to the DOM', () => {
+    const wrapper = mount(<CardDisplay location={location} handleClick={() => true} />);
     const mockCity = wrapper.find('.city');
     expect(mockCity.text()).toEqual('New York');
   });
