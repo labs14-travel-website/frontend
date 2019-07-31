@@ -11,20 +11,27 @@ import CardDisplay from '.';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const mockDestinations = [
-  {
-    city: 'New York',
-    country: 'USA',
-  },
-];
+const location = {
+  city: 'New York',
+  country: 'USA',
+};
 
 describe('Confirm CardDisplay Mounts', () => {
   it('renders', () => {
-    const wrapper = shallow(
-      <CardDisplay location={mockDestinations} handleClick={() => true} />,
-    );
+    const wrapper = shallow(<CardDisplay location={location} handleClick={() => true} />);
 
     expect(wrapper.exists()).toBe(true);
+  });
+
+  it('receives passed in location as props', () => {
+    const wrapper = shallow(<CardDisplay location={location} />);
+    // const test = wrapper.find('New York')
+    expect(wrapper.prop('location')).toEqual(location);
+  });
+  it('displays passed in location as to the DOM', () => {
+    const wrapper = mount(<CardDisplay location={location} />);
+    const mockCity = wrapper.find('.city');
+    expect(mockCity.text()).toEqual('New York');
   });
 });
 

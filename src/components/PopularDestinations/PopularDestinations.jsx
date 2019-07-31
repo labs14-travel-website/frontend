@@ -40,9 +40,10 @@ const PopularDestinations = () => {
   return (
     <div>
       <h2>Popular Destinations</h2>
-      {selectedLocations.map(
-        location => location && <CardDisplay location={location} handleClick={handleClick} />,
-      )}
+      {selectedLocations.map(location => (
+        location
+        && <CardDisplay key={location.city} location={location} handleClick={handleClick} />
+      ))}
     </div>
   );
 };
