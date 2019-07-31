@@ -5,8 +5,10 @@ import React, { useEffect, useState } from 'react';
  */
 function Attractions(props) {
   const [attractions, setAttractions] = useState([]);
+  const [isLoadingData, setIsLoadingData] = useState(false);
 
   console.log(props)
+  
 
   useEffect( () => {
     setAttractions(props.attraction)
@@ -14,11 +16,11 @@ function Attractions(props) {
 
   return (
     <>
-      <h1>Testing</h1>
+      <h1>Testing Attractions</h1>
 
       <div>
         {attractions && attractions.map(place => {
-          return <p key={place.placeId}>Name: {place.name}, Rating: {place.rating}, Types: {place.types.map(type => type)}</p>
+          return <p key={place.placeId}>Name: {place.name}, Rating: {place.rating}, Types: {place.types.map(type => `${type}  `)}</p>
         })}
       </div>
     </>
