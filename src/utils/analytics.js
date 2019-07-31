@@ -79,5 +79,6 @@ export default {
   event,
   pageview,
   ga,
+  fs,
   mp: mixpanel,
 };
