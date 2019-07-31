@@ -1,8 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+import styles from './CardDisplay.module.scss';
+
 const CardDisplay = ({ location, handleClick }) => (
-  <div onClick={() => handleClick(`${location.city}, ${location.country}`)}>
+  <div className={styles.CardDisplay} onClick={() => handleClick(`${location.city}, ${location.country}`)}>
     <h2>{location.city}</h2>
     <div>{location.country}</div>
   </div>
