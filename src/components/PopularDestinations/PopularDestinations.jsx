@@ -1,4 +1,6 @@
 import React from 'react';
+import axios from 'axios';
+
 import CardDisplay from '../CardDisplay';
 
 const PopularDestinations = () => {
@@ -27,21 +29,20 @@ const PopularDestinations = () => {
 
   const selectedLocations = shuffled.slice(0, 4);
 
-  const handleClick = () => {
-    // console.log('clicked', e.target);
+  const handleClick = async (query) => {
+    console.log('Lookup attractions'); // eslint-disable-line
+    const attractions = await axios.get(`https://roamly-staging.herokuapp.com/a?q=${query}`);
+    console.log(attractions); // eslint-disable-line
   };
 
   return (
     <div>
       <h2>Popular Destinations</h2>
-      {selectedLocations.map(location => (
-        <div onClick={handleClick}>
-          {location.city}
-          {' '}
-          {location.country}
-          <CardDisplay location={location} />
-        </div> // TODO pass locations to CardDisplay
-      ))}
+      {
+        selectedLocations.map(location => (
+          <CardDisplay location={location} handleClick={handleClick} />
+        ))
+      }
     </div>
   );
 };

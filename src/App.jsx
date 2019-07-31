@@ -3,7 +3,6 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import axios from 'axios';
 import track from './utils/analytics';
 
-import Users from './Users';
 import store from './utils/jwt-store';
 import style from './App.module.scss';
 import Search from './components/Search';
@@ -65,7 +64,6 @@ function App() {
 
   return (
     <div className={style.App}>
-      <Users />
       {
         !state.loggedIn
           ? (
