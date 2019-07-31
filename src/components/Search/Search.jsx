@@ -11,20 +11,21 @@ function Search() {
   // API returned destination attractions
   const [searchedDestination, setSearchedDestination] = useState([]);
 
-  const example = [{
-    "name":"Escape My Room",
-    "placeId":"ChIJ-cdaX96lIIYReBSWpXVNalQ",
-    "rating":4.9,
-    "types":["museum","point_of_interest","establishment"],
-    "picture":"https://false/p/AF1QipOrLq7jYuMZ4OzEgYUWrrKkkFRnekQpB7mbnd_E=s1600-w400"
-  },
-  {
-    "name":"Escape My Room II",
-    "placeId":"ChIJ-cdaX96lIIYReBSWpXVNalQ",
-    "rating":4.9,
-    "types":["museum","point_of_interest","establishment"],
-    "picture":"https://false/p/AF1QipOrLq7jYuMZ4OzEgYUWrrKkkFRnekQpB7mbnd_E=s1600-w400"
-  }]
+  // const example = [{
+  //   "name":"Escape My Room",
+  //   "placeId":"ChIJ-cdaX96lIIYReBSWpXVNalQ",
+  //   "rating":4.9,
+  //   "types":["museum","point_of_interest","establishment"],
+  //   "picture":"https://false/p/AF1QipOrLq7jYuMZ4OzEgYUWrrKkkFRnekQpB7mbnd_E=s1600-w400"
+  // },
+  // {
+  //   "name":"Escape My Room II",
+  //   "placeId":"ChIJ-cdaX96lIIYReBSWpXVNalQ123",
+  //   "rating":4.9,
+  //   "types":["museum","point_of_interest","establishment"],
+  //   "picture":"https://false/p/AF1QipOrLq7jYuMZ4OzEgYUWrrKkkFRnekQpB7mbnd_E=s1600-w400"
+  // }]
+
 
   // Sets the state to user-input
   const handleOnChange = (event) => {
@@ -67,7 +68,7 @@ function Search() {
 
       <div className="destinations">
         SEARCHED DESTINATIONS HERE
-        <Attractions attraction={example} />
+        <Attractions attraction={searchedDestination} />
       </div>
 
     </>
