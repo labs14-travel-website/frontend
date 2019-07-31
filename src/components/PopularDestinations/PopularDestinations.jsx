@@ -40,7 +40,7 @@ const PopularDestinations = () => {
       <h2>Popular Destinations</h2>
       {
         selectedLocations.map(location => (
-          <CardDisplay location={location} handleClick={handleClick} />
+          <CardDisplay key={location.city} location={location} handleClick={handleClick} />
         ))
       }
     </div>
