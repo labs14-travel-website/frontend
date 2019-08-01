@@ -3,6 +3,10 @@ import axios from 'axios';
 
 import CardDisplay from '../CardDisplay';
 
+/** @description PopularDestinations is a component that returns 4 CardDisplays
+ * containing 4 randomly chosen popular destinations to travel to
+ */
+
 const PopularDestinations = () => {
   const locations = [
     { city: 'Hong Kong', country: 'China' },

@@ -1,8 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
+/** @description CardDisplay takes in props and
+* returns a card with the city and country of the given location
+*/
+
 const CardDisplay = ({ location, handleClick }) => (
-  <div className="card" onClick={() => handleClick(`${location.city}, ${location.country}`)}>
+  <div className="card-display" onClick={() => handleClick(`${location.city}, ${location.country}`)}>
     <h2 className="city">{location.city}</h2>
     <div>{location.country}</div>
   </div>
