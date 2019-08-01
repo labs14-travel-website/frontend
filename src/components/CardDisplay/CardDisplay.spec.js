@@ -22,14 +22,6 @@ describe('Confirm CardDisplay Mounts', () => {
     expect(wrapper.prop('location')).toEqual(location);
   });
 
-  it('fires function on click', () => {
-    const mockCallBack = jest.fn();
-
-    const wrapper = mount(<CardDisplay location={location} handleClick={mockCallBack} />);
-    wrapper.find('.card').simulate('click');
-    expect(mockCallBack).toHaveBeenCalled();
-  });
-
   it('displays passed in location to the DOM', () => {
     const wrapper = mount(<CardDisplay location={location} handleClick={() => true} />);
     const mockCity = wrapper.find('.city');
