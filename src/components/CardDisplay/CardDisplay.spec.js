@@ -24,8 +24,8 @@ describe('Confirm CardDisplay Mounts', () => {
     const wrapper = mount(
       <CardDisplay location={location} handleClick={mockCallback} />,
     );
-    expect(wrapper.find('.card-display').length).toEqual(1);
-    wrapper.find('.card-display').simulate('click');
+    expect(wrapper.find('.card_display').length).toEqual(1);
+    wrapper.find('.card_display').simulate('click');
     expect(mockCallback.mock.calls.length).toEqual(1);
   });
 
