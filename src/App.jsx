@@ -5,10 +5,9 @@ import track from './utils/analytics';
 import store from './utils/jwt-store';
 import style from './App.module.scss';
 import Search from './components/Search';
-import PopularDestinations from './components/PopularDestinations';
-
-import Landing from './components/Search';
-import TestModal from './components/Modal/modalTest';
+// import PopularDestinations from './components/PopularDestinations';
+import Users from './Users';
+// import TestModal from './components/Modal/modalTest';
 
 function App() {
   const [state, setState] = useState({
@@ -66,7 +65,6 @@ function App() {
     }));
   };
 
-
   return (
     <div className={style.App}>
       {
@@ -84,22 +82,9 @@ function App() {
       }
 
       <Search />
-      <PopularDestinations />
+      {/* <PopularDestinations /> */}
       <Users />
-      {!state.loggedIn ? (
-        <GoogleLogin
-          clientId={state.clientId}
-          buttonText="Login"
-          onSuccess={responseGoogle}
-          onFailure={responseFail}
-          cookiePolicy="single_host_origin"
-        />
-      ) : (
-        <GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />
-      )}
-
-      <Landing />
-      <TestModal />
+      {/* <TestModal /> */}
     </div>
   );
 }

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Modal from './index';
 import styles from './modal.module.scss';
 
-const TestModal = () => {
+const TestModal = (props) => {
   // state = {
   //   show: false
   // };
@@ -29,10 +29,7 @@ const TestModal = () => {
       </button>
 
       <Modal onClose={showModal} show={show}>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nobis
-          deserunt corrupti, ut fugit magni qui quasi nisi amet repellendus non
-          fuga omnis a sed impedit explicabo accusantium nihil doloremque
-          consequuntur.
+        {props.data}
       </Modal>
     </div>
   );
