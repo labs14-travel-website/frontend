@@ -1,0 +1,13 @@
+@import '../../assets/master';
+
+.popular_container {
+    justify-content: center;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+
+    h2 {
+        width: 100%;
+    }
+}

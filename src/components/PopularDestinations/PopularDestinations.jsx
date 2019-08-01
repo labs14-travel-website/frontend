@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 
 import CardDisplay from '../CardDisplay';
+import styles from './PopularDestinations.module.scss';
 
 /** @description PopularDestinations is a component that returns 4 CardDisplays
  * containing 4 randomly chosen popular destinations to travel to
@@ -41,7 +42,7 @@ const PopularDestinations = () => {
   };
 
   return (
-    <div>
+    <div className={styles.popular_container}>
       <h2>Popular Destinations</h2>
       {selectedLocations.map(location => (
         location
