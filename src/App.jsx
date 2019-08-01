@@ -6,8 +6,9 @@ import store from './utils/jwt-store';
 import style from './App.module.scss';
 import Search from './components/Search';
 // import PopularDestinations from './components/PopularDestinations';
-import Users from './Users';
 // import TestModal from './components/Modal/modalTest';
+// import CardDisplay from './components/CardDisplay';
+import PopularDestinations from './components/PopularDestinations';
 
 function App() {
   const [state, setState] = useState({
@@ -80,11 +81,8 @@ function App() {
           )
           : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />)
       }
-
       <Search />
-      {/* <PopularDestinations /> */}
-      <Users />
-      {/* <TestModal /> */}
+      <PopularDestinations />
     </div>
   );
 }

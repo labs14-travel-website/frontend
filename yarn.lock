@@ -5209,6 +5209,13 @@ icss-utils@^4.1.0:
   dependencies:
     postcss "^7.0.14"
 
+icss-utils@^4.1.1:
+  version "4.1.1"
+  resolved "https://registry.yarnpkg.com/icss-utils/-/icss-utils-4.1.1.tgz#21170b53789ee27447c2f47dd683081403f9a467"
+  integrity sha512-4aFq7wvWyMHKgxsH8QQtGpvbASCf+eM3wPRLI6R+MgAnTCZ6STYsRvttLvRWK0Nfif5piF394St3HeJDaljGPA==
+  dependencies:
+    postcss "^7.0.14"
+
 identity-obj-proxy@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/identity-obj-proxy/-/identity-obj-proxy-3.0.0.tgz#94d2bda96084453ef36fbc5aaec37e0f79f1fc14"
@@ -5857,6 +5864,16 @@ jest-config@^24.8.0:
     micromatch "^3.1.10"
     pretty-format "^24.8.0"
     realpath-native "^1.1.0"
+
+jest-css-modules-transform@^2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/jest-css-modules-transform/-/jest-css-modules-transform-2.5.0.tgz#69fce67331d7e7386d7df4dae7178419dc6c2916"
+  integrity sha512-92Z6javjDeAg7Sz/NudhSNqnhY7RNqW83M1NCSVav/YSspzGDL95vBIFo3ZbNUklmppq6779KBOFGZjQWKRDxQ==
+  dependencies:
+    icss-utils "^4.1.1"
+    lodash "^4.0.0"
+    postcss "^7.0.16"
+    postcss-nested "^4.1.2"
 
 jest-diff@^24.8.0:
   version "24.8.0"
@@ -8278,6 +8295,14 @@ postcss-modules-values@^2.0.0:
     icss-replace-symbols "^1.1.0"
     postcss "^7.0.6"
 
+postcss-nested@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/postcss-nested/-/postcss-nested-4.1.2.tgz#8e0570f736bfb4be5136e31901bf2380b819a561"
+  integrity sha512-9bQFr2TezohU3KRSu9f6sfecXmf/x6RXDedl8CHF6fyuyVW7UqgNMRdWMHZQWuFY6Xqs2NYk+Fj4Z4vSOf7PQg==
+  dependencies:
+    postcss "^7.0.14"
+    postcss-selector-parser "^5.0.0"
+
 postcss-nesting@^7.0.0:
   version "7.0.1"
   resolved "https://registry.yarnpkg.com/postcss-nesting/-/postcss-nesting-7.0.1.tgz#b50ad7b7f0173e5b5e3880c3501344703e04c052"
@@ -8574,6 +8599,15 @@ postcss-values-parser@^2.0.0, postcss-values-parser@^2.0.1:
     uniq "^1.0.1"
 
 postcss@^7.0.0, postcss@^7.0.1, postcss@^7.0.14, postcss@^7.0.17, postcss@^7.0.2, postcss@^7.0.5, postcss@^7.0.6:
+  version "7.0.17"
+  resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.17.tgz#4da1bdff5322d4a0acaab4d87f3e782436bad31f"
+  integrity sha512-546ZowA+KZ3OasvQZHsbuEpysvwTZNGJv9EfyCQdsIDltPSWHAeTQ5fQy/Npi2ZDtLI3zs7Ps/p6wThErhm9fQ==
+  dependencies:
+    chalk "^2.4.2"
+    source-map "^0.6.1"
+    supports-color "^6.1.0"
+
+postcss@^7.0.16:
   version "7.0.17"
   resolved "https://registry.yarnpkg.com/postcss/-/postcss-7.0.17.tgz#4da1bdff5322d4a0acaab4d87f3e782436bad31f"
   integrity sha512-546ZowA+KZ3OasvQZHsbuEpysvwTZNGJv9EfyCQdsIDltPSWHAeTQ5fQy/Npi2ZDtLI3zs7Ps/p6wThErhm9fQ==
@@ -8926,6 +8960,35 @@ react-loader-spinner@^2.3.0:
   dependencies:
     babel-runtime "^6.26.0"
     prop-types "^15.6.2"
+react-native-heap-analytics@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/react-native-heap-analytics/-/react-native-heap-analytics-2.4.0.tgz#d8fafef7376eb53b61ca0bc955a2fb4e96b35f59"
+  integrity sha512-WhyFRMTv1IHGGZZUVZXJHVIGtmrqtnwGw4KLMajiXNQhNNJU7iKvL65sw0PL7TWfBBqDV1JY2QZ0UjhvsyBBQw==
+  dependencies:
+    react-native-package "^2.5.0"
+
+react-native-module-check@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/react-native-module-check/-/react-native-module-check-2.6.2.tgz#c4112e6cd0837f71631fd302386da6dbdd2b8414"
+  integrity sha512-Thm+dfELhc7FZ86Hsoxc25gtQa65C+Z9BXhi9rxDcnRKwCJ+DoCED5jdfvFm8g03WzYkqGojncZ1lNZ+c/sfUg==
+  dependencies:
+    invariant "^2.2.2"
+    warning "^3.0.0"
+
+react-native-module-guard@^2.6.2:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/react-native-module-guard/-/react-native-module-guard-2.6.2.tgz#44d7f85d6bf778cc597c97c7d228938d8e2db388"
+  integrity sha512-jXY25yZVYf2VpYU/vC7lsZ4b/9avP7otrZVQ/OQRf39KasxRYaIZTmR69LYlguM7x9Vo3VXe27zor9fibwfi1A==
+  dependencies:
+    warning "^3.0.0"
+
+react-native-package@^2.5.0:
+  version "2.6.2"
+  resolved "https://registry.yarnpkg.com/react-native-package/-/react-native-package-2.6.2.tgz#d8266653305580b6e94a3aa80a972b8a73f3939a"
+  integrity sha512-Ic8jFJI/CBgxAOGA/iCPkM8nFj6tMstGUIiUIWP4JlBlod0EtVQ+ch8y61XFdfBM7AhUdYQ77HplJ7GgtF1JxQ==
+  dependencies:
+    react-native-module-check "^2.6.2"
+    react-native-module-guard "^2.6.2"
 
 react-scripts@3.0.1:
   version "3.0.1"
@@ -10718,6 +10781,13 @@ walker@^1.0.7, walker@~1.0.5:
   integrity sha1-L3+bj9ENZ3JisYqITijRlhjgKPs=
   dependencies:
     makeerror "1.0.x"
+
+warning@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/warning/-/warning-3.0.0.tgz#32e5377cb572de4ab04753bdf8821c01ed605b7c"
+  integrity sha1-MuU3fLVy3kqwR1O9+IIcAe1gW3w=
+  dependencies:
+    loose-envify "^1.0.0"
 
 watchpack@^1.5.0:
   version "1.6.0"

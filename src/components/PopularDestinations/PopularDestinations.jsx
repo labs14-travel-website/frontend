@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 
+import styles from './PopularDestinations.module.scss';
 import CardDisplay from '../CardDisplay';
 
 const PopularDestinations = () => {
@@ -30,19 +31,22 @@ const PopularDestinations = () => {
   const selectedLocations = shuffled.slice(0, 4);
 
   const handleClick = async (query) => {
-    console.log('Lookup attractions'); // eslint-disable-line
-    // const attractions = await axios.get(`https://roamly-staging.herokuapp.com/a?q=${query}`);
-    // console.log(attractions); // eslint-disable-line
+    const attractions = await axios.get(`https://roamly-staging.herokuapp.com/a?q=${query}`);
+    console.log(attractions); // eslint-disable-line
   };
 
   return (
-    <div>
-      <h2>Popular Destinations</h2>
-      {
-        selectedLocations.map(location => (
-          <CardDisplay location={location} handleClick={handleClick} />
-        ))
-      }
+    <div className={styles.container}>
+      <div className={styles.PopularDestinations}>
+        <h2 className={styles.PopularDestinations__title}>Popular Destinations</h2>
+        <div className={styles.PopularDestinations__cards}>
+          {
+            selectedLocations.map(location => (
+              <CardDisplay location={location} handleClick={handleClick} />
+            ))
+          }
+        </div>
+      </div>
     </div>
   );
 };

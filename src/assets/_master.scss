@@ -1,2 +1,9 @@
 // variables
 @import './_mixins';
+@import './_variables';
+
+.container {
+  max-width: 1240px;
+  width: 100%;
+  align-self: center;
+}
