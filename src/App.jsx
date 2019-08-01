@@ -9,11 +9,13 @@ import Search from './components/Search';
 // import TestModal from './components/Modal/modalTest';
 // import CardDisplay from './components/CardDisplay';
 import PopularDestinations from './components/PopularDestinations';
+import Attractions from './components/Attractions';
 
 function App() {
   const [state, setState] = useState({
     loggedIn: false,
     clientId: process.env.REACT_APP_OAUTH_GOOGLE_ID,
+    attractions: [],
   });
 
   useEffect(() => {
@@ -66,6 +68,21 @@ function App() {
     }));
   };
 
+  // performs action when user clicks the ROAM button
+  const handleSearch = (destination) => {
+    // request to backend that will request to API and send back the data
+    axios.get(`${process.env.REACT_APP_ENDPOINT}/a?q=${destination}`)
+      .then(({ data: { places } }) => {
+        setState({
+          ...state,
+          attractions: places,
+        });
+      })
+      .catch((error) => {
+        console.log(error);  // eslint-disable-line
+      });
+  };
+
   return (
     <div className={style.App}>
       {
@@ -81,8 +98,12 @@ function App() {
           )
           : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />)
       }
-      <Search />
-      <PopularDestinations />
+      <Search handleSearch={handleSearch} />
+      {
+        !state.attractions.length > 0
+          ? <PopularDestinations />
+          : <Attractions attractions={state.attractions} />
+      }
     </div>
   );
 }

@@ -6,10 +6,9 @@ import styles from './Search.module.scss';
 /**
  * @description Landing is a component that returns an input form and attraction cards
  */
-function Search() {
+const Search = ({ handleSearch }) => {
   // user-input state
   const [destination, setDestination] = useState('');
-  const [, setSearchedDestination] = useState([]);
 
   // const example = [{
   //   "name":"Escape My Room",
@@ -32,19 +31,9 @@ function Search() {
     setDestination(value);
   };
 
-  // performs action when user clicks the ROAM button
-  // TODO: this should be handled in parent to better handle integration between components
   const handleOnSubmit = (event) => {
     event.preventDefault();
-
-    // request to backend that will request to API and send back the data
-    axios.get(`${process.env.REACT_APP_ENDPOINT}/a?q=${destination}`)
-      .then(({ data: { places } }) => {
-        setSearchedDestination(places);
-      })
-      .catch((error) => {
-        console.log(error);  // eslint-disable-line
-      });
+    handleSearch(destination);
     setDestination('');
   };
 

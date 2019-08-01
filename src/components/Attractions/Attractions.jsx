@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
-import Modal from '../Modal/modalTest';
+import Modal from '../Modal';
+import CardDisplay from '../CardDisplay';
+
 /**
  * @description This will display the attraction cards component when they are ready
  */
@@ -17,18 +19,31 @@ function Attractions(props) {
     setLoaded(true)
   };
 
+  const showModal = () => {
+    setLoaded(!loaded);
+    // this.setState({
+    //   show: !this.state.show
+    // });
+  };
+  
+
   return (
     <>
       <h1>Testing Attractions</h1>
 
       <div>
         {attractions && attractions.map(place => {
-          return <p
-          onClick={handleOnClick} 
-          key={place.placeId}>Name: {place.name}, Rating: {place.rating}, Types: {place.types.map(type => `${type}  `)}</p>
-        })}
+          return <CardDisplay key={place.placeId} handleOnClick={handleOnClick} data={{
+            title: place.name,
+            body: [
+              <h1>Test</h1>,
+              <p>two</p>,
+              <p>three</p>,
+            ],
+          }} />
+        })} 
       </div>
-     {loaded && <Modal data={things} />}      
+     {loaded && <Modal data={attractions} onClose={showModal} show={loaded} />}      
     </>
   );
 }
