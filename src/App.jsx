@@ -3,9 +3,11 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import axios from 'axios';
 import track from './utils/analytics';
 
-import Users from './Users';
 import store from './utils/jwt-store';
 import style from './App.module.scss';
+// import CardDisplay from './components/CardDisplay';
+import PopularDestinations from './components/PopularDestinations';
+import Search from './components/Search';
 
 function App() {
   const [state, setState] = useState({
@@ -63,7 +65,6 @@ function App() {
 
   return (
     <div className={style.App}>
-      <Users />
       {
         !state.loggedIn
           ? (
@@ -77,6 +78,8 @@ function App() {
           )
           : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />)
       }
+      <Search />
+      <PopularDestinations />
     </div>
   );
 }
