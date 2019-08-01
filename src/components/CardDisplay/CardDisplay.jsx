@@ -9,9 +9,11 @@ import styles from './CardDisplay.module.scss';
 const CardDisplay = ({ location, handleClick }) => {
   const style = {
     background: `url(${location.img})`,
+    backgroundSize: 'cover',
+    backgroundPosition: '50% 50%',
   };
   return (
-    <div style={style} className={styles.CardDisplay} onClick={() => handleClick(`${location.city}, ${location.country}`)}>
+    <div className={styles.CardDisplay} style={style} onClick={() => handleClick(`${location.city}, ${location.country}`)}>
       <h2 className={styles.CardDisplay__city}>{location.city}</h2>
       <div className={styles.CardDisplay__country}>{location.country}</div>
     </div>
