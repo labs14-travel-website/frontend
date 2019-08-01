@@ -20,12 +20,21 @@ const mockDestinations = [
 
 describe("Confirm CardDisplay Mounts", () => {
   it("renders", () => {
-
     const wrapper = shallow(
       <CardDisplay location={mockDestinations} handleClick={() => true} />
     );
 
     expect(wrapper.exists()).toBe(true);
+  });
+
+  it("fires function when destination is clicked", () => {
+    const mockCallback = jest.fn(() => true);
+    const wrapper = mount(
+      <CardDisplay location={mockDestinations} handleClick={mockCallback} />
+    );
+    expect(wrapper.find(".card-display").length).toEqual(1);
+    wrapper.find(".card-display").simulate("click");
+    expect(mockCallback.mock.calls.length).toEqual(1);
   });
 });
 
