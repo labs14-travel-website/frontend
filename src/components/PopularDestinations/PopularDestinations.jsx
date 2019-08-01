@@ -1,8 +1,8 @@
 import React from 'react';
 import axios from 'axios';
 
-import CardDisplay from '../CardDisplay';
 import styles from './PopularDestinations.module.scss';
+import CardDisplay from '../CardDisplay';
 
 /** @description PopularDestinations is a component that returns 4 CardDisplays
  * containing 4 randomly chosen popular destinations to travel to
@@ -34,20 +34,22 @@ const PopularDestinations = () => {
   const selectedLocations = shuffled.slice(0, 4);
   console.log(selectedLocations); // eslint-disable-line
   const handleClick = async (query) => {
-    console.log("Lookup attractions"); // eslint-disable-line
-    const attractions = await axios.get(
-      `https://roamly-staging.herokuapp.com/a?q=${query}`,
-    );
+    const attractions = await axios.get(`https://roamly-staging.herokuapp.com/a?q=${query}`);
     console.log(attractions); // eslint-disable-line
   };
 
   return (
-    <div className={styles.popular_container}>
-      <h2>Popular Destinations</h2>
-      {selectedLocations.map(location => (
-        location
-        && <CardDisplay key={location.city} location={location} handleClick={handleClick} />
-      ))}
+    <div className={styles.container}>
+      <div className={styles.PopularDestinations}>
+        <h2 className={styles.PopularDestinations__title}>Popular Destinations</h2>
+        <div className={styles.PopularDestinations__cards}>
+          {
+            selectedLocations.map(location => (
+              <CardDisplay location={location} handleClick={handleClick} />
+            ))
+          }
+        </div>
+      </div>
     </div>
   );
 };

@@ -1,13 +1,18 @@
 @import '../../assets/master';
 
-.popular_container {
-    justify-content: center;
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-    width: 100%;
+.PopularDestinations {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
 
-    h2 {
-        width: 100%;
-    }
+  &__title {
+    text-align: left;
+    font-size: 36px;
+    font-weight: 400;
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: space-between;
+  }
 }

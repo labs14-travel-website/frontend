@@ -11,9 +11,9 @@ const CardDisplay = ({ location, handleClick }) => {
     background: `url(${location.img})`,
   };
   return (
-    <div style={style} className={styles.card_display} onClick={() => handleClick(`${location.city}, ${location.country}`)}>
-      <h2 className="city">{location.city}</h2>
-      <div>{location.country}</div>
+    <div style={style} className={styles.CardDisplay} onClick={() => handleClick(`${location.city}, ${location.country}`)}>
+      <h2 className={styles.CardDisplay__city}>{location.city}</h2>
+      <div className={styles.CardDisplay__country}>{location.country}</div>
     </div>
   );
 };
