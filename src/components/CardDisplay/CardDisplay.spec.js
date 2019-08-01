@@ -12,9 +12,21 @@ const location = {
 
 describe('Confirm CardDisplay Mounts', () => {
   it('renders', () => {
-    const wrapper = shallow(<CardDisplay location={location} handleClick={() => true} />);
+    const wrapper = shallow(
+      <CardDisplay location={location} handleClick={() => true} />,
+    );
 
     expect(wrapper.exists()).toBe(true);
+  });
+
+  it('fires function when destination is clicked', () => {
+    const mockCallback = jest.fn(() => true);
+    const wrapper = mount(
+      <CardDisplay location={location} handleClick={mockCallback} />,
+    );
+    expect(wrapper.find('.card-display').length).toEqual(1);
+    wrapper.find('.card-display').simulate('click');
+    expect(mockCallback.mock.calls.length).toEqual(1);
   });
 
   it('receives passed in location as props', () => {
