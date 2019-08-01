@@ -24,8 +24,8 @@ describe('Confirm CardDisplay Mounts', () => {
     const wrapper = mount(
       <CardDisplay location={location} handleClick={mockCallback} />,
     );
-    expect(wrapper.find('.card_display').length).toEqual(1);
-    wrapper.find('.card_display').simulate('click');
+    expect(wrapper.find('.CardDisplay').length).toEqual(1);
+    wrapper.find('.CardDisplay').simulate('click');
     expect(mockCallback.mock.calls.length).toEqual(1);
   });
 
@@ -36,7 +36,7 @@ describe('Confirm CardDisplay Mounts', () => {
 
   it('displays passed in location to the DOM', () => {
     const wrapper = mount(<CardDisplay location={location} handleClick={() => true} />);
-    const mockCity = wrapper.find('.city');
+    const mockCity = wrapper.find('[className^="CardDisplay__city"]');
     expect(mockCity.text()).toEqual('New York');
   });
 });
