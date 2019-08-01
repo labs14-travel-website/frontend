@@ -1,49 +1,58 @@
 import React, { useEffect, useState } from 'react';
 import Modal from '../Modal';
 import CardDisplay from '../CardDisplay';
+import axios from 'axios';
+import Loader from 'react-loader-spinner';
+
 
 /**
  * @description This will display the attraction cards component when they are ready
  */
 function Attractions(props) {
-  const { attractions } = props;
-  const [isLoadingData, setIsLoadingData] = useState(false);
+  const { attractions, isLoading } = props;
   const [loaded, setLoaded] = useState(false);
+  const [modalAttraction, setModalAttraction] = useState({});
 
-  const things = <p>Hello, from the other side.</p>;
-
-  console.log(props)
-
-  const handleOnClick = () => {
-    console.log("P CLICKED")
+  const handleOnClick = ({ place }) => {
+    // setIsLoadingData(true)
+    setModalAttraction(place);
     setLoaded(true)
   };
 
   const showModal = () => {
     setLoaded(!loaded);
-    // this.setState({
-    //   show: !this.state.show
-    // });
   };
-  
 
   return (
     <>
-      <h1>Testing Attractions</h1>
-
       <div>
-        {attractions && attractions.map(place => {
-          return <CardDisplay key={place.placeId} handleOnClick={handleOnClick} data={{
-            title: place.name,
-            body: [
-              <h1>Test</h1>,
-              <p>two</p>,
-              <p>three</p>,
-            ],
-          }} />
-        })} 
+        {
+          !isLoading
+          ? attractions && attractions.map(place => {
+            console.log(place);
+            return <CardDisplay key={place.placeId} handleOnClick={handleOnClick} data={{
+              title: place.name,
+              body: [
+                <h1>Rating: {place.rating}</h1>,
+                <button>More Info</button>,
+              ],
+              place,
+            }} />
+          })
+          : <Loader
+            type="Puff"
+            color="#00BFFF"
+            height="100"
+            width="100"
+            />
+        }
       </div>
-     {loaded && <Modal data={attractions} onClose={showModal} show={loaded} />}      
+     
+     {loaded && <Modal attraction={modalAttraction}
+      onClose={showModal} 
+      show={loaded}>
+      <p>Hello</p>
+      </Modal>}      
     </>
   );
 }

@@ -11,11 +11,13 @@ import Search from './components/Search';
 import PopularDestinations from './components/PopularDestinations';
 import Attractions from './components/Attractions';
 
+
 function App() {
   const [state, setState] = useState({
     loggedIn: false,
     clientId: process.env.REACT_APP_OAUTH_GOOGLE_ID,
     attractions: [],
+    isLoading: false, 
   });
 
   useEffect(() => {
@@ -70,13 +72,18 @@ function App() {
 
   // performs action when user clicks the ROAM button
   const handleSearch = (destination) => {
+    setState(prevState => ({
+      ...prevState,
+      isLoading: true,
+    }));
     // request to backend that will request to API and send back the data
     axios.get(`${process.env.REACT_APP_ENDPOINT}/a?q=${destination}`)
       .then(({ data: { places } }) => {
-        setState({
-          ...state,
+        setState(prevState => ({
+          ...prevState,
           attractions: places,
-        });
+          isLoading: false,
+        }));
       })
       .catch((error) => {
         console.log(error);  // eslint-disable-line
@@ -100,9 +107,9 @@ function App() {
       }
       <Search handleSearch={handleSearch} />
       {
-        !state.attractions.length > 0
+        !state.attractions.length > 0 && !state.isLoading
           ? <PopularDestinations />
-          : <Attractions attractions={state.attractions} />
+          : <Attractions attractions={state.attractions} isLoading={state.isLoading} />
       }
     </div>
   );
