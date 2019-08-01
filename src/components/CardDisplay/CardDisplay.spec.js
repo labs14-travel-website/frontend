@@ -1,42 +1,42 @@
-// it('renders without crashing', () => {
-//   expect(1).toBe(1);
-// });
-// work on tests
-// enzyme??
-// cypress??
-import React from "react";
-import Enzyme, { shallow, mount } from "enzyme";
-import Adapter from "enzyme-adapter-react-16";
-import CardDisplay from ".";
+import React from 'react';
+import Enzyme, { shallow, mount } from 'enzyme';
+import Adapter from 'enzyme-adapter-react-16';
+import CardDisplay from '.';
 
 Enzyme.configure({ adapter: new Adapter() });
 
-const mockDestinations = [
-  {
-    city: "New York",
-    country: "USA"
-  }
-];
+const location = {
+  city: 'New York',
+  country: 'USA',
+};
 
-describe("Confirm CardDisplay Mounts", () => {
-  it("renders", () => {
+describe('Confirm CardDisplay Mounts', () => {
+  it('renders', () => {
     const wrapper = shallow(
-      <CardDisplay location={mockDestinations} handleClick={() => true} />
+      <CardDisplay location={location} handleClick={() => true} />,
     );
 
     expect(wrapper.exists()).toBe(true);
   });
 
-  it("fires function when destination is clicked", () => {
+  it('fires function when destination is clicked', () => {
     const mockCallback = jest.fn(() => true);
     const wrapper = mount(
-      <CardDisplay location={mockDestinations} handleClick={mockCallback} />
+      <CardDisplay location={location} handleClick={mockCallback} />,
     );
-    expect(wrapper.find(".card-display").length).toEqual(1);
-    wrapper.find(".card-display").simulate("click");
+    expect(wrapper.find('.card-display').length).toEqual(1);
+    wrapper.find('.card-display').simulate('click');
     expect(mockCallback.mock.calls.length).toEqual(1);
   });
-});
 
-// test if mock function is fired when clicking on a destination
-// test that passed in location is properly displayed
+  it('receives passed in location as props', () => {
+    const wrapper = shallow(<CardDisplay location={location} handleClick={() => true} />);
+    expect(wrapper.prop('location')).toEqual(location);
+  });
+
+  it('displays passed in location to the DOM', () => {
+    const wrapper = mount(<CardDisplay location={location} handleClick={() => true} />);
+    const mockCity = wrapper.find('.city');
+    expect(mockCity.text()).toEqual('New York');
+  });
+});

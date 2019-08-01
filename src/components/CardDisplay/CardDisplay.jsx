@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const CardDisplay = ({ location, handleClick }) => (
   <div className="card-display" onClick={() => handleClick(`${location.city}, ${location.country}`)}>
-    <h2>{location.city}</h2>
+    <h2 className="city">{location.city}</h2>
     <div>{location.country}</div>
   </div>
 );
