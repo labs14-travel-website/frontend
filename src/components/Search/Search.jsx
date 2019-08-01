@@ -1,34 +1,38 @@
 import React, { useState } from 'react';
-import axios from 'axios';
-
+import PropTypes from 'prop-types';
 import styles from './Search.module.scss';
 
 /**
  * @description Landing is a component that returns an input form and attraction cards
  */
-function Search() {
+const Search = ({ handleSearch }) => {
   // user-input state
   const [destination, setDestination] = useState('');
-  const [, setSearchedDestination] = useState([]);
 
-  // sets the state to user-input
+  // const example = [{
+  //   "name":"Escape My Room",
+  //   "placeId":"ChIJ-cdaX96lIIYReBSWpXVNalQ",
+  //   "rating":4.9,
+  //   "types":["museum","point_of_interest","establishment"],
+  //   "picture":"https://false/p/AF1QipOrLq7jYuMZ4OzEgYUWrrKkkFRnekQpB7mbnd_E=s1600-w400"
+  // },
+  // {
+  //   "name":"Escape My Room II",
+  //   "placeId":"ChIJ-cdaX96lIIYReBSWpXVNalQ123",
+  //   "rating":4.9,
+  //   "types":["museum","point_of_interest","establishment"],
+  //   "picture":"https://false/p/AF1QipOrLq7jYuMZ4OzEgYUWrrKkkFRnekQpB7mbnd_E=s1600-w400"
+  // }]
+
+
+  // Sets the state to user-input
   const handleOnChange = ({ target: { value } }) => {
     setDestination(value);
   };
 
-  // performs action when user clicks the ROAM button
-  // TODO: this should be handled in parent to better handle integration between components
   const handleOnSubmit = (event) => {
     event.preventDefault();
-
-    // request to backend that will request to API and send back the data
-    axios.get(`${process.env.REACT_APP_ENDPOINT}/a?q=${destination}`)
-      .then(({ data: { places } }) => {
-        setSearchedDestination(places);
-      })
-      .catch((error) => {
-        console.log(error);  // eslint-disable-line
-      });
+    handleSearch(destination);
     setDestination('');
   };
 
@@ -51,6 +55,11 @@ function Search() {
       </div>
     </div>
   );
-}
+};
+
+
+Search.propTypes = {
+  handleSearch: PropTypes.func.isRequired,
+};
 
 export default Search;

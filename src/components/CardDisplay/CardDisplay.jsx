@@ -5,24 +5,21 @@ import styles from './CardDisplay.module.scss';
 /** @description CardDisplay takes in props and
 * returns a card with the city and country of the given location
 */
-
-const CardDisplay = ({ location, handleClick }) => {
+const CardDisplay = ({ data, handleOnClick }) => {
   const style = {
-    background: `url(${location.img})`,
-    backgroundSize: 'cover',
-    backgroundPosition: '50% 50%',
+    background: `url(${data.place.picture}) no-repeat 50% 50% / cover`,
   };
   return (
-    <div className={styles.CardDisplay} style={style} onClick={() => handleClick(`${location.city}, ${location.country}`)}>
-      <h2 className={styles.CardDisplay__city}>{location.city}</h2>
-      <div className={styles.CardDisplay__country}>{location.country}</div>
+    <div className={styles.CardDisplay} style={style} onClick={() => handleOnClick(data)}>
+      <h2 className={styles.CardDisplay__city}>{data.title}</h2>
+      <div className={styles.CardDisplay__country}>{data.body}</div>
     </div>
   );
 };
 
 CardDisplay.propTypes = {
-  location: PropTypes.objectOf(PropTypes.string).isRequired,
-  handleClick: PropTypes.func.isRequired,
+  data: PropTypes.objectOf(PropTypes.any).isRequired,
+  handleOnClick: PropTypes.func.isRequired,
 };
 
 export default CardDisplay;
