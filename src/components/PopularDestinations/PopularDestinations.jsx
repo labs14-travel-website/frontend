@@ -42,7 +42,13 @@ const PopularDestinations = () => {
         <div className={styles.PopularDestinations__cards}>
           {
             selectedLocations.map(location => (
-              <CardDisplay data={{title: location.city, body: location.country}} handleOnClick={handleOnClick} />
+              <CardDisplay
+                data={{
+                  title: location.city,
+                  body: location.country,
+                }}
+                handleOnClick={handleOnClick}
+              />
             ))
           }
         </div>

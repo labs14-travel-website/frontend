@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
+import Loader from 'react-loader-spinner';
+import PropTypes from 'prop-types';
 import Modal from '../Modal';
 import CardDisplay from '../CardDisplay';
-import axios from 'axios';
-import Loader from 'react-loader-spinner';
 
 
 /**
@@ -16,7 +16,7 @@ function Attractions(props) {
   const handleOnClick = ({ place }) => {
     // setIsLoadingData(true)
     setModalAttraction(place);
-    setLoaded(true)
+    setLoaded(true);
   };
 
   const showModal = () => {
@@ -28,33 +28,59 @@ function Attractions(props) {
       <div>
         {
           !isLoading
-          ? attractions && attractions.map(place => {
-            console.log(place);
-            return <CardDisplay key={place.placeId} handleOnClick={handleOnClick} data={{
-              title: place.name,
-              body: [
-                <h1>Rating: {place.rating}</h1>,
-                <button>More Info</button>,
-              ],
-              place,
-            }} />
-          })
-          : <Loader
-            type="Puff"
-            color="#00BFFF"
-            height="100"
-            width="100"
-            />
+            ? attractions && attractions.map(place => (
+              <CardDisplay
+                key={place.placeId}
+                handleOnClick={handleOnClick}
+                data={{
+                  title: place.name,
+                  body: [
+                    <h1>
+Rating:
+                      {place.rating}
+                    </h1>,
+                    <button type="button">More Info</button>,
+                  ],
+                  place,
+                }}
+              />
+            ))
+            : (
+              <Loader
+                type="Puff"
+                color="#00BFFF"
+                height="100"
+                width="100"
+              />
+            )
         }
       </div>
-     
-     {loaded && <Modal attraction={modalAttraction}
-      onClose={showModal} 
-      show={loaded}>
-      <p>Hello</p>
-      </Modal>}      
+
+      {loaded && (
+      <Modal
+        attraction={modalAttraction}
+        onClose={showModal}
+        show={loaded}
+      >
+        <p>Hello</p>
+      </Modal>
+      )}
     </>
   );
 }
+
+Attractions.propTypes = {
+  attractions: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      rating: PropTypes.number,
+      placeId: PropTypes.string,
+      picture: PropTypes.string,
+      types: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
+
 
 export default Attractions;

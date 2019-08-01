@@ -17,7 +17,7 @@ function App() {
     loggedIn: false,
     clientId: process.env.REACT_APP_OAUTH_GOOGLE_ID,
     attractions: [],
-    isLoading: false, 
+    isLoading: false,
   });
 
   useEffect(() => {
