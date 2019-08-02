@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import Modal from '../Modal';
 import CardDisplay from '../CardDisplay';
 
-
 /**
  * @description This will display the attraction cards component when they are ready
  */
@@ -25,45 +24,35 @@ function Attractions(props) {
 
   return (
     <>
-      <div>
-        {
-          !isLoading
-            ? attractions && attractions.map(place => (
-              <CardDisplay
-                key={place.placeId}
-                handleOnClick={handleOnClick}
-                data={{
-                  title: place.name,
-                  body: [
-                    <h1>
-Rating:
-                      {place.rating}
-                    </h1>,
-                    <button type="button">More Info</button>,
-                  ],
-                  place,
-                }}
-              />
-            ))
-            : (
-              <Loader
-                type="Puff"
-                color="#00BFFF"
-                height="100"
-                width="100"
-              />
-            )
-        }
+      <div className="card-wrapper">
+        {!isLoading ? (
+          attractions
+          && attractions.map(place => (
+            <CardDisplay
+              key={place.placeId}
+              handleOnClick={handleOnClick}
+              data={{
+                title: place.name,
+                body: [
+                  <h1>
+                    Rating:
+                    {place.rating}
+                  </h1>,
+                  <button type="button">More Info</button>,
+                ],
+                place,
+              }}
+            />
+          ))
+        ) : (
+          <Loader className="loader" type="Puff" color="#00BFFF" height="100" width="100" />
+        )}
       </div>
 
       {loaded && (
-      <Modal
-        attraction={modalAttraction}
-        onClose={showModal}
-        show={loaded}
-      >
-        <p>Hello</p>
-      </Modal>
+        <Modal attraction={modalAttraction} onClose={showModal} show={loaded}>
+          <p>Hello</p>
+        </Modal>
       )}
     </>
   );
@@ -81,6 +70,5 @@ Attractions.propTypes = {
   ).isRequired,
   isLoading: PropTypes.bool.isRequired,
 };
-
 
 export default Attractions;

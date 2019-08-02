@@ -45,6 +45,7 @@ const PopularDestinations = () => {
           {
             selectedLocations.map(location => (
               <CardDisplay
+                key={location.city}
                 data={{
                   title: location.city,
                   body: location.country,
