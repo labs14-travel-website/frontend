@@ -27,6 +27,8 @@ const PopularDestinations = () => {
     { city: 'Guangzhou', country: 'China', picture: '/images/PopularDestinations/guangzhou.jpeg' },
     { city: 'Mumbai', country: 'India', picture: '/images/PopularDestinations/mumbai.jpeg' },
     { city: 'Prague', country: 'Czech Republic', picture: '/images/PopularDestinations/prague.jpeg' },
+    { city: 'Barcelona', country: 'Spain', picture: '/images/PopularDestinations/barcelona.jpeg' },
+    { city: 'Vienna', country: 'Austria', picture: '/images/PopularDestinations/vienna.jpeg' },
     //TODO add 2 more destinations
   ];
 
@@ -72,7 +74,7 @@ const PopularDestinations = () => {
               />
             ))
           }
-          {locationStateIndex <= locations.length - 4 ? <div className={styles.PopularDestinations__plus} onClick={handleMoreClick}>+</div> : null}
+          {locationStateIndex < locations.length - 4 ? <div className={styles.PopularDestinations__plus} onClick={handleMoreClick}>+</div> : null}
         </div>
       </div>
     </div>
