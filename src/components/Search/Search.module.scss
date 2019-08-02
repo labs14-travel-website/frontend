@@ -23,9 +23,11 @@
         padding: 0 30px;
         max-width: 1240px;
         font-size: 24px;
-        border: none;
+        border: 2px solid transparent;
+        border-right: 0;
+        box-sizing: border-box;
       }
-
+      
       &__submit {
         height: 70px;
         border: none;
@@ -35,6 +37,22 @@
         font-size: 18px;
         padding: 0 30px;
         cursor: pointer;
+        box-sizing: border-box;
+        border: 2px solid transparent;
+        border-left: 0;
+      }
+
+      &__input:focus {
+        outline: 0;
+        border: solid $primary;
+        border-width: 2px 0 2px 2px;
+        border-right: 0;
+      }
+
+      &__input:focus + button {
+        border: solid $primary;
+        border-width: 2px 2px 2px 0;
+        border-left: 0;
       }
     }
   }
