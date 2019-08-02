@@ -1,6 +1,6 @@
 import React from 'react';
 import Attractions from './Attractions';
-import { shallow, mount } from '../../enzyme';
+import { mount } from '../../enzyme';
 
 const mountComp = (props = {}) => {
   const component = mount(<Attractions {...props} />);
@@ -94,7 +94,6 @@ describe('Attractions Component', () => {
       };
       wrapper = mountComp(props);
       const loader = wrapper.find('.loader');
-      console.log(loader);
       expect(loader.length).toBe(3);
     });
   });
