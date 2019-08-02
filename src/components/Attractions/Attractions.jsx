@@ -25,7 +25,6 @@ function Attractions(props) {
   return (
     <>
       <div className="card-wrapper">
-        <h1>TESTING</h1>
         {!isLoading ? (
           attractions
           && attractions.map(place => (
