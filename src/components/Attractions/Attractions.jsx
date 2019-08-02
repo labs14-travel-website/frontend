@@ -3,6 +3,7 @@ import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 import Modal from '../Modal';
 import CardDisplay from '../CardDisplay';
+import styles from './Attractions.module.scss';
 
 
 /**
@@ -25,7 +26,7 @@ function Attractions(props) {
 
   return (
     <>
-      <div>
+      <div className={styles.Attractions__wrapper}>
         {
           !isLoading
             ? attractions && attractions.map(place => (
