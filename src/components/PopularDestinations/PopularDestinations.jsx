@@ -29,7 +29,6 @@ const PopularDestinations = () => {
     { city: 'Prague', country: 'Czech Republic', picture: '/images/PopularDestinations/prague.jpeg' },
     { city: 'Barcelona', country: 'Spain', picture: '/images/PopularDestinations/barcelona.jpeg' },
     { city: 'Vienna', country: 'Austria', picture: '/images/PopularDestinations/vienna.jpeg' },
-    //TODO add 2 more destinations
   ];
 
   // const shuffled = locations.sort(() => 0.5 - Math.random());
@@ -61,7 +60,9 @@ const PopularDestinations = () => {
       <div className={styles.PopularDestinations}>
         <h2 className={styles.PopularDestinations__title}>Popular Destinations</h2>
         <div className={styles.PopularDestinations__cards}>
-          {locationStateIndex > 0 ? <div className={styles.PopularDestinations__minus} onClick={handleLessClick}>-</div> : null}
+          {locationStateIndex > 0
+            ? <div className={styles.PopularDestinations__minus} onClick={handleLessClick}>-</div>
+            : null}
           {
             locationState.map(location => (
               <CardDisplay
@@ -74,7 +75,9 @@ const PopularDestinations = () => {
               />
             ))
           }
-          {locationStateIndex < locations.length - 4 ? <div className={styles.PopularDestinations__plus} onClick={handleMoreClick}>+</div> : null}
+          {locationStateIndex < locations.length - 4
+            ? <div className={styles.PopularDestinations__plus} onClick={handleMoreClick}>+</div>
+            : null}
         </div>
       </div>
     </div>
