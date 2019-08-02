@@ -1,6 +1,5 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
-
 import styles from './PopularDestinations.module.scss';
 import CardDisplay from '../CardDisplay';
 
@@ -10,32 +9,50 @@ import CardDisplay from '../CardDisplay';
 
 const PopularDestinations = () => {
   const locations = [
-    { city: 'Hong Kong', country: 'China', img: '/images/PopularDestinations/hong-kong.jpg' },
-    { city: 'Bangkok', country: 'Thailand', img: '/images/PopularDestinations/bangkok.jpeg' },
-    { city: 'London', country: 'United Kingdom', img: '/images/PopularDestinations/london.jpeg' },
-    { city: 'Paris', country: 'France', img: '/images/PopularDestinations/paris.jpeg' },
-    { city: 'Dubai', country: 'United Arab Emirates', img: '/images/PopularDestinations/dubai.jpeg' },
-    { city: 'New York City', country: 'United States', img: '/images/PopularDestinations/new-york-city.jpeg' },
-    { city: 'Kuala Lumpur', country: 'Malaysia', img: '/images/PopularDestinations/kuala-lumpur.jpeg' },
-    { city: 'Shenzhen', country: 'China', img: '/images/PopularDestinations/shenzhen.jpeg' },
-    { city: 'Phuket', country: 'Thailand', img: '/images/PopularDestinations/phuket.jpeg' },
-    { city: 'Istanbul', country: 'Turkey', img: '/images/PopularDestinations/istanbul.jpeg' },
-    { city: 'New Delhi', country: 'India', img: '/images/PopularDestinations/new-delhi.jpeg' },
-    { city: 'Tokyo', country: 'Japan', img: '/images/PopularDestinations/tokyo.jpeg' },
-    { city: 'Rome', country: 'Italy', img: '/images/PopularDestinations/rome.jpeg' },
-    { city: 'Antalya', country: 'Turkey', img: '/images/PopularDestinations/antalya.jpeg' },
-    { city: 'Taipei', country: 'Taiwan', img: '/images/PopularDestinations/taipei.jpeg' },
-    { city: 'Guangzhou', country: 'China', img: '/images/PopularDestinations/guangzhou.jpeg' },
-    { city: 'Mumbai', country: 'India', img: '/images/PopularDestinations/mumbai.jpeg' },
-    { city: 'Prague', country: 'Czech Republic', img: '/images/PopularDestinations/prague.jpeg' },
+    { city: 'Hong Kong', country: 'China', picture: '/images/PopularDestinations/hong-kong.jpg' },
+    { city: 'Bangkok', country: 'Thailand', picture: '/images/PopularDestinations/bangkok.jpeg' },
+    { city: 'London', country: 'United Kingdom', picture: '/images/PopularDestinations/london.jpeg' },
+    { city: 'Paris', country: 'France', picture: '/images/PopularDestinations/paris.jpeg' },
+    { city: 'Dubai', country: 'United Arab Emirates', picture: '/images/PopularDestinations/dubai.jpeg' },
+    { city: 'New York City', country: 'United States', picture: '/images/PopularDestinations/new-york-city.jpeg' },
+    { city: 'Kuala Lumpur', country: 'Malaysia', picture: '/images/PopularDestinations/kuala-lumpur.jpeg' },
+    { city: 'Shenzhen', country: 'China', picture: '/images/PopularDestinations/shenzhen.jpeg' },
+    { city: 'Phuket', country: 'Thailand', picture: '/images/PopularDestinations/phuket.jpeg' },
+    { city: 'Istanbul', country: 'Turkey', picture: '/images/PopularDestinations/istanbul.jpeg' },
+    { city: 'New Delhi', country: 'India', picture: '/images/PopularDestinations/new-delhi.jpeg' },
+    { city: 'Tokyo', country: 'Japan', picture: '/images/PopularDestinations/tokyo.jpeg' },
+    { city: 'Rome', country: 'Italy', picture: '/images/PopularDestinations/rome.jpeg' },
+    { city: 'Antalya', country: 'Turkey', picture: '/images/PopularDestinations/antalya.jpeg' },
+    { city: 'Taipei', country: 'Taiwan', picture: '/images/PopularDestinations/taipei.jpeg' },
+    { city: 'Guangzhou', country: 'China', picture: '/images/PopularDestinations/guangzhou.jpeg' },
+    { city: 'Mumbai', country: 'India', picture: '/images/PopularDestinations/mumbai.jpeg' },
+    { city: 'Prague', country: 'Czech Republic', picture: '/images/PopularDestinations/prague.jpeg' },
+    { city: 'Barcelona', country: 'Spain', picture: '/images/PopularDestinations/barcelona.jpeg' },
+    { city: 'Vienna', country: 'Austria', picture: '/images/PopularDestinations/vienna.jpeg' },
   ];
 
-  const shuffled = locations.sort(() => 0.5 - Math.random());
-  const selectedLocations = shuffled.slice(0, 4);
-  console.log(selectedLocations); // eslint-disable-line
-  const handleClick = async (query) => {
-    const attractions = await axios.get(`https://roamly-staging.herokuapp.com/a?q=${query}`);
+  // const shuffled = locations.sort(() => 0.5 - Math.random());
+  const selectedLocations = locations.slice(0, 4);
+
+  const [locationState, setLocationState] = useState(selectedLocations);
+  const [locationStateIndex, setLocationStateIndex] = useState(0);
+
+  useEffect(() => {
+    setLocationState(locations.slice(locationStateIndex, locationStateIndex + 4));
+  }, [locationStateIndex]);
+
+  const handleOnClick = async (data) => {
+    const query = `${data.place.city}, ${data.place.country}`;
+    const attractions = await axios.get(`${process.env.REACT_APP_ENDPOINT}/a?q=${query}`);
     console.log(attractions); // eslint-disable-line
+  };
+
+  const handleMoreClick = () => {
+    setLocationStateIndex(locationStateIndex + 4);
+  };
+
+  const handleLessClick = () => {
+    setLocationStateIndex(locationStateIndex - 4);
   };
 
   return (
@@ -43,11 +60,24 @@ const PopularDestinations = () => {
       <div className={styles.PopularDestinations}>
         <h2 className={styles.PopularDestinations__title}>Popular Destinations</h2>
         <div className={styles.PopularDestinations__cards}>
+          {locationStateIndex > 0
+            ? <div className={styles.PopularDestinations__minus} onClick={handleLessClick}>-</div>
+            : null}
           {
-            selectedLocations.map(location => (
-              <CardDisplay location={location} handleClick={handleClick} />
+            locationState.map(location => (
+              <CardDisplay
+                data={{
+                  title: location.city,
+                  body: location.country,
+                  place: location,
+                }}
+                handleOnClick={handleOnClick}
+              />
             ))
           }
+          {locationStateIndex < locations.length - 4
+            ? <div className={styles.PopularDestinations__plus} onClick={handleMoreClick}>+</div>
+            : null}
         </div>
       </div>
     </div>
