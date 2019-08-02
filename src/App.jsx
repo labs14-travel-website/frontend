@@ -2,17 +2,22 @@ import React, { useState, useEffect } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import axios from 'axios';
 import track from './utils/analytics';
-
-import Users from './Users';
 import store from './utils/jwt-store';
 import style from './App.module.scss';
-import Landing from './components/Search';
-import TestModal from './components/Modal/modalTest';
+import Search from './components/Search';
+// import PopularDestinations from './components/PopularDestinations';
+// import TestModal from './components/Modal/modalTest';
+// import CardDisplay from './components/CardDisplay';
+import PopularDestinations from './components/PopularDestinations';
+import Attractions from './components/Attractions';
+
 
 function App() {
   const [state, setState] = useState({
     loggedIn: false,
     clientId: process.env.REACT_APP_OAUTH_GOOGLE_ID,
+    attractions: [],
+    isLoading: false,
   });
 
   useEffect(() => {
@@ -65,24 +70,47 @@ function App() {
     }));
   };
 
+  // performs action when user clicks the ROAM button
+  const handleSearch = (destination) => {
+    setState(prevState => ({
+      ...prevState,
+      isLoading: true,
+    }));
+    // request to backend that will request to API and send back the data
+    axios.get(`${process.env.REACT_APP_ENDPOINT}/a?q=${destination}`)
+      .then(({ data: { places } }) => {
+        setState(prevState => ({
+          ...prevState,
+          attractions: places,
+          isLoading: false,
+        }));
+      })
+      .catch((error) => {
+        console.log(error);  // eslint-disable-line
+      });
+  };
 
   return (
     <div className={style.App}>
-      <Users />
-      {!state.loggedIn ? (
-        <GoogleLogin
-          clientId={state.clientId}
-          buttonText="Login"
-          onSuccess={responseGoogle}
-          onFailure={responseFail}
-          cookiePolicy="single_host_origin"
-        />
-      ) : (
-        <GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />
-      )}
-
-      <Landing />
-      <TestModal />
+      {
+        !state.loggedIn
+          ? (
+            <GoogleLogin
+              clientId={state.clientId}
+              buttonText="Login"
+              onSuccess={responseGoogle}
+              onFailure={responseFail}
+              cookiePolicy="single_host_origin"
+            />
+          )
+          : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />)
+      }
+      <Search handleSearch={handleSearch} />
+      {
+        !state.attractions.length > 0 && !state.isLoading
+          ? <PopularDestinations />
+          : <Attractions attractions={state.attractions} isLoading={state.isLoading} />
+      }
     </div>
   );
 }

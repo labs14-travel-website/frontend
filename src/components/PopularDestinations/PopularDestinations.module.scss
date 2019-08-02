@@ -1,0 +1,18 @@
+@import '../../assets/master';
+
+.PopularDestinations {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  &__title {
+    text-align: left;
+    font-size: 36px;
+    font-weight: 400;
+  }
+
+  &__cards {
+    display: flex;
+    justify-content: space-between;
+  }
+}
