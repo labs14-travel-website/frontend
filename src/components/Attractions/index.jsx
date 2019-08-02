@@ -1,9 +1,9 @@
 import React from 'react';
 import Attractions from './Attractions';
 
-const index = () => (
+const index = props => (
   <div>
-    <Attractions />
+    <Attractions {...props} />
   </div>
 );
 
