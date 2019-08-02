@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import styles from './PopularDestinations.module.scss';
 import CardDisplay from '../CardDisplay';
@@ -27,14 +27,31 @@ const PopularDestinations = () => {
     { city: 'Guangzhou', country: 'China', picture: '/images/PopularDestinations/guangzhou.jpeg' },
     { city: 'Mumbai', country: 'India', picture: '/images/PopularDestinations/mumbai.jpeg' },
     { city: 'Prague', country: 'Czech Republic', picture: '/images/PopularDestinations/prague.jpeg' },
+    //TODO add 2 more destinations
   ];
 
-  const shuffled = locations.sort(() => 0.5 - Math.random());
-  const selectedLocations = shuffled.slice(0, 4);
+  // const shuffled = locations.sort(() => 0.5 - Math.random());
+  const selectedLocations = locations.slice(0, 4);
+
+  const [locationState, setLocationState] = useState(selectedLocations);
+  const [locationStateIndex, setLocationStateIndex] = useState(0);
+
+  useEffect(() => {
+    setLocationState(locations.slice(locationStateIndex, locationStateIndex + 4));
+  }, [locationStateIndex]);
+
   const handleOnClick = async (data) => {
     const query = `${data.place.city}, ${data.place.country}`;
     const attractions = await axios.get(`${process.env.REACT_APP_ENDPOINT}/a?q=${query}`);
     console.log(attractions); // eslint-disable-line
+  };
+
+  const handleMoreClick = () => {
+    setLocationStateIndex(locationStateIndex + 4);
+  };
+
+  const handleLessClick = () => {
+    setLocationStateIndex(locationStateIndex - 4);
   };
 
   return (
@@ -42,8 +59,9 @@ const PopularDestinations = () => {
       <div className={styles.PopularDestinations}>
         <h2 className={styles.PopularDestinations__title}>Popular Destinations</h2>
         <div className={styles.PopularDestinations__cards}>
+          {locationStateIndex > 0 ? <div className={styles.PopularDestinations__minus} onClick={handleLessClick}>-</div> : null}
           {
-            selectedLocations.map(location => (
+            locationState.map(location => (
               <CardDisplay
                 data={{
                   title: location.city,
@@ -54,6 +72,7 @@ const PopularDestinations = () => {
               />
             ))
           }
+          {locationStateIndex <= locations.length - 4 ? <div className={styles.PopularDestinations__plus} onClick={handleMoreClick}>+</div> : null}
         </div>
       </div>
     </div>
