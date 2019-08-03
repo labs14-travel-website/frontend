@@ -48,6 +48,7 @@ Rating:
             ))
             : (
               <Loader
+                className={styles.Loader}
                 type="Puff"
                 color="#00BFFF"
                 height="100"
