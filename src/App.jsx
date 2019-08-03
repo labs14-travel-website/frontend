@@ -118,7 +118,7 @@ function App() {
       {
         // TODO: This will error (cannot get length of undefined) if server doesn't return anything
         !state.attractions.length > 0 && !state.isLoading
-          ? <PopularDestinations />
+          ? <PopularDestinations handleSearch={handleSearch} />
           : <Attractions attractions={state.attractions} isLoading={state.isLoading} />
       }
     </div>

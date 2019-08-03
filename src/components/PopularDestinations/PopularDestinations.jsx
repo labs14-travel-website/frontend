@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import PropTypes from 'prop-types';
 import styles from './PopularDestinations.module.scss';
 import CardDisplay from '../CardDisplay';
 
@@ -7,7 +7,7 @@ import CardDisplay from '../CardDisplay';
  * containing 4 randomly chosen popular destinations to travel to
  */
 
-const PopularDestinations = () => {
+const PopularDestinations = ({ handleSearch }) => {
   const locations = [
     { city: 'Hong Kong', country: 'China', picture: '/images/PopularDestinations/hong-kong.jpg' },
     { city: 'Bangkok', country: 'Thailand', picture: '/images/PopularDestinations/bangkok.jpeg' },
@@ -33,8 +33,7 @@ const PopularDestinations = () => {
   const selectedLocations = shuffled.slice(0, 4);
   const handleOnClick = async (data) => {
     const query = `${data.place.city}, ${data.place.country}`;
-    const attractions = await axios.get(`${process.env.REACT_APP_ENDPOINT}/a?q=${query}`);
-    console.log(attractions); // eslint-disable-line
+    handleSearch(`${query}`);
   };
 
   return (
@@ -58,6 +57,10 @@ const PopularDestinations = () => {
       </div>
     </div>
   );
+};
+
+PopularDestinations.propTypes = {
+  handleSearch: PropTypes.func.isRequired,
 };
 
 export default PopularDestinations;
