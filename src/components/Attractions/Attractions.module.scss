@@ -18,9 +18,14 @@
     div:nth-child(4n+1) {
       margin-left: 0;
     }
+
     .Loader {
       margin: 60px auto;
       width: 100%;
+    }
+
+    .CardSpacer {
+      width: 200px;
     }
   }
 }
