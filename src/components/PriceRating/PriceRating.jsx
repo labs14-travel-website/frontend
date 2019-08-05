@@ -1,23 +1,23 @@
-import React from "react";
-import StarRatingComponent from "react-star-rating-component";
-import { green } from "ansi-colors";
+import React from 'react';
+import StarRatingComponent from 'react-star-rating-component';
+import PropTypes from 'prop-types';
 
 
-const PriceRating = props => {
-  console.log(props)
-   
-    return (                
-      <div>
-        <StarRatingComponent 
-          name="price" 
-          editing={false}
-          renderStarIcon={() => <span><i className="fas fa-dollar-sign"></i></span>}
-          starCount={4}
-          value={props.price}
-          starColor={"green"}
-        />
-      </div>
-    );
-  }
+const PriceRating = ({ price }) => (
+  <div>
+    <StarRatingComponent
+      name="price"
+      editing={false}
+      renderStarIcon={() => <span><i className="fas fa-dollar-sign" /></span>}
+      starCount={4}
+      value={price}
+      starColor="green"
+    />
+  </div>
+);
 
-  export default PriceRating;
+PriceRating.propTypes = {
+  price: PropTypes.number.isRequired,
+};
+
+export default PriceRating;
