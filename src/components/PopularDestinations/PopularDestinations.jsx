@@ -60,9 +60,9 @@ const PopularDestinations = ({ handleSearch }) => {
       <div className={styles.PopularDestinations}>
         <h2 className={styles.PopularDestinations__title}>Popular Destinations</h2>
         <div className={styles.PopularDestinations__cards}>
-          {locationStateIndex > 0
+          {/* {locationStateIndex > 0
             ? <div className={styles.PopularDestinations__minus} onClick={handleLessClick}><i className="fas fa-chevron-left fa-xs" /></div>
-            : null}
+            : null} */}
           {
             locationState.map(location => (
               <CardDisplay
@@ -76,9 +76,9 @@ const PopularDestinations = ({ handleSearch }) => {
               />
             ))
           }
-          {locationStateIndex < locations.length - 4
+          {/* {locationStateIndex < locations.length - 4
             ? <div className={styles.PopularDestinations__plus} onClick={handleMoreClick}><i className="fas fa-chevron-right fa-xs" /></div>
-            : null}
+            : null} */}
         </div>
       </div>
     </div>
