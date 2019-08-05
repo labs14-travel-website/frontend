@@ -3,4 +3,10 @@
   display: flex;
   justify-content: center;
   flex-direction: column;
+
+  &__destination {
+    font-size: 54px;
+    font-weight: 600;
+    text-shadow: 0px 4px 5px rgba(20, 20, 20, 0.5);
+  }
 }
