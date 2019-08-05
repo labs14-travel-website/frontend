@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import axios from 'axios';
 import track from './utils/analytics';
 import store from './utils/jwt-store';
-import style from './App.module.scss';
+import styles from './App.module.scss';
 import Search from './components/Search';
 // import PopularDestinations from './components/PopularDestinations';
 // import TestModal from './components/Modal/modalTest';
 // import CardDisplay from './components/CardDisplay';
+import Nav from './components/Nav';
 import PopularDestinations from './components/PopularDestinations';
 import Attractions from './components/Attractions';
+import Hero from './components/Hero/Hero';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
     loggedIn: false,
     clientId: process.env.REACT_APP_OAUTH_GOOGLE_ID,
     attractions: [],
+    destination: '',
     isLoading: false,
   });
 
@@ -29,7 +31,7 @@ function App() {
       }));
     }
 
-    // TODO: This is temporary tracking to validate setup.
+    // TODO: This is temporary tracking to validate setup
     track.pageview('/');
     track.event({
       category: 'Main',
@@ -75,6 +77,7 @@ function App() {
     setState(prevState => ({
       ...prevState,
       isLoading: true,
+      destination,
     }));
     // request to backend that will request to API and send back the data
     axios.get(`${process.env.REACT_APP_ENDPOINT}/a?q=${destination}`)
@@ -91,24 +94,24 @@ function App() {
   };
 
   return (
-    <div className={style.App}>
+    <div className={styles.App}>
+      <Nav
+        logout={logout}
+        responseFail={responseFail}
+        responseGoogle={responseGoogle}
+        loggedIn={state.loggedIn}
+      />
+      <Hero background="/images/hero.jpg">
+        {
+          state.destination
+            ? <span className={styles.App__destination}>{state.destination}</span>
+            : <Search handleSearch={handleSearch} />
+        }
+      </Hero>
       {
-        !state.loggedIn
-          ? (
-            <GoogleLogin
-              clientId={state.clientId}
-              buttonText="Login"
-              onSuccess={responseGoogle}
-              onFailure={responseFail}
-              cookiePolicy="single_host_origin"
-            />
-          )
-          : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />)
-      }
-      <Search handleSearch={handleSearch} />
-      {
+        // TODO: This will error (cannot get length of undefined) if server does not return anything
         !state.attractions.length > 0 && !state.isLoading
-          ? <PopularDestinations />
+          ? <PopularDestinations handleSearch={handleSearch} />
           : <Attractions attractions={state.attractions} isLoading={state.isLoading} />
       }
     </div>
