@@ -88,6 +88,7 @@ const PopularDestinations = ({ handleSearch, noResults }) => {
 
 PopularDestinations.propTypes = {
   handleSearch: PropTypes.func.isRequired,
+  noResults: PropTypes.bool.isRequired,
 };
 
 export default PopularDestinations;
