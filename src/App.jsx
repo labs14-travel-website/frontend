@@ -11,6 +11,7 @@ import Nav from './components/Nav';
 import PopularDestinations from './components/PopularDestinations';
 import Attractions from './components/Attractions';
 import Hero from './components/Hero/Hero';
+import Modal from './components/Modal/Modal';
 
 
 function App() {
@@ -20,6 +21,10 @@ function App() {
     attractions: [],
     destination: '',
     isLoading: false,
+    modal: {
+      show: false,
+      attraction: {},
+    },
   });
 
   useEffect(() => {
@@ -93,28 +98,64 @@ function App() {
       });
   };
 
+  const showModal = (place) => {
+    setState(prevState => ({
+      ...prevState,
+      modal: {
+        ...prevState.modal,
+        show: true,
+        attraction: place,
+      },
+    }));
+  };
+
+  const closeModal = () => {
+    setState(prevState => ({
+      ...prevState,
+      modal: {
+        ...prevState.modal,
+        show: false,
+        attraction: {},
+      },
+    }));
+  };
+
+  const classTest = !state.modal.show ? styles.App : `${styles.App} ${styles.blur}`;
+
   return (
-    <div className={styles.App}>
-      <Nav
-        logout={logout}
-        responseFail={responseFail}
-        responseGoogle={responseGoogle}
-        loggedIn={state.loggedIn}
-      />
-      <Hero background="/images/hero.jpg">
+    <>
+      <div className={classTest}>
+        <Nav
+          logout={logout}
+          responseFail={responseFail}
+          responseGoogle={responseGoogle}
+          loggedIn={state.loggedIn}
+        />
+        <Hero background="/images/hero.jpg">
+          {
+            state.destination
+              ? <span className={styles.App__destination}>{state.destination}</span>
+              : <Search handleSearch={handleSearch} />
+          }
+        </Hero>
         {
-          state.destination
-            ? <span className={styles.App__destination}>{state.destination}</span>
-            : <Search handleSearch={handleSearch} />
+          // TODO: This will error (cannot get length of undefined) if server does not return anything
+          !state.attractions.length > 0 && !state.isLoading
+            ? <PopularDestinations handleSearch={handleSearch} />
+            : <Attractions attractions={state.attractions} isLoading={state.isLoading} showModal={showModal} />
         }
-      </Hero>
-      {
-        // TODO: This will error (cannot get length of undefined) if server does not return anything
-        !state.attractions.length > 0 && !state.isLoading
-          ? <PopularDestinations handleSearch={handleSearch} />
-          : <Attractions attractions={state.attractions} isLoading={state.isLoading} />
-      }
-    </div>
+      </div>
+      {state.modal.show && (
+        <Modal
+          attraction={state.modal.attraction}
+          onClose={closeModal}
+          showModal={showModal}
+          show={state.modal.show}
+        >
+          <p>Hello</p>
+        </Modal>
+      )}
+    </>
   );
 }
 

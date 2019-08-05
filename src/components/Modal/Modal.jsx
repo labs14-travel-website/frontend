@@ -6,21 +6,24 @@ import PriceRating from '../PriceRating';
 
 const Modal = (props) => {
   const {
-    onClose, show, children, attraction,
+    onClose,
+    show,
+    children,
+    attraction,
   } = props;
 
   if (!show) {
     return null;
   }
 
-  const modalPicture = `${attraction.picture.split('-w400')[0]}-w1200`;
+  const modalPicture = `${attraction.picture.split('-w400')[0]}-w1200`; // eslint-disable-line
 
   const style = {
     background: `url('${modalPicture}') 50% 50% / cover`,
   };
 
   return (
-    <div className={styles.Modal_wrapper}>
+    <div className={styles.Modal_wrapper} onClick={e => onClose(e)}>
       <div className={styles.Modal} id="modal">
         <div className={styles.Modal__image} style={style} />
         <div className={styles.Modal__information}>
