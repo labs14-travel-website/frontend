@@ -1,6 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import styles from './modal.module.scss';
+import styles from './Modal.module.scss';
+import Ratings from '../Ratings';
+import PriceRating from '../PriceRating';
 
 const Modal = (props) => {
   const {
@@ -21,12 +23,24 @@ const Modal = (props) => {
     <div className={styles.Modal_wrapper}>
       <div className={styles.Modal} id="modal">
         <div className={styles.Modal__image} style={style} />
-        <h2>{attraction.name}</h2>
-        <div className={styles.content}>{children}</div>
-        <div className={styles.actions}>
-          <button type="button" className={styles.toggleButton} onClick={e => onClose(e)}>
-            Close
-          </button>
+        <div className={styles.Modal__information}>
+          <h2>{attraction.name}</h2>
+          <div className={styles.Ratings}>
+            <Ratings rating={attraction.rating} />
+          </div>
+          <div className={styles.PriceRating}>
+            <PriceRating price={attraction.price ? attraction.price : 1} />
+          </div>
+          <div className={styles.content}>{children}</div>
+          <div className={styles.actions}>
+            <button
+              type="button"
+              className={styles.toggleButton}
+              onClick={e => onClose(e)}
+            >
+              Close
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -41,6 +55,7 @@ Modal.propTypes = {
     PropTypes.shape({
       name: PropTypes.string,
       rating: PropTypes.number,
+      price: PropTypes.number,
       placeId: PropTypes.string,
       picture: PropTypes.string,
       types: PropTypes.arrayOf(PropTypes.string),
