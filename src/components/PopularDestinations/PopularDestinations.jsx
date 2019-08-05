@@ -40,7 +40,7 @@ const PopularDestinations = ({ handleSearch }) => {
 
   useEffect(() => {
     setLocationState(locations.slice(locationStateIndex, locationStateIndex + 4));
-  }, [locationStateIndex]);
+  }, [locations, locationStateIndex]);
 
   const handleOnClick = async (data) => {
     const query = `${data.place.city}, ${data.place.country}`;
@@ -61,7 +61,7 @@ const PopularDestinations = ({ handleSearch }) => {
         <h2 className={styles.PopularDestinations__title}>Popular Destinations</h2>
         <div className={styles.PopularDestinations__cards}>
           {locationStateIndex > 0
-            ? <div className={styles.PopularDestinations__minus} onClick={handleLessClick}>-</div>
+            ? <div className={styles.PopularDestinations__minus} onClick={handleLessClick}><i className="fas fa-chevron-left fa-xs" /></div>
             : null}
           {
             locationState.map(location => (
@@ -77,7 +77,7 @@ const PopularDestinations = ({ handleSearch }) => {
             ))
           }
           {locationStateIndex < locations.length - 4
-            ? <div className={styles.PopularDestinations__plus} onClick={handleMoreClick}>+</div>
+            ? <div className={styles.PopularDestinations__plus} onClick={handleMoreClick}><i className="fas fa-chevron-right fa-xs" /></div>
             : null}
         </div>
       </div>

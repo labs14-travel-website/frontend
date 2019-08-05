@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import axios from 'axios';
 import track from './utils/analytics';
 import store from './utils/jwt-store';
@@ -8,6 +7,7 @@ import Search from './components/Search';
 // import PopularDestinations from './components/PopularDestinations';
 // import TestModal from './components/Modal/modalTest';
 // import CardDisplay from './components/CardDisplay';
+import Nav from './components/Nav';
 import PopularDestinations from './components/PopularDestinations';
 import Attractions from './components/Attractions';
 import Hero from './components/Hero/Hero';
@@ -95,19 +95,12 @@ function App() {
 
   return (
     <div className={styles.App}>
-      {
-        !state.loggedIn
-          ? (
-            <GoogleLogin
-              clientId={state.clientId}
-              buttonText="Login"
-              onSuccess={responseGoogle}
-              onFailure={responseFail}
-              cookiePolicy="single_host_origin"
-            />
-          )
-          : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />)
-      }
+      <Nav
+        logout={logout}
+        responseFail={responseFail}
+        responseGoogle={responseGoogle}
+        loggedIn={state.loggedIn}
+      />
       <Hero background="/images/hero.jpg">
         {
           state.destination
