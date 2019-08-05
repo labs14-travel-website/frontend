@@ -36,7 +36,7 @@ describe('Modal Component', () => {
     expect(image.length).toBe(1);
   });
 
-  it('Clicking the Close Button should Remove the Modal', () => {
+  it('Check if function is called when button is clicked', () => {
     const modal = wrapper.find('#modal');
     expect(modal.length).toBe(1);
     const button = wrapper.find('button');
