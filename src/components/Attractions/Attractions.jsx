@@ -24,30 +24,43 @@ function Attractions(props) {
     setLoaded(!loaded);
   };
 
+  const showAttractions = (attractionList) => {
+    const elements = attractionList.map(place => (
+      <CardDisplay
+        key={place.placeId}
+        handleOnClick={handleOnClick}
+        data={{
+          title: place.name,
+          body: [
+            <h1>
+              Rating:
+              {place.rating}
+            </h1>,
+            <button type="button">More Info</button>,
+          ],
+          place,
+        }}
+      />
+    ));
+
+    if (attractionList.length % 4 !== 0) {
+      for (let i = 0; i < (4 - (attractionList.length % 4)); i += 1) {
+        elements.push(<div className={styles.CardSpacer} />);
+      }
+    }
+
+    return elements;
+  };
+
   return (
     <>
       <div className={styles.Attractions__wrapper}>
         {
           !isLoading
-            ? attractions && attractions.map(place => (
-              <CardDisplay
-                key={place.placeId}
-                handleOnClick={handleOnClick}
-                data={{
-                  title: place.name,
-                  body: [
-                    <h1>
-Rating:
-                      {place.rating}
-                    </h1>,
-                    <button type="button">More Info</button>,
-                  ],
-                  place,
-                }}
-              />
-            ))
+            ? attractions && showAttractions(attractions)
             : (
               <Loader
+                className={styles.Loader}
                 type="Puff"
                 color="#00BFFF"
                 height="100"

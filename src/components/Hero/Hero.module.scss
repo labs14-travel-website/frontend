@@ -1,0 +1,12 @@
+@import '../../assets/master';
+
+.Hero {
+  // background: url('../../assets/img/hero.jpg');
+  background-size: cover;
+  background-position: 50% 50%;
+  display: flex;
+  justify-content: center;
+  height: 500px;
+  justify-content: center;
+  flex-direction: column;
+}

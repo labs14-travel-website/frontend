@@ -1,21 +1,9 @@
 @import '../../assets/master';
 
-.Hero {
-  background: url('../../assets/img/hero.jpg');
-  background-size: cover;
-  background-position: 50% 50%;
-  display: flex;
-  justify-content: center;
-
-  &__search {
+.Search {
+  &__form {
     display: flex;
-    justify-content: center;
-    height: 500px;
-    flex-direction: column;
-
-    &_form {
-      display: flex;
-      box-shadow: 0px 4px 5px rgba(20, 20, 20, 0.5);
+    box-shadow: 0px 4px 5px rgba(20, 20, 20, 0.5);
 
       &__input {
         flex: 1;
