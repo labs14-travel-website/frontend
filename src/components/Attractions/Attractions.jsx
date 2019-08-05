@@ -59,13 +59,14 @@ function Attractions(props) {
           !isLoading
             ? attractions && showAttractions(attractions)
             : (
-              <Loader
-                className={styles.Loader}
-                type="Puff"
-                color="#00BFFF"
-                height="100"
-                width="100"
-              />
+              <div className={styles.Loader}>
+                <Loader
+                  type="Puff"
+                  color="#00BFFF"
+                  height="100"
+                  width="100"
+                />
+              </div>
             )
         }
       </div>

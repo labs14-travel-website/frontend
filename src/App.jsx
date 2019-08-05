@@ -31,7 +31,7 @@ function App() {
       }));
     }
 
-    // TODO: This is temporary tracking to validate setup.
+    // TODO: This is temporary tracking to validate setup
     track.pageview('/');
     track.event({
       category: 'Main',
