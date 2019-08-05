@@ -4,8 +4,17 @@ import styles from './modal.module.scss';
 import Ratings from '../Ratings';
 import PriceRating from '../PriceRating';
 
+/**
+ * @description Displays a modal that pulls individual place and
+ * attraction data from the API. Includes price and rating
+ * indicators, along with the place name, a description, and a photo.
+ * Also includes a button to close the modal.
+ * @param {function} onClose function that closes the modal
+ * @param {boolean} show true or false value that will show or not show the modal
+ * @param {element} children could be any element to display inside modal
+ * @param {object[]} attraction array of attraction data for modal to display
+ */
 const Modal = (props) => {
-  console.log(props);
   const {
     onClose, show, children, attraction,
   } = props;
