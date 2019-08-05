@@ -4,6 +4,15 @@ import PropTypes from 'prop-types';
 import styles from './Nav.module.scss';
 import logo from '../../assets/img/logo.png';
 
+/**
+ * @description Allows a user to log in or logout with google, also contains a logo linking back to the home page.
+ * @param {boolean} loggedIn details if user is loggedIn already
+ * @param {function} responseFail actions if response from Google fails
+ * @param {function} responseGoogle actions if success
+ * @param {function} logout log the user out of their Google account 
+ */
+
+
 const Nav = ({
   loggedIn, responseFail, responseGoogle, logout,
 }) => {
