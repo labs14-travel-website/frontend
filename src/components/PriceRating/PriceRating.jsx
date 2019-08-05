@@ -3,7 +3,8 @@ import StarRatingComponent from 'react-star-rating-component';
 import PropTypes from 'prop-types';
 
 /**
- * @description Renders dollar signs depending on what number is retrieved from the API to indicate price level.
+ * @description Renders dollar signs depending on what number
+ * is retrieved from the API to indicate price level.
  * @param {number} price
  */
 

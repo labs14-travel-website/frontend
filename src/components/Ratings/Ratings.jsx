@@ -3,7 +3,8 @@ import StarRatingComponent from 'react-star-rating-component';
 import PropTypes from 'prop-types';
 
 /**
- * @description Renders stars depending on what number is retrieved from the API to indicate place rating.
+ * @description Renders stars depending on what number
+ * is retrieved from the API to indicate place rating.
  * @param {number} rating
  */
 
