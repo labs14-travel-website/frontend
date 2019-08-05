@@ -33,8 +33,8 @@ const Nav = ({
 
 Nav.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
-  responseFail: PropTypes.func.isRequired,
-  responseGoogle: PropTypes.func.isRequired,
+  responseFail: PropTypes.func,
+  responseGoogle: PropTypes.func,
   logout: PropTypes.func.isRequired,
 };
 
