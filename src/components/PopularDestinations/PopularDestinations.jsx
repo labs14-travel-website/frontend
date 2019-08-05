@@ -8,7 +8,7 @@ import CardDisplay from '../CardDisplay';
  * containing 4 randomly chosen popular destinations to travel to
  */
 
-const PopularDestinations = ({ handleSearch }) => {
+const PopularDestinations = ({ handleSearch, noResults }) => {
   const locations = [
     { city: 'Hong Kong', country: 'China', picture: '/images/PopularDestinations/hong-kong.jpg' },
     { city: 'Bangkok', country: 'Thailand', picture: '/images/PopularDestinations/bangkok.jpeg' },
@@ -58,6 +58,7 @@ const PopularDestinations = ({ handleSearch }) => {
   return (
     <div className={styles.container}>
       <div className={styles.PopularDestinations}>
+        {noResults ? <div>No Results</div> : null}
         <h2 className={styles.PopularDestinations__title}>Popular Destinations</h2>
         <div className={styles.PopularDestinations__cards}>
           {locationStateIndex > 0
