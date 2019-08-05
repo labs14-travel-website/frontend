@@ -6,19 +6,28 @@ const Modal = (props) => {
   const {
     onClose, show, children, attraction,
   } = props;
+
   if (!show) {
     return null;
   }
 
+  const modalPicture = `${attraction.picture.split('-w400')[0]}-w1200`;
+
+  const style = {
+    background: `url('${modalPicture}') 50% 50% / cover`,
+  };
+
   return (
-    <div className={styles.modal} id="modal">
-      <div><img src={attraction.picture} alt={`${attraction.name}`} /></div>
-      <h2>{attraction.name}</h2>
-      <div className={styles.content}>{children}</div>
-      <div className={styles.actions}>
-        <button type="button" className={styles.toggleButton} onClick={e => onClose(e)}>
-          Close
-        </button>
+    <div className={styles.Modal_wrapper}>
+      <div className={styles.Modal} id="modal">
+        <div className={styles.Modal__image} style={style} />
+        <h2>{attraction.name}</h2>
+        <div className={styles.content}>{children}</div>
+        <div className={styles.actions}>
+          <button type="button" className={styles.toggleButton} onClick={e => onClose(e)}>
+            Close
+          </button>
+        </div>
       </div>
     </div>
   );
