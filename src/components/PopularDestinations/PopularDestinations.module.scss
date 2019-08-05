@@ -21,7 +21,6 @@
   }
 
   &__minus {
-    // background-color: rgba(43, 43, 43, 0.671);
     height: 300px;
     width: 40px;
     line-height: 300px;
@@ -31,10 +30,8 @@
     cursor: pointer;
     font-size: 50px;
     user-select: none;
-    // border-right: 1px solid rgb(156, 156, 156);
   }
   &__plus {
-    // background-color: rgba(43, 43, 43, 0.671);
     height: 300px;
     width: 40px;
     line-height: 300px;
@@ -45,6 +42,5 @@
     cursor: pointer;
     font-size: 50px;
     user-select: none;
-    // border-left: 1px solid rgb(156, 156, 156);
   }
 }

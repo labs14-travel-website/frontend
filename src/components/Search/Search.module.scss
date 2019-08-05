@@ -1,41 +1,46 @@
 @import '../../assets/master';
 
-.Hero {
-  background: url('../../assets/img/hero.jpg');
-  background-size: cover;
-  background-position: 50% 50%;
-  display: flex;
-  justify-content: center;
-
-  &__search {
+.Search {
+  &__form {
     display: flex;
-    justify-content: center;
-    height: 500px;
-    flex-direction: column;
+    box-shadow: 0px 4px 5px rgba(20, 20, 20, 0.5);
 
-    &_form {
-      display: flex;
-      box-shadow: 0px 4px 5px rgba(20, 20, 20, 0.5);
+    &__input {
+      flex: 1;
+      height: 70px;
+      padding: 0 30px;
+      max-width: 1240px;
+      font-size: 24px;
+      border: 2px solid transparent;
+      border-right: 0;
+      box-sizing: border-box;
+    }
+    
+    &__submit {
+      height: 70px;
+      border: none;
+      background: $primary;
+      color: $mono-light;
+      font-weight: 600;
+      font-size: 18px;
+      padding: 0 30px;
+      cursor: pointer;
+      box-sizing: border-box;
+      border: 2px solid transparent;
+      border-left: 0;
+    }
 
-      &__input {
-        flex: 1;
-        height: 70px;
-        padding: 0 30px;
-        max-width: 1240px;
-        font-size: 24px;
-        border: none;
-      }
+    &__input:focus {
+      outline: 0;
+      border: solid $primary;
+      border-width: 2px 0 2px 2px;
+      border-right: 0;
+    }
 
-      &__submit {
-        height: 70px;
-        border: none;
-        background: $primary;
-        color: $mono-light;
-        font-weight: 600;
-        font-size: 18px;
-        padding: 0 30px;
-        cursor: pointer;
-      }
+    &__input:focus + button {
+      border: solid $primary;
+      border-width: 2px 2px 2px 0;
+      border-left: 0;
     }
   }
 }

@@ -11,8 +11,10 @@ const CardDisplay = ({ data, handleOnClick }) => {
   };
   return (
     <div className={styles.CardDisplay} style={style} onClick={() => handleOnClick(data)}>
-      <h2 className={styles.CardDisplay__city}>{data.title}</h2>
-      <div className={styles.CardDisplay__country}>{data.body}</div>
+      <div className={styles.CardDisplay__info_wrapper}>
+        <h2 className={styles.CardDisplay__city}>{data.title}</h2>
+        <div className={styles.CardDisplay__country}>{data.body}</div>
+      </div>
     </div>
   );
 };

@@ -5,12 +5,12 @@ import Search from './Search';
 describe('Search Bar', () => {
   it('Search should mount once', () => {
     const component = mount(<Search />);
-    expect(component.find('[className^="Hero"]').exists()).toBe(true);
+    expect(component.find('[className^="Search"]').exists()).toBe(true);
   });
 
   it('Search Bar text', () => {
     const component = shallow(<Search />);
-    expect(component.find('[className^="Hero__search_form__submit"]').text()).toEqual('Roam');
+    expect(component.find('[className^="Search__form__submit"]').text()).toEqual('Roam');
   });
 
   it('Search Bar Simulation', () => {
