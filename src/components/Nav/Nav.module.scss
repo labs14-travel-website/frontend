@@ -1,0 +1,14 @@
+.Nav {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    margin: 0 20px;
+
+    &__logo {
+        width: 150px;
+    }
+
+    &__google {
+        align-self: center;
+    }
+}

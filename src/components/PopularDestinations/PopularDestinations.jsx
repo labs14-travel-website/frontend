@@ -1,5 +1,6 @@
-import React from 'react';
-import axios from 'axios';
+
+import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import styles from './PopularDestinations.module.scss';
 import CardDisplay from '../CardDisplay';
 
@@ -7,7 +8,7 @@ import CardDisplay from '../CardDisplay';
  * containing 4 randomly chosen popular destinations to travel to
  */
 
-const PopularDestinations = () => {
+const PopularDestinations = ({ handleSearch }) => {
   const locations = [
     { city: 'Hong Kong', country: 'China', picture: '/images/PopularDestinations/hong-kong.jpg' },
     { city: 'Bangkok', country: 'Thailand', picture: '/images/PopularDestinations/bangkok.jpeg' },
@@ -27,14 +28,31 @@ const PopularDestinations = () => {
     { city: 'Guangzhou', country: 'China', picture: '/images/PopularDestinations/guangzhou.jpeg' },
     { city: 'Mumbai', country: 'India', picture: '/images/PopularDestinations/mumbai.jpeg' },
     { city: 'Prague', country: 'Czech Republic', picture: '/images/PopularDestinations/prague.jpeg' },
+    { city: 'Barcelona', country: 'Spain', picture: '/images/PopularDestinations/barcelona.jpeg' },
+    { city: 'Vienna', country: 'Austria', picture: '/images/PopularDestinations/vienna.jpeg' },
   ];
 
-  const shuffled = locations.sort(() => 0.5 - Math.random());
-  const selectedLocations = shuffled.slice(0, 4);
+  // const shuffled = locations.sort(() => 0.5 - Math.random());
+  const selectedLocations = locations.slice(0, 4);
+
+  const [locationState, setLocationState] = useState(selectedLocations);
+  const [locationStateIndex, setLocationStateIndex] = useState(0);
+
+  useEffect(() => {
+    setLocationState(locations.slice(locationStateIndex, locationStateIndex + 4));
+  }, [locations, locationStateIndex]);
+
   const handleOnClick = async (data) => {
     const query = `${data.place.city}, ${data.place.country}`;
-    const attractions = await axios.get(`${process.env.REACT_APP_ENDPOINT}/a?q=${query}`);
-    console.log(attractions); // eslint-disable-line
+    handleSearch(`${query}`);
+  };
+
+  const handleMoreClick = () => {
+    setLocationStateIndex(locationStateIndex + 4);
+  };
+
+  const handleLessClick = () => {
+    setLocationStateIndex(locationStateIndex - 4);
   };
 
   return (
@@ -42,8 +60,11 @@ const PopularDestinations = () => {
       <div className={styles.PopularDestinations}>
         <h2 className={styles.PopularDestinations__title}>Popular Destinations</h2>
         <div className={styles.PopularDestinations__cards}>
+          {locationStateIndex > 0
+            ? <div className={styles.PopularDestinations__minus} onClick={handleLessClick}><i className="fas fa-chevron-left fa-xs" /></div>
+            : null}
           {
-            selectedLocations.map(location => (
+            locationState.map(location => (
               <CardDisplay
                 key={location.city}
                 data={{
@@ -55,10 +76,17 @@ const PopularDestinations = () => {
               />
             ))
           }
+          {locationStateIndex < locations.length - 4
+            ? <div className={styles.PopularDestinations__plus} onClick={handleMoreClick}><i className="fas fa-chevron-right fa-xs" /></div>
+            : null}
         </div>
       </div>
     </div>
   );
+};
+
+PopularDestinations.propTypes = {
+  handleSearch: PropTypes.func.isRequired,
 };
 
 export default PopularDestinations;

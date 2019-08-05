@@ -14,7 +14,7 @@ describe('Attractions Component', () => {
 
   it('Component did mount', () => {
     const component = mount(<Attractions />);
-    expect(component.find('.card-wrapper').length).toBe(1);
+    expect(component.find('[className^="Attractions__wrapper"]').length).toBe(1);
   });
 
   describe('Testing Attractions, One Attraction', () => {
@@ -93,8 +93,8 @@ describe('Attractions Component', () => {
         isLoading: true,
       };
       wrapper = mountComp(props);
-      const loader = wrapper.find('.loader');
-      expect(loader.length).toBe(3);
+      const loader = wrapper.find('[className^="Loader"]');
+      expect(loader.length).toBe(1);
     });
   });
 });

@@ -3,6 +3,7 @@ import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
 import Modal from '../Modal';
 import CardDisplay from '../CardDisplay';
+import styles from './Attractions.module.scss';
 
 /**
  * @description This will display the attraction cards component when they are ready
@@ -22,31 +23,51 @@ function Attractions(props) {
     setLoaded(!loaded);
   };
 
+  const showAttractions = (attractionList) => {
+    const elements = attractionList.map(place => (
+      <CardDisplay
+        key={place.placeId}
+        handleOnClick={handleOnClick}
+        data={{
+          title: place.name,
+          body: [
+            <h1>
+              Rating:
+              {place.rating}
+            </h1>,
+            <button type="button">More Info</button>,
+          ],
+          place,
+        }}
+      />
+    ));
+
+    if (attractionList.length % 4 !== 0) {
+      for (let i = 0; i < (4 - (attractionList.length % 4)); i += 1) {
+        elements.push(<div className={styles.CardSpacer} />);
+      }
+    }
+
+    return elements;
+  };
+
   return (
     <>
-      <div className="card-wrapper">
-        {!isLoading ? (
-          attractions
-          && attractions.map(place => (
-            <CardDisplay
-              key={place.placeId}
-              handleOnClick={handleOnClick}
-              data={{
-                title: place.name,
-                body: [
-                  <h1>
-                    Rating:
-                    {place.rating}
-                  </h1>,
-                  <button type="button">More Info</button>,
-                ],
-                place,
-              }}
-            />
-          ))
-        ) : (
-          <Loader className="loader" type="Puff" color="#00BFFF" height="100" width="100" />
-        )}
+      <div className={styles.Attractions__wrapper}>
+        {
+          !isLoading
+            ? attractions && showAttractions(attractions)
+            : (
+              <div className={styles.Loader}>
+                <Loader
+                  type="Puff"
+                  color="#00BFFF"
+                  height="100"
+                  width="100"
+                />
+              </div>
+            )
+        }
       </div>
 
       {loaded && (
