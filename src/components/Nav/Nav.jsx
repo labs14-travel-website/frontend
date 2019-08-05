@@ -12,7 +12,9 @@ const Nav = ({
 
   return (
     <div className={styles.Nav}>
-      <img className={styles.Nav__logo} alt="roamly logo" src={logo} />
+      <a href="/">
+        <img className={styles.Nav__logo} alt="roamly logo" src={logo} />
+      </a>
       {
         !isLoggedIn
           ? (
@@ -33,8 +35,8 @@ const Nav = ({
 
 Nav.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
-  responseFail: PropTypes.func,
-  responseGoogle: PropTypes.func,
+  responseFail: PropTypes.func.isRequired,
+  responseGoogle: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
 };
 
