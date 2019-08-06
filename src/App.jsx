@@ -25,6 +25,7 @@ function App() {
       show: false,
       attraction: {},
     },
+    noResults: false,
   });
 
   useEffect(() => {
@@ -87,14 +88,24 @@ function App() {
     // request to backend that will request to API and send back the data
     axios.get(`${process.env.REACT_APP_ENDPOINT}/a?q=${destination}`)
       .then(({ data: { places } }) => {
-        setState(prevState => ({
-          ...prevState,
-          attractions: places,
-          isLoading: false,
-        }));
+        if (places) {
+          setState(prevState => ({
+            ...prevState,
+            attractions: places,
+            isLoading: false,
+            noResults: false,
+          }));
+        } else {
+          setState(prevState => ({
+            ...prevState,
+            attractions: [],
+            isLoading: false,
+            noResults: true,
+          }));
+        }
       })
       .catch((error) => {
-        console.log(error);  // eslint-disable-line
+        console.log(error, 'here');  // eslint-disable-line
       });
   };
 
@@ -133,14 +144,14 @@ function App() {
         />
         <Hero background="/images/hero.jpg">
           {
-            state.destination
+            !state.noResults && state.destination
               ? <span className={styles.App__destination}>{state.destination}</span>
-              : <Search handleSearch={handleSearch} />
+              : <Search handleSearch={handleSearch} noResults={state.noResults} />
           }
         </Hero>
         {
           !state.attractions.length > 0 && !state.isLoading
-            ? <PopularDestinations handleSearch={handleSearch} />
+            ? <PopularDestinations handleSearch={handleSearch} noResults={state.noResults} />
             : (
               <Attractions
                 attractions={state.attractions}
@@ -150,6 +161,7 @@ function App() {
             )
         }
       </div>
+
       {state.modal.show && (
         <Modal
           attraction={state.modal.attraction}

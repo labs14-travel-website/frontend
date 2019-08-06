@@ -1,3 +1,5 @@
+@import '../../assets/master';
+
 .Attractions {
   &__wrapper {
     display: flex;
@@ -9,14 +11,27 @@
 
     div {
       margin: 4.43%;
+
+      @media #{$mobile} {
+        width: 100%;
+        margin: 10px 0;
+      }
     }
 
     div:nth-child(4n+0) {
       margin-right: 0;
+
+      @media #{$mobile} {
+        margin: 10px 0;
+      }
     }
 
     div:nth-child(4n+1) {
       margin-left: 0;
+
+      @media #{$mobile} {
+        margin: 10px 0;
+      }
     }
 
     .Loader {

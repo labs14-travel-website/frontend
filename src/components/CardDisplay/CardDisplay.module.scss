@@ -8,6 +8,11 @@
   position: relative;
   overflow: hidden;
   filter: contrast(1.1) saturate(1.1);
+  
+  @media #{$mobile} {
+    width: 100%;
+    margin: 0 auto;
+}
 
   &__city {
     font-size: 18px;
@@ -29,6 +34,12 @@
     width: 100%;
     transform: translateY(-80px);
     transition: transform 0.33s ease-in-out, background 0.33s ease-in-out;
+
+    @media #{$mobile} {
+      transform: translateY(calc(-100% + 1px));
+      margin: 0;
+      // left: -5px;
+    }
   }
 
   &:hover &__info_wrapper {

@@ -11,24 +11,26 @@ const Nav = ({
   const [clientId] = useState(process.env.REACT_APP_OAUTH_GOOGLE_ID);
 
   return (
-    <div className={styles.Nav}>
-      <a href="/">
-        <img className={styles.Nav__logo} alt="roamly logo" src={logo} />
-      </a>
-      {
-        !isLoggedIn
-          ? (
-            <GoogleLogin
-              className={styles.Nav__google}
-              clientId={clientId}
-              buttonText="Login"
-              onSuccess={responseGoogle}
-              onFailure={responseFail}
-              cookiePolicy="single_host_origin"
-            />
-          )
-          : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />)
-      }
+    <div className={styles.wrapper}>
+      <div className={styles.Nav}>
+        <a href="/">
+          <img className={styles.Nav__logo} alt="roamly logo" src={logo} />
+        </a>
+        {
+          !isLoggedIn
+            ? (
+              <GoogleLogin
+                className={styles.Nav__google}
+                clientId={clientId}
+                buttonText="Login"
+                onSuccess={responseGoogle}
+                onFailure={responseFail}
+                cookiePolicy="single_host_origin"
+              />
+            )
+            : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />)
+        }
+      </div>
     </div>
   );
 };
