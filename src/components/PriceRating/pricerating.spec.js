@@ -2,9 +2,6 @@ import React from 'react';
 import { mount } from '../../enzyme';
 import PriceRating from './PriceRating';
 
-// Naming conventions examples as used by the star rating dependency
-// http://voronianski.github.io/react-star-rating-component/example/
-
 const mountComp = (props = {}) => {
   const component = mount(<PriceRating {...props} />);
   return component;
