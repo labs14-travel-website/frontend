@@ -1,3 +1,4 @@
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './PopularDestinations.module.scss';
@@ -7,7 +8,7 @@ import CardDisplay from '../CardDisplay';
  * containing 4 randomly chosen popular destinations to travel to
  */
 
-const PopularDestinations = ({ handleSearch }) => {
+const PopularDestinations = ({ handleSearch, noResults }) => {
   const locations = [
     { city: 'Hong Kong', country: 'China', picture: '/images/PopularDestinations/hong-kong.jpg' },
     { city: 'Bangkok', country: 'Thailand', picture: '/images/PopularDestinations/bangkok.jpeg' },
@@ -27,23 +28,50 @@ const PopularDestinations = ({ handleSearch }) => {
     { city: 'Guangzhou', country: 'China', picture: '/images/PopularDestinations/guangzhou.jpeg' },
     { city: 'Mumbai', country: 'India', picture: '/images/PopularDestinations/mumbai.jpeg' },
     { city: 'Prague', country: 'Czech Republic', picture: '/images/PopularDestinations/prague.jpeg' },
+    { city: 'Barcelona', country: 'Spain', picture: '/images/PopularDestinations/barcelona.jpeg' },
+    { city: 'Vienna', country: 'Austria', picture: '/images/PopularDestinations/vienna.jpeg' },
   ];
 
   const shuffled = locations.sort(() => 0.5 - Math.random());
   const selectedLocations = shuffled.slice(0, 4);
+
+  // const [locationState, setLocationState] = useState(shuffled);
+  // const [locationStateIndex, setLocationStateIndex] = useState(0);
+
+  // useEffect(() => {
+  //   setLocationState(locations.slice(locationStateIndex, locationStateIndex + 4));
+  // }, [locations, locationStateIndex]);
+
   const handleOnClick = async (data) => {
     const query = `${data.place.city}, ${data.place.country}`;
     handleSearch(`${query}`);
   };
 
+  // const handleMoreClick = () => {
+  //   setLocationStateIndex(locationStateIndex + 4);
+  // };
+
+  // const handleLessClick = () => {
+  //   setLocationStateIndex(locationStateIndex - 4);
+  // };
+
   return (
     <div className={styles.container}>
       <div className={styles.PopularDestinations}>
+        {noResults ? <div>No Results</div> : null}
         <h2 className={styles.PopularDestinations__title}>Popular Destinations</h2>
         <div className={styles.PopularDestinations__cards}>
+          {/* {locationStateIndex > 0
+            ? (
+              <div className={styles.PopularDestinations__minus} onClick={handleLessClick}>
+                <i className="fas fa-chevron-left fa-xs" />
+              </div>
+            )
+            : null} */}
           {
             selectedLocations.map(location => (
               <CardDisplay
+                key={location.city}
                 data={{
                   title: location.city,
                   body: location.country,
@@ -53,6 +81,13 @@ const PopularDestinations = ({ handleSearch }) => {
               />
             ))
           }
+          {/* {locationStateIndex < locations.length - 4
+            ? (
+              <div className={styles.PopularDestinations__plus} onClick={handleMoreClick}>
+                <i className="fas fa-chevron-right fa-xs" />
+              </div>
+            )
+            : null} */}
         </div>
       </div>
     </div>
@@ -61,6 +96,7 @@ const PopularDestinations = ({ handleSearch }) => {
 
 PopularDestinations.propTypes = {
   handleSearch: PropTypes.func.isRequired,
+  noResults: PropTypes.bool.isRequired,
 };
 
 export default PopularDestinations;
