@@ -5,6 +5,14 @@
   max-width: 940px;
   width: 50%;
 
+  @media #{$tablet} {
+    width: 75%;
+  }
+
+  @media #{$mobile} {
+    width: 95%;
+  }
+
   &_wrapper {
     background: rgba(0, 0, 0, 0.65);
     position: fixed;
