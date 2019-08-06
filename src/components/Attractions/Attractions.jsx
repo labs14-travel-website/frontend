@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+// import React, { useState } from 'react';
 import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
-import Modal from '../Modal';
+// import Modal from '../Modal';
 import CardDisplay from '../CardDisplay';
 import styles from './Attractions.module.scss';
 
@@ -10,14 +11,14 @@ import styles from './Attractions.module.scss';
  */
 function Attractions(props) {
   const { attractions, isLoading, showModal } = props;
-  const [loaded, setLoaded] = useState(false);
-  const [modalAttraction, setModalAttraction] = useState({});
+  // const [loaded, setLoaded] = useState(false);
+  // const [modalAttraction, setModalAttraction] = useState({});
 
   const handleOnClick = ({ place }) => {
     // setIsLoadingData(true)
-    setModalAttraction(place);
+    // setModalAttraction(place);
     showModal(place);
-    setLoaded(true);
+    // setLoaded(true);
   };
 
   // const showModal = () => {

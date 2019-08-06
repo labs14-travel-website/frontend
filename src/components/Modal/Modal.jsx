@@ -34,7 +34,7 @@ const Modal = (props) => {
           <div className={styles.PriceRating}>
             <PriceRating price={attraction.price ? attraction.price : 1} />
           </div>
-          <div className={styles.content}>{children}</div>
+          <div className={styles.Modal__information__content}>{children}</div>
           <div className={styles.actions}>
             <button
               type="button"

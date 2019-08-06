@@ -98,7 +98,7 @@ function App() {
       });
   };
 
-  const showModal = (place) => {
+  const showModal = async (place) => {
     setState(prevState => ({
       ...prevState,
       modal: {
@@ -139,10 +139,15 @@ function App() {
           }
         </Hero>
         {
-          // TODO: This will error (cannot get length of undefined) if server does not return anything
           !state.attractions.length > 0 && !state.isLoading
             ? <PopularDestinations handleSearch={handleSearch} />
-            : <Attractions attractions={state.attractions} isLoading={state.isLoading} showModal={showModal} />
+            : (
+              <Attractions
+                attractions={state.attractions}
+                isLoading={state.isLoading}
+                showModal={showModal}
+              />
+            )
         }
       </div>
       {state.modal.show && (
@@ -152,7 +157,16 @@ function App() {
           showModal={showModal}
           show={state.modal.show}
         >
-          <p>Hello</p>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic, eum! Impedit distinctio,
+            laudantium, deleniti similique dolores mollitia, atque labore vero unde porro velit
+            sint. Distinctio ab perspiciatis enim temporibus debitis!
+          </p>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic, eum! Impedit distinctio,
+            laudantium, deleniti similique dolores mollitia, atque labore vero unde porro velit
+            sint. Distinctio ab perspiciatis enim temporibus debitis!
+          </p>
         </Modal>
       )}
     </>
