@@ -11,6 +11,7 @@ import Nav from './components/Nav';
 import PopularDestinations from './components/PopularDestinations';
 import Attractions from './components/Attractions';
 import Hero from './components/Hero/Hero';
+import Modal from './components/Modal/Modal';
 
 
 function App() {
@@ -20,6 +21,11 @@ function App() {
     attractions: [],
     destination: '',
     isLoading: false,
+    modal: {
+      show: false,
+      attraction: {},
+    },
+    noResults: false,
   });
 
   useEffect(() => {
@@ -82,39 +88,100 @@ function App() {
     // request to backend that will request to API and send back the data
     axios.get(`${process.env.REACT_APP_ENDPOINT}/a?q=${destination}`)
       .then(({ data: { places } }) => {
-        setState(prevState => ({
-          ...prevState,
-          attractions: places,
-          isLoading: false,
-        }));
+        if (places) {
+          setState(prevState => ({
+            ...prevState,
+            attractions: places,
+            isLoading: false,
+            noResults: false,
+          }));
+        } else {
+          setState(prevState => ({
+            ...prevState,
+            attractions: [],
+            isLoading: false,
+            noResults: true,
+          }));
+        }
       })
       .catch((error) => {
-        console.log(error);  // eslint-disable-line
+        console.log(error, 'here');  // eslint-disable-line
       });
   };
 
+  const showModal = async (place) => {
+    setState(prevState => ({
+      ...prevState,
+      modal: {
+        ...prevState.modal,
+        show: true,
+        attraction: place,
+      },
+    }));
+  };
+
+  const closeModal = () => {
+    setState(prevState => ({
+      ...prevState,
+      modal: {
+        ...prevState.modal,
+        show: false,
+        attraction: {},
+      },
+    }));
+  };
+
+  const classTest = !state.modal.show ? styles.App : `${styles.App} ${styles.blur}`;
+
   return (
-    <div className={styles.App}>
-      <Nav
-        logout={logout}
-        responseFail={responseFail}
-        responseGoogle={responseGoogle}
-        loggedIn={state.loggedIn}
-      />
-      <Hero background="/images/hero.jpg">
+    <>
+      <div className={classTest}>
+        <Nav
+          logout={logout}
+          responseFail={responseFail}
+          responseGoogle={responseGoogle}
+          loggedIn={state.loggedIn}
+        />
+        <Hero background="/images/hero.jpg">
+          {
+            !state.noResults && state.destination
+              ? <span className={styles.App__destination}>{state.destination}</span>
+              : <Search handleSearch={handleSearch} noResults={state.noResults} />
+          }
+        </Hero>
         {
-          state.destination
-            ? <span className={styles.App__destination}>{state.destination}</span>
-            : <Search handleSearch={handleSearch} />
+          !state.attractions.length > 0 && !state.isLoading
+            ? <PopularDestinations handleSearch={handleSearch} noResults={state.noResults} />
+            : (
+              <Attractions
+                attractions={state.attractions}
+                isLoading={state.isLoading}
+                showModal={showModal}
+              />
+            )
         }
-      </Hero>
-      {
-        // TODO: This will error (cannot get length of undefined) if server does not return anything
-        !state.attractions.length > 0 && !state.isLoading
-          ? <PopularDestinations handleSearch={handleSearch} />
-          : <Attractions attractions={state.attractions} isLoading={state.isLoading} />
-      }
-    </div>
+      </div>
+
+      {state.modal.show && (
+        <Modal
+          attraction={state.modal.attraction}
+          onClose={closeModal}
+          showModal={showModal}
+          show={state.modal.show}
+        >
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic, eum! Impedit distinctio,
+            laudantium, deleniti similique dolores mollitia, atque labore vero unde porro velit
+            sint. Distinctio ab perspiciatis enim temporibus debitis!
+          </p>
+          <p>
+            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic, eum! Impedit distinctio,
+            laudantium, deleniti similique dolores mollitia, atque labore vero unde porro velit
+            sint. Distinctio ab perspiciatis enim temporibus debitis!
+          </p>
+        </Modal>
+      )}
+    </>
   );
 }
 

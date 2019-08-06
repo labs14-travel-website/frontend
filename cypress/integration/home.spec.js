@@ -16,6 +16,6 @@ context('Window', () => {
 
   it('cy.title() - get the title', () => {
     // https://on.cypress.io/title
-    cy.title().should('include', 'React App');
+    cy.title().should('include', 'Roamly');
   });
 });
