@@ -1,5 +1,6 @@
 module.exports = {
   env: {
+    node: true,
     browser: true,
     es6: true,
     jest: true,
@@ -25,4 +26,12 @@ module.exports = {
     "jsx-a11y/click-events-have-key-events": "off",
     "jsx-a11y/no-static-element-interactions" : "off",
   },
+  overrides: [
+    {
+        files: ["*.spec.js"],
+        rules: {
+            "react/jsx-filename-extension": "off"
+        }
+    }
+  ]
 };

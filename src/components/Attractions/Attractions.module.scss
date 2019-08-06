@@ -1,0 +1,46 @@
+@import '../../assets/master';
+
+.Attractions {
+  &__wrapper {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+    flex-flow: row wrap;
+    max-width: 1240px;
+    margin: 0 auto;
+
+    div {
+      margin: 4.43%;
+
+      @media #{$mobile} {
+        width: 100%;
+        margin: 10px 0;
+      }
+    }
+
+    div:nth-child(4n+0) {
+      margin-right: 0;
+
+      @media #{$mobile} {
+        margin: 10px 0;
+      }
+    }
+
+    div:nth-child(4n+1) {
+      margin-left: 0;
+
+      @media #{$mobile} {
+        margin: 10px 0;
+      }
+    }
+
+    .Loader {
+      margin: 60px auto;
+      width: 100%;
+    }
+
+    .CardSpacer {
+      width: 200px;
+    }
+  }
+}
