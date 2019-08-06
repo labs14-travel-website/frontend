@@ -1,7 +1,7 @@
 context('Window', () => {
   beforeEach(() => {
     // TODO: We'll have to do some environment handling for local versus staging
-    cy.visit('http://localhost:3000');
+    cy.visit('/');
   });
 
   it('cy.window() - get the global window object', () => {
@@ -16,6 +16,6 @@ context('Window', () => {
 
   it('cy.title() - get the title', () => {
     // https://on.cypress.io/title
-    cy.title().should('include', 'React App');
+    cy.title().should('include', 'Roamly');
   });
 });

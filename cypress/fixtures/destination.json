@@ -1,0 +1,15 @@
+{
+    "destination": {
+        "NewOrleans": [
+            "Burger NOLA",
+            "Bunny Bread Factory",
+            "CastNets"
+        ],
+        "NewYork": [
+          "Empire State Building",
+          "Harlem",
+          "Gramercy Park",
+          "Statue of Liberty"
+        ]
+      }
+}

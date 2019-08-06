@@ -4,7 +4,7 @@ import * as sentry from '@sentry/browser';
 // TODO This should probably be updated to similar init as react/mixpanel
 import FullStory from 'react-fullstory';
 
-import './index.css';
+import './index.module.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
