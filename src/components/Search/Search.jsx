@@ -37,22 +37,19 @@ const Search = ({ handleSearch }) => {
   };
 
   return (
-    <div className={styles.Hero}>
-      <div className={styles.container}>
-        <div className={styles.Hero__search}>
-          <form onSubmit={handleOnSubmit} className={styles.Hero__search_form}>
-            <input
-              className={styles.Hero__search_form__input}
-              type="text"
-              onChange={handleOnChange}
-              value={destination}
-              autoComplete="off"
-              placeholder="Destination"
-            />
-            <button type="submit" className={styles.Hero__search_form__submit}>Roam</button>
-          </form>
-        </div>
-      </div>
+    <div className={styles.Search}>
+      <form onSubmit={handleOnSubmit} className={styles.Search__form}>
+        <input
+          className={styles.Search__form__input}
+          type="text"
+          onChange={handleOnChange}
+          value={destination}
+          autoComplete="off"
+          placeholder="Destination"
+          required
+        />
+        <button type="submit" className={styles.Search__form__submit}>Roam</button>
+      </form>
     </div>
   );
 };

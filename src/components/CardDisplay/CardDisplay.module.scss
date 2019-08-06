@@ -4,13 +4,49 @@
   height: 300px;
   width: 200px;
   cursor: pointer;
-  -webkit-box-reflect: below 0px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(70%, transparent) , to(rgba(250, 250, 250, 0.1)));
+  -webkit-box-reflect: below 5px -webkit-gradient(linear, left top, left bottom, from(transparent), color-stop(70%, transparent) , to(rgba(250, 250, 250, 0.1)));
+  position: relative;
+  overflow: hidden;
+  filter: contrast(1.1) saturate(1.1);
+  
+  @media #{$mobile} {
+    width: 100%;
+    margin: 0 auto;
+}
 
   &__city {
     font-size: 18px;
+    height: 48px;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+    margin: 15px 3px;
   }
 
   &__country {
     font-size: 12px;
+  }
+
+  &__info_wrapper {
+    position: absolute;
+    top:100%;
+    background: rgba(0, 0, 0, 0.5);
+    width: 100%;
+    transform: translateY(-80px);
+    transition: transform 0.33s ease-in-out, background 0.33s ease-in-out;
+
+    @media #{$mobile} {
+      transform: translateY(calc(-100% + 1px));
+      margin: 0;
+      // left: -5px;
+    }
+  }
+
+  &:hover &__info_wrapper {
+    transform: translateY(calc(-100% + 1px));
+  }
+
+  &__info_wrapper:hover {
+    background: rgba(0, 0, 0, 0.6);
   }
 }
