@@ -13,6 +13,17 @@ import Attractions from './components/Attractions';
 import Hero from './components/Hero/Hero';
 import Modal from './components/Modal/Modal';
 
+axios.interceptors.request.use((config) => {
+  const newConfig = {
+    ...config,
+    headers: {
+      ...config.headers,
+      env: process.env.REACT_APP_ENV || 'development',
+    },
+  };
+
+  return newConfig;
+});
 
 function App() {
   const [state, setState] = useState({
@@ -86,7 +97,7 @@ function App() {
       destination,
     }));
     // request to backend that will request to API and send back the data
-    axios.get(`${process.env.REACT_APP_ENDPOINT}/a?q=${destination}`)
+    axios.get(`${process.env.REACT_APP_ENDPOINT}/places/details/${destination}`)
       .then(({ data: { places } }) => {
         if (places) {
           setState(prevState => ({
@@ -168,18 +179,7 @@ function App() {
           onClose={closeModal}
           showModal={showModal}
           show={state.modal.show}
-        >
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic, eum! Impedit distinctio,
-            laudantium, deleniti similique dolores mollitia, atque labore vero unde porro velit
-            sint. Distinctio ab perspiciatis enim temporibus debitis!
-          </p>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic, eum! Impedit distinctio,
-            laudantium, deleniti similique dolores mollitia, atque labore vero unde porro velit
-            sint. Distinctio ab perspiciatis enim temporibus debitis!
-          </p>
-        </Modal>
+        />
       )}
     </>
   );
