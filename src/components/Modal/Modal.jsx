@@ -36,7 +36,7 @@ const Modal = (props) => {
     };
 
     getDescription();
-  }, []);
+  }, [attraction.name]);
 
   if (!show) {
     return null;
