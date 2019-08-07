@@ -16,9 +16,7 @@ import logo from '../../assets/img/logo.png';
 const Nav = ({
   loggedIn, responseFail, responseGoogle, logout,
 }) => {
-  const [isLoggedIn] = useState(loggedIn);
   const [clientId] = useState(process.env.REACT_APP_OAUTH_GOOGLE_ID);
-  console.log(isLoggedIn, loggedIn);
   return (
     <div className={styles.wrapper}>
       <div className={styles.Nav}>
@@ -26,7 +24,7 @@ const Nav = ({
           <img className={styles.Nav__logo} alt="roamly logo" src={logo} />
         </a>
         {
-          !isLoggedIn
+          !loggedIn
             ? (
               <GoogleLogin
                 className={styles.Nav__google}
@@ -37,7 +35,7 @@ const Nav = ({
                 cookiePolicy="single_host_origin"
               />
             )
-            : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} />)
+            : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} clientId={clientId} />)
         }
       </div>
     </div>
