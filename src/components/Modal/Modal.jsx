@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Modal.module.scss';
 import Ratings from '../Ratings';
 import PriceRating from '../PriceRating';
+import Favorite from '../Favorites';
 
 /**
  * @description Displays a modal that pulls individual place and
@@ -33,11 +34,12 @@ const Modal = (props) => {
   };
 
   return (
-    <div className={styles.Modal_wrapper} onClick={e => onClose(e)}>
+    <div className={styles.Modal_wrapper}>
       <div className={styles.Modal} id="modal">
         <div className={styles.Modal__image} style={style} />
         <div className={styles.Modal__information}>
           <h2>{attraction.name}</h2>
+          <Favorite favId={attraction.placeId} />
           <div className={styles.Ratings}>
             <Ratings rating={attraction.rating} />
           </div>
