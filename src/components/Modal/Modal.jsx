@@ -27,8 +27,12 @@ const Modal = (props) => {
 
   useEffect(() => {
     const getDescription = async () => {
-      const { data } = await axios.get(`${process.env.REACT_APP_ENDPOINT}/places/info/${attraction.name}`);
-      setDescription(data.description);
+      try {
+        const { data } = await axios.get(`${process.env.REACT_APP_ENDPOINT}/places/info/${attraction.name}`);
+        setDescription(data.description || `${attraction.name} is a Tourist Attraction.`);
+      } catch (error) {
+        setDescription(`${attraction.name} is a Tourist Attraction.`);
+      }
     };
 
     getDescription();
