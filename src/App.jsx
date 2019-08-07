@@ -179,18 +179,7 @@ function App() {
           onClose={closeModal}
           showModal={showModal}
           show={state.modal.show}
-        >
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic, eum! Impedit distinctio,
-            laudantium, deleniti similique dolores mollitia, atque labore vero unde porro velit
-            sint. Distinctio ab perspiciatis enim temporibus debitis!
-          </p>
-          <p>
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic, eum! Impedit distinctio,
-            laudantium, deleniti similique dolores mollitia, atque labore vero unde porro velit
-            sint. Distinctio ab perspiciatis enim temporibus debitis!
-          </p>
-        </Modal>
+        />
       )}
     </>
   );
