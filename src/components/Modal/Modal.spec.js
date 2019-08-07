@@ -42,6 +42,6 @@ describe('Modal Component', () => {
     expect(modal.length).toBe(1);
     const button = wrapper.find('button');
     button.simulate('click');
-    expect(mockFunction.mock.calls.length).toBe(2);
+    expect(mockFunction.mock.calls.length).toBe(1);
   });
 });
