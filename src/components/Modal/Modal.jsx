@@ -49,7 +49,8 @@ const Modal = (props) => {
   };
 
   return (
-    <div className={styles.Modal_wrapper} onClick={e => onClose(e)}>
+    <div className={styles.Modal_wrapper}>
+      <div className={styles.Modal_overlay} onClick={e => onClose(e)} />
       <div className={styles.Modal} id="modal">
         <div className={styles.Modal__image} style={style} />
         <div className={styles.Modal__information}>
