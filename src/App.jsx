@@ -148,10 +148,10 @@ function App() {
     <>
       <div className={classTest}>
         <Nav
+          loggedIn={state.loggedIn}
           logout={logout}
           responseFail={responseFail}
           responseGoogle={responseGoogle}
-          loggedIn={state.loggedIn}
         />
         <Hero background="/images/hero.jpg">
           {

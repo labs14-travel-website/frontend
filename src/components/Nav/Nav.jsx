@@ -18,7 +18,7 @@ const Nav = ({
 }) => {
   const [isLoggedIn] = useState(loggedIn);
   const [clientId] = useState(process.env.REACT_APP_OAUTH_GOOGLE_ID);
-
+  console.log(isLoggedIn, loggedIn);
   return (
     <div className={styles.wrapper}>
       <div className={styles.Nav}>
