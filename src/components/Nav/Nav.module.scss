@@ -3,11 +3,14 @@
     max-width: 1240px;
     align-self: center;
 }
+
 .Nav {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: center;
     margin: 0 20px;
+    height: 80px;
 
     &__logo {
         width: 150px;
