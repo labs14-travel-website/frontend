@@ -2,8 +2,12 @@
 
 .Modal {
   background: #141414;
+  display: flex;
   max-width: 940px;
   width: 50%;
+  z-index: 99;
+  position: fixed;
+  top: 20%;
 
   @media #{$tablet} {
     width: 75%;
@@ -14,6 +18,11 @@
   }
 
   &_wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  &_overlay {
     background: rgba(0, 0, 0, 0.65);
     position: fixed;
     top: 0;
@@ -24,6 +33,7 @@
     justify-content: center;
     align-items: center;
     overflow: scroll;
+    z-index: 1;
   }
 
   &__image {
