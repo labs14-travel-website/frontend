@@ -61,6 +61,22 @@
       font-size: 18px;
     }
   }
+
+  .toggleButton {
+    height: 35px;
+    border: none;
+    background: $primary;
+    color: $mono-light;
+    font-weight: 400;
+    font-size: 17px;
+    padding: 0 20px;
+    cursor: pointer;
+    border: 2px solid transparent;
+
+    @media #{$mobile} {
+      font-size: 16px;
+    }
+  }
 }
 
 // .modal {
