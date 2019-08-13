@@ -5,7 +5,6 @@ import store from '../../utils/jwt-store';
 import feature from '../../utils/flaggie';
 import styles from '../../App.module.scss';
 import Search from '../../components/Search';
-import Nav from '../../components/Nav';
 import PopularDestinations from '../../components/PopularDestinations';
 import Attractions from '../../components/Attractions';
 import Hero from '../../components/Hero';
@@ -25,7 +24,6 @@ axios.interceptors.request.use((config) => {
 
 function Home() {
   const [state, setState] = useState({
-    loggedIn: false,
     clientId: process.env.REACT_APP_OAUTH_GOOGLE_ID,
     attractions: [],
     destination: '',
@@ -83,39 +81,6 @@ function Home() {
       action: 'Generic Action',
     });
   }, []);
-
-  const responseGoogle = (res) => {
-    store.add(res.tokenId);
-    setState(prevState => ({
-      ...prevState,
-      loggedIn: true,
-    }));
-    axios
-      .post(
-        `${process.env.REACT_APP_ENDPOINT}/api/auth`,
-        {},
-        {
-          headers: {
-            Authorization: res.tokenId,
-          },
-        },
-      )
-      .then((data) => {
-        console.log(data); // eslint-disable-line
-      });
-  };
-
-  const responseFail = (res) => {
-    console.log(res); // eslint-disable-line
-  };
-
-  const logout = () => {
-    store.remove();
-    setState(prevState => ({
-      ...prevState,
-      loggedIn: false,
-    }));
-  };
 
   // performs action when user clicks the ROAM button
   const handleSearch = (destination) => {
@@ -175,12 +140,6 @@ function Home() {
   return (
     <>
       <div className={classTest}>
-        <Nav
-          loggedIn={state.loggedIn}
-          logout={logout}
-          responseFail={responseFail}
-          responseGoogle={responseGoogle}
-        />
         <Hero background="/images/hero.jpg">
           {
             !state.noResults && state.destination

@@ -24,7 +24,7 @@ const Nav = ({
         <a href="/">
           <img className={styles.Nav__logo} alt="roamly logo" src={logo} />
         </a>
-        <Link to="/profile"><a href="#" className={styles.Favorites}>My Favorites</a></Link>
+        <div><Link to="/profile" className={styles.Favorites}>My Favorites</Link></div>
         {
           !loggedIn
             ? (
