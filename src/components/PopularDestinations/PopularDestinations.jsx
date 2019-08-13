@@ -35,7 +35,7 @@ const PopularDestinations = ({ handleSearch, noResults }) => {
   const shuffled = locations.sort(() => 0.5 - Math.random());
   const selectedLocations = shuffled.slice(0, 4);
 
-  const [locationState, setLocationState] = useState(selectedLocations);
+  const [locationState] = useState(selectedLocations);
   // const [locationStateIndex, setLocationStateIndex] = useState(0);
 
   // useEffect(() => {
