@@ -3,6 +3,7 @@ import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import PropTypes from 'prop-types';
 import styles from './Nav.module.scss';
 import logo from '../../assets/img/logo.png';
+import { Link } from 'react-router-dom';
 
 /**
  * @description Allows a user to log in or logout with google,
@@ -23,13 +24,14 @@ const Nav = ({
         <a href="/">
           <img className={styles.Nav__logo} alt="roamly logo" src={logo} />
         </a>
+        <Link to="/profile"><a href="#" className={styles.Favorites}>My Favorites</a></Link>
         {
           !loggedIn
             ? (
               <GoogleLogin
                 className={styles.Nav__google}
                 clientId={clientId}
-                buttonText="Login"
+                buttonText="Sign in with Google"
                 onSuccess={responseGoogle}
                 onFailure={responseFail}
                 cookiePolicy="single_host_origin"

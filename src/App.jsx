@@ -10,6 +10,9 @@ import PopularDestinations from './components/PopularDestinations';
 import Attractions from './components/Attractions';
 import Hero from './components/Hero/Hero';
 import Modal from './components/Modal/Modal';
+import Profile from './views/Profile';
+import Home from './views/Home';
+import { Route } from 'react-router';
 
 axios.interceptors.request.use((config) => {
   const newConfig = {
@@ -51,6 +54,7 @@ function App() {
         setTimeout(() => {
           resolve({
             'profile-link': false,
+            'profile': true,
           });
         }, 500);
       });
@@ -211,6 +215,11 @@ function App() {
           show={state.modal.show}
         />
       )}
+
+      {/* <Feature.Toggle flag="profile"><Profile /></Feature.Toggle> */}
+
+      <Route exact path='/' render={Home} />
+      <Route path='/profile' render={Profile} />
     </>
   );
 }

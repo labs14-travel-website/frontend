@@ -7,6 +7,7 @@ import FullStory from 'react-fullstory';
 import './index.module.scss';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter as Router} from 'react-router-dom';
 
 const env = process.env.REACT_APP_ENV;
 
@@ -17,7 +18,7 @@ if (env === 'production' || env === 'staging') {
 ReactDOM.render((
   <>
     <FullStory org={process.env.REACT_APP_FS_TOKEN} />
-    <App />
+    <Router><App /></Router>
   </>
 ), document.getElementById('root'));
 
