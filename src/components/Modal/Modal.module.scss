@@ -4,8 +4,24 @@
   background: #141414;
   max-width: 940px;
   width: 50%;
+  z-index: 1;
+  position: fixed;
+  top: 20%;
+
+  @media #{$tablet} {
+    width: 75%;
+  }
+
+  @media #{$mobile} {
+    width: 95%;
+  }
 
   &_wrapper {
+    display: flex;
+    justify-content: center;
+  }
+
+  &_overlay {
     background: rgba(0, 0, 0, 0.65);
     position: fixed;
     top: 0;
@@ -15,6 +31,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    overflow: scroll;
   }
 
   &__image {
@@ -42,6 +59,22 @@
 
     &__content {
       font-size: 18px;
+    }
+  }
+
+  .toggleButton {
+    height: 35px;
+    border: none;
+    background: $primary;
+    color: $mono-light;
+    font-weight: 400;
+    font-size: 17px;
+    padding: 0 20px;
+    cursor: pointer;
+    border: 2px solid transparent;
+
+    @media #{$mobile} {
+      font-size: 16px;
     }
   }
 }

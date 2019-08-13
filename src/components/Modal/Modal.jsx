@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import Loader from 'react-loader-spinner';
+import axios from 'axios';
 import PropTypes from 'prop-types';
 import styles from './Modal.module.scss';
 import Ratings from '../Ratings';
@@ -16,12 +18,26 @@ import Favorite from '../Favorites';
  * @param {object[]} attraction array of attraction data for modal to display
  */
 const Modal = (props) => {
+  const [description, setDescription] = useState('');
   const {
     onClose,
     show,
-    children,
+    // children,
     attraction,
   } = props;
+
+  useEffect(() => {
+    const getDescription = async () => {
+      try {
+        const { data } = await axios.get(`${process.env.REACT_APP_ENDPOINT}/places/info/${attraction.name}`);
+        setDescription(data.description || `${attraction.name} is a Tourist Attraction.`);
+      } catch (error) {
+        setDescription(`${attraction.name} is a Tourist Attraction.`);
+      }
+    };
+
+    getDescription();
+  }, [attraction.name]);
 
   if (!show) {
     return null;
@@ -35,6 +51,7 @@ const Modal = (props) => {
 
   return (
     <div className={styles.Modal_wrapper}>
+      <div className={styles.Modal_overlay} onClick={e => onClose(e)} />
       <div className={styles.Modal} id="modal">
         <div className={styles.Modal__image} style={style} />
         <div className={styles.Modal__information}>
@@ -46,7 +63,13 @@ const Modal = (props) => {
           <div className={styles.PriceRating}>
             <PriceRating price={attraction.price ? attraction.price : 1} />
           </div>
-          <div className={styles.Modal__information__content}>{children}</div>
+          <div className={styles.Modal__information__content}>
+            {
+              description
+                ? <p>{description}</p>
+                : <Loader type="Puff" color="#00BFFF" height="100" width="100" />
+            }
+          </div>
           <div className={styles.actions}>
             <button
               type="button"
@@ -65,7 +88,7 @@ const Modal = (props) => {
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
-  children: PropTypes.element.isRequired,
+  // children: PropTypes.element.isRequired,
   attraction: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,
