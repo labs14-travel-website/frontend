@@ -4,16 +4,21 @@
   background: #141414;
   max-width: 940px;
   width: 50%;
+  max-height: 80%;
   z-index: 1;
   position: fixed;
   top: 20%;
+  overflow: scroll;
 
   @media #{$tablet} {
     width: 75%;
   }
 
   @media #{$mobile} {
+    max-height: 90%;
+    top: 5%;
     width: 95%;
+    height: 90%;
   }
 
   &_wrapper {
