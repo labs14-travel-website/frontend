@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styles from './Nav.module.scss';
 import logo from '../../assets/img/logo.png';
-import { Link } from 'react-router-dom';
 
 /**
  * @description Allows a user to log in or logout with google,

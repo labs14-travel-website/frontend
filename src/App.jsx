@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import Nav from './components/Nav';
 import axios from 'axios';
+import { Route } from 'react-router';
+import Nav from './components/Nav';
 import store from './utils/jwt-store';
 import Profile from './views/Profile';
 import Home from './views/Home';
-import { Route } from 'react-router';
 
 function App() {
-
   const [state, setState] = useState({
     loggedIn: false,
   });
@@ -54,10 +53,10 @@ function App() {
         responseGoogle={responseGoogle}
       />
 
-      <Route exact path='/' render={Home} />
-      <Route exact path='/profile' render={Profile} />
+      <Route exact path="/" render={Home} />
+      <Route exact path="/profile" render={Profile} />
     </>
-  )
+  );
 }
 
 export default App;

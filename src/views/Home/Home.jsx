@@ -49,7 +49,7 @@ function Home() {
         setTimeout(() => {
           resolve({
             'profile-link': false,
-            'profile': true,
+            profile: true,
           });
         }, 500);
       });
