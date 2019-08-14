@@ -30,27 +30,34 @@ function Attractions(props) {
   //   setLoaded(!loaded);
   // };
 
+  const tempClick = () => {
+    console.log('click'); // eslint-disable-line
+  };
+
   const showAttractions = (attractionList) => {
     const elements = attractionList.map(place => (
-      <CardDisplay
-        key={place.placeId}
-        handleOnClick={handleOnClick}
-        data={{
-          title: place.name,
-          body: [
-            <h1>
-              Rating:
-              {place.rating}
-            </h1>,
-            <Feature.Switch flag="more-button">
-              <button type="button">More Info</button>
-              <>
-              </>
-            </Feature.Switch>,
-          ],
-          place,
-        }}
-      />
+      <div>
+        <div onClick={tempClick} className={styles.Attractions__wrapper__tempheart} />
+        <CardDisplay
+          key={place.placeId}
+          handleOnClick={handleOnClick}
+          data={{
+            title: place.name,
+            body: [
+              <h1>
+                Rating:
+                {place.rating}
+              </h1>,
+              <Feature.Switch flag="more-button">
+                <button type="button">More Info</button>
+                <>
+                </>
+              </Feature.Switch>,
+            ],
+            place,
+          }}
+        />
+      </div>
     ));
 
     if (attractionList.length % 4 !== 0) {

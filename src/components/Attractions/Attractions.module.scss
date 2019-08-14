@@ -9,6 +9,16 @@
     max-width: 1240px;
     margin: 0 auto;
 
+    &__tempheart {
+      border: 1px solid blue;
+      height: 40px;
+      width: 40px;
+      z-index: 11;
+      position: relative;
+      top: 60px;
+      left: 230px;
+    }
+
     div {
       margin: 4.43% 0;
 
