@@ -10,7 +10,12 @@ import styles from './Attractions.module.scss';
  * @description This will display the attraction cards component when they are ready
  */
 function Attractions(props) {
-  const { attractions, isLoading, showModal } = props;
+  const {
+    attractions,
+    isLoading,
+    showModal,
+    Feature,
+  } = props;
   // const [loaded, setLoaded] = useState(false);
   // const [modalAttraction, setModalAttraction] = useState({});
 
@@ -37,7 +42,11 @@ function Attractions(props) {
               Rating:
               {place.rating}
             </h1>,
-            <button type="button">More Info</button>,
+            <Feature.Switch flag="more-button">
+              <button type="button">More Info</button>
+              <>
+              </>
+            </Feature.Switch>,
           ],
           place,
         }}
@@ -93,6 +102,7 @@ Attractions.propTypes = {
   ).isRequired,
   isLoading: PropTypes.bool.isRequired,
   showModal: PropTypes.func.isRequired,
+  Feature: PropTypes.objectOf(PropTypes.func).isRequired,
 };
 
 export default Attractions;
