@@ -15,10 +15,10 @@
   }
 
   @media #{$mobile} {
-    max-height: 90%;
-    top: 5%;
-    width: 95%;
-    height: 90%;
+    max-height: 100vh;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
   }
 
   &_wrapper {
