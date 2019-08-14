@@ -30,13 +30,7 @@ describe('Modal Component', () => {
     const modal = wrapper.find('#modal');
     expect(modal.length).toBe(1);
   });
-
-  it('Image Should have Name as Alt', () => {
-    // TODO: Using background CSS so need to update this test
-    // const image = wrapper.find('img[alt="Haunted Haus"]');
-    // expect(image.length).toBe(1);
-  });
-
+  
   it('Check if function is called when button is clicked', () => {
     const modal = wrapper.find('#modal');
     expect(modal.length).toBe(1);

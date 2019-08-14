@@ -50,7 +50,8 @@ function App() {
         setTimeout(() => {
           resolve({
             'profile-link': false,
-            profile: true,
+            'profile': true,
+            'heart-fav': true,
           });
         }, 500);
       });
@@ -148,6 +149,7 @@ function App() {
           onClose={closeModal}
           showModal={showModal}
           show={state.modal.show}
+          Feature={Feature}
         />
       )}
     </>
