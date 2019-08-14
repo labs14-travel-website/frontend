@@ -52,7 +52,6 @@ function App() {
         responseFail={responseFail}
         responseGoogle={responseGoogle}
       />
-
       <Route exact path="/" render={Home} />
       <Route exact path="/profile" render={Profile} />
     </>
