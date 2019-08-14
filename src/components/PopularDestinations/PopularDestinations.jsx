@@ -1,5 +1,5 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import styles from './PopularDestinations.module.scss';
 import CardDisplay from '../CardDisplay';
@@ -35,7 +35,7 @@ const PopularDestinations = ({ handleSearch, noResults }) => {
   const shuffled = locations.sort(() => 0.5 - Math.random());
   const selectedLocations = shuffled.slice(0, 4);
 
-  // const [locationState, setLocationState] = useState(shuffled);
+  const [locationState] = useState(selectedLocations);
   // const [locationStateIndex, setLocationStateIndex] = useState(0);
 
   // useEffect(() => {
@@ -69,7 +69,7 @@ const PopularDestinations = ({ handleSearch, noResults }) => {
             )
             : null} */}
           {
-            selectedLocations.map(location => (
+            locationState.map(location => (
               <CardDisplay
                 key={location.city}
                 data={{

@@ -2,11 +2,9 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import track from './utils/analytics';
 import store from './utils/jwt-store';
+import feature from './utils/flaggie';
 import styles from './App.module.scss';
 import Search from './components/Search';
-// import PopularDestinations from './components/PopularDestinations';
-// import TestModal from './components/Modal/modalTest';
-// import CardDisplay from './components/CardDisplay';
 import Nav from './components/Nav';
 import PopularDestinations from './components/PopularDestinations';
 import Attractions from './components/Attractions';
@@ -38,6 +36,36 @@ function App() {
     },
     noResults: false,
   });
+
+  const [features, setFeatures] = useState({
+    loading: true,
+    flags: {},
+  });
+
+  const Feature = feature(features.flags, features.loading);
+
+  // For loading feature flags
+  useEffect(() => {
+    const getFlags = async () => {
+      const promise = new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            'profile-link': false,
+            'more-button': true,
+          });
+        }, 500);
+      });
+
+      const flags = await promise;
+
+      setFeatures({
+        flags,
+        loading: false,
+      });
+    };
+
+    getFlags();
+  }, []);
 
   useEffect(() => {
     const token = store.get();
@@ -160,6 +188,9 @@ function App() {
               : <Search handleSearch={handleSearch} noResults={state.noResults} />
           }
         </Hero>
+        <Feature.Toggle flag="eslint">
+          <b>Eslint will fail without this until we actually implement a real toggle</b>
+        </Feature.Toggle>
         {
           !state.attractions.length > 0 && !state.isLoading
             ? <PopularDestinations handleSearch={handleSearch} noResults={state.noResults} />
@@ -168,6 +199,7 @@ function App() {
                 attractions={state.attractions}
                 isLoading={state.isLoading}
                 showModal={showModal}
+                Feature={Feature}
               />
             )
         }
