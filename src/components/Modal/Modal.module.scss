@@ -8,7 +8,7 @@
   z-index: 1;
   position: fixed;
   top: 20%;
-  overflow: scroll;
+  overflow-y: auto;
 
   @media #{$tablet} {
     width: 75%;
