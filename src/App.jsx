@@ -1,15 +1,70 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Route } from 'react-router';
 import Nav from './components/Nav';
-import store from './utils/jwt-store';
 import Profile from './views/Profile';
+import styles from './App.module.scss';
 import Home from './views/Home';
+import Modal from './components/Modal';
+import track from './utils/analytics';
+import store from './utils/jwt-store';
+import feature from './utils/flaggie';
 
 function App() {
   const [state, setState] = useState({
     loggedIn: false,
+    modal: {
+      show: false,
+      attraction: {},
+    },
   });
+
+  const [features, setFeatures] = useState({
+    loading: true,
+    flags: {},
+  });
+
+  const Feature = feature(features.flags, features.loading);
+
+  useEffect(() => {
+    const token = store.get();
+    if (token) {
+      setState(prevState => ({
+        ...prevState,
+        loggedIn: true,
+      }));
+    }
+
+    // TODO: This is temporary tracking to validate setup
+    track.pageview('/');
+    track.event({
+      category: 'Main',
+      action: 'Generic Action',
+    });
+  }, []);
+
+  // For loading feature flags
+  useEffect(() => {
+    const getFlags = async () => {
+      const promise = new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            'profile-link': false,
+            profile: true,
+          });
+        }, 500);
+      });
+
+      const flags = await promise;
+
+      setFeatures({
+        flags,
+        loading: false,
+      });
+    };
+
+    getFlags();
+  }, []);
 
   const responseGoogle = (res) => {
     store.add(res.tokenId);
@@ -44,6 +99,30 @@ function App() {
     }));
   };
 
+  const showModal = async (place) => {
+    setState(prevState => ({
+      ...prevState,
+      modal: {
+        ...prevState.modal,
+        show: true,
+        attraction: place,
+      },
+    }));
+  };
+
+  const closeModal = () => {
+    setState(prevState => ({
+      ...prevState,
+      modal: {
+        ...prevState.modal,
+        show: false,
+        attraction: {},
+      },
+    }));
+  };
+
+  const wrapper = !state.modal.show ? styles.App : `${styles.App} ${styles.blur}`;
+
   return (
     <>
       <Nav
@@ -52,8 +131,25 @@ function App() {
         responseFail={responseFail}
         responseGoogle={responseGoogle}
       />
-      <Route exact path="/" render={Home} />
-      <Route exact path="/profile" render={Profile} />
+      <div className={wrapper}>
+
+        <Feature.Toggle flag="eslint">
+          <b>Eslint will fail without this until we actually implement a real toggle</b>
+        </Feature.Toggle>
+
+
+        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} />)} />
+        <Route exact path="/profile" render={Profile} />
+      </div>
+
+      {state.modal.show && (
+        <Modal
+          attraction={state.modal.attraction}
+          onClose={closeModal}
+          showModal={showModal}
+          show={state.modal.show}
+        />
+      )}
     </>
   );
 }
