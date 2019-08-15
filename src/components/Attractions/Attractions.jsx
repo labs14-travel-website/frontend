@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 // import Modal from '../Modal';
 import CardDisplay from '../CardDisplay';
 import styles from './Attractions.module.scss';
+import Favorite from '../Favorites';
 
 /**
  * @description This will display the attraction cards component when they are ready
@@ -32,25 +33,28 @@ function Attractions(props) {
 
   const showAttractions = (attractionList) => {
     const elements = attractionList.map(place => (
-      <CardDisplay
-        key={place.placeId}
-        handleOnClick={handleOnClick}
-        data={{
-          title: place.name,
-          body: [
-            <h1>
-              Rating:
-              {place.rating}
-            </h1>,
-            <Feature.Switch flag="more-button">
-              <button type="button">More Info</button>
-              <>
-              </>
-            </Feature.Switch>,
-          ],
-          place,
-        }}
-      />
+      <div>
+        <Favorite favId={place.placeId} />
+        <CardDisplay
+          key={place.placeId}
+          handleOnClick={handleOnClick}
+          data={{
+            title: place.name,
+            body: [
+              <h1>
+                Rating:
+                {place.rating}
+              </h1>,
+              <Feature.Switch flag="more-button">
+                <button type="button">More Info</button>
+                <>
+                </>
+              </Feature.Switch>,
+            ],
+            place,
+          }}
+        />
+      </div>
     ));
 
     if (attractionList.length % 4 !== 0) {

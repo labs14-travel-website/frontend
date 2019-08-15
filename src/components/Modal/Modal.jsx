@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import styles from './Modal.module.scss';
 import Ratings from '../Ratings';
 import PriceRating from '../PriceRating';
+import Favorite from '../Favorites';
 
 /**
  * @description Displays a modal that pulls individual place and
@@ -23,6 +24,7 @@ const Modal = (props) => {
     show,
     // children,
     attraction,
+    Feature,
   } = props;
 
   useEffect(() => {
@@ -48,6 +50,7 @@ const Modal = (props) => {
     background: `url('${modalPicture}') 50% 50% / cover`,
   };
 
+
   return (
     <div className={styles.Modal_wrapper}>
       <div className={styles.Modal_overlay} onClick={e => onClose(e)} />
@@ -55,12 +58,19 @@ const Modal = (props) => {
         <div className={styles.Modal__image} style={style} />
         <div className={styles.Modal__information}>
           <h2>{attraction.name}</h2>
+
+          <Feature.Toggle flag="heart-fav">
+            <Favorite favId={attraction.placeId} />
+          </Feature.Toggle>
+
           <div className={styles.Ratings}>
             <Ratings rating={attraction.rating} />
           </div>
+
           <div className={styles.PriceRating}>
             <PriceRating price={attraction.price ? attraction.price : 1} />
           </div>
+
           <div className={styles.Modal__information__content}>
             {
               description
@@ -86,6 +96,7 @@ const Modal = (props) => {
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
+  Feature: PropTypes.func.isRequired,
   // children: PropTypes.element.isRequired,
   attraction: PropTypes.arrayOf(
     PropTypes.shape({
