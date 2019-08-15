@@ -52,6 +52,7 @@ function App() {
             'profile-link': false,
             profile: true,
             'heart-fav': true,
+            'more-button': true,
           });
         }, 500);
       });
