@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 // import Modal from '../Modal';
 import CardDisplay from '../CardDisplay';
 import styles from './Attractions.module.scss';
+import Favorite from '../Favorites'
 
 /**
  * @description This will display the attraction cards component when they are ready
@@ -30,14 +31,11 @@ function Attractions(props) {
   //   setLoaded(!loaded);
   // };
 
-  const handleHeartClick = () => {
-    console.log('favorited! haha not'); 
-  };
-
   const showAttractions = (attractionList) => {
     const elements = attractionList.map(place => (
       <div>
-        <div onClick={handleHeartClick} className={styles.Attractions__wrapper__heart} />
+        {/* <div onClick={handleHeartClick} className={styles.Attractions__wrapper__heart} /> */}
+        <Favorite favId={place.Id} />
         <CardDisplay
           key={place.placeId}
           handleOnClick={handleOnClick}
