@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 // import Modal from '../Modal';
 import CardDisplay from '../CardDisplay';
 import styles from './Attractions.module.scss';
-import Favorite from '../Favorites'
+import Favorite from '../Favorites';
 
 /**
  * @description This will display the attraction cards component when they are ready
