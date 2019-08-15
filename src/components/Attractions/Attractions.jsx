@@ -34,7 +34,6 @@ function Attractions(props) {
   const showAttractions = (attractionList) => {
     const elements = attractionList.map(place => (
       <div>
-        {/* <div onClick={handleHeartClick} className={styles.Attractions__wrapper__heart} /> */}
         <Favorite favId={place.Id} />
         <CardDisplay
           key={place.placeId}
