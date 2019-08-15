@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { GoogleLogin, GoogleLogout } from 'react-google-login';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 import styles from './Nav.module.scss';
 import logo from '../../assets/img/logo.png';
 
@@ -23,13 +24,14 @@ const Nav = ({
         <a href="/">
           <img className={styles.Nav__logo} alt="roamly logo" src={logo} />
         </a>
+        <div><Link to="/profile" className={styles.Favorites}>My Favorites</Link></div>
         {
           !loggedIn
             ? (
               <GoogleLogin
                 className={styles.Nav__google}
                 clientId={clientId}
-                buttonText="Login"
+                buttonText="Sign in with Google"
                 onSuccess={responseGoogle}
                 onFailure={responseFail}
                 cookiePolicy="single_host_origin"
