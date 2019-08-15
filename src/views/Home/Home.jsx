@@ -8,7 +8,7 @@ import Attractions from '../../components/Attractions';
 import Hero from '../../components/Hero';
 import '../../config/interceptor';
 
-function Home({ showModal }) {
+function Home({ showModal, Feature }) {
   const [state, setState] = useState({
     clientId: process.env.REACT_APP_OAUTH_GOOGLE_ID,
     attractions: [],
@@ -68,6 +68,7 @@ function Home({ showModal }) {
               attractions={state.attractions}
               isLoading={state.isLoading}
               showModal={showModal}
+              Feature={Feature}
             />
           )
       }
@@ -77,6 +78,9 @@ function Home({ showModal }) {
 
 Home.propTypes = {
   showModal: PropTypes.func.isRequired,
+  Feature: PropTypes.objectOf(
+    PropTypes.func,
+  ).isRequired,
 };
 
 export default Home;

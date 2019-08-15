@@ -140,7 +140,7 @@ function App() {
         </Feature.Toggle>
 
 
-        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} />)} />
+        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} />)} />
         <Route exact path="/profile" render={Profile} />
       </div>
 

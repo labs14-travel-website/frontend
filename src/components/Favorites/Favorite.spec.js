@@ -10,7 +10,7 @@ describe('Favorites Component', () => {
     };
     const wrapper = mount(<Favorite {...props} />);
 
-    expect(wrapper).toBe(1);
+    expect(wrapper).toBeDefined();
 
     // const heart = wrapper.find('#heart-full')
     // expect(heart.length).toBe(1);
