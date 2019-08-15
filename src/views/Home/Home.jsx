@@ -6,18 +6,7 @@ import Search from '../../components/Search';
 import PopularDestinations from '../../components/PopularDestinations';
 import Attractions from '../../components/Attractions';
 import Hero from '../../components/Hero';
-
-axios.interceptors.request.use((config) => {
-  const newConfig = {
-    ...config,
-    headers: {
-      ...config.headers,
-      env: process.env.REACT_APP_ENV || 'development',
-    },
-  };
-
-  return newConfig;
-});
+import '../../config/interceptor.js';
 
 function Home({ showModal }) {
   const [state, setState] = useState({
