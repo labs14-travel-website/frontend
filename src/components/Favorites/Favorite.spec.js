@@ -1,3 +1,26 @@
-it('should 1 be 1', () => {
-  expect(1).toBe(1);
+import React from 'react';
+import Favorite from './Favorite';
+import { mount } from '../../enzyme';
+
+
+describe('Favorites Component', () => {
+  it('Component should mount', () => {
+    const props = {
+      favId: 12345,
+    };
+    const wrapper = mount(<Favorite {...props} />);
+
+    expect(wrapper).toBe(1);
+
+    // const heart = wrapper.find('#heart-full')
+    // expect(heart.length).toBe(1);
+  });
+
+  it('', () => {
+
+  });
+
+  it('', () => {
+
+  });
 });
