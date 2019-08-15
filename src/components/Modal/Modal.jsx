@@ -26,7 +26,9 @@ const Modal = (props) => {
     attraction,
   } = props;
 
-  const { Toggle } = props.Feature;
+  const { 
+    Toggle 
+  } = props.Feature;
 
 
   useEffect(() => {
