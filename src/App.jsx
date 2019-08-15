@@ -51,6 +51,7 @@ function App() {
         setTimeout(() => {
           resolve({
             'profile-link': false,
+            'more-button': true,
           });
         }, 500);
       });
@@ -198,6 +199,7 @@ function App() {
                 attractions={state.attractions}
                 isLoading={state.isLoading}
                 showModal={showModal}
+                Feature={Feature}
               />
             )
         }
