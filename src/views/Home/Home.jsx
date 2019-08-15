@@ -6,7 +6,7 @@ import Search from '../../components/Search';
 import PopularDestinations from '../../components/PopularDestinations';
 import Attractions from '../../components/Attractions';
 import Hero from '../../components/Hero';
-import '../../config/interceptor.js';
+import '../../config/interceptor';
 
 function Home({ showModal }) {
   const [state, setState] = useState({
@@ -48,6 +48,7 @@ function Home({ showModal }) {
         console.log(error, 'here');  // eslint-disable-line
       });
   };
+
 
   return (
     <>

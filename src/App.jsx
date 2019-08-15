@@ -50,7 +50,7 @@ function App() {
         setTimeout(() => {
           resolve({
             'profile-link': false,
-            'profile': true,
+            profile: true,
             'heart-fav': true,
           });
         }, 500);

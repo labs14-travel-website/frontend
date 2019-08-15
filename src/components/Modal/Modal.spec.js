@@ -22,20 +22,19 @@ describe('Modal Component', () => {
       onClose: mockFunction,
       show: true,
       Feature: {
-        Toggle: () => {return true},
-      }
+        Toggle: () => true,
+      },
     };
   });
 
   it('Should Mount', () => {
-    const wrapper = mount(<Modal {...props} />)
+    const wrapper = mount(<Modal {...props} />);
     const modal = wrapper.find('#modal');
-    console.log(modal);
     expect(modal.length).toBe(1);
   });
-  
+
   it('Check if function is called when button is clicked', () => {
-    const wrapper = mount(<Modal {...props} />)
+    const wrapper = mount(<Modal {...props} />);
     const modal = wrapper.find('#modal');
     expect(modal.length).toBe(1);
     const button = wrapper.find('button');

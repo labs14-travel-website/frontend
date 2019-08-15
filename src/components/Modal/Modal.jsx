@@ -24,12 +24,8 @@ const Modal = (props) => {
     show,
     // children,
     attraction,
+    Feature,
   } = props;
-
-  const { 
-    Toggle 
-  } = props.Feature;
-
 
   useEffect(() => {
     const getDescription = async () => {
@@ -63,9 +59,9 @@ const Modal = (props) => {
         <div className={styles.Modal__information}>
           <h2>{attraction.name}</h2>
 
-          <Toggle flag="heart-fav">
+          <Feature.Toggle flag="heart-fav">
             <Favorite favId={attraction.placeId} />
-          </Toggle>
+          </Feature.Toggle>
 
           <div className={styles.Ratings}>
             <Ratings rating={attraction.rating} />
