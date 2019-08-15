@@ -34,7 +34,7 @@ function Attractions(props) {
   const showAttractions = (attractionList) => {
     const elements = attractionList.map(place => (
       <div>
-        <Favorite favId={place.Id} />
+        <Favorite favId={place.placeId} />
         <CardDisplay
           key={place.placeId}
           handleOnClick={handleOnClick}
