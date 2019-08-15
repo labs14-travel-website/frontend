@@ -30,14 +30,14 @@ function Attractions(props) {
   //   setLoaded(!loaded);
   // };
 
-  const tempClick = () => {
-    console.log('click'); // eslint-disable-line
+  const handleHeartClick = () => {
+    console.log('favorited! haha not'); 
   };
 
   const showAttractions = (attractionList) => {
     const elements = attractionList.map(place => (
       <div>
-        <div onClick={tempClick} className={styles.Attractions__wrapper__tempheart} />
+        <div onClick={handleHeartClick} className={styles.Attractions__wrapper__heart} />
         <CardDisplay
           key={place.placeId}
           handleOnClick={handleOnClick}
