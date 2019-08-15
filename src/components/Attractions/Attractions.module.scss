@@ -14,17 +14,10 @@
       position: relative;
       top: 60px;
       left: 100px;
-    }
 
-    &__heart {
-      color: blue;
-      border: 1px solid blue;
-      height: 40px;
-      width: 40px;
-      z-index: 11;
-      position: relative;
-      top: 60px;
-      left: 230px;
+      @media #{$mobile} {
+        left: 40%;
+      }
     }
 
     div {
