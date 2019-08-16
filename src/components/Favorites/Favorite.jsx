@@ -15,10 +15,10 @@ const Favorite = ({ favId }) => {
   return (
     <>
       {
-                favList.includes(favId) ? <i onClick={() => { setFavList(favList.filter(fav => fav !== favId)); }} className="fas fa-heart fa-2x" id="heart-ol" />
-                  : <i onClick={() => { setFavList([...favList, favId]); }} className="far fa-heart fa-2x" id="heart-full" />
+      favList.includes(favId) ? <i onClick={() => { setFavList(favList.filter(fav => fav !== favId)); }} className="fas fa-heart fa-2x" id="heart-ol" />
+        : <i onClick={() => { setFavList([...favList, favId]); }} className="far fa-heart fa-2x" id="heart-full" />
 
-            }
+      }
     </>
 
   );

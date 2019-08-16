@@ -13,4 +13,9 @@
   @media #{$mobile} {
     margin-bottom: 10px;
   }
+
+  &__destination {
+    word-break: break-word;
+    hyphens: auto;
+  }
 }
