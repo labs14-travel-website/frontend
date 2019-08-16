@@ -68,12 +68,10 @@ function App() {
   }, []);
 
   const responseGoogle = (res) => {
-    console.log(res); // eslint-disable-line
     store.add(res.tokenId);
     setState(prevState => ({
       ...prevState,
       loggedIn: true,
-      setUser: res.profileObj,
     }));
     axios
       .post(
