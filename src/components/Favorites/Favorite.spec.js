@@ -9,18 +9,26 @@ describe('Favorites Component', () => {
       favId: 12345,
     };
     const wrapper = mount(<Favorite {...props} />);
-
     expect(wrapper).toBeDefined();
-
-    // const heart = wrapper.find('#heart-full')
-    // expect(heart.length).toBe(1);
   });
 
-  it('', () => {
-
+  it('Empty Heart Icon should Display', () => {
+    const props = {
+      favId: 12345,
+    };
+    const wrapper = mount(<Favorite {...props} />);
+    const heart = wrapper.find('#heart-full');
+    expect(heart.length).toBe(1);
   });
 
-  it('', () => {
-
+  it('Full Heart should Display', () => {
+    const props = {
+      favId: 12345,
+    };
+    const wrapper = mount(<Favorite {...props} />);
+    const heart = wrapper.find('#heart-full');
+    heart.simulate('click');
+    const fullHeart = wrapper.find('#heart-ol');
+    expect(fullHeart.length).toBe(1);
   });
 });
