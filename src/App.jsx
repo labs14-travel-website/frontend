@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Route } from 'react-router';
+import decode from 'jwt-decode';
 import Nav from './components/Nav';
 import Profile from './views/Profile';
 import styles from './App.module.scss';
@@ -28,10 +29,23 @@ function App() {
 
   const Feature = feature(features.flags, features.loading);
 
+  // TODO: abstract this into it's own file
+  const logout = () => {
+    store.remove();
+
+    setUser({});
+
+    // DEPRECIATE THIS: use `user` on state instead of loggedIn
+    setState(prevState => ({
+      ...prevState,
+      loggedIn: false,
+    }));
+  };
+
   useEffect(() => {
     const getUserInfo = async (token) => {
       try {
-        const userInfo = await axios.post(
+        const { data: { message: authorization } } = await axios.post(
           `${process.env.REACT_APP_ENDPOINT}/api/auth`,
           {},
           {
@@ -41,17 +55,29 @@ function App() {
           },
         );
 
-        console.log('userInfo :', userInfo.data.message);
         // if auth success, decode token and store user info to state
-        // check userInfo response, if valid set logged in
-        setState(prevState => ({
-          ...prevState,
-          loggedIn: true,
-        }));
+        // TODO: Update this response message
+        if (authorization === 'success auth') {
+          const { name, email, sub: googleId } = decode(token);
 
-        setUser(userInfo);
+          // check userInfo response, if valid set user info
+          setUser({
+            name,
+            email,
+            googleId,
+          });
+
+          // DEPRECIATE THIS: use `user` on state instead of loggedIn
+          setState(prevState => ({
+            ...prevState,
+            loggedIn: true,
+          }));
+        } else {
+          throw Error('Not Authorized');
+        }
       } catch (error) {
         // logout
+        logout();
       }
     };
 
@@ -75,7 +101,7 @@ function App() {
       const promise = new Promise((resolve) => {
         setTimeout(() => {
           resolve({
-            profile: false,
+            profile: true,
             'heart-fav': false,
             'more-button': true,
           });
@@ -93,38 +119,36 @@ function App() {
     getFlags();
   }, []);
 
-  const responseGoogle = (res) => {
-    store.add(res.tokenId);
-    setState(prevState => ({
-      ...prevState,
-      loggedIn: true,
-    }));
-    axios
-      .post(
-        `${process.env.REACT_APP_ENDPOINT}/api/auth`,
-        {},
-        {
-          headers: {
-            Authorization: res.tokenId,
-          },
+  const responseGoogle = async (res) => {
+    // TODO: Abstract this out to it's own file
+    const { data: { message: authorization } } = await axios.post(
+      `${process.env.REACT_APP_ENDPOINT}/api/auth`,
+      {},
+      {
+        headers: {
+          Authorization: res.tokenId,
         },
-      )
-      .then((data) => {
-        console.log(data); // eslint-disable-line
+      },
+    );
+
+    if (authorization === 'success auth') {
+      store.add(res.tokenId);
+      setState(prevState => ({
+        ...prevState,
+        loggedIn: true,
+      }));
+      const { name, email, sub: googleId } = decode(res.tokenId);
+
+      setUser({
+        name,
+        email,
+        googleId,
       });
+    }
   };
 
   const responseFail = (res) => {
     console.log(res); // eslint-disable-line
-  };
-
-  const logout = () => {
-    console.log('removing token');
-    store.remove();
-    setState(prevState => ({
-      ...prevState,
-      loggedIn: false,
-    }));
   };
 
   const showModal = async (place) => {
@@ -162,7 +186,7 @@ function App() {
       />
       <div className={wrapper}>
         <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} />)} />
-        <Route exact path="/profile" render={Profile} />
+        <Route exact path="/profile" render={props => (<Profile {...props} user={user} />)} />
       </div>
 
       {state.modal.show && (
