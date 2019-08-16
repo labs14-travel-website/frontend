@@ -24,7 +24,11 @@ const Nav = ({
         <a href="/">
           <img className={styles.Nav__logo} alt="roamly logo" src={logo} />
         </a>
-        <Feature.Toggle flag="profile"><div><Link to="/profile" className={styles.Favorites}>My Favorites</Link></div></Feature.Toggle>
+        <Feature.Toggle flag="profile">
+          <div>
+            {loggedIn && <Link to="/profile" className={styles.Favorites}>My Favorites</Link>}
+          </div>
+        </Feature.Toggle>
         {
           !loggedIn
             ? (
