@@ -9,8 +9,19 @@
     max-width: 1240px;
     margin: 0 auto;
 
+    i {
+      z-index: 1;
+      position: relative;
+      top: 60px;
+      left: 100px;
+
+      @media #{$mobile} {
+        left: 40%;
+      }
+    }
+
     div {
-      margin: 4.43%;
+      margin: 4.43% 0;
 
       @media #{$mobile} {
         width: 100%;

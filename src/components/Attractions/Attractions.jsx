@@ -5,12 +5,18 @@ import PropTypes from 'prop-types';
 // import Modal from '../Modal';
 import CardDisplay from '../CardDisplay';
 import styles from './Attractions.module.scss';
+import Favorite from '../Favorites';
 
 /**
  * @description This will display the attraction cards component when they are ready
  */
 function Attractions(props) {
-  const { attractions, isLoading, showModal } = props;
+  const {
+    attractions,
+    isLoading,
+    showModal,
+    Feature,
+  } = props;
   // const [loaded, setLoaded] = useState(false);
   // const [modalAttraction, setModalAttraction] = useState({});
 
@@ -27,21 +33,28 @@ function Attractions(props) {
 
   const showAttractions = (attractionList) => {
     const elements = attractionList.map(place => (
-      <CardDisplay
-        key={place.placeId}
-        handleOnClick={handleOnClick}
-        data={{
-          title: place.name,
-          body: [
-            <h1>
-              Rating:
-              {place.rating}
-            </h1>,
-            <button type="button">More Info</button>,
-          ],
-          place,
-        }}
-      />
+      <div>
+        <Feature.Toggle flag="heart-fav"><Favorite favId={place.placeId} /></Feature.Toggle>
+        <CardDisplay
+          key={place.placeId}
+          handleOnClick={handleOnClick}
+          data={{
+            title: place.name,
+            body: [
+              <h1>
+                Rating:
+                {place.rating}
+              </h1>,
+              <Feature.Switch flag="more-button">
+                <button type="button">More Info</button>
+                <>
+                </>
+              </Feature.Switch>,
+            ],
+            place,
+          }}
+        />
+      </div>
     ));
 
     if (attractionList.length % 4 !== 0) {
@@ -93,6 +106,7 @@ Attractions.propTypes = {
   ).isRequired,
   isLoading: PropTypes.bool.isRequired,
   showModal: PropTypes.func.isRequired,
+  Feature: PropTypes.objectOf(PropTypes.func).isRequired,
 };
 
 export default Attractions;
