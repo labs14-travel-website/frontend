@@ -7,9 +7,10 @@ import Nav from './Nav';
 Enzyme.configure({ adapter: new Adapter() });
 
 describe('Nav Mounts', () => {
+  const Feature = { Toggle: () => true };
   it('renders', () => {
     const wrapper = mount(
-      <Router><Nav /></Router>,
+      <Router><Nav Feature={Feature} /></Router>,
     );
 
     expect(wrapper.exists()).toBe(true);
