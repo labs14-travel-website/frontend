@@ -19,6 +19,8 @@ function App() {
     },
   });
 
+  const [user, setUser] = useState({});
+
   const [features, setFeatures] = useState({
     loading: true,
     flags: {},
@@ -27,12 +29,36 @@ function App() {
   const Feature = feature(features.flags, features.loading);
 
   useEffect(() => {
+    const getUserInfo = async (token) => {
+      try {
+        const userInfo = await axios.post(
+          `${process.env.REACT_APP_ENDPOINT}/api/auth`,
+          {},
+          {
+            headers: {
+              Authorization: token,
+            },
+          },
+        );
+
+        console.log('userInfo :', userInfo.data.message);
+        // if auth success, decode token and store user info to state
+        // check userInfo response, if valid set logged in
+        setState(prevState => ({
+          ...prevState,
+          loggedIn: true,
+        }));
+
+        setUser(userInfo);
+      } catch (error) {
+        // logout
+      }
+    };
+
     const token = store.get();
+
     if (token) {
-      setState(prevState => ({
-        ...prevState,
-        loggedIn: true,
-      }));
+      getUserInfo(token);
     }
 
     // TODO: This is temporary tracking to validate setup
@@ -93,6 +119,7 @@ function App() {
   };
 
   const logout = () => {
+    console.log('removing token');
     store.remove();
     setState(prevState => ({
       ...prevState,
