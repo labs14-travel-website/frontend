@@ -1,26 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Route } from 'react-router';
+import Nav from './components/Nav';
+import Profile from './views/Profile';
+import styles from './App.module.scss';
+import Home from './views/Home';
+import Modal from './components/Modal';
 import track from './utils/analytics';
 import store from './utils/jwt-store';
-import styles from './App.module.scss';
-import Search from './components/Search';
-// import PopularDestinations from './components/PopularDestinations';
-// import TestModal from './components/Modal/modalTest';
-// import CardDisplay from './components/CardDisplay';
-import Nav from './components/Nav';
-import PopularDestinations from './components/PopularDestinations';
-import Attractions from './components/Attractions';
-import Hero from './components/Hero/Hero';
-
+import feature from './utils/flaggie';
 
 function App() {
   const [state, setState] = useState({
     loggedIn: false,
-    clientId: process.env.REACT_APP_OAUTH_GOOGLE_ID,
-    attractions: [],
-    destination: '',
-    isLoading: false,
+    modal: {
+      show: false,
+      attraction: {},
+    },
   });
+
+  const [features, setFeatures] = useState({
+    loading: true,
+    flags: {},
+  });
+
+  const Feature = feature(features.flags, features.loading);
 
   useEffect(() => {
     const token = store.get();
@@ -37,6 +41,31 @@ function App() {
       category: 'Main',
       action: 'Generic Action',
     });
+  }, []);
+
+  // For loading feature flags
+  useEffect(() => {
+    const getFlags = async () => {
+      const promise = new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({
+            'profile-link': false,
+            profile: true,
+            'heart-fav': true,
+            'more-button': true,
+          });
+        }, 500);
+      });
+
+      const flags = await promise;
+
+      setFeatures({
+        flags,
+        loading: false,
+      });
+    };
+
+    getFlags();
   }, []);
 
   const responseGoogle = (res) => {
@@ -72,49 +101,59 @@ function App() {
     }));
   };
 
-  // performs action when user clicks the ROAM button
-  const handleSearch = (destination) => {
+  const showModal = async (place) => {
     setState(prevState => ({
       ...prevState,
-      isLoading: true,
-      destination,
+      modal: {
+        ...prevState.modal,
+        show: true,
+        attraction: place,
+      },
     }));
-    // request to backend that will request to API and send back the data
-    axios.get(`${process.env.REACT_APP_ENDPOINT}/a?q=${destination}`)
-      .then(({ data: { places } }) => {
-        setState(prevState => ({
-          ...prevState,
-          attractions: places,
-          isLoading: false,
-        }));
-      })
-      .catch((error) => {
-        console.log(error);  // eslint-disable-line
-      });
   };
 
+  const closeModal = () => {
+    setState(prevState => ({
+      ...prevState,
+      modal: {
+        ...prevState.modal,
+        show: false,
+        attraction: {},
+      },
+    }));
+  };
+
+  const wrapper = !state.modal.show ? styles.App : `${styles.App} ${styles.blur}`;
+
   return (
-    <div className={styles.App}>
+    <>
       <Nav
+        loggedIn={state.loggedIn}
         logout={logout}
         responseFail={responseFail}
         responseGoogle={responseGoogle}
-        loggedIn={state.loggedIn}
       />
-      <Hero background="/images/hero.jpg">
-        {
-          state.destination
-            ? <span className={styles.App__destination}>{state.destination}</span>
-            : <Search handleSearch={handleSearch} />
-        }
-      </Hero>
-      {
-        // TODO: This will error (cannot get length of undefined) if server does not return anything
-        !state.attractions.length > 0 && !state.isLoading
-          ? <PopularDestinations handleSearch={handleSearch} />
-          : <Attractions attractions={state.attractions} isLoading={state.isLoading} />
-      }
-    </div>
+      <div className={wrapper}>
+
+        <Feature.Toggle flag="eslint">
+          <b>Eslint will fail without this until we actually implement a real toggle</b>
+        </Feature.Toggle>
+
+
+        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} />)} />
+        <Route exact path="/profile" render={Profile} />
+      </div>
+
+      {state.modal.show && (
+        <Modal
+          attraction={state.modal.attraction}
+          onClose={closeModal}
+          showModal={showModal}
+          show={state.modal.show}
+          Feature={Feature}
+        />
+      )}
+    </>
   );
 }
 

@@ -13,7 +13,7 @@ const PriceRating = ({ price }) => (
     <StarRatingComponent
       name="price"
       editing={false}
-      renderStarIcon={() => <span><i className="fas fa-dollar-sign" /></span>}
+      renderStarIcon={() => <span style={{ margin: '0 3px' }}><i className="fas fa-dollar-sign" /></span>}
       starCount={4}
       value={price}
       starColor="green"
