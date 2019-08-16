@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React from 'react';
+// import React, { useState } from 'react';
 import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
-import Modal from '../Modal';
+// import Modal from '../Modal';
 import CardDisplay from '../CardDisplay';
 import styles from './Attractions.module.scss';
 
@@ -9,19 +10,25 @@ import styles from './Attractions.module.scss';
  * @description This will display the attraction cards component when they are ready
  */
 function Attractions(props) {
-  const { attractions, isLoading } = props;
-  const [loaded, setLoaded] = useState(false);
-  const [modalAttraction, setModalAttraction] = useState({});
+  const {
+    attractions,
+    isLoading,
+    showModal,
+    Feature,
+  } = props;
+  // const [loaded, setLoaded] = useState(false);
+  // const [modalAttraction, setModalAttraction] = useState({});
 
   const handleOnClick = ({ place }) => {
     // setIsLoadingData(true)
-    setModalAttraction(place);
-    setLoaded(true);
+    // setModalAttraction(place);
+    showModal(place);
+    // setLoaded(true);
   };
 
-  const showModal = () => {
-    setLoaded(!loaded);
-  };
+  // const showModal = () => {
+  //   setLoaded(!loaded);
+  // };
 
   const showAttractions = (attractionList) => {
     const elements = attractionList.map(place => (
@@ -35,7 +42,11 @@ function Attractions(props) {
               Rating:
               {place.rating}
             </h1>,
-            <button type="button">More Info</button>,
+            <Feature.Switch flag="more-button">
+              <button type="button">More Info</button>
+              <>
+              </>
+            </Feature.Switch>,
           ],
           place,
         }}
@@ -70,11 +81,11 @@ function Attractions(props) {
         }
       </div>
 
-      {loaded && (
+      {/* {loaded && (
         <Modal attraction={modalAttraction} onClose={showModal} show={loaded}>
           <p>Hello</p>
         </Modal>
-      )}
+      )} */}
     </>
   );
 }
@@ -90,6 +101,8 @@ Attractions.propTypes = {
     }),
   ).isRequired,
   isLoading: PropTypes.bool.isRequired,
+  showModal: PropTypes.func.isRequired,
+  Feature: PropTypes.objectOf(PropTypes.func).isRequired,
 };
 
 export default Attractions;

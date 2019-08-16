@@ -46,6 +46,7 @@ const Search = ({ handleSearch }) => {
           value={destination}
           autoComplete="off"
           placeholder="Destination"
+          required
         />
         <button type="submit" className={styles.Search__form__submit}>Roam</button>
       </form>
