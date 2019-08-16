@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Route } from 'react-router';
+import decode from 'jwt-decode';
 import Nav from './components/Nav';
 import Profile from './views/Profile';
 import styles from './App.module.scss';
@@ -19,6 +20,8 @@ function App() {
     },
   });
 
+  const [user, setUser] = useState({});
+
   const [features, setFeatures] = useState({
     loading: true,
     flags: {},
@@ -26,13 +29,62 @@ function App() {
 
   const Feature = feature(features.flags, features.loading);
 
+  // TODO: abstract this into it's own file
+  const logout = () => {
+    store.remove();
+
+    setUser({});
+
+    // DEPRECIATE THIS: use `user` on state instead of loggedIn
+    setState(prevState => ({
+      ...prevState,
+      loggedIn: false,
+    }));
+  };
+
   useEffect(() => {
+    const getUserInfo = async (token) => {
+      try {
+        const { data: { message: authorization } } = await axios.post(
+          `${process.env.REACT_APP_ENDPOINT}/api/auth`,
+          {},
+          {
+            headers: {
+              Authorization: token,
+            },
+          },
+        );
+
+        // if auth success, decode token and store user info to state
+        // TODO: Update this response message
+        if (authorization === 'success auth') {
+          const { name, email, sub: googleId } = decode(token);
+
+          // check userInfo response, if valid set user info
+          setUser({
+            name,
+            email,
+            googleId,
+          });
+
+          // DEPRECIATE THIS: use `user` on state instead of loggedIn
+          setState(prevState => ({
+            ...prevState,
+            loggedIn: true,
+          }));
+        } else {
+          throw Error('Not Authorized');
+        }
+      } catch (error) {
+        // logout
+        logout();
+      }
+    };
+
     const token = store.get();
+
     if (token) {
-      setState(prevState => ({
-        ...prevState,
-        loggedIn: true,
-      }));
+      getUserInfo(token);
     }
 
     // TODO: This is temporary tracking to validate setup
@@ -49,9 +101,8 @@ function App() {
       const promise = new Promise((resolve) => {
         setTimeout(() => {
           resolve({
-            'profile-link': false,
-            profile: true,
-            'heart-fav': true,
+            profile: false,
+            'heart-fav': false,
             'more-button': true,
           });
         }, 500);
@@ -68,37 +119,36 @@ function App() {
     getFlags();
   }, []);
 
-  const responseGoogle = (res) => {
-    store.add(res.tokenId);
-    setState(prevState => ({
-      ...prevState,
-      loggedIn: true,
-    }));
-    axios
-      .post(
-        `${process.env.REACT_APP_ENDPOINT}/api/auth`,
-        {},
-        {
-          headers: {
-            Authorization: res.tokenId,
-          },
+  const responseGoogle = async (res) => {
+    // TODO: Abstract this out to it's own file
+    const { data: { message: authorization } } = await axios.post(
+      `${process.env.REACT_APP_ENDPOINT}/api/auth`,
+      {},
+      {
+        headers: {
+          Authorization: res.tokenId,
         },
-      )
-      .then((data) => {
-        console.log(data); // eslint-disable-line
+      },
+    );
+
+    if (authorization === 'success auth') {
+      store.add(res.tokenId);
+      setState(prevState => ({
+        ...prevState,
+        loggedIn: true,
+      }));
+      const { name, email, sub: googleId } = decode(res.tokenId);
+
+      setUser({
+        name,
+        email,
+        googleId,
       });
+    }
   };
 
   const responseFail = (res) => {
     console.log(res); // eslint-disable-line
-  };
-
-  const logout = () => {
-    store.remove();
-    setState(prevState => ({
-      ...prevState,
-      loggedIn: false,
-    }));
   };
 
   const showModal = async (place) => {
@@ -132,16 +182,11 @@ function App() {
         logout={logout}
         responseFail={responseFail}
         responseGoogle={responseGoogle}
+        Feature={Feature}
       />
       <div className={wrapper}>
-
-        <Feature.Toggle flag="eslint">
-          <b>Eslint will fail without this until we actually implement a real toggle</b>
-        </Feature.Toggle>
-
-
         <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} />)} />
-        <Route exact path="/profile" render={Profile} />
+        <Route exact path="/profile" render={props => (<Profile {...props} user={user} />)} />
       </div>
 
       {state.modal.show && (
