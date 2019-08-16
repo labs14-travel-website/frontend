@@ -1,10 +1,13 @@
 .wrapper {
     width: 100%;
-    max-width: 1240px;
-    align-self: center;
+    display: flex;
+    justify-content: center;
 }
 
 .Nav {
+    width: 100%;
+    max-width: 1240px;
+    align-self: center;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -19,4 +22,9 @@
     &__google {
         align-self: center;
     }
+}
+
+.Favorites {
+    text-decoration: none;
+    color: white;
 }
