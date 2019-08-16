@@ -15,7 +15,7 @@ import logo from '../../assets/img/logo.png';
  */
 
 const Nav = ({
-  loggedIn, responseFail, responseGoogle, logout,
+  loggedIn, responseFail, responseGoogle, logout, Feature,
 }) => {
   const [clientId] = useState(process.env.REACT_APP_OAUTH_GOOGLE_ID);
   return (
@@ -24,7 +24,7 @@ const Nav = ({
         <a href="/">
           <img className={styles.Nav__logo} alt="roamly logo" src={logo} />
         </a>
-        <div><Link to="/profile" className={styles.Favorites}>My Favorites</Link></div>
+        <Feature.Toggle flag="profile"><div><Link to="/profile" className={styles.Favorites}>My Favorites</Link></div></Feature.Toggle>
         {
           !loggedIn
             ? (
@@ -49,6 +49,7 @@ Nav.propTypes = {
   responseFail: PropTypes.func.isRequired,
   responseGoogle: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
+  Feature: PropTypes.objectOf(PropTypes.func).isRequired,
 };
 
 export default Nav;

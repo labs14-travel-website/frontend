@@ -49,9 +49,8 @@ function App() {
       const promise = new Promise((resolve) => {
         setTimeout(() => {
           resolve({
-            'profile-link': false,
-            profile: true,
-            'heart-fav': true,
+            profile: false,
+            'heart-fav': false,
             'more-button': true,
           });
         }, 500);
@@ -132,14 +131,9 @@ function App() {
         logout={logout}
         responseFail={responseFail}
         responseGoogle={responseGoogle}
+        Feature={Feature}
       />
       <div className={wrapper}>
-
-        <Feature.Toggle flag="eslint">
-          <b>Eslint will fail without this until we actually implement a real toggle</b>
-        </Feature.Toggle>
-
-
         <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} />)} />
         <Route exact path="/profile" render={Profile} />
       </div>
