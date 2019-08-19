@@ -16,6 +16,10 @@ function Attractions(props) {
     isLoading,
     showModal,
     Feature,
+    showCTA,
+    hideCTA,
+    loggedIn,
+    awaitingFavorite,
   } = props;
   // const [loaded, setLoaded] = useState(false);
   // const [modalAttraction, setModalAttraction] = useState({});
@@ -34,7 +38,7 @@ function Attractions(props) {
   const showAttractions = (attractionList) => {
     const elements = attractionList.map(place => (
       <div>
-        <Feature.Toggle flag="heart-fav"><Favorite favId={place.placeId} /></Feature.Toggle>
+        <Feature.Toggle flag="heart-fav"><Favorite favId={place.placeId} component="attraction" showCTA={showCTA} hideCTA={hideCTA} loggedIn={loggedIn} awaitingFavorite={awaitingFavorite} /></Feature.Toggle>
         <CardDisplay
           key={place.placeId}
           handleOnClick={handleOnClick}
@@ -107,6 +111,10 @@ Attractions.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   showModal: PropTypes.func.isRequired,
   Feature: PropTypes.objectOf(PropTypes.func).isRequired,
+  showCTA: PropTypes.func.isRequired,
+  hideCTA: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
 };
 
 export default Attractions;
