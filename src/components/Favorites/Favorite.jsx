@@ -15,6 +15,8 @@ const Favorite = ({
   const favorite = () => {
     if (!loggedIn) {
       showCTA();
+      // TODO look how to make showCTA a promise so the favorite
+      // functionality will work after successfully logged in
     } else {
       setFavList([...favList, favId]);
     }
