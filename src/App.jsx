@@ -212,6 +212,8 @@ function App() {
           showModal={showModal}
           show={state.modal.show}
           Feature={Feature}
+          loggedIn={state.loggedIn}
+          showCTA={showCTA}
         />
       )}
       {state.cta.show && (
