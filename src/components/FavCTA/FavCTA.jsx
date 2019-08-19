@@ -12,22 +12,19 @@ const FavCTA = ({
   const [clientId] = useState(process.env.REACT_APP_OAUTH_GOOGLE_ID);
 
   return (
-    <Feature.Toggle flag="cta">
-      <div className={styles.FavCTA__wrapper}>
-        <h3>Login</h3>
-        <p>Please sign up to save attractions to your profile.</p>
-        <GoogleLogin
-          className={styles.Nav__google}
-          clientId={clientId}
-          buttonText="Sign in with Google"
-          onSuccess={responseGoogle}
-          onFailure={responseFail}
-          cookiePolicy="single_host_origin"
-        />
-        <button type="button" onClick={hideCTA}>Nah I am good</button>
-      </div>
-      <></>
-    </Feature.Toggle>
+    <div className={styles.FavCTA__wrapper}>
+      <h3>Login</h3>
+      <p>Please sign up to save attractions to your profile.</p>
+      <GoogleLogin
+        className={styles.Nav__google}
+        clientId={clientId}
+        buttonText="Sign in with Google"
+        onSuccess={responseGoogle}
+        onFailure={responseFail}
+        cookiePolicy="single_host_origin"
+      />
+      <button type="button" onClick={hideCTA}>Nah I am good</button>
+    </div>
   );
 };
 
