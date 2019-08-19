@@ -109,6 +109,7 @@ function App() {
             profile: false,
             'heart-fav': true,
             'more-button': true,
+            'cta': true,
           });
         }, 500);
       });
@@ -232,6 +233,7 @@ function App() {
       )}
       {state.cta.show && (
         <FavCTA
+          Feature={Feature}
           responseFail={responseFail}
           responseGoogle={responseGoogle}
           hideCTA={hideCTA}
