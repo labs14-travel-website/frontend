@@ -10,7 +10,7 @@ const Favorite = ({
   useEffect(() => {
     if (loggedIn && awaitingFavorite) {
       setFavList([...favList, awaitingFavorite]);
-      hideCTA();
+      // hideCTA();
     }
   }, []);
 
