@@ -6,7 +6,7 @@ import styles from './FavCTA.module.scss';
 /**
  * @description Returns a modal containing a call to action to login when user trys to
  * go someonewhere while logged out that only logged in users can go.
- * @param {string} hideCTA a function that closes the call to action modal.
+ * @param {func} hideCTA a function that closes the call to action modal.
  */
 
 const FavCTA = ({
