@@ -109,7 +109,7 @@ function App() {
             profile: false,
             'heart-fav': true,
             'more-button': true,
-            'cta': true,
+            cta: false,
           });
         }, 500);
       });
