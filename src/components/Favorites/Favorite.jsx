@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 import './Favorite.modules.scss';
 import PropTypes from 'prop-types';
 
-const Favorite = ({ favId, component, showCTA, loggedIn }) => {
+const Favorite = ({
+  favId, component, showCTA, loggedIn,
+}) => {
   const [favList, setFavList] = useState([]);
 
   /**
@@ -12,7 +14,6 @@ const Favorite = ({ favId, component, showCTA, loggedIn }) => {
      */
   const favorite = () => {
     if (component === 'attraction' && !loggedIn) {
-      console.log('hello');
       showCTA();
     } else {
       setFavList([...favList, favId]);
@@ -39,6 +40,7 @@ Favorite.propTypes = {
   favId: PropTypes.string.isRequired,
   component: PropTypes.string.isRequired,
   showCTA: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
 };
 
 

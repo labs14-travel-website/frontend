@@ -110,6 +110,7 @@ Attractions.propTypes = {
   showModal: PropTypes.func.isRequired,
   Feature: PropTypes.objectOf(PropTypes.func).isRequired,
   showCTA: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
 };
 
 export default Attractions;
