@@ -3,8 +3,13 @@ import GoogleLogin from 'react-google-login';
 import PropTypes from 'prop-types';
 import styles from './FavCTA.module.scss';
 
+/**
+ * @description Returns a modal containing a call to action to login when user trys to
+ * go someonewhere while logged out that only logged in users can go.
+ * @param {string} hideCTA a function that closes the call to action modal.
+ */
+
 const FavCTA = ({
-  Feature,
   responseFail,
   responseGoogle,
   hideCTA,
@@ -29,7 +34,6 @@ const FavCTA = ({
 };
 
 FavCTA.propTypes = {
-  Feature: PropTypes.objectOf(PropTypes.func).isRequired,
   responseFail: PropTypes.func.isRequired,
   responseGoogle: PropTypes.func.isRequired,
   hideCTA: PropTypes.func.isRequired,
