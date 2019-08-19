@@ -11,12 +11,15 @@ const Favorite = ({ favId }) => {
      * @param {string} favId unique id associated with an attraction
      */
 
+  const favorite = () => { setFavList(favList.filter(fav => fav !== favId)); };
+
+  const unfavorite = () => { setFavList([...favList, favId]); };
 
   return (
     <>
       {
-      favList.includes(favId) ? <i onClick={() => { setFavList(favList.filter(fav => fav !== favId)); }} className="fas fa-heart fa-2x" id="heart-ol" />
-        : <i onClick={() => { setFavList([...favList, favId]); }} className="far fa-heart fa-2x" id="heart-full" />
+      favList.includes(favId) ? <i onClick={favorite} className="fas fa-heart fa-2x" id="heart-ol" />
+        : <i onClick={unfavorite} className="far fa-heart fa-2x" id="heart-full" />
 
       }
     </>
