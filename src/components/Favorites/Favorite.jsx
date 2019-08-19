@@ -10,6 +10,7 @@ const Favorite = ({
   useEffect(() => {
     if (loggedIn && awaitingFavorite) {
       setFavList([...favList, awaitingFavorite]);
+      // axios call goes here
     }
   }, []);
 
@@ -25,11 +26,13 @@ const Favorite = ({
       // functionality will work after successfully logged in
     } else {
       setFavList([...favList, favId]);
+      // axios call
     }
   };
 
   const unfavorite = () => {
     setFavList(favList.filter(fav => fav !== favId));
+    // axios call
   };
 
   return (
