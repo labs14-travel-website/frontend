@@ -18,7 +18,7 @@ const FavCTA = ({ responseFail, responseGoogle, hideCTA }) => {
         onFailure={responseFail}
         cookiePolicy="single_host_origin"
       />
-      <button onClick={hideCTA}>Nah I'm good</button>
+      <button type="button" onClick={hideCTA}>Nah I am good</button>
     </div>
   );
 };
@@ -26,6 +26,7 @@ const FavCTA = ({ responseFail, responseGoogle, hideCTA }) => {
 FavCTA.propTypes = {
   responseFail: PropTypes.func.isRequired,
   responseGoogle: PropTypes.func.isRequired,
+  hideCTA: PropTypes.func.isRequired,
 };
 
 export default FavCTA;

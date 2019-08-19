@@ -120,6 +120,7 @@ Modal.propTypes = {
   ).isRequired,
   loggedIn: PropTypes.bool.isRequired,
   showCTA: PropTypes.func.isRequired,
+  hideCTA: PropTypes.func.isRequired,
   awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
 };
 

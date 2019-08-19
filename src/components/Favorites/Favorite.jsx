@@ -48,6 +48,7 @@ const Favorite = ({
 Favorite.propTypes = {
   favId: PropTypes.string.isRequired,
   showCTA: PropTypes.func.isRequired,
+  hideCTA: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
 };
