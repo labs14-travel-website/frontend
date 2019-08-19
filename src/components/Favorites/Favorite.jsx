@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './Favorite.modules.scss';
 import PropTypes from 'prop-types';
 
-const Favorite = ({ favId }) => {
+const Favorite = ({ favId, component, showCTA, loggedIn }) => {
   const [favList, setFavList] = useState([]);
 
   /**
@@ -10,16 +10,24 @@ const Favorite = ({ favId }) => {
      * favId is present within favList.
      * @param {string} favId unique id associated with an attraction
      */
+  const favorite = () => {
+    if (component === 'attraction' && !loggedIn) {
+      console.log('hello');
+      showCTA();
+    } else {
+      setFavList([...favList, favId]);
+    }
+  };
 
-  const favorite = () => { setFavList(favList.filter(fav => fav !== favId)); };
-
-  const unfavorite = () => { setFavList([...favList, favId]); };
+  const unfavorite = () => {
+    setFavList(favList.filter(fav => fav !== favId));
+  };
 
   return (
     <>
       {
-      favList.includes(favId) ? <i onClick={favorite} className="fas fa-heart fa-2x" id="heart-ol" />
-        : <i onClick={unfavorite} className="far fa-heart fa-2x" id="heart-full" />
+      favList.includes(favId) ? <i onClick={unfavorite} className="fas fa-heart fa-2x" id="heart-ol" />
+        : <i onClick={favorite} className="far fa-heart fa-2x" id="heart-full" />
 
       }
     </>
@@ -29,6 +37,8 @@ const Favorite = ({ favId }) => {
 
 Favorite.propTypes = {
   favId: PropTypes.string.isRequired,
+  component: PropTypes.string.isRequired,
+  showCTA: PropTypes.func.isRequired,
 };
 
 

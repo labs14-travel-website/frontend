@@ -10,6 +10,7 @@ import Modal from './components/Modal';
 import track from './utils/analytics';
 import store from './utils/jwt-store';
 import feature from './utils/flaggie';
+import FavCTA from './components/FavCTA/FavCTA';
 
 function App() {
   const [state, setState] = useState({
@@ -17,6 +18,9 @@ function App() {
     modal: {
       show: false,
       attraction: {},
+    },
+    cta: {
+      show: false,
     },
   });
 
@@ -136,6 +140,9 @@ function App() {
       setState(prevState => ({
         ...prevState,
         loggedIn: true,
+        cta: {
+          show: false,
+        },
       }));
       const { name, email, sub: googleId } = decode(res.tokenId);
 
@@ -173,6 +180,15 @@ function App() {
     }));
   };
 
+  const showCTA = () => {
+    setState({
+      ...state,
+      cta: {
+        show: true,
+      },
+    });
+  };
+
   const wrapper = !state.modal.show ? styles.App : `${styles.App} ${styles.blur}`;
 
   return (
@@ -185,7 +201,7 @@ function App() {
         Feature={Feature}
       />
       <div className={wrapper}>
-        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} />)} />
+        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} showCTA={showCTA} loggedIn={state.loggedIn} />)} />
         <Route exact path="/profile" render={props => (<Profile {...props} user={user} />)} />
       </div>
 
@@ -196,6 +212,12 @@ function App() {
           showModal={showModal}
           show={state.modal.show}
           Feature={Feature}
+        />
+      )}
+      {state.cta.show && (
+        <FavCTA
+          responseFail={responseFail}
+          responseGoogle={responseGoogle}
         />
       )}
     </>
