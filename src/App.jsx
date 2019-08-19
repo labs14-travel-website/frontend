@@ -102,7 +102,7 @@ function App() {
         setTimeout(() => {
           resolve({
             profile: false,
-            'heart-fav': false,
+            'heart-fav': true,
             'more-button': true,
           });
         }, 500);
