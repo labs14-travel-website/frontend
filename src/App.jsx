@@ -22,6 +22,7 @@ function App() {
     cta: {
       show: false,
     },
+    awaitingFavorite: false,
   });
 
   const [user, setUser] = useState({});
@@ -152,6 +153,9 @@ function App() {
         googleId,
       });
     }
+    if (state.awaitingFavorite) {
+      console.log('awaiting');
+    }
   };
 
   const responseFail = (res) => {
@@ -180,9 +184,10 @@ function App() {
     }));
   };
 
-  const showCTA = () => {
+  const showCTA = (favId) => {
     setState({
       ...state,
+      awaitingFavorite: favId,
       cta: {
         show: true,
       },
@@ -201,7 +206,7 @@ function App() {
         Feature={Feature}
       />
       <div className={wrapper}>
-        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} showCTA={showCTA} loggedIn={state.loggedIn} />)} />
+        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} showCTA={showCTA} loggedIn={state.loggedIn} awaitingFavorite={state.awaitingFavorite} />)} />
         <Route exact path="/profile" render={props => (<Profile {...props} user={user} />)} />
       </div>
 
@@ -214,6 +219,7 @@ function App() {
           Feature={Feature}
           loggedIn={state.loggedIn}
           showCTA={showCTA}
+          awaitingFavorite={state.awaitingFavorite}
         />
       )}
       {state.cta.show && (

@@ -1,11 +1,17 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './Favorite.modules.scss';
 import PropTypes from 'prop-types';
 
 const Favorite = ({
-  favId, showCTA, loggedIn,
+  favId, showCTA, loggedIn, awaitingFavorite,
 }) => {
   const [favList, setFavList] = useState([]);
+
+  useEffect(() => {
+    if (loggedIn && awaitingFavorite) {
+      setFavList([...favList, awaitingFavorite]);
+    }
+  }, []);
 
   /**
      * @description Returns heart empty if favId is not within favList and heart full if
@@ -14,7 +20,7 @@ const Favorite = ({
      */
   const favorite = () => {
     if (!loggedIn) {
-      showCTA();
+      showCTA(favId);
       // TODO look how to make showCTA a promise so the favorite
       // functionality will work after successfully logged in
     } else {
@@ -25,6 +31,7 @@ const Favorite = ({
   const unfavorite = () => {
     setFavList(favList.filter(fav => fav !== favId));
   };
+  console.log(favList);
 
   return (
     <>
@@ -42,6 +49,7 @@ Favorite.propTypes = {
   favId: PropTypes.string.isRequired,
   showCTA: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
+  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
 };
 
 
