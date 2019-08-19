@@ -31,7 +31,6 @@ const Favorite = ({
   const unfavorite = () => {
     setFavList(favList.filter(fav => fav !== favId));
   };
-  console.log(favList);
 
   return (
     <>

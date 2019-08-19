@@ -153,9 +153,6 @@ function App() {
         googleId,
       });
     }
-    if (state.awaitingFavorite) {
-      console.log('awaiting');
-    }
   };
 
   const responseFail = (res) => {
