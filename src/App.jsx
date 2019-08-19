@@ -191,6 +191,16 @@ function App() {
     });
   };
 
+  const hideCTA = () => {
+    setState({
+      ...state,
+      awaitingFavorite: false,
+      cta: {
+        show: false,
+      },
+    });
+  };
+
   const wrapper = !state.modal.show ? styles.App : `${styles.App} ${styles.blur}`;
 
   return (
@@ -203,7 +213,7 @@ function App() {
         Feature={Feature}
       />
       <div className={wrapper}>
-        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} showCTA={showCTA} loggedIn={state.loggedIn} awaitingFavorite={state.awaitingFavorite} />)} />
+        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} showCTA={showCTA} hideCTA={hideCTA} loggedIn={state.loggedIn} awaitingFavorite={state.awaitingFavorite} />)} />
         <Route exact path="/profile" render={props => (<Profile {...props} user={user} />)} />
       </div>
 
@@ -216,6 +226,7 @@ function App() {
           Feature={Feature}
           loggedIn={state.loggedIn}
           showCTA={showCTA}
+          hideCTA={hideCTA}
           awaitingFavorite={state.awaitingFavorite}
         />
       )}
@@ -223,6 +234,7 @@ function App() {
         <FavCTA
           responseFail={responseFail}
           responseGoogle={responseGoogle}
+          hideCTA={hideCTA}
         />
       )}
     </>

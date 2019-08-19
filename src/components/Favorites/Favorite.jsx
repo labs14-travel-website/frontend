@@ -3,13 +3,14 @@ import './Favorite.modules.scss';
 import PropTypes from 'prop-types';
 
 const Favorite = ({
-  favId, showCTA, loggedIn, awaitingFavorite,
+  favId, showCTA, hideCTA, loggedIn, awaitingFavorite,
 }) => {
   const [favList, setFavList] = useState([]);
 
   useEffect(() => {
     if (loggedIn && awaitingFavorite) {
       setFavList([...favList, awaitingFavorite]);
+      hideCTA();
     }
   }, []);
 

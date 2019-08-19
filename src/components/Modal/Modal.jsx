@@ -27,6 +27,7 @@ const Modal = (props) => {
     Feature,
     loggedIn,
     showCTA,
+    hideCTA,
     awaitingFavorite,
   } = props;
 
@@ -67,6 +68,7 @@ const Modal = (props) => {
               favId={attraction.placeId}
               loggedIn={loggedIn}
               showCTA={showCTA}
+              hideCTA={hideCTA}
               awaitingFavorite={awaitingFavorite}
             />
           </Feature.Toggle>

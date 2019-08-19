@@ -3,7 +3,7 @@ import GoogleLogin from 'react-google-login';
 import PropTypes from 'prop-types';
 import styles from './FavCTA.module.scss';
 
-const FavCTA = ({ responseFail, responseGoogle }) => {
+const FavCTA = ({ responseFail, responseGoogle, hideCTA }) => {
   const [clientId] = useState(process.env.REACT_APP_OAUTH_GOOGLE_ID);
 
   return (
@@ -18,6 +18,7 @@ const FavCTA = ({ responseFail, responseGoogle }) => {
         onFailure={responseFail}
         cookiePolicy="single_host_origin"
       />
+      <button onClick={hideCTA}>Nah I'm good</button>
     </div>
   );
 };
