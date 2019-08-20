@@ -101,8 +101,8 @@ function App() {
       const promise = new Promise((resolve) => {
         setTimeout(() => {
           resolve({
-            profile: false,
-            'heart-fav': false,
+            profile: true,
+            'heart-fav': true,
             'more-button': true,
           });
         }, 500);
@@ -186,7 +186,7 @@ function App() {
       />
       <div className={wrapper}>
         <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} />)} />
-        <Route exact path="/profile" render={props => (<Profile {...props} user={user} />)} />
+        <Route exact path="/profile" render={props => (<Profile {...props} user={user} showModal={showModal} Feature={Feature} />)} />
       </div>
 
       {state.modal.show && (
