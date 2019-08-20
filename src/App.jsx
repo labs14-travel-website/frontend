@@ -23,6 +23,8 @@ function App() {
       show: false,
     },
     awaitingFavorite: false,
+    favorites: [],
+    isLoading: false,
   });
 
   const [user, setUser] = useState({});
@@ -45,6 +47,56 @@ function App() {
       ...prevState,
       loggedIn: false,
     }));
+  };
+
+  const getFavorites = async () => {
+    try {
+      const { data: { data: { favorites } } } = await axios({
+        url: `${process.env.REACT_APP_ENDPOINT}/gql`,
+        method: 'post',
+        data: {
+          query: `{ 
+            favorites {
+              name
+            },
+          }`,
+        },
+      });
+      console.log(favorites); //eslint-disable-line
+      setState(prevState => ({
+        ...prevState,
+        favorites,
+        isLoading: false,
+      }));
+    } catch (error) {
+      console.log(error) // eslint-disable-line
+    }
+  };
+
+  const addFavorite = async ({ favId }) => {
+    try {
+      const { data: { addFavorite: { user_id, attractions_id, id } } } = await axios({
+        url: `${process.env.REACT_APP_ENDPOINT}/gql`,
+        method: 'post',
+        data: {
+          mutation: `{ 
+           addFavorite (id: ${favId}) {
+              id,
+              user_id,
+              attraction_id,
+            },
+          }`,
+        },
+      });
+      console.log(user_id, attractions_id, id); //eslint-disable-line
+      setState(prevState => ({
+        ...prevState,
+        isLoading: false,
+      }));
+      getFavorites();
+    } catch (error) {
+      console.log(error) // eslint-disable-line
+    }
   };
 
   useEffect(() => {
@@ -78,6 +130,7 @@ function App() {
             ...prevState,
             loggedIn: true,
           }));
+          getFavorites();
         } else {
           throw Error('Not Authorized');
         }
@@ -168,6 +221,7 @@ function App() {
         email,
         googleId,
       });
+      getFavorites();
     }
   };
 
@@ -217,6 +271,7 @@ function App() {
     });
   };
 
+
   const wrapper = !state.modal.show ? styles.App : `${styles.App} ${styles.blur}`;
 
   return (
@@ -229,8 +284,8 @@ function App() {
         Feature={Feature}
       />
       <div className={wrapper}>
-        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} showCTA={showCTA} hideCTA={hideCTA} loggedIn={state.loggedIn} awaitingFavorite={state.awaitingFavorite} />)} />
-        <Route exact path="/profile" render={props => (<Profile {...props} user={user} showModal={showModal} Feature={Feature} />)} />
+        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} showCTA={showCTA} hideCTA={hideCTA} loggedIn={state.loggedIn} awaitingFavorite={state.awaitingFavorite} addFavorite={addFavorite} />)} />
+        <Route exact path="/profile" render={props => (<Profile {...props} user={user} showModal={showModal} Feature={Feature} favorites={state.favorites} isLoading={state.isLoading} />)} />
       </div>
 
       {state.modal.show && (

@@ -20,6 +20,7 @@ function Attractions(props) {
     hideCTA,
     loggedIn,
     awaitingFavorite,
+    addFavorite,
   } = props;
   // const [loaded, setLoaded] = useState(false);
   // const [modalAttraction, setModalAttraction] = useState({});
@@ -38,7 +39,7 @@ function Attractions(props) {
   const showAttractions = (attractionList) => {
     const elements = attractionList.map(place => (
       <div>
-        <Feature.Toggle flag="heart-fav"><Favorite favId={place.placeId} component="attraction" showCTA={showCTA} hideCTA={hideCTA} loggedIn={loggedIn} awaitingFavorite={awaitingFavorite} /></Feature.Toggle>
+        <Feature.Toggle flag="heart-fav"><Favorite favId={place.placeId} component="attraction" showCTA={showCTA} hideCTA={hideCTA} loggedIn={loggedIn} awaitingFavorite={awaitingFavorite} addFavorite={addFavorite} /></Feature.Toggle>
         <CardDisplay
           key={place.placeId}
           handleOnClick={handleOnClick}

@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
    */
 
 const Favorite = ({
-  favId, showCTA, loggedIn, awaitingFavorite,
+  favId, showCTA, loggedIn, awaitingFavorite, addFavorite,
 }) => {
   const [favList, setFavList] = useState([]);
 
@@ -27,6 +27,7 @@ const Favorite = ({
       // functionality will work after successfully logged in
     } else {
       setFavList([...favList, favId]);
+      addFavorite(favId);
       // axios call
     }
   };
