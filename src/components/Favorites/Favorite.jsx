@@ -18,7 +18,7 @@ const Favorite = ({
       setFavList([...favList, awaitingFavorite]);
       // axios call goes here
     }
-  }, []);
+  }, [awaitingFavorite, favList, loggedIn]);
 
   const favorite = () => {
     if (!loggedIn) {
