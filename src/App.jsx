@@ -106,8 +106,8 @@ function App() {
       const promise = new Promise((resolve) => {
         setTimeout(() => {
           resolve({
-            profile: true,
-            'heart-fav': true,
+            profile: false,
+            'heart-fav': false,
             'more-button': true,
             cta: false,
           });
