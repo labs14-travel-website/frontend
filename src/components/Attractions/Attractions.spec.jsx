@@ -17,9 +17,13 @@ describe('Attractions Component', () => {
     expect(component.find('[className^="Attractions__wrapper"]').length).toBe(1);
   });
 
+  // props aren't getting passed
+  //
   // describe('Testing Attractions, One Attraction', () => {
   //   let wrapper;
-  //   beforeEach(() => {
+
+  //   it('Load the Card Display', () => {
+  //     const Feature = feature({ 'more-button': true }, false);
   //     const props = {
   //       attractions: [
   //         {
@@ -31,18 +35,11 @@ describe('Attractions Component', () => {
   //         },
   //       ],
   //       isLoading: false,
+  //       Feature,
   //     };
-  //     wrapper = mountComp(props);
-  //   });
-
-  //   it('Load the Card Display', () => {
-  //     const button = wrapper.find('button[type="button"]');
-  //     expect(button.length).toBe(1);
-  //   });
-
-  //   it('Button Text', () => {
-  //     const button = wrapper.find('button[type="button"]');
-  //     expect(button.text()).toBe('More Info');
+  //     wrapper = render(<Attractions {...props} />);
+  //     const card = wrapper.find('[class^="CardDisplay_CardDisplay__info_wrapper"]');
+  //     expect(card.length).toBe(1);
   //   });
   // });
 
