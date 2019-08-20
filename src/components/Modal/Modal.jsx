@@ -25,6 +25,10 @@ const Modal = (props) => {
     // children,
     attraction,
     Feature,
+    loggedIn,
+    showCTA,
+    hideCTA,
+    awaitingFavorite,
   } = props;
 
   useEffect(() => {
@@ -60,7 +64,13 @@ const Modal = (props) => {
           <h2>{attraction.name}</h2>
 
           <Feature.Toggle flag="heart-fav">
-            <Favorite favId={attraction.placeId} />
+            <Favorite
+              favId={attraction.placeId}
+              loggedIn={loggedIn}
+              showCTA={showCTA}
+              hideCTA={hideCTA}
+              awaitingFavorite={awaitingFavorite}
+            />
           </Feature.Toggle>
 
           <div className={styles.Ratings}>
@@ -108,6 +118,10 @@ Modal.propTypes = {
       types: PropTypes.arrayOf(PropTypes.string),
     }),
   ).isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+  showCTA: PropTypes.func.isRequired,
+  hideCTA: PropTypes.func.isRequired,
+  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
 };
 
 export default Modal;
