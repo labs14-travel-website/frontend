@@ -11,36 +11,49 @@ const Profile = ({ user, showModal, Feature }) => {
     clientId: process.env.REACT_APP_OAUTH_GOOGLE_ID,
     attractions: [],
     isLoading: false,
-    noResults: false,
   });
 
 
   const getFavorites = async () => {
     try {
-      const { data: { places } } = await axios.get(`${process.env.REACT_APP_ENDPOINT}/places/details/Hawaii`);
-      if (places) {
-        setState(prevState => ({
-          ...prevState,
-          attractions: places,
-          isLoading: false,
-          noResults: false,
-        }));
-      } else {
-        setState(prevState => ({
-          ...prevState,
-          attractions: [],
-          isLoading: false,
-          noResults: true,
-        }));
-      }
+      const { data: { data: { favorites } } } = await axios({
+        url: `${process.env.REACT_APP_ENDPOINT}/gql`,
+        method: 'post',
+        data: {
+          query: `{ 
+            favorites {
+              name
+            },
+          }`,
+        },
+      });
+      console.log(favorites); //eslint-disable-line
+      setState(prevState => ({
+        ...prevState,
+        attractions: favorites,
+        isLoading: false,
+      }));
+      // if (favorites) {
+      //   setState(prevState => ({
+      //     ...prevState,
+      //     attractions: favorites,
+      //     isLoading: false,
+      //   }));
+      // } else {
+      //   setState(prevState => ({
+      //     ...prevState,
+      //     attractions: [],
+      //     isLoading: false,
+      //   }));
+      // }
     } catch (error) {
       console.log(error) // eslint-disable-line
     }
   };
 
   useEffect(() => {
-    getFavorites();
-  }, []);
+    if (user.name) getFavorites();
+  }, [user.name]);
 
   if (user.name) {
     return (
@@ -48,16 +61,16 @@ const Profile = ({ user, showModal, Feature }) => {
         <h1>{user.name}</h1>
 
         {
-        !state.attractions.length > 0 && !state.isLoading
-          ? <h1>Hello, I am Loading...</h1>
-          : (
-            <Attractions
-              attractions={state.attractions}
-              isLoading={state.isLoading}
-              showModal={showModal}
-              Feature={Feature}
-            />
-          )
+          state.isLoading
+            ? <h1>Hello, I am Loading...</h1>
+            : (
+              <Attractions
+                attractions={state.attractions}
+                isLoading={state.isLoading}
+                showModal={showModal}
+                Feature={Feature}
+              />
+            )
       }
 
       </div>

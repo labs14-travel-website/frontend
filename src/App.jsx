@@ -64,6 +64,7 @@ function App() {
         // TODO: Update this response message
         if (authorization === 'success auth') {
           const { name, email, sub: googleId } = decode(token);
+          axios.defaults.headers.common['Authorization'] = token; //eslint-disable-line
 
           // check userInfo response, if valid set user info
           setUser({
@@ -106,8 +107,8 @@ function App() {
       const promise = new Promise((resolve) => {
         setTimeout(() => {
           resolve({
-            profile: false,
-            'heart-fav': false,
+            profile: true,
+            'heart-fav': true,
             'more-button': true,
             cta: false,
           });
@@ -136,6 +137,20 @@ function App() {
         },
       },
     );
+
+    // axios.interceptors.request.use((config) => {
+    //   const newConfig = {
+    //     ...config,
+    //     headers: {
+    //       ...config.headers,
+    //       authorization: res.tokenId,
+    //     },
+    //   };
+    //   return newConfig;
+    // });
+    // console.log(res.tokenId); //eslint-disable-line
+    axios.defaults.headers.common['Authorization'] = res.tokenId; //eslint-disable-line
+
 
     if (authorization === 'success auth') {
       store.add(res.tokenId);
