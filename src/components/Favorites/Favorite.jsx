@@ -2,6 +2,12 @@ import React, { useState, useEffect } from 'react';
 import './Favorite.modules.scss';
 import PropTypes from 'prop-types';
 
+/**
+   * @description Returns heart empty if favId is not within favList and heart full if
+   * favId is present within favList.
+   * @param {string} favId unique id associated with an attraction
+   */
+
 const Favorite = ({
   favId, showCTA, loggedIn, awaitingFavorite,
 }) => {
@@ -10,14 +16,10 @@ const Favorite = ({
   useEffect(() => {
     if (loggedIn && awaitingFavorite) {
       setFavList([...favList, awaitingFavorite]);
+      // axios call goes here
     }
   }, []);
 
-  /**
-     * @description Returns heart empty if favId is not within favList and heart full if
-     * favId is present within favList.
-     * @param {string} favId unique id associated with an attraction
-     */
   const favorite = () => {
     if (!loggedIn) {
       showCTA(favId);
@@ -25,11 +27,13 @@ const Favorite = ({
       // functionality will work after successfully logged in
     } else {
       setFavList([...favList, favId]);
+      // axios call
     }
   };
 
   const unfavorite = () => {
     setFavList(favList.filter(fav => fav !== favId));
+    // axios call
   };
 
   return (

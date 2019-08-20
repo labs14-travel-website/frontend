@@ -107,9 +107,9 @@ function App() {
         setTimeout(() => {
           resolve({
             profile: false,
-            'heart-fav': true,
+            'heart-fav': false,
             'more-button': true,
-            cta: true,
+            cta: false,
           });
         }, 500);
       });
