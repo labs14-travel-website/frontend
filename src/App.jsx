@@ -75,7 +75,7 @@ function App() {
 
   const addFavorite = async ({ favId }) => {
     try {
-      const { data: { addFavorite: { user_id, attractions_id, id } } } = await axios({
+      const { data: { addFavorite: { user_id, attractions_id, id } } } = await axios({ //eslint-disable-line
         url: `${process.env.REACT_APP_ENDPOINT}/gql`,
         method: 'post',
         data: {

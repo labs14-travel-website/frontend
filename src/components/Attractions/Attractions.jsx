@@ -116,6 +116,7 @@ Attractions.propTypes = {
   hideCTA: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
+  addFavorite: PropTypes.func.isRequired,
 };
 
 export default Attractions;
