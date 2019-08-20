@@ -32,7 +32,8 @@
     "jest:start": "react-scripts test",
     "cypress:start": "cypress run",
     "lint:start": "eslint --ext .js --ext .jsx .",
-    "lint:fix": "eslint --ext .js --ext .jsx . --fix"
+    "lint:fix": "eslint --ext .js --ext .jsx . --fix",
+    "heroku-postbuild": "knex migrate:latest"
   },
   "eslintConfig": {
     "extends": "react-app"
