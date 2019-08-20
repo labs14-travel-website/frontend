@@ -7,6 +7,9 @@ describe('Favorites Component', () => {
   it('Component should mount', () => {
     const props = {
       favId: 12345,
+      showCTA: () => true,
+      loggedIn: true,
+
     };
     const wrapper = mount(<Favorite {...props} />);
     expect(wrapper).toBeDefined();
@@ -15,6 +18,8 @@ describe('Favorites Component', () => {
   it('Empty Heart Icon should Display', () => {
     const props = {
       favId: 12345,
+      showCTA: () => true,
+      loggedIn: true,
     };
     const wrapper = mount(<Favorite {...props} />);
     const heart = wrapper.find('#heart-full');
@@ -24,6 +29,8 @@ describe('Favorites Component', () => {
   it('Full Heart should Display', () => {
     const props = {
       favId: 12345,
+      showCTA: () => true,
+      loggedIn: true,
     };
     const wrapper = mount(<Favorite {...props} />);
     const heart = wrapper.find('#heart-full');

@@ -10,6 +10,7 @@ import Modal from './components/Modal';
 import track from './utils/analytics';
 import store from './utils/jwt-store';
 import feature from './utils/flaggie';
+import FavCTA from './components/FavCTA/FavCTA';
 
 function App() {
   const [state, setState] = useState({
@@ -18,6 +19,10 @@ function App() {
       show: false,
       attraction: {},
     },
+    cta: {
+      show: false,
+    },
+    awaitingFavorite: false,
   });
 
   const [user, setUser] = useState({});
@@ -104,6 +109,7 @@ function App() {
             profile: false,
             'heart-fav': false,
             'more-button': true,
+            cta: false,
           });
         }, 500);
       });
@@ -136,6 +142,9 @@ function App() {
       setState(prevState => ({
         ...prevState,
         loggedIn: true,
+        cta: {
+          show: false,
+        },
       }));
       const { name, email, sub: googleId } = decode(res.tokenId);
 
@@ -173,6 +182,26 @@ function App() {
     }));
   };
 
+  const showCTA = (favId) => {
+    setState({
+      ...state,
+      awaitingFavorite: favId,
+      cta: {
+        show: true,
+      },
+    });
+  };
+
+  const hideCTA = () => {
+    setState({
+      ...state,
+      awaitingFavorite: false,
+      cta: {
+        show: false,
+      },
+    });
+  };
+
   const wrapper = !state.modal.show ? styles.App : `${styles.App} ${styles.blur}`;
 
   return (
@@ -185,8 +214,8 @@ function App() {
         Feature={Feature}
       />
       <div className={wrapper}>
-        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} />)} />
-        <Route exact path="/profile" render={props => (<Profile {...props} user={user} />)} />
+        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} showCTA={showCTA} hideCTA={hideCTA} loggedIn={state.loggedIn} awaitingFavorite={state.awaitingFavorite} />)} />
+        <Route exact path="/profile" render={props => (<Profile {...props} user={user} showModal={showModal} Feature={Feature} />)} />
       </div>
 
       {state.modal.show && (
@@ -196,8 +225,23 @@ function App() {
           showModal={showModal}
           show={state.modal.show}
           Feature={Feature}
+          loggedIn={state.loggedIn}
+          showCTA={showCTA}
+          hideCTA={hideCTA}
+          awaitingFavorite={state.awaitingFavorite}
         />
       )}
+      <Feature.Switch flag="cta">
+        <></>
+        {state.cta.show && (
+          <FavCTA
+            Feature={Feature}
+            responseFail={responseFail}
+            responseGoogle={responseGoogle}
+            hideCTA={hideCTA}
+          />
+        )}
+      </Feature.Switch>
     </>
   );
 }
