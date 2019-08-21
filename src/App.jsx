@@ -136,7 +136,7 @@ function App() {
 
   const removeFavorite = async (favId) => {
     try {
-      const { data: { data: { removeFavorite: { user_id, attractions_id, id } } } } = await axios({
+      const { data: { data: { removeFavorite: { user_id, attractions_id, id } } } } = await axios({  //eslint-disable-line
         url: `${process.env.REACT_APP_ENDPOINT}/gql`,
         method: 'post',
         data: {

@@ -9,7 +9,8 @@ import Hero from '../../components/Hero';
 import '../../config/interceptor';
 
 function Home({
-  showModal, Feature, showCTA, hideCTA, loggedIn, awaitingFavorite, addFavorite, favorites, removeFavorite,
+  showModal, Feature, showCTA, hideCTA, loggedIn,
+  awaitingFavorite, addFavorite, favorites, removeFavorite,
 }) {
   const [state, setState] = useState({
     clientId: process.env.REACT_APP_OAUTH_GOOGLE_ID,

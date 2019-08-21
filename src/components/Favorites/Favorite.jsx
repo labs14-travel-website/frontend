@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import './Favorite.modules.scss';
 import PropTypes from 'prop-types';
 
@@ -9,11 +9,11 @@ import PropTypes from 'prop-types';
    */
 
 const Favorite = ({
-  favorite: { placeId }, showCTA, loggedIn, awaitingFavorite, addFavorite, favorites, removeFavorite,
+  favorite: { placeId }, showCTA, loggedIn,
+  awaitingFavorite, addFavorite, favorites, removeFavorite,
 }) => {
-  const favList = favorites && favorites.map(favorite => favorite.place_id);
+  const favList = favorites && favorites.map(fav => fav.place_id);
   useEffect(() => {
-    console.log('useEffect Favorite.jsx', placeId, awaitingFavorite);
     if (loggedIn && awaitingFavorite && (placeId === awaitingFavorite)) {
       addFavorite(awaitingFavorite);
     }
@@ -51,6 +51,22 @@ Favorite.propTypes = {
   showCTA: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
+  favorites: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      rating: PropTypes.number,
+      placeId: PropTypes.string,
+      picture: PropTypes.string,
+      types: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ).isRequired,
+  removeFavorite: PropTypes.func.isRequired,
+  addFavorite: PropTypes.func.isRequired,
+  favorite: PropTypes.shape(
+    {
+      placeId: PropTypes.string,
+    },
+  ).isRequired,
 };
 
 
