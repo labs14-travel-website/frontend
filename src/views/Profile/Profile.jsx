@@ -1,61 +1,33 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Redirect } from 'react-router';
 import PropTypes from 'prop-types';
-import axios from 'axios';
-// import FavoritesDisplay from '../../components/FavoritesDisplay';
 import Attractions from '../../components/Attractions';
 import '../../config/interceptor';
 
-const Profile = ({ user, showModal, Feature }) => {
-  const [state, setState] = useState({
-    clientId: process.env.REACT_APP_OAUTH_GOOGLE_ID,
-    attractions: [],
-    isLoading: false,
-    noResults: false,
-  });
-
-
-  const getFavorites = async () => {
-    try {
-      const { data: { places } } = await axios.get(`${process.env.REACT_APP_ENDPOINT}/places/details/Hawaii`);
-      if (places) {
-        setState(prevState => ({
-          ...prevState,
-          attractions: places,
-          isLoading: false,
-          noResults: false,
-        }));
-      } else {
-        setState(prevState => ({
-          ...prevState,
-          attractions: [],
-          isLoading: false,
-          noResults: true,
-        }));
-      }
-    } catch (error) {
-      console.log(error) // eslint-disable-line
-    }
-  };
-
-  useEffect(() => {
-    getFavorites();
-  }, []);
-
+const Profile = ({
+  user,
+  showModal,
+  Feature,
+  favorites,
+  isLoading,
+  removeFavorite,
+}) => {
   if (user.name) {
     return (
       <div>
         <h1>{user.name}</h1>
 
         {
-        !state.attractions.length > 0 && !state.isLoading
+        isLoading
           ? <h1>Hello, I am Loading...</h1>
           : (
             <Attractions
-              attractions={state.attractions}
-              isLoading={state.isLoading}
+              attractions={favorites}
+              isLoading={isLoading}
               showModal={showModal}
               Feature={Feature}
+              favorites={favorites}
+              removeFavorite={removeFavorite}
             />
           )
       }
@@ -64,7 +36,7 @@ const Profile = ({ user, showModal, Feature }) => {
     );
   }
 
-  return <Redirect to="/profile" />;
+  return <Redirect to="/" />;
 };
 
 Profile.propTypes = {
@@ -77,6 +49,17 @@ Profile.propTypes = {
   Feature: PropTypes.objectOf(
     PropTypes.func,
   ).isRequired,
+  favorites: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      rating: PropTypes.number,
+      placeId: PropTypes.string,
+      picture: PropTypes.string,
+      types: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ).isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  removeFavorite: PropTypes.func.isRequired,
 };
 
 export default Profile;
