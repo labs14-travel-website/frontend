@@ -57,7 +57,12 @@ function App() {
         data: {
           query: `{ 
             favorites {
-              name
+              name,
+              place_id,
+              rating,
+              picture,
+              price,
+              id,
             },
           }`,
         },
@@ -65,7 +70,7 @@ function App() {
       console.log(favorites); //eslint-disable-line
       setState(prevState => ({
         ...prevState,
-        favorites,
+        favorites: favorites.map(favorite => ({ ...favorite, placeId: favorite.place_id })),
         isLoading: false,
       }));
     } catch (error) {
@@ -73,14 +78,15 @@ function App() {
     }
   };
 
-  const addFavorite = async ({ favId }) => {
+  const addFavorite = async (placeId) => {
     try {
-      const { data: { addFavorite: { user_id, attractions_id, id } } } = await axios({ //eslint-disable-line
+      const { data: { data: { addFavorite: { user_id, attractions_id, id } } } } = await axios({
         url: `${process.env.REACT_APP_ENDPOINT}/gql`,
         method: 'post',
         data: {
-          mutation: `{ 
-           addFavorite (id: ${favId}) {
+          query: ` 
+          mutation { 
+           addFavorite (id: "${placeId}") {
               id,
               user_id,
               attraction_id,
@@ -92,7 +98,30 @@ function App() {
       setState(prevState => ({
         ...prevState,
         isLoading: false,
+        awaitingFavorite: false,
       }));
+      getFavorites();
+    } catch (error) {
+      console.log(error) // eslint-disable-line
+    }
+  };
+
+  const removeFavorite = async (favId) => {
+    try {
+      const { data: { data: { removeFavorite: { user_id, attractions_id, id } } } } = await axios({
+        url: `${process.env.REACT_APP_ENDPOINT}/gql`,
+        method: 'post',
+        data: {
+          query: `
+          mutation {
+            removeFavorite (id: ${favId}) {
+              id,
+              user_id,
+              attraction_id
+            },
+          }`,
+        },
+      });
       getFavorites();
     } catch (error) {
       console.log(error) // eslint-disable-line
@@ -163,7 +192,7 @@ function App() {
             profile: true,
             'heart-fav': true,
             'more-button': true,
-            cta: false,
+            cta: true,
           });
         }, 500);
       });
@@ -284,8 +313,8 @@ function App() {
         Feature={Feature}
       />
       <div className={wrapper}>
-        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} showCTA={showCTA} hideCTA={hideCTA} loggedIn={state.loggedIn} awaitingFavorite={state.awaitingFavorite} addFavorite={addFavorite} />)} />
-        <Route exact path="/profile" render={props => (<Profile {...props} user={user} showModal={showModal} Feature={Feature} favorites={state.favorites} isLoading={state.isLoading} />)} />
+        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} showCTA={showCTA} hideCTA={hideCTA} loggedIn={state.loggedIn} awaitingFavorite={state.awaitingFavorite} addFavorite={addFavorite} favorites={state.favorites} removeFavorite={removeFavorite} />)} />
+        <Route exact path="/profile" render={props => (<Profile {...props} user={user} showModal={showModal} Feature={Feature} favorites={state.favorites} isLoading={state.isLoading} removeFavorite={removeFavorite} />)} />
       </div>
 
       {state.modal.show && (
@@ -299,6 +328,9 @@ function App() {
           showCTA={showCTA}
           hideCTA={hideCTA}
           awaitingFavorite={state.awaitingFavorite}
+          favorites={state.favorites}
+          addFavorite={addFavorite}
+          removeFavorite={removeFavorite}
         />
       )}
       <Feature.Switch flag="cta">

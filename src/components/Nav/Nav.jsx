@@ -26,7 +26,7 @@ const Nav = ({
         </a>
         <Feature.Toggle flag="profile">
           <div>
-            {loggedIn && <Link to="/profile" className={styles.Favorites}>My Favorites</Link>}
+            {loggedIn && <Link to="/profile" className={styles.Favorites}>Favorites</Link>}
           </div>
         </Feature.Toggle>
         {

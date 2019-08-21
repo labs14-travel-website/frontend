@@ -10,6 +10,7 @@ const Profile = ({
   Feature,
   favorites,
   isLoading,
+  removeFavorite,
 }) => {
   useEffect(() => {
 
@@ -29,6 +30,8 @@ const Profile = ({
               isLoading={isLoading}
               showModal={showModal}
               Feature={Feature}
+              favorites={favorites}
+              removeFavorite={removeFavorite}
             />
           )
       }

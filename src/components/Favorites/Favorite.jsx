@@ -9,39 +9,37 @@ import PropTypes from 'prop-types';
    */
 
 const Favorite = ({
-  favId, showCTA, loggedIn, awaitingFavorite, addFavorite,
+  favorite, showCTA, loggedIn, awaitingFavorite, addFavorite, favorites, removeFavorite,
 }) => {
-  const [favList, setFavList] = useState([]);
-
+  const favList = favorites && favorites.map(favorite => favorite.place_id);
   useEffect(() => {
+    console.log('useEffect Favorite.jsx');
     if (loggedIn && awaitingFavorite) {
-      setFavList([...favList, awaitingFavorite]);
-      // axios call goes here
+      addFavorite(favorite.placeId);
     }
-  }, [awaitingFavorite, favList, loggedIn]);
+  }, [awaitingFavorite, loggedIn]);
 
-  const favorite = () => {
+  const handleAddFavorite = () => {
     if (!loggedIn) {
-      showCTA(favId);
+      showCTA(favorite.placeId);
       // TODO look how to make showCTA a promise so the favorite
       // functionality will work after successfully logged in
     } else {
-      setFavList([...favList, favId]);
-      addFavorite(favId);
+      addFavorite(favorite.placeId);
       // axios call
     }
   };
 
-  const unfavorite = () => {
-    setFavList(favList.filter(fav => fav !== favId));
-    // axios call
+  const handleRemoveFavorite = () => {
+    removeFavorite(favorite.id);
   };
+  console.log(favList)
 
   return (
     <>
       {
-      favList.includes(favId) ? <i onClick={unfavorite} className="fas fa-heart fa-2x" id="heart-ol" />
-        : <i onClick={favorite} className="far fa-heart fa-2x" id="heart-full" />
+      favorites && favList.includes(favorite.placeId) ? <i onClick={handleRemoveFavorite} className="fas fa-heart fa-2x" id="heart-ol" />
+        : <i onClick={handleAddFavorite} className="far fa-heart fa-2x" id="heart-full" />
 
       }
     </>
@@ -50,7 +48,7 @@ const Favorite = ({
 };
 
 Favorite.propTypes = {
-  favId: PropTypes.string.isRequired,
+  // favId: PropTypes.string.isRequired,
   showCTA: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,

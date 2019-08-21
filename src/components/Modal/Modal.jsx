@@ -29,6 +29,9 @@ const Modal = (props) => {
     showCTA,
     hideCTA,
     awaitingFavorite,
+    favorites,
+    addFavorite,
+    removeFavorite,
   } = props;
 
   useEffect(() => {
@@ -65,11 +68,14 @@ const Modal = (props) => {
 
           <Feature.Toggle flag="heart-fav">
             <Favorite
-              favId={attraction.placeId}
+              favorite={attraction}
               loggedIn={loggedIn}
               showCTA={showCTA}
               hideCTA={hideCTA}
               awaitingFavorite={awaitingFavorite}
+              favorites={favorites}
+              addFavorite={addFavorite}
+              removeFavorite={removeFavorite}
             />
           </Feature.Toggle>
 
