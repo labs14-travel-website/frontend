@@ -18,6 +18,7 @@ const FavCTA = ({
 
   return (
     <div className={styles.FavCTA__wrapper}>
+      <i onClick={hideCTA} className="fas fa-times fa-2x" />
       <h3>Login</h3>
       <p>Please sign up to save attractions to your profile.</p>
       <GoogleLogin
@@ -28,7 +29,6 @@ const FavCTA = ({
         onFailure={responseFail}
         cookiePolicy="single_host_origin"
       />
-      <button type="button" onClick={hideCTA}>Nah I am good</button>
     </div>
   );
 };

@@ -46,6 +46,7 @@ function App() {
     setState(prevState => ({
       ...prevState,
       loggedIn: false,
+      favorites: [],
     }));
   };
 
@@ -126,7 +127,10 @@ function App() {
         awaitingFavorite: false,
         favorites: [
           ...state.favorites,
-          favorite,
+          {
+            ...favorite,
+            placeId: favorite.place_id,
+          },
         ],
       }));
     } catch (error) {
