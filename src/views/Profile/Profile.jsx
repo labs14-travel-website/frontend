@@ -59,6 +59,7 @@ Profile.propTypes = {
     }),
   ).isRequired,
   isLoading: PropTypes.bool.isRequired,
+  removeFavorite: PropTypes.func.isRequired,
 };
 
 export default Profile;

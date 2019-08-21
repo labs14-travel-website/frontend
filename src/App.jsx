@@ -98,7 +98,7 @@ function App() {
         attraction: {},
       },
     }));
-  };  
+  };
 
   const addFavorite = async (placeId) => {
     try {

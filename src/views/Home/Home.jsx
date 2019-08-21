@@ -94,6 +94,18 @@ Home.propTypes = {
   hideCTA: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
+  addFavorite: PropTypes.func.isRequired,
+  favorites: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      place_id: PropTypes.string,
+      rating: PropTypes.number,
+      picture: PropTypes.string,
+      price: PropTypes.number,
+      id: PropTypes.number,
+    }),
+  ).isRequired,
+  removeFavorite: PropTypes.func.isRequired,
 };
 
 export default Home;
