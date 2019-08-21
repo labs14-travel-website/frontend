@@ -25,6 +25,13 @@ const Modal = (props) => {
     // children,
     attraction,
     Feature,
+    loggedIn,
+    showCTA,
+    hideCTA,
+    awaitingFavorite,
+    favorites,
+    addFavorite,
+    removeFavorite,
   } = props;
 
   useEffect(() => {
@@ -60,7 +67,16 @@ const Modal = (props) => {
           <h2>{attraction.name}</h2>
 
           <Feature.Toggle flag="heart-fav">
-            <Favorite favId={attraction.placeId} />
+            <Favorite
+              favorite={attraction}
+              loggedIn={loggedIn}
+              showCTA={showCTA}
+              hideCTA={hideCTA}
+              awaitingFavorite={awaitingFavorite}
+              favorites={favorites}
+              addFavorite={addFavorite}
+              removeFavorite={removeFavorite}
+            />
           </Feature.Toggle>
 
           <div className={styles.Ratings}>
@@ -108,6 +124,22 @@ Modal.propTypes = {
       types: PropTypes.arrayOf(PropTypes.string),
     }),
   ).isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+  showCTA: PropTypes.func.isRequired,
+  hideCTA: PropTypes.func.isRequired,
+  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
+  addFavorite: PropTypes.func.isRequired,
+  favorites: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      place_id: PropTypes.string,
+      rating: PropTypes.number,
+      picture: PropTypes.string,
+      price: PropTypes.number,
+      id: PropTypes.number,
+    }),
+  ).isRequired,
+  removeFavorite: PropTypes.func.isRequired,
 };
 
 export default Modal;

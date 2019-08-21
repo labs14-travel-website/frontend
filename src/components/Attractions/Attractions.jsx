@@ -16,6 +16,13 @@ function Attractions(props) {
     isLoading,
     showModal,
     Feature,
+    showCTA,
+    hideCTA,
+    loggedIn,
+    awaitingFavorite,
+    addFavorite,
+    favorites,
+    removeFavorite,
   } = props;
   // const [loaded, setLoaded] = useState(false);
   // const [modalAttraction, setModalAttraction] = useState({});
@@ -32,9 +39,22 @@ function Attractions(props) {
   // };
 
   const showAttractions = (attractionList) => {
+    console.log('attractions favorites', favorites);
     const elements = attractionList.map(place => (
       <div>
-        <Feature.Toggle flag="heart-fav"><Favorite favId={place.placeId} /></Feature.Toggle>
+        <Feature.Toggle flag="heart-fav">
+          <Favorite
+            key={place.placeId}
+            favorite={place}
+            showCTA={showCTA}
+            hideCTA={hideCTA}
+            loggedIn={loggedIn}
+            awaitingFavorite={awaitingFavorite}
+            addFavorite={addFavorite}
+            favorites={favorites}
+            removeFavorite={removeFavorite}
+          />
+        </Feature.Toggle>
         <CardDisplay
           key={place.placeId}
           handleOnClick={handleOnClick}
@@ -107,6 +127,21 @@ Attractions.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   showModal: PropTypes.func.isRequired,
   Feature: PropTypes.objectOf(PropTypes.func).isRequired,
+  showCTA: PropTypes.func.isRequired,
+  hideCTA: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
+  addFavorite: PropTypes.func.isRequired,
+  removeFavorite: PropTypes.func.isRequired,
+  favorites: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      rating: PropTypes.number,
+      placeId: PropTypes.string,
+      picture: PropTypes.string,
+      types: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ).isRequired,
 };
 
 export default Attractions;

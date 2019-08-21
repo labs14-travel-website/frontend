@@ -10,6 +10,7 @@ import Modal from './components/Modal';
 import track from './utils/analytics';
 import store from './utils/jwt-store';
 import feature from './utils/flaggie';
+import FavCTA from './components/FavCTA/FavCTA';
 
 function App() {
   const [state, setState] = useState({
@@ -18,6 +19,12 @@ function App() {
       show: false,
       attraction: {},
     },
+    cta: {
+      show: false,
+    },
+    awaitingFavorite: false,
+    favorites: [],
+    isLoading: false,
   });
 
   const [user, setUser] = useState({});
@@ -39,7 +46,122 @@ function App() {
     setState(prevState => ({
       ...prevState,
       loggedIn: false,
+      favorites: [],
     }));
+  };
+
+  const getFavorites = async () => {
+    try {
+      const { data: { data: { favorites } } } = await axios({
+        url: `${process.env.REACT_APP_ENDPOINT}/gql`,
+        method: 'post',
+        data: {
+          query: `{ 
+            favorites {
+              name,
+              place_id,
+              rating,
+              picture,
+              price,
+              id,
+            },
+          }`,
+        },
+      });
+      console.log(favorites); //eslint-disable-line
+      setState(prevState => ({
+        ...prevState,
+        favorites: favorites.map(favorite => ({ ...favorite, placeId: favorite.place_id })),
+        isLoading: false,
+      }));
+    } catch (error) {
+      console.log(error) // eslint-disable-line
+    }
+  };
+
+  const showModal = async (place) => {
+    setState(prevState => ({
+      ...prevState,
+      modal: {
+        ...prevState.modal,
+        show: true,
+        attraction: place,
+      },
+    }));
+  };
+
+  const closeModal = () => {
+    setState(prevState => ({
+      ...prevState,
+      modal: {
+        ...prevState.modal,
+        show: false,
+        attraction: {},
+      },
+    }));
+  };
+
+  const addFavorite = async (placeId) => {
+    try {
+      const { data: { data: { addFavorite: favorite } } } = await axios({
+        url: `${process.env.REACT_APP_ENDPOINT}/gql`,
+        method: 'post',
+        data: {
+          query: ` 
+          mutation {
+           addFavorite (id: "${placeId}") {
+              id,
+              name,
+              picture,
+              place_id,
+              price,
+              rating,
+            },
+          }`,
+        },
+      });
+      console.log(favorite); //eslint-disable-line
+      setState(prevState => ({
+        ...prevState,
+        isLoading: false,
+        awaitingFavorite: false,
+        favorites: [
+          ...state.favorites,
+          {
+            ...favorite,
+            placeId: favorite.place_id,
+          },
+        ],
+      }));
+    } catch (error) {
+      console.log(error) // eslint-disable-line
+    }
+  };
+
+  const removeFavorite = async (favId) => {
+    try {
+      const { data: { data: { removeFavorite: { user_id, attractions_id, id } } } } = await axios({  //eslint-disable-line
+        url: `${process.env.REACT_APP_ENDPOINT}/gql`,
+        method: 'post',
+        data: {
+          query: `
+          mutation {
+            removeFavorite (id: ${favId}) {
+              id,
+              user_id,
+              attraction_id
+            },
+          }`,
+        },
+      });
+      setState(prevState => ({
+        ...prevState,
+        favorites: state.favorites.filter(favorite => favorite.id !== favId),
+      }));
+      closeModal();
+    } catch (error) {
+      console.log(error) // eslint-disable-line
+    }
   };
 
   useEffect(() => {
@@ -59,6 +181,7 @@ function App() {
         // TODO: Update this response message
         if (authorization === 'success auth') {
           const { name, email, sub: googleId } = decode(token);
+          axios.defaults.headers.common['Authorization'] = token; //eslint-disable-line
 
           // check userInfo response, if valid set user info
           setUser({
@@ -72,6 +195,7 @@ function App() {
             ...prevState,
             loggedIn: true,
           }));
+          getFavorites();
         } else {
           throw Error('Not Authorized');
         }
@@ -101,9 +225,10 @@ function App() {
       const promise = new Promise((resolve) => {
         setTimeout(() => {
           resolve({
-            profile: false,
-            'heart-fav': false,
+            profile: true,
+            'heart-fav': true,
             'more-button': true,
+            cta: true,
           });
         }, 500);
       });
@@ -131,11 +256,17 @@ function App() {
       },
     );
 
+    axios.defaults.headers.common['Authorization'] = res.tokenId; //eslint-disable-line
+
+
     if (authorization === 'success auth') {
       store.add(res.tokenId);
       setState(prevState => ({
         ...prevState,
         loggedIn: true,
+        cta: {
+          show: false,
+        },
       }));
       const { name, email, sub: googleId } = decode(res.tokenId);
 
@@ -144,6 +275,7 @@ function App() {
         email,
         googleId,
       });
+      getFavorites();
     }
   };
 
@@ -151,27 +283,26 @@ function App() {
     console.log(res); // eslint-disable-line
   };
 
-  const showModal = async (place) => {
-    setState(prevState => ({
-      ...prevState,
-      modal: {
-        ...prevState.modal,
+  const showCTA = (favId) => {
+    setState({
+      ...state,
+      awaitingFavorite: favId,
+      cta: {
         show: true,
-        attraction: place,
       },
-    }));
+    });
   };
 
-  const closeModal = () => {
-    setState(prevState => ({
-      ...prevState,
-      modal: {
-        ...prevState.modal,
+  const hideCTA = () => {
+    setState({
+      ...state,
+      awaitingFavorite: false,
+      cta: {
         show: false,
-        attraction: {},
       },
-    }));
+    });
   };
+
 
   const wrapper = !state.modal.show ? styles.App : `${styles.App} ${styles.blur}`;
 
@@ -185,8 +316,8 @@ function App() {
         Feature={Feature}
       />
       <div className={wrapper}>
-        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} />)} />
-        <Route exact path="/profile" render={props => (<Profile {...props} user={user} />)} />
+        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} showCTA={showCTA} hideCTA={hideCTA} loggedIn={state.loggedIn} awaitingFavorite={state.awaitingFavorite} addFavorite={addFavorite} favorites={state.favorites} removeFavorite={removeFavorite} />)} />
+        <Route exact path="/profile" render={props => (<Profile {...props} user={user} showModal={showModal} Feature={Feature} favorites={state.favorites} isLoading={state.isLoading} removeFavorite={removeFavorite} />)} />
       </div>
 
       {state.modal.show && (
@@ -196,8 +327,26 @@ function App() {
           showModal={showModal}
           show={state.modal.show}
           Feature={Feature}
+          loggedIn={state.loggedIn}
+          showCTA={showCTA}
+          hideCTA={hideCTA}
+          awaitingFavorite={state.awaitingFavorite}
+          favorites={state.favorites}
+          addFavorite={addFavorite}
+          removeFavorite={removeFavorite}
         />
       )}
+      <Feature.Switch flag="cta">
+        <></>
+        {state.cta.show && (
+          <FavCTA
+            Feature={Feature}
+            responseFail={responseFail}
+            responseGoogle={responseGoogle}
+            hideCTA={hideCTA}
+          />
+        )}
+      </Feature.Switch>
     </>
   );
 }
