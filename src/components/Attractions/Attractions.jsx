@@ -131,6 +131,16 @@ Attractions.propTypes = {
   loggedIn: PropTypes.bool.isRequired,
   awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
   addFavorite: PropTypes.func.isRequired,
+  removeFavorite: PropTypes.func.isRequired,
+  favorites: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      rating: PropTypes.number,
+      placeId: PropTypes.string,
+      picture: PropTypes.string,
+      types: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ).isRequired,
 };
 
 export default Attractions;
