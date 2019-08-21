@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Favorite.modules.scss';
 import PropTypes from 'prop-types';
 
