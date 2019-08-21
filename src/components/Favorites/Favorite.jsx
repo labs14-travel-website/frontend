@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import './Favorite.modules.scss';
 import PropTypes from 'prop-types';
 
@@ -13,11 +13,9 @@ const Favorite = ({
   awaitingFavorite, addFavorite, favorites, removeFavorite,
 }) => {
   const favList = favorites && favorites.map(fav => fav.place_id);
-  useEffect(() => {
-    if (loggedIn && awaitingFavorite && (placeId === awaitingFavorite)) {
-      addFavorite(awaitingFavorite);
-    }
-  }, [awaitingFavorite, loggedIn]);
+  if (loggedIn && awaitingFavorite && (placeId === awaitingFavorite)) {
+    addFavorite(awaitingFavorite);
+  }
 
   const handleAddFavorite = () => {
     if (!loggedIn) {
