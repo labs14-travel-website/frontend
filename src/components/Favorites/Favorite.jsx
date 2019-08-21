@@ -9,36 +9,35 @@ import PropTypes from 'prop-types';
    */
 
 const Favorite = ({
-  favorite, showCTA, loggedIn, awaitingFavorite, addFavorite, favorites, removeFavorite,
+  favorite: { id, placeId }, showCTA, loggedIn, awaitingFavorite, addFavorite, favorites, removeFavorite,
 }) => {
   const favList = favorites && favorites.map(favorite => favorite.place_id);
   useEffect(() => {
-    console.log('useEffect Favorite.jsx');
-    if (loggedIn && awaitingFavorite) {
-      addFavorite(favorite.placeId);
+    console.log('useEffect Favorite.jsx', placeId, awaitingFavorite);
+    if (loggedIn && awaitingFavorite && (placeId === awaitingFavorite)) {
+      addFavorite(awaitingFavorite);
     }
   }, [awaitingFavorite, loggedIn]);
 
   const handleAddFavorite = () => {
     if (!loggedIn) {
-      showCTA(favorite.placeId);
+      showCTA(placeId);
       // TODO look how to make showCTA a promise so the favorite
       // functionality will work after successfully logged in
     } else {
-      addFavorite(favorite.placeId);
-      // axios call
+      addFavorite(placeId);
     }
   };
 
   const handleRemoveFavorite = () => {
-    removeFavorite(favorite.id);
+    const fav = favorites.filter(favorite => favorite.placeId === placeId);
+    removeFavorite(fav[0].id);
   };
-  console.log(favList)
 
   return (
     <>
       {
-      favorites && favList.includes(favorite.placeId) ? <i onClick={handleRemoveFavorite} className="fas fa-heart fa-2x" id="heart-ol" />
+      favorites && favList.includes(placeId) ? <i onClick={handleRemoveFavorite} className="fas fa-heart fa-2x" id="heart-ol" />
         : <i onClick={handleAddFavorite} className="far fa-heart fa-2x" id="heart-full" />
 
       }
