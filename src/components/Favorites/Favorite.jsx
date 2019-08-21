@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './Favorite.modules.scss';
 import PropTypes from 'prop-types';
 
@@ -9,38 +9,34 @@ import PropTypes from 'prop-types';
    */
 
 const Favorite = ({
-  favId, showCTA, loggedIn, awaitingFavorite,
+  favorite: { placeId }, showCTA, loggedIn,
+  awaitingFavorite, addFavorite, favorites, removeFavorite,
 }) => {
-  const [favList, setFavList] = useState([]);
+  const favList = favorites && favorites.map(fav => fav.place_id);
+  if (loggedIn && awaitingFavorite && (placeId === awaitingFavorite)) {
+    addFavorite(awaitingFavorite);
+  }
 
-  useEffect(() => {
-    if (loggedIn && awaitingFavorite) {
-      setFavList([...favList, awaitingFavorite]);
-      // axios call goes here
-    }
-  }, [awaitingFavorite, favList, loggedIn]);
-
-  const favorite = () => {
+  const handleAddFavorite = () => {
     if (!loggedIn) {
-      showCTA(favId);
+      showCTA(placeId);
       // TODO look how to make showCTA a promise so the favorite
       // functionality will work after successfully logged in
     } else {
-      setFavList([...favList, favId]);
-      // axios call
+      addFavorite(placeId);
     }
   };
 
-  const unfavorite = () => {
-    setFavList(favList.filter(fav => fav !== favId));
-    // axios call
+  const handleRemoveFavorite = () => {
+    const fav = favorites.filter(favorite => favorite.placeId === placeId);
+    removeFavorite(fav[0].id);
   };
 
   return (
     <>
       {
-      favList.includes(favId) ? <i onClick={unfavorite} className="fas fa-heart fa-2x" id="heart-ol" />
-        : <i onClick={favorite} className="far fa-heart fa-2x" id="heart-full" />
+      favorites && favList.includes(placeId) ? <i onClick={handleRemoveFavorite} className="fas fa-heart fa-2x" id="heart-ol" />
+        : <i onClick={handleAddFavorite} className="far fa-heart fa-2x" id="heart-full" />
 
       }
     </>
@@ -49,10 +45,26 @@ const Favorite = ({
 };
 
 Favorite.propTypes = {
-  favId: PropTypes.string.isRequired,
+  // favId: PropTypes.string.isRequired,
   showCTA: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
+  favorites: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      rating: PropTypes.number,
+      placeId: PropTypes.string,
+      picture: PropTypes.string,
+      types: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ).isRequired,
+  removeFavorite: PropTypes.func.isRequired,
+  addFavorite: PropTypes.func.isRequired,
+  favorite: PropTypes.shape(
+    {
+      placeId: PropTypes.string,
+    },
+  ).isRequired,
 };
 
 
