@@ -13,7 +13,10 @@ const Favorite = ({
   awaitingFavorite, addFavorite, favorites, removeFavorite,
 }) => {
   const favList = favorites && favorites.map(fav => fav.place_id);
+  console.log('favList', favList);
+  console.log('placeId :', placeId);
   if (loggedIn && awaitingFavorite && (placeId === awaitingFavorite)) {
+    console.log('adding CTA favorite');
     addFavorite(awaitingFavorite);
   }
 
