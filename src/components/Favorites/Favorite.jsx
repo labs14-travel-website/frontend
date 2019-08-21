@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
    */
 
 const Favorite = ({
-  favorite: { id, placeId }, showCTA, loggedIn, awaitingFavorite, addFavorite, favorites, removeFavorite,
+  favorite: { placeId }, showCTA, loggedIn, awaitingFavorite, addFavorite, favorites, removeFavorite,
 }) => {
   const favList = favorites && favorites.map(favorite => favorite.place_id);
   useEffect(() => {

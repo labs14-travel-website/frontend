@@ -12,10 +12,6 @@ const Profile = ({
   isLoading,
   removeFavorite,
 }) => {
-  useEffect(() => {
-
-  }, []);
-
   if (user.name) {
     return (
       <div>
@@ -40,7 +36,7 @@ const Profile = ({
     );
   }
 
-  return <Redirect to="/profile" />;
+  return <Redirect to="/" />;
 };
 
 Profile.propTypes = {

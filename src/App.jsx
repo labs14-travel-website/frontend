@@ -78,29 +78,57 @@ function App() {
     }
   };
 
+  const showModal = async (place) => {
+    setState(prevState => ({
+      ...prevState,
+      modal: {
+        ...prevState.modal,
+        show: true,
+        attraction: place,
+      },
+    }));
+  };
+
+  const closeModal = () => {
+    setState(prevState => ({
+      ...prevState,
+      modal: {
+        ...prevState.modal,
+        show: false,
+        attraction: {},
+      },
+    }));
+  };  
+
   const addFavorite = async (placeId) => {
     try {
-      const { data: { data: { addFavorite: { user_id, attractions_id, id } } } } = await axios({
+      const { data: { data: { addFavorite: favorite } } } = await axios({
         url: `${process.env.REACT_APP_ENDPOINT}/gql`,
         method: 'post',
         data: {
           query: ` 
-          mutation { 
+          mutation {
            addFavorite (id: "${placeId}") {
               id,
-              user_id,
-              attraction_id,
+              name,
+              picture,
+              place_id,
+              price,
+              rating,
             },
           }`,
         },
       });
-      console.log(user_id, attractions_id, id); //eslint-disable-line
+      console.log(favorite); //eslint-disable-line
       setState(prevState => ({
         ...prevState,
         isLoading: false,
         awaitingFavorite: false,
+        favorites: [
+          ...state.favorites,
+          favorite,
+        ],
       }));
-      getFavorites();
     } catch (error) {
       console.log(error) // eslint-disable-line
     }
@@ -122,7 +150,11 @@ function App() {
           }`,
         },
       });
-      getFavorites();
+      setState(prevState => ({
+        ...prevState,
+        favorites: state.favorites.filter(favorite => favorite.id !== favId),
+      }));
+      closeModal();
     } catch (error) {
       console.log(error) // eslint-disable-line
     }
@@ -220,17 +252,6 @@ function App() {
       },
     );
 
-    // axios.interceptors.request.use((config) => {
-    //   const newConfig = {
-    //     ...config,
-    //     headers: {
-    //       ...config.headers,
-    //       authorization: res.tokenId,
-    //     },
-    //   };
-    //   return newConfig;
-    // });
-    // console.log(res.tokenId); //eslint-disable-line
     axios.defaults.headers.common['Authorization'] = res.tokenId; //eslint-disable-line
 
 
@@ -256,28 +277,6 @@ function App() {
 
   const responseFail = (res) => {
     console.log(res); // eslint-disable-line
-  };
-
-  const showModal = async (place) => {
-    setState(prevState => ({
-      ...prevState,
-      modal: {
-        ...prevState.modal,
-        show: true,
-        attraction: place,
-      },
-    }));
-  };
-
-  const closeModal = () => {
-    setState(prevState => ({
-      ...prevState,
-      modal: {
-        ...prevState.modal,
-        show: false,
-        attraction: {},
-      },
-    }));
   };
 
   const showCTA = (favId) => {
