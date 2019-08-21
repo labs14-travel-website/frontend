@@ -39,6 +39,7 @@ function Attractions(props) {
   // };
 
   const showAttractions = (attractionList) => {
+    console.log('attractions favorites', favorites);
     const elements = attractionList.map(place => (
       <div>
         <Feature.Toggle flag="heart-fav">
