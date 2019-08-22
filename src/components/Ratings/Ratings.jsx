@@ -12,6 +12,7 @@ const Ratings = ({ rating }) => (
     <StarRatingComponent
       name="rating"
       starCount={5}
+      editing={false}
       value={rating}
       starColor="#F2C94C"
       renderStarIcon={() => (
