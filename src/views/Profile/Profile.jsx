@@ -39,12 +39,20 @@ const Profile = ({
   return <Redirect to="/" />;
 };
 
+Profile.defaultProps = {
+  user: {
+    name: '',
+    email: '',
+    googleId: '',
+  },
+};
+
 Profile.propTypes = {
   user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    googleId: PropTypes.string.isRequired,
-  }).isRequired,
+    name: PropTypes.string,
+    email: PropTypes.string,
+    googleId: PropTypes.string,
+  }),
   showModal: PropTypes.func.isRequired,
   Feature: PropTypes.objectOf(
     PropTypes.func,
