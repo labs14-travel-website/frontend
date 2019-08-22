@@ -47,6 +47,13 @@ const Modal = (props) => {
     getDescription();
   }, [attraction.name]);
 
+  useEffect(() => {
+    document.addEventListener('keyup', onClose);
+    return function cleanup() {
+      document.removeEventListener('keyup', onClose);
+    };
+  });
+
   if (!show) {
     return null;
   }
