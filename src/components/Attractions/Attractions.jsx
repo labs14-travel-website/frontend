@@ -62,11 +62,6 @@ function Attractions(props) {
                 Rating:
                 {place.rating}
               </h1>,
-              <Feature.Switch flag="more-button">
-                <button type="button">More Info</button>
-                <>
-                </>
-              </Feature.Switch>,
             ],
             place,
           }}
