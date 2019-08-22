@@ -9,7 +9,7 @@ import Hero from '../../components/Hero';
 import '../../config/interceptor';
 
 function Home({
-  showModal, Feature, showCTA, hideCTA, loggedIn,
+  showModal, showCTA, hideCTA, loggedIn,
   awaitingFavorite, addFavorite, favorites, removeFavorite,
 }) {
   const [state, setState] = useState({
@@ -71,7 +71,6 @@ function Home({
               attractions={state.attractions}
               isLoading={state.isLoading}
               showModal={showModal}
-              Feature={Feature}
               showCTA={showCTA}
               hideCTA={hideCTA}
               loggedIn={loggedIn}
@@ -88,9 +87,6 @@ function Home({
 
 Home.propTypes = {
   showModal: PropTypes.func.isRequired,
-  Feature: PropTypes.objectOf(
-    PropTypes.func,
-  ).isRequired,
   showCTA: PropTypes.func.isRequired,
   hideCTA: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
