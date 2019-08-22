@@ -304,7 +304,7 @@ function App() {
   };
 
 
-  const wrapper = !state.modal.show ? styles.App : `${styles.App} ${styles.blur}`;
+  const wrapper = !(state.modal.show || state.cta.show) ? styles.App : `${styles.App} ${styles.blur}`;
 
   return (
     <>
