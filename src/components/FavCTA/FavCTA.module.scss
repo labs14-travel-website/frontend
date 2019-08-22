@@ -1,7 +1,9 @@
+@import '../../assets/master';
+
 .FavCTA {
     &__wrapper {
         width: 50%;
-        background-color: black;
+        background-color: $secondary;
         position: fixed;
         left: 25%;
         padding: 20px;
