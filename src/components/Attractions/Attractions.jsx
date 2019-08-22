@@ -107,7 +107,7 @@ Attractions.defaultProps = {
   hideCTA: () => true,
   addFavorite: () => true,
   awaitingFavorite: false,
-}
+};
 
 Attractions.propTypes = {
   attractions: PropTypes.arrayOf(
