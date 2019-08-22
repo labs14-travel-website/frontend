@@ -24,7 +24,6 @@ const Modal = (props) => {
     show,
     // children,
     attraction,
-    Feature,
     loggedIn,
     showCTA,
     hideCTA,
@@ -72,19 +71,16 @@ const Modal = (props) => {
         <div className={styles.Modal__image} style={style} />
         <div className={styles.Modal__information}>
           <h2>{attraction.name}</h2>
-
-          <Feature.Toggle flag="heart-fav">
-            <Favorite
-              favorite={attraction}
-              loggedIn={loggedIn}
-              showCTA={showCTA}
-              hideCTA={hideCTA}
-              awaitingFavorite={awaitingFavorite}
-              favorites={favorites}
-              addFavorite={addFavorite}
-              removeFavorite={removeFavorite}
-            />
-          </Feature.Toggle>
+          <Favorite
+            favorite={attraction}
+            loggedIn={loggedIn}
+            showCTA={showCTA}
+            hideCTA={hideCTA}
+            awaitingFavorite={awaitingFavorite}
+            favorites={favorites}
+            addFavorite={addFavorite}
+            removeFavorite={removeFavorite}
+          />
 
           <div className={styles.Ratings}>
             <Ratings rating={attraction.rating} />
