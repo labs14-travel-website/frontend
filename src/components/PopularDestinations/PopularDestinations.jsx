@@ -74,7 +74,9 @@ const PopularDestinations = ({ handleSearch, noResults }) => {
                 key={location.city}
                 data={{
                   title: location.city,
-                  body: location.country,
+                  body: [
+                    <p style={{ fontSize: '18px' }}>{location.country}</p>
+                  ],
                   place: location,
                 }}
                 handleOnClick={handleOnClick}
