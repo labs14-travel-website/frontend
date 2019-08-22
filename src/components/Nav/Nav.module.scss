@@ -1,7 +1,12 @@
+@import '../../assets/master';
+
 .wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
+    background: $secondary;
+    position: relative;
+    z-index: 1;
 }
 
 .Nav {
