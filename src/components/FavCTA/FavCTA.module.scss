@@ -2,8 +2,9 @@
     width: 50%;
     background-color: black;
     position: fixed;
-    top: 80px;
     left: 25%;
     padding: 20px;
     z-index: 2;
+    top: 50%;
+    transform: translateY(-50%);
 }
