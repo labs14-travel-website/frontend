@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import GoogleLogin from 'react-google-login';
 import PropTypes from 'prop-types';
 import styles from './FavCTA.module.scss';
@@ -15,6 +15,13 @@ const FavCTA = ({
   hideCTA,
 }) => {
   const [clientId] = useState(process.env.REACT_APP_OAUTH_GOOGLE_ID);
+
+  useEffect(() => {
+    document.addEventListener('keyup', hideCTA);
+    return function cleanup() {
+      document.removeEventListener('keyup', hideCTA);
+    };
+  });
 
   return (
     <>
