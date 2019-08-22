@@ -20,7 +20,7 @@ function App() {
       attraction: {},
     },
     cta: {
-      show: true,
+      show: false,
     },
     awaitingFavorite: false,
     favorites: [],
@@ -120,7 +120,6 @@ function App() {
           }`,
         },
       });
-      console.log(favorite); //eslint-disable-line
       setState(prevState => ({
         ...prevState,
         isLoading: false,
@@ -140,7 +139,7 @@ function App() {
 
   const removeFavorite = async (favId) => {
     try {
-      const { data: { data: { removeFavorite: { user_id, attractions_id, id } } } } = await axios({  //eslint-disable-line
+      await axios({
         url: `${process.env.REACT_APP_ENDPOINT}/gql`,
         method: 'post',
         data: {
@@ -200,7 +199,6 @@ function App() {
           throw Error('Not Authorized');
         }
       } catch (error) {
-        // logout
         logout();
       }
     };
