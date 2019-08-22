@@ -103,6 +103,13 @@ function Attractions(props) {
   );
 }
 
+Attractions.defaultProps = {
+  showCTA: () => true,
+  hideCTA: () => true,
+  addFavorite: () => true,
+  awaitingFavorite: false,
+}
+
 Attractions.propTypes = {
   attractions: PropTypes.arrayOf(
     PropTypes.shape({
@@ -116,11 +123,11 @@ Attractions.propTypes = {
   isLoading: PropTypes.bool.isRequired,
   showModal: PropTypes.func.isRequired,
   Feature: PropTypes.objectOf(PropTypes.func).isRequired,
-  showCTA: PropTypes.func.isRequired,
-  hideCTA: PropTypes.func.isRequired,
+  showCTA: PropTypes.func,
+  hideCTA: PropTypes.func,
   loggedIn: PropTypes.bool.isRequired,
-  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).isRequired,
-  addFavorite: PropTypes.func.isRequired,
+  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  addFavorite: PropTypes.func,
   removeFavorite: PropTypes.func.isRequired,
   favorites: PropTypes.arrayOf(
     PropTypes.shape({

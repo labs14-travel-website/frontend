@@ -11,6 +11,7 @@ const Profile = ({
   favorites,
   isLoading,
   removeFavorite,
+  loggedIn,
 }) => {
   if (user.name) {
     return (
@@ -27,6 +28,7 @@ const Profile = ({
               showModal={showModal}
               Feature={Feature}
               favorites={favorites}
+              loggedIn={loggedIn}
               removeFavorite={removeFavorite}
             />
           )
