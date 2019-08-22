@@ -194,7 +194,35 @@ function App() {
             ...prevState,
             loggedIn: true,
           }));
-          getFavorites();
+          const initialFavorites = async () => {
+            try {
+              const { data: { data: { favorites } } } = await axios({
+                url: `${process.env.REACT_APP_ENDPOINT}/gql`,
+                method: 'post',
+                data: {
+                  query: `{ 
+                    favorites {
+                      name,
+                      place_id,
+                      rating,
+                      picture,
+                      price,
+                      id,
+                    },
+                  }`,
+                },
+              });
+              setState(prevState => ({
+                ...prevState,
+                favorites: favorites.map(favorite => ({ ...favorite, placeId: favorite.place_id })),
+                isLoading: false,
+              }));
+            } catch (error) {
+              console.log(error) // eslint-disable-line
+              if (error.status === 401) logout();
+            }
+          };
+          initialFavorites();
         } else {
           throw Error('Not Authorized');
         }
