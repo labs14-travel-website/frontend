@@ -15,7 +15,7 @@ import logo from '../../assets/img/logo.png';
  */
 
 const Nav = ({
-  loggedIn, responseFail, responseGoogle, logout, Feature,
+  loggedIn, responseFail, responseGoogle, logout,
 }) => {
   const [clientId] = useState(process.env.REACT_APP_OAUTH_GOOGLE_ID);
   return (
@@ -51,7 +51,6 @@ Nav.propTypes = {
   responseFail: PropTypes.func.isRequired,
   responseGoogle: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  Feature: PropTypes.objectOf(PropTypes.func).isRequired,
 };
 
 export default Nav;
