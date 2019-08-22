@@ -27,9 +27,14 @@
     &__google {
         align-self: center;
     }
+
+    &__links {
+        display: flex;
+        align-items: center;
+    }
 }
 
 .Favorites {
     text-decoration: none;
-    color: white;
+    color: $mono-light;
 }

@@ -75,7 +75,7 @@ const PopularDestinations = ({ handleSearch, noResults }) => {
                 data={{
                   title: location.city,
                   body: [
-                    <p style={{ fontSize: '18px' }}>{location.country}</p>
+                    <p style={{ fontSize: '18px' }}>{location.country}</p>,
                   ],
                   place: location,
                 }}
