@@ -53,6 +53,7 @@ Profile.propTypes = {
     email: PropTypes.string,
     googleId: PropTypes.string,
   }),
+  loggedIn: PropTypes.bool.isRequired,
   showModal: PropTypes.func.isRequired,
   favorites: PropTypes.arrayOf(
     PropTypes.shape({
