@@ -75,6 +75,7 @@ function App() {
       }));
     } catch (error) {
       console.log(error) // eslint-disable-line
+      if (error.status === 401) logout();
     }
   };
 
