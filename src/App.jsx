@@ -20,7 +20,7 @@ function App() {
       attraction: {},
     },
     cta: {
-      show: false,
+      show: true,
     },
     awaitingFavorite: false,
     favorites: [],
