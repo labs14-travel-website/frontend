@@ -39,20 +39,18 @@ function Attractions(props) {
   const showAttractions = (attractionList) => {
     const elements = attractionList.map(place => (
       <div key={place.placeId} className={styles.Attractions__wrapper__card}>
-        <Feature.Toggle flag="heart-fav">
-          <div className={styles.Attractions__wrapper__heart}>
-            <Favorite
-              favorite={place}
-              showCTA={showCTA}
-              hideCTA={hideCTA}
-              loggedIn={loggedIn}
-              awaitingFavorite={awaitingFavorite}
-              addFavorite={addFavorite}
-              favorites={favorites}
-              removeFavorite={removeFavorite}
-            />
-          </div>
-        </Feature.Toggle>
+        <div className={styles.Attractions__wrapper__heart}>
+          <Favorite
+            favorite={place}
+            showCTA={showCTA}
+            hideCTA={hideCTA}
+            loggedIn={loggedIn}
+            awaitingFavorite={awaitingFavorite}
+            addFavorite={addFavorite}
+            favorites={favorites}
+            removeFavorite={removeFavorite}
+          />
+        </div>
         <CardDisplay
           handleOnClick={handleOnClick}
           data={{
@@ -70,7 +68,7 @@ function Attractions(props) {
 
     if (attractionList.length % 4 !== 0) {
       for (let i = 0; i < (4 - (attractionList.length % 4)); i += 1) {
-        elements.push(<div className={styles.CardSpacer} />);
+        elements.push(<div key={i} className={styles.CardSpacer} />);
       }
     }
 
@@ -121,7 +119,7 @@ Attractions.propTypes = {
   showCTA: PropTypes.func.isRequired,
   hideCTA: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
+  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).isRequired,
   addFavorite: PropTypes.func.isRequired,
   removeFavorite: PropTypes.func.isRequired,
   favorites: PropTypes.arrayOf(

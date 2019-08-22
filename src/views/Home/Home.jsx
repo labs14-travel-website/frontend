@@ -94,7 +94,7 @@ Home.propTypes = {
   showCTA: PropTypes.func.isRequired,
   hideCTA: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
+  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).isRequired,
   addFavorite: PropTypes.func.isRequired,
   favorites: PropTypes.arrayOf(
     PropTypes.shape({
