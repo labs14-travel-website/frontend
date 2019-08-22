@@ -40,10 +40,9 @@ function Attractions(props) {
 
   const showAttractions = (attractionList) => {
     const elements = attractionList.map(place => (
-      <div>
+      <div key={place.placeId}>
         <Feature.Toggle flag="heart-fav">
           <Favorite
-            key={place.placeId}
             favorite={place}
             showCTA={showCTA}
             hideCTA={hideCTA}
@@ -55,12 +54,11 @@ function Attractions(props) {
           />
         </Feature.Toggle>
         <CardDisplay
-          key={place.placeId}
           handleOnClick={handleOnClick}
           data={{
             title: place.name,
             body: [
-              <h1>
+              <h1 key={place.placeId}>
                 Rating:
                 {place.rating}
               </h1>,
