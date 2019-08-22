@@ -2,14 +2,13 @@
 
 .FavCTA {
     &__wrapper {
-        width: 50%;
         background-color: $secondary;
         position: fixed;
-        left: 25%;
+        left: 50%;
         padding: 20px;
         z-index: 2;
         top: 50%;
-        transform: translateY(-50%);
+        transform: translateY(-50%) translateX(-50%);
     }
 
     &_overlay {
@@ -24,5 +23,11 @@
         align-items: center;
         overflow-y: scroll;
         z-index: 1;
+    }
+
+    &__close {
+        position: absolute;
+        right: 10px;
+        top: 6px;
     }
 }

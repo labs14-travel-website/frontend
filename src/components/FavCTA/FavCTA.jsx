@@ -27,7 +27,7 @@ const FavCTA = ({
     <>
       <div className={styles.FavCTA_overlay} onClick={hideCTA} />
       <div className={styles.FavCTA__wrapper}>
-        <i onClick={hideCTA} className="fas fa-times fa-2x" />
+        <i onClick={hideCTA} className={`${styles.FavCTA__close} fas fa-times fa-2x`} />
         <h3>Login</h3>
         <p>Please sign up to save attractions to your profile.</p>
         <GoogleLogin
