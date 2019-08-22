@@ -91,7 +91,7 @@ const Modal = (props) => {
             {
               description
                 ? <p>{description}</p>
-                : <Loader type="Puff" color="#00BFFF" height="100" width="100" />
+                : <Loader type="Puff" color="#00BFFF" height={100} width={100} />
             }
           </div>
           <div className={styles.actions}>
