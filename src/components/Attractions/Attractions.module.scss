@@ -9,23 +9,30 @@
     max-width: 1240px;
     margin: 0 auto;
 
-    i {
+    &__heart i {
       z-index: 1;
       position: relative;
-      top: 60px;
+      top: 70px;
       left: 100px;
+      background: rgba(0, 0, 0, 0.5);
+      padding: 8px;
+      border-radius: 50%;
 
       @media #{$mobile} {
         left: 40%;
       }
     }
 
-    div {
+    &__card {
       margin: 4.43% 0;
 
       @media #{$mobile} {
         width: 100%;
         margin: 10px 0;
+      }
+
+      &_rating {
+        padding-bottom: 10px;
       }
     }
 
