@@ -2,10 +2,13 @@ import React from 'react';
 // import React, { useState } from 'react';
 import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
+import StarRatingComponent from 'react-star-rating-component';
 // import Modal from '../Modal';
 import CardDisplay from '../CardDisplay';
 import styles from './Attractions.module.scss';
 import Favorite from '../Favorites';
+import Ratings from '../Ratings/Ratings';
+// import Ratings from '../Ratings/Ratings';
 
 /**
  * @description This will display the attraction cards component when they are ready
@@ -34,34 +37,31 @@ function Attractions(props) {
     // setLoaded(true);
   };
 
-  // const showModal = () => {
-  //   setLoaded(!loaded);
-  // };
-
   const showAttractions = (attractionList) => {
     const elements = attractionList.map(place => (
-      <div key={place.placeId}>
+      <div key={place.placeId} className={styles.Attractions__wrapper__card}>
         <Feature.Toggle flag="heart-fav">
-          <Favorite
-            favorite={place}
-            showCTA={showCTA}
-            hideCTA={hideCTA}
-            loggedIn={loggedIn}
-            awaitingFavorite={awaitingFavorite}
-            addFavorite={addFavorite}
-            favorites={favorites}
-            removeFavorite={removeFavorite}
-          />
+          <div className={styles.Attractions__wrapper__heart}>
+            <Favorite
+              favorite={place}
+              showCTA={showCTA}
+              hideCTA={hideCTA}
+              loggedIn={loggedIn}
+              awaitingFavorite={awaitingFavorite}
+              addFavorite={addFavorite}
+              favorites={favorites}
+              removeFavorite={removeFavorite}
+            />
+          </div>
         </Feature.Toggle>
         <CardDisplay
           handleOnClick={handleOnClick}
           data={{
             title: place.name,
             body: [
-              <h1 key={place.placeId}>
-                Rating:
-                {place.rating}
-              </h1>,
+              <div key={place.placeId} className={styles.Attractions__wrapper__card_rating}>
+                <Ratings rating={place.rating} />
+              </div>,
             ],
             place,
           }}

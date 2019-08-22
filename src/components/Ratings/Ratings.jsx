@@ -11,8 +11,8 @@ const Ratings = ({ rating }) => (
   <>
     <StarRatingComponent
       name="rating"
-      starCount={5}
       editing={false}
+      starCount={5}
       value={rating}
       starColor="#F2C94C"
       renderStarIcon={() => (
@@ -37,9 +37,7 @@ const Ratings = ({ rating }) => (
     />
   </>
 );
-
 Ratings.propTypes = {
   rating: PropTypes.number.isRequired,
 };
-
 export default Ratings;

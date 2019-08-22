@@ -9,7 +9,7 @@
     max-width: 1240px;
     margin: 0 auto;
 
-    i {
+    &__heart i {
       z-index: 1;
       position: relative;
       top: 70px;
@@ -23,12 +23,16 @@
       }
     }
 
-    div {
+    &__card {
       margin: 4.43% 0;
 
       @media #{$mobile} {
         width: 100%;
         margin: 10px 0;
+      }
+
+      &_rating {
+        padding-bottom: 10px;
       }
     }
 
