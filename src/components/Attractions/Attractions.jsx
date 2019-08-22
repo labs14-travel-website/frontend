@@ -2,7 +2,6 @@ import React from 'react';
 // import React, { useState } from 'react';
 import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
-import StarRatingComponent from 'react-star-rating-component';
 // import Modal from '../Modal';
 import CardDisplay from '../CardDisplay';
 import styles from './Attractions.module.scss';
