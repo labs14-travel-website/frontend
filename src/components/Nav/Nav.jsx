@@ -21,9 +21,9 @@ const Nav = ({
   return (
     <div className={styles.wrapper}>
       <div className={styles.Nav}>
-        <a href="/">
+        <Link to="/">
           <img className={styles.Nav__logo} alt="roamly logo" src={logo} />
-        </a>
+        </Link>
         <Feature.Toggle flag="profile">
           <div>
             {loggedIn && <Link to="/profile" className={styles.Favorites}>Favorites</Link>}
