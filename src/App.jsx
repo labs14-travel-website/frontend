@@ -68,7 +68,6 @@ function App() {
           }`,
         },
       });
-      console.log(favorites); //eslint-disable-line
       setState(prevState => ({
         ...prevState,
         favorites: favorites.map(favorite => ({ ...favorite, placeId: favorite.place_id })),
