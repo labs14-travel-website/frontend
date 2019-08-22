@@ -13,10 +13,7 @@ const Favorite = ({
   awaitingFavorite, addFavorite, favorites, removeFavorite,
 }) => {
   const favList = favorites && favorites.map(fav => fav.place_id);
-  console.log('favList', favList);
-  console.log('placeId :', placeId);
   if (loggedIn && awaitingFavorite && (placeId === awaitingFavorite)) {
-    console.log('adding CTA favorite');
     addFavorite(awaitingFavorite);
   }
 
@@ -51,7 +48,7 @@ Favorite.propTypes = {
   // favId: PropTypes.string.isRequired,
   showCTA: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
+  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).isRequired,
   favorites: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,

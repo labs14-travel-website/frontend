@@ -7,10 +7,10 @@ import '../../config/interceptor';
 const Profile = ({
   user,
   showModal,
-  Feature,
   favorites,
   isLoading,
   removeFavorite,
+  loggedIn,
 }) => {
   if (user.name) {
     return (
@@ -25,8 +25,8 @@ const Profile = ({
               attractions={favorites}
               isLoading={isLoading}
               showModal={showModal}
-              Feature={Feature}
               favorites={favorites}
+              loggedIn={loggedIn}
               removeFavorite={removeFavorite}
             />
           )
@@ -39,16 +39,22 @@ const Profile = ({
   return <Redirect to="/" />;
 };
 
+Profile.defaultProps = {
+  user: {
+    name: '',
+    email: '',
+    googleId: '',
+  },
+};
+
 Profile.propTypes = {
   user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    googleId: PropTypes.string.isRequired,
-  }).isRequired,
+    name: PropTypes.string,
+    email: PropTypes.string,
+    googleId: PropTypes.string,
+  }),
+  loggedIn: PropTypes.bool.isRequired,
   showModal: PropTypes.func.isRequired,
-  Feature: PropTypes.objectOf(
-    PropTypes.func,
-  ).isRequired,
   favorites: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,

@@ -6,6 +6,8 @@ import PropTypes from 'prop-types';
 import CardDisplay from '../CardDisplay';
 import styles from './Attractions.module.scss';
 import Favorite from '../Favorites';
+import Ratings from '../Ratings/Ratings';
+// import Ratings from '../Ratings/Ratings';
 
 /**
  * @description This will display the attraction cards component when they are ready
@@ -15,7 +17,6 @@ function Attractions(props) {
     attractions,
     isLoading,
     showModal,
-    Feature,
     showCTA,
     hideCTA,
     loggedIn,
@@ -34,17 +35,11 @@ function Attractions(props) {
     // setLoaded(true);
   };
 
-  // const showModal = () => {
-  //   setLoaded(!loaded);
-  // };
-
   const showAttractions = (attractionList) => {
-    console.log('attractions favorites', favorites);
     const elements = attractionList.map(place => (
-      <div>
-        <Feature.Toggle flag="heart-fav">
+      <div key={place.placeId} className={styles.Attractions__wrapper__card}>
+        <div className={styles.Attractions__wrapper__heart}>
           <Favorite
-            key={place.placeId}
             favorite={place}
             showCTA={showCTA}
             hideCTA={hideCTA}
@@ -54,22 +49,15 @@ function Attractions(props) {
             favorites={favorites}
             removeFavorite={removeFavorite}
           />
-        </Feature.Toggle>
+        </div>
         <CardDisplay
-          key={place.placeId}
           handleOnClick={handleOnClick}
           data={{
             title: place.name,
             body: [
-              <h1>
-                Rating:
-                {place.rating}
-              </h1>,
-              <Feature.Switch flag="more-button">
-                <button type="button">More Info</button>
-                <>
-                </>
-              </Feature.Switch>,
+              <div key={place.placeId} className={styles.Attractions__wrapper__card_rating}>
+                <Ratings rating={place.rating} />
+              </div>,
             ],
             place,
           }}
@@ -79,7 +67,7 @@ function Attractions(props) {
 
     if (attractionList.length % 4 !== 0) {
       for (let i = 0; i < (4 - (attractionList.length % 4)); i += 1) {
-        elements.push(<div className={styles.CardSpacer} />);
+        elements.push(<div key={i} className={styles.CardSpacer} />);
       }
     }
 
@@ -97,8 +85,8 @@ function Attractions(props) {
                 <Loader
                   type="Puff"
                   color="#00BFFF"
-                  height="100"
-                  width="100"
+                  height={100}
+                  width={100}
                 />
               </div>
             )
@@ -114,6 +102,13 @@ function Attractions(props) {
   );
 }
 
+Attractions.defaultProps = {
+  showCTA: () => true,
+  hideCTA: () => true,
+  addFavorite: () => true,
+  awaitingFavorite: false,
+};
+
 Attractions.propTypes = {
   attractions: PropTypes.arrayOf(
     PropTypes.shape({
@@ -126,12 +121,11 @@ Attractions.propTypes = {
   ).isRequired,
   isLoading: PropTypes.bool.isRequired,
   showModal: PropTypes.func.isRequired,
-  Feature: PropTypes.objectOf(PropTypes.func).isRequired,
-  showCTA: PropTypes.func.isRequired,
-  hideCTA: PropTypes.func.isRequired,
+  showCTA: PropTypes.func,
+  hideCTA: PropTypes.func,
   loggedIn: PropTypes.bool.isRequired,
-  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
-  addFavorite: PropTypes.func.isRequired,
+  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
+  addFavorite: PropTypes.func,
   removeFavorite: PropTypes.func.isRequired,
   favorites: PropTypes.arrayOf(
     PropTypes.shape({

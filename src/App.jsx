@@ -68,7 +68,6 @@ function App() {
           }`,
         },
       });
-      console.log(favorites); //eslint-disable-line
       setState(prevState => ({
         ...prevState,
         favorites: favorites.map(favorite => ({ ...favorite, placeId: favorite.place_id })),
@@ -76,6 +75,7 @@ function App() {
       }));
     } catch (error) {
       console.log(error) // eslint-disable-line
+      if (error.status === 401) logout();
     }
   };
 
@@ -120,7 +120,6 @@ function App() {
           }`,
         },
       });
-      console.log(favorite); //eslint-disable-line
       setState(prevState => ({
         ...prevState,
         isLoading: false,
@@ -140,7 +139,7 @@ function App() {
 
   const removeFavorite = async (favId) => {
     try {
-      const { data: { data: { removeFavorite: { user_id, attractions_id, id } } } } = await axios({  //eslint-disable-line
+      await axios({
         url: `${process.env.REACT_APP_ENDPOINT}/gql`,
         method: 'post',
         data: {
@@ -200,7 +199,6 @@ function App() {
           throw Error('Not Authorized');
         }
       } catch (error) {
-        // logout
         logout();
       }
     };
@@ -304,7 +302,7 @@ function App() {
   };
 
 
-  const wrapper = !state.modal.show ? styles.App : `${styles.App} ${styles.blur}`;
+  const wrapper = !(state.modal.show || state.cta.show) ? styles.App : `${styles.App} ${styles.blur}`;
 
   return (
     <>
@@ -317,7 +315,7 @@ function App() {
       />
       <div className={wrapper}>
         <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} showCTA={showCTA} hideCTA={hideCTA} loggedIn={state.loggedIn} awaitingFavorite={state.awaitingFavorite} addFavorite={addFavorite} favorites={state.favorites} removeFavorite={removeFavorite} />)} />
-        <Route exact path="/profile" render={props => (<Profile {...props} user={user} showModal={showModal} Feature={Feature} favorites={state.favorites} isLoading={state.isLoading} removeFavorite={removeFavorite} />)} />
+        <Route exact path="/profile" render={props => (<Profile {...props} loggedIn={state.loggedIn} user={user} showModal={showModal} Feature={Feature} favorites={state.favorites} isLoading={state.isLoading} removeFavorite={removeFavorite} />)} />
       </div>
 
       {state.modal.show && (
