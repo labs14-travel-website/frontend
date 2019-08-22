@@ -119,18 +119,14 @@ const Modal = (props) => {
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
-  Feature: PropTypes.func.isRequired,
-  // children: PropTypes.element.isRequired,
-  attraction: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      rating: PropTypes.number,
-      price: PropTypes.number,
-      placeId: PropTypes.string,
-      picture: PropTypes.string,
-      types: PropTypes.arrayOf(PropTypes.string),
-    }),
-  ).isRequired,
+  attraction: PropTypes.shape({
+    name: PropTypes.string,
+    rating: PropTypes.number,
+    price: PropTypes.number,
+    placeId: PropTypes.string,
+    picture: PropTypes.string,
+    types: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
   loggedIn: PropTypes.bool.isRequired,
   showCTA: PropTypes.func.isRequired,
   hideCTA: PropTypes.func.isRequired,
