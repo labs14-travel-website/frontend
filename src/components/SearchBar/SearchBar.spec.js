@@ -3,6 +3,9 @@ import { mount } from '../../enzyme';
 import SearchBar from './SearchBar';
 
 describe('Search Bar', () => {
+  const searchBarProps = {
+    handleSearch: () => true,
+  };
 //   it('Search should mount once', () => {
 //     const component = mount(<SearchBar />);
 //     expect(component.find('[className^="SearchBar"]').exists()).toBe(false);
@@ -14,7 +17,7 @@ describe('Search Bar', () => {
   // });
 
   it('Search Bar Simulation', () => {
-    const component = mount(<SearchBar />);
+    const component = mount(<SearchBar {...searchBarProps} />);
     const event = component.find('input[type="text"]').simulate('change', {
       target: { value: 'Hawaii' },
     });
