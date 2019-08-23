@@ -24,7 +24,6 @@ const Modal = (props) => {
     show,
     // children,
     attraction,
-    Feature,
     loggedIn,
     showCTA,
     hideCTA,
@@ -47,6 +46,13 @@ const Modal = (props) => {
     getDescription();
   }, [attraction.name]);
 
+  useEffect(() => {
+    document.addEventListener('keyup', onClose);
+    return function cleanup() {
+      document.removeEventListener('keyup', onClose);
+    };
+  });
+
   if (!show) {
     return null;
   }
@@ -65,19 +71,16 @@ const Modal = (props) => {
         <div className={styles.Modal__image} style={style} />
         <div className={styles.Modal__information}>
           <h2>{attraction.name}</h2>
-
-          <Feature.Toggle flag="heart-fav">
-            <Favorite
-              favorite={attraction}
-              loggedIn={loggedIn}
-              showCTA={showCTA}
-              hideCTA={hideCTA}
-              awaitingFavorite={awaitingFavorite}
-              favorites={favorites}
-              addFavorite={addFavorite}
-              removeFavorite={removeFavorite}
-            />
-          </Feature.Toggle>
+          <Favorite
+            favorite={attraction}
+            loggedIn={loggedIn}
+            showCTA={showCTA}
+            hideCTA={hideCTA}
+            awaitingFavorite={awaitingFavorite}
+            favorites={favorites}
+            addFavorite={addFavorite}
+            removeFavorite={removeFavorite}
+          />
 
           <div className={styles.Ratings}>
             <Ratings rating={attraction.rating} />
@@ -91,7 +94,7 @@ const Modal = (props) => {
             {
               description
                 ? <p>{description}</p>
-                : <Loader type="Puff" color="#00BFFF" height="100" width="100" />
+                : <Loader type="Puff" color="#00BFFF" height={100} width={100} />
             }
           </div>
           <div className={styles.actions}>
@@ -112,18 +115,14 @@ const Modal = (props) => {
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
-  Feature: PropTypes.func.isRequired,
-  // children: PropTypes.element.isRequired,
-  attraction: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      rating: PropTypes.number,
-      price: PropTypes.number,
-      placeId: PropTypes.string,
-      picture: PropTypes.string,
-      types: PropTypes.arrayOf(PropTypes.string),
-    }),
-  ).isRequired,
+  attraction: PropTypes.shape({
+    name: PropTypes.string,
+    rating: PropTypes.number,
+    price: PropTypes.number,
+    placeId: PropTypes.string,
+    picture: PropTypes.string,
+    types: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
   loggedIn: PropTypes.bool.isRequired,
   showCTA: PropTypes.func.isRequired,
   hideCTA: PropTypes.func.isRequired,

@@ -10,6 +10,7 @@ const Profile = ({
   favorites,
   isLoading,
   removeFavorite,
+  loggedIn,
 }) => {
   if (user.name) {
     return (
@@ -25,6 +26,7 @@ const Profile = ({
               isLoading={isLoading}
               showModal={showModal}
               favorites={favorites}
+              loggedIn={loggedIn}
               removeFavorite={removeFavorite}
             />
           )
@@ -37,12 +39,21 @@ const Profile = ({
   return <Redirect to="/" />;
 };
 
+Profile.defaultProps = {
+  user: {
+    name: '',
+    email: '',
+    googleId: '',
+  },
+};
+
 Profile.propTypes = {
   user: PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    email: PropTypes.string.isRequired,
-    googleId: PropTypes.string.isRequired,
-  }).isRequired,
+    name: PropTypes.string,
+    email: PropTypes.string,
+    googleId: PropTypes.string,
+  }),
+  loggedIn: PropTypes.bool.isRequired,
   showModal: PropTypes.func.isRequired,
   favorites: PropTypes.arrayOf(
     PropTypes.shape({
