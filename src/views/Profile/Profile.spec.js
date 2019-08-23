@@ -4,6 +4,10 @@ import Profile from './Profile';
 import { mount } from '../../enzyme';
 
 describe('Profile Component', () => {
+  const profileProps = {
+    showModal: false,
+    
+  }
   it('Component should mount', () => {
     const props = {
       user: {
