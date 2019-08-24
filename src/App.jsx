@@ -277,9 +277,8 @@ function App() {
     getFlags();
   }, []);
 
+  // Handles getting user favorites if they are logged in.
   useEffect(() => {
-    // cta
-    // favorites
     const getFavorites = async () => {
       try {
         const { data: { data: { favorites } } } = await axios({
@@ -313,14 +312,14 @@ function App() {
       }
     };
 
-    getFavorites();
-
-    return () => {
+    if (user.googleId) {
+      getFavorites();
+    } else {
       setState(prevState => ({
         ...prevState,
         favorites: [],
       }));
-    };
+    }
   }, [user.googleId]);
 
   // TODO: Remove this, it's temporary. cta and favorites should have a useEffect
