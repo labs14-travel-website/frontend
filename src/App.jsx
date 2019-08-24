@@ -343,8 +343,40 @@ function App() {
         Feature={Feature}
       />
       <div className={wrapper}>
-        <Route exact path="/" render={props => (<Home {...props} showModal={showModal} Feature={Feature} showCTA={showCTA} hideCTA={hideCTA} loggedIn={state.loggedIn} awaitingFavorite={state.awaitingFavorite} addFavorite={addFavorite} favorites={state.favorites} removeFavorite={removeFavorite} />)} />
-        <Route exact path="/profile" render={props => (<Profile {...props} loggedIn={state.loggedIn} user={user} showModal={showModal} Feature={Feature} favorites={state.favorites} isLoading={state.isLoading} removeFavorite={removeFavorite} />)} />
+        <Route
+          exact
+          path="/"
+          render={props => (
+            <Home
+              {...props}
+              showModal={showModal}
+              Feature={Feature}
+              showCTA={showCTA}
+              hideCTA={hideCTA}
+              loggedIn={state.loggedIn}
+              awaitingFavorite={state.awaitingFavorite}
+              addFavorite={addFavorite}
+              favorites={state.favorites}
+              removeFavorite={removeFavorite}
+            />
+          )}
+        />
+        <Route
+          exact
+          path="/profile"
+          render={props => (
+            <Profile
+              {...props}
+              loggedIn={state.loggedIn}
+              user={user}
+              showModal={showModal}
+              Feature={Feature}
+              favorites={state.favorites}
+              isLoading={state.isLoading}
+              removeFavorite={removeFavorite}
+            />
+          )}
+        />
       </div>
 
       {state.modal.show && (
