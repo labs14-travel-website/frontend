@@ -25,8 +25,9 @@ const Modal = (props) => {
     // children,
     attraction,
     loggedIn,
-    showCTA,
-    hideCTA,
+    // showCTA,
+    // hideCTA,
+    toggleCTA,
     awaitingFavorite,
     favorites,
     addFavorite,
@@ -74,8 +75,8 @@ const Modal = (props) => {
           <Favorite
             favorite={attraction}
             loggedIn={loggedIn}
-            showCTA={showCTA}
-            hideCTA={hideCTA}
+            showCTA={toggleCTA}
+            hideCTA={toggleCTA}
             awaitingFavorite={awaitingFavorite}
             favorites={favorites}
             addFavorite={addFavorite}
@@ -124,8 +125,9 @@ Modal.propTypes = {
     types: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  showCTA: PropTypes.func.isRequired,
-  hideCTA: PropTypes.func.isRequired,
+  // showCTA: PropTypes.func.isRequired,
+  // hideCTA: PropTypes.func.isRequired,
+  toggleCTA: PropTypes.func.isRequired,
   awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
   addFavorite: PropTypes.func.isRequired,
   favorites: PropTypes.arrayOf(

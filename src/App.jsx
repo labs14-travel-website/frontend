@@ -424,8 +424,9 @@ function App() {
           show={state.modal.show}
           Feature={Feature}
           loggedIn={!!user.name}
-          showCTA={toggleCTA}
-          hideCTA={toggleCTA}
+          // showCTA={toggleCTA}
+          // hideCTA={toggleCTA}
+          toggleCTA={toggleCTA}
           awaitingFavorite={state.awaitingFavorite}
           favorites={state.favorites}
           addFavorite={addFavorite}
