@@ -78,8 +78,9 @@ function Home({
               attractions={state.attractions}
               isLoading={state.isLoading}
               showModal={showModal}
-              showCTA={toggleCTA}
-              hideCTA={toggleCTA}
+              // showCTA={toggleCTA}
+              // hideCTA={toggleCTA}
+              toggleCTA={toggleCTA}
               loggedIn={loggedIn}
               awaitingFavorite={awaitingFavorite}
               addFavorite={addFavorite}
