@@ -17,8 +17,9 @@ function Attractions(props) {
     attractions,
     isLoading,
     showModal,
-    showCTA,
-    hideCTA,
+    // showCTA,
+    // hideCTA,
+    toggleCTA,
     loggedIn,
     awaitingFavorite,
     addFavorite,
@@ -41,8 +42,8 @@ function Attractions(props) {
         <div className={styles.Attractions__wrapper__heart}>
           <Favorite
             favorite={place}
-            showCTA={showCTA}
-            hideCTA={hideCTA}
+            showCTA={toggleCTA}
+            hideCTA={toggleCTA}
             loggedIn={loggedIn}
             awaitingFavorite={awaitingFavorite}
             addFavorite={addFavorite}
@@ -103,8 +104,9 @@ function Attractions(props) {
 }
 
 Attractions.defaultProps = {
-  showCTA: () => true,
-  hideCTA: () => true,
+  // showCTA: () => true,
+  // hideCTA: () => true,
+  toggleCTA: () => true,
   addFavorite: () => true,
   awaitingFavorite: false,
 };
@@ -121,8 +123,9 @@ Attractions.propTypes = {
   ).isRequired,
   isLoading: PropTypes.bool.isRequired,
   showModal: PropTypes.func.isRequired,
-  showCTA: PropTypes.func,
-  hideCTA: PropTypes.func,
+  // showCTA: PropTypes.func,
+  // hideCTA: PropTypes.func,
+  toggleCTA: PropTypes.func,
   loggedIn: PropTypes.bool.isRequired,
   awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
   addFavorite: PropTypes.func,
