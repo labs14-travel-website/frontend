@@ -57,7 +57,7 @@ function App() {
   //       url: `${process.env.REACT_APP_ENDPOINT}/gql`,
   //       method: 'post',
   //       data: {
-  //         query: `{ 
+  //         query: `{
   //           favorites {
   //             name,
   //             place_id,
@@ -80,6 +80,7 @@ function App() {
   //   }
   // };
 
+  // TODO: This should be toggleModal
   const showModal = async (place) => {
     setState(prevState => ({
       ...prevState,
@@ -203,7 +204,7 @@ function App() {
         //       url: `${process.env.REACT_APP_ENDPOINT}/gql`,
         //       method: 'post',
         //       data: {
-        //         query: `{ 
+        //         query: `{
         //           favorites {
         //             name,
         //             place_id,
@@ -217,7 +218,8 @@ function App() {
         //     });
         //     setState(prevState => ({
         //       ...prevState,
-        //       favorites: favorites.map(favorite => ({ ...favorite, placeId: favorite.place_id })),
+        //       favorites: favorites
+        // .map(favorite => ({ ...favorite, placeId: favorite.place_id })),
         //       isLoading: false,
         //     }));
         //   } catch (error) {

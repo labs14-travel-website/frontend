@@ -67,6 +67,7 @@ const auth = (callback = () => true) => {
   const fail = (res) => {
     // Log failed auth, show potential message
     // return empty user object
+    console.log(res); // eslint-disable-line
     callback({});
   };
 
