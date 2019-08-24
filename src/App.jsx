@@ -15,7 +15,6 @@ import auth from './utils/auth';
 
 function App() {
   const [state, setState] = useState({
-    loggedIn: false,
     modal: {
       show: false,
       attraction: {},
@@ -356,6 +355,16 @@ function App() {
     });
   };
 
+  const toggleCTA = (favId = false) => {
+    setState(prevState => ({
+      ...prevState,
+      awaitingFavorite: favId,
+      cta: {
+        ...prevState.cta,
+        show: !prevState.cta.show,
+      },
+    }));
+  };
 
   const wrapper = !(state.modal.show || state.cta.show) ? styles.App : `${styles.App} ${styles.blur}`;
 
@@ -377,8 +386,8 @@ function App() {
               {...props}
               showModal={showModal}
               Feature={Feature}
-              showCTA={showCTA}
-              hideCTA={hideCTA}
+              showCTA={toggleCTA}
+              hideCTA={toggleCTA}
               loggedIn={!!user.name}
               awaitingFavorite={state.awaitingFavorite}
               addFavorite={addFavorite}
@@ -413,8 +422,8 @@ function App() {
           show={state.modal.show}
           Feature={Feature}
           loggedIn={!!user.name}
-          showCTA={showCTA}
-          hideCTA={hideCTA}
+          showCTA={toggleCTA}
+          hideCTA={toggleCTA}
           awaitingFavorite={state.awaitingFavorite}
           favorites={state.favorites}
           addFavorite={addFavorite}
@@ -425,7 +434,7 @@ function App() {
         <FavCTA
           responseFail={auth().fail}
           responseGoogle={login}
-          hideCTA={hideCTA}
+          hideCTA={toggleCTA}
         />
       )}
     </>
