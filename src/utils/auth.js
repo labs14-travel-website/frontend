@@ -9,6 +9,7 @@ const setHeader = (token) => {
 
 const logout = () => {
   // Remove user token, push logout to google
+  store.remove();
   // return empty user object
   return {};
 };
