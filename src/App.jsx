@@ -11,6 +11,7 @@ import track from './utils/analytics';
 import store from './utils/jwt-store';
 import feature from './utils/flaggie';
 import FavCTA from './components/FavCTA/FavCTA';
+import auth from './utils/auth';
 
 function App() {
   const [state, setState] = useState({
@@ -37,18 +38,18 @@ function App() {
   const Feature = feature(features.flags, features.loading);
 
   // TODO: abstract this into it's own file
-  const logout = () => {
-    store.remove();
+  // const logout = () => {
+  //   store.remove();
 
-    setUser({});
+  //   setUser({});
 
-    // DEPRECIATE THIS: use `user` on state instead of loggedIn
-    setState(prevState => ({
-      ...prevState,
-      loggedIn: false,
-      favorites: [],
-    }));
-  };
+  //   // DEPRECIATE THIS: use `user` on state instead of loggedIn
+  //   setState(prevState => ({
+  //     ...prevState,
+  //     loggedIn: false,
+  //     favorites: [],
+  //   }));
+  // };
 
   const getFavorites = async () => {
     try {
@@ -75,7 +76,7 @@ function App() {
       }));
     } catch (error) {
       console.log(error) // eslint-disable-line
-      if (error.status === 401) logout();
+      if (error.status === 401) auth(setUser).logout();
     }
   };
 
@@ -219,7 +220,7 @@ function App() {
               }));
             } catch (error) {
               console.log(error) // eslint-disable-line
-              if (error.status === 401) logout();
+              if (error.status === 401) auth(setUser).logout();
             }
           };
           initialFavorites();
@@ -227,7 +228,7 @@ function App() {
           throw Error('Not Authorized');
         }
       } catch (error) {
-        logout();
+        auth(setUser).logout();
       }
     };
 
@@ -336,7 +337,7 @@ function App() {
     <>
       <Nav
         loggedIn={state.loggedIn}
-        logout={logout}
+        logout={auth(setUser).logout}
         responseFail={responseFail}
         responseGoogle={responseGoogle}
         Feature={Feature}
