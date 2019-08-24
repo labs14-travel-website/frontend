@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Route } from 'react-router';
-// import decode from 'jwt-decode';
 import Nav from './components/Nav';
 import Profile from './views/Profile';
 import styles from './App.module.scss';
@@ -36,49 +35,6 @@ function App() {
   });
 
   const Feature = feature(features.flags, features.loading);
-
-  // TODO: abstract this into it's own file
-  // const logout = () => {
-  //   store.remove();
-
-  //   setUser({});
-
-  //   // DEPRECIATE THIS: use `user` on state instead of loggedIn
-  //   setState(prevState => ({
-  //     ...prevState,
-  //     loggedIn: false,
-  //     favorites: [],
-  //   }));
-  // };
-
-  // const getFavorites = async () => {
-  //   try {
-  //     const { data: { data: { favorites } } } = await axios({
-  //       url: `${process.env.REACT_APP_ENDPOINT}/gql`,
-  //       method: 'post',
-  //       data: {
-  //         query: `{
-  //           favorites {
-  //             name,
-  //             place_id,
-  //             rating,
-  //             picture,
-  //             price,
-  //             id,
-  //           },
-  //         }`,
-  //       },
-  //     });
-  //     setState(prevState => ({
-  //       ...prevState,
-  //       favorites: favorites.map(favorite => ({ ...favorite, placeId: favorite.place_id })),
-  //       isLoading: false,
-  //     }));
-  //   } catch (error) {
-  //     console.log(error) // eslint-disable-line
-  //     if (error.status === 401) auth(setUser).logout();
-  //   }
-  // };
 
   // TODO: This should be toggleModal
   const showModal = async (place) => {
@@ -168,72 +124,8 @@ function App() {
   useEffect(() => {
     const getUserInfo = async (token) => {
       try {
-        // const { data: { message: authorization } } = await axios.post(
-        //   `${process.env.REACT_APP_ENDPOINT}/api/auth`,
-        //   {},
-        //   {
-        //     headers: {
-        //       Authorization: token,
-        //     },
-        //   },
-        // );
-
-        // if auth success, decode token and store user info to state
-        // TODO: Update this response message
-        // if (authorization === 'success auth') {
-        // const { name, email, sub: googleId } = decode(token);
-        // axios.defaults.headers.common['Authorization'] = token; //eslint-disable-line
-
-        // // check userInfo response, if valid set user info
-        // setUser({
-        //   name,
-        //   email,
-        //   googleId,
-        // });
-
-        // // DEPRECIATE THIS: use `user` on state instead of loggedIn
-        // setState(prevState => ({
-        //   ...prevState,
-        //   loggedIn: true,
-        // }));
-
-        // TODO: Abstract initialFavorites out to a useEffect that updates on user
-        // const initialFavorites = async () => {
-        //   try {
-        //     const { data: { data: { favorites } } } = await axios({
-        //       url: `${process.env.REACT_APP_ENDPOINT}/gql`,
-        //       method: 'post',
-        //       data: {
-        //         query: `{
-        //           favorites {
-        //             name,
-        //             place_id,
-        //             rating,
-        //             picture,
-        //             price,
-        //             id,
-        //           },
-        //         }`,
-        //       },
-        //     });
-        //     setState(prevState => ({
-        //       ...prevState,
-        //       favorites: favorites
-        // .map(favorite => ({ ...favorite, placeId: favorite.place_id })),
-        //       isLoading: false,
-        //     }));
-        //   } catch (error) {
-        //     console.log(error) // eslint-disable-line
-        //     if (error.status === 401) auth(setUser).logout();
-        //   }
-        // };
         await auth(setUser).login({ tokenId: token });
-        // initialFavorites();
-        // } else {
-        //   throw Error('Not Authorized');
-        // }
       } catch (error) {
-        // auth(setUser).logout();
         // Inform user auth failed
       }
     };
@@ -324,85 +216,6 @@ function App() {
     }
   }, [user.googleId]);
 
-  // TODO: Remove this, it's temporary. cta and favorites should have a useEffect
-  // const login = async (res) => {
-  //   try {
-  //     // DEBUG: This error may not bubble up to hit the catch
-  //     await auth(setUser).login(res);
-
-  //     // TODO: Move these to a use effect triggered on user updates
-  //     setState(prevState => ({
-  //       ...prevState,
-  //       cta: {
-  //         show: false,
-  //       },
-  //     }));
-
-  //     getFavorites();
-  //   } catch (error) {
-  //     // handle telling the user auth error
-  //   }
-  // };
-
-  // const responseGoogle = async (res) => {
-  //   // TODO: Abstract this out to it's own file
-  //   const { data: { message: authorization } } = await axios.post(
-  //     `${process.env.REACT_APP_ENDPOINT}/api/auth`,
-  //     {},
-  //     {
-  //       headers: {
-  //         Authorization: res.tokenId,
-  //       },
-  //     },
-  //   );
-
-  //   axios.defaults.headers.common['Authorization'] = res.tokenId; //eslint-disable-line
-
-
-  //   if (authorization === 'success auth') {
-  //     store.add(res.tokenId);
-  //     setState(prevState => ({
-  //       ...prevState,
-  //       loggedIn: true,
-  //       cta: {
-  //         show: false,
-  //       },
-  //     }));
-  //     const { name, email, sub: googleId } = decode(res.tokenId);
-
-  //     setUser({
-  //       name,
-  //       email,
-  //       googleId,
-  //     });
-  //     getFavorites();
-  //   }
-  // };
-
-  // const responseFail = (res) => {
-  //   console.log(res); // eslint-disable-line
-  // };
-
-  // const showCTA = (favId) => {
-  //   setState({
-  //     ...state,
-  //     awaitingFavorite: favId,
-  //     cta: {
-  //       show: true,
-  //     },
-  //   });
-  // };
-
-  // const hideCTA = () => {
-  //   setState({
-  //     ...state,
-  //     awaitingFavorite: false,
-  //     cta: {
-  //       show: false,
-  //     },
-  //   });
-  // };
-
   /**
    * Handles toggling a login CTA with an optional favorite ID to add once logged in
    * @param {number} [favId] Optional favorite id to add for the loginCTA
@@ -439,8 +252,6 @@ function App() {
             <Home
               {...props}
               showModal={showModal}
-              // showCTA={toggleCTA}
-              // hideCTA={toggleCTA}
               toggleCTA={toggleCTA}
               loggedIn={!!user.name}
               awaitingFavorite={state.awaitingFavorite}
@@ -474,8 +285,6 @@ function App() {
           showModal={showModal}
           show={state.modal.show}
           loggedIn={!!user.name}
-          // showCTA={toggleCTA}
-          // hideCTA={toggleCTA}
           toggleCTA={toggleCTA}
           awaitingFavorite={state.awaitingFavorite}
           favorites={state.favorites}
