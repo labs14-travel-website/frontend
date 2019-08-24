@@ -362,17 +362,13 @@ function App() {
           removeFavorite={removeFavorite}
         />
       )}
-      <Feature.Switch flag="cta">
-        <></>
-        {state.cta.show && (
-          <FavCTA
-            Feature={Feature}
-            responseFail={responseFail}
-            responseGoogle={responseGoogle}
-            hideCTA={hideCTA}
-          />
-        )}
-      </Feature.Switch>
+      {state.cta.show && (
+        <FavCTA
+          responseFail={responseFail}
+          responseGoogle={responseGoogle}
+          hideCTA={hideCTA}
+        />
+      )}
     </>
   );
 }
