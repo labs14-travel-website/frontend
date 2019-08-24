@@ -34,7 +34,7 @@ const auth = (callback = () => true) => {
    * Sets the token authorization for future axios requests.
    * @param {object} res Object containing tokenId, e.g. response from Google OAuth
    * @param {string} res.tokenId JWT token for user authentication/authorization
-   * @returns {undefined}
+   * @returns undefined
    */
   const login = async ({ tokenId: token }) => {
     try {

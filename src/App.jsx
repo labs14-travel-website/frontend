@@ -167,68 +167,72 @@ function App() {
   useEffect(() => {
     const getUserInfo = async (token) => {
       try {
-        const { data: { message: authorization } } = await axios.post(
-          `${process.env.REACT_APP_ENDPOINT}/api/auth`,
-          {},
-          {
-            headers: {
-              Authorization: token,
-            },
-          },
-        );
+        // const { data: { message: authorization } } = await axios.post(
+        //   `${process.env.REACT_APP_ENDPOINT}/api/auth`,
+        //   {},
+        //   {
+        //     headers: {
+        //       Authorization: token,
+        //     },
+        //   },
+        // );
 
         // if auth success, decode token and store user info to state
         // TODO: Update this response message
-        if (authorization === 'success auth') {
-          const { name, email, sub: googleId } = decode(token);
-          axios.defaults.headers.common['Authorization'] = token; //eslint-disable-line
+        // if (authorization === 'success auth') {
+        // const { name, email, sub: googleId } = decode(token);
+        // axios.defaults.headers.common['Authorization'] = token; //eslint-disable-line
 
-          // check userInfo response, if valid set user info
-          setUser({
-            name,
-            email,
-            googleId,
-          });
+        // // check userInfo response, if valid set user info
+        // setUser({
+        //   name,
+        //   email,
+        //   googleId,
+        // });
 
-          // DEPRECIATE THIS: use `user` on state instead of loggedIn
-          setState(prevState => ({
-            ...prevState,
-            loggedIn: true,
-          }));
-          const initialFavorites = async () => {
-            try {
-              const { data: { data: { favorites } } } = await axios({
-                url: `${process.env.REACT_APP_ENDPOINT}/gql`,
-                method: 'post',
-                data: {
-                  query: `{ 
-                    favorites {
-                      name,
-                      place_id,
-                      rating,
-                      picture,
-                      price,
-                      id,
-                    },
-                  }`,
-                },
-              });
-              setState(prevState => ({
-                ...prevState,
-                favorites: favorites.map(favorite => ({ ...favorite, placeId: favorite.place_id })),
-                isLoading: false,
-              }));
-            } catch (error) {
-              console.log(error) // eslint-disable-line
-              if (error.status === 401) auth(setUser).logout();
-            }
-          };
-          initialFavorites();
-        } else {
-          throw Error('Not Authorized');
-        }
+        // // DEPRECIATE THIS: use `user` on state instead of loggedIn
+        // setState(prevState => ({
+        //   ...prevState,
+        //   loggedIn: true,
+        // }));
+
+        // TODO: Abstract initialFavorites out to a useEffect that updates on user
+        const initialFavorites = async () => {
+          try {
+            const { data: { data: { favorites } } } = await axios({
+              url: `${process.env.REACT_APP_ENDPOINT}/gql`,
+              method: 'post',
+              data: {
+                query: `{ 
+                  favorites {
+                    name,
+                    place_id,
+                    rating,
+                    picture,
+                    price,
+                    id,
+                  },
+                }`,
+              },
+            });
+            setState(prevState => ({
+              ...prevState,
+              favorites: favorites.map(favorite => ({ ...favorite, placeId: favorite.place_id })),
+              isLoading: false,
+            }));
+          } catch (error) {
+            console.log(error) // eslint-disable-line
+            if (error.status === 401) auth(setUser).logout();
+          }
+        };
+        await auth(setUser).login({ tokenId: token });
+        initialFavorites();
+        // } else {
+        //   throw Error('Not Authorized');
+        // }
       } catch (error) {
-        auth(setUser).logout();
+        // auth(setUser).logout();
+        // Inform user auth failed
       }
     };
 
@@ -240,6 +244,8 @@ function App() {
 
     // TODO: This is temporary tracking to validate setup
     track.pageview('/');
+
+    // TODO: LOL Remove this, it is giving us 0% bounce
     track.event({
       category: 'Main',
       action: 'Generic Action',
