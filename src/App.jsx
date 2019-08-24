@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Route } from 'react-router';
-import decode from 'jwt-decode';
+// import decode from 'jwt-decode';
 import Nav from './components/Nav';
 import Profile from './views/Profile';
 import styles from './App.module.scss';
@@ -29,6 +29,7 @@ function App() {
 
   const [user, setUser] = useState({});
 
+  // TODO: Shouldn't need a loading here !Object.keys(flags).length
   const [features, setFeatures] = useState({
     loading: true,
     flags: {},
@@ -50,34 +51,34 @@ function App() {
   //   }));
   // };
 
-  const getFavorites = async () => {
-    try {
-      const { data: { data: { favorites } } } = await axios({
-        url: `${process.env.REACT_APP_ENDPOINT}/gql`,
-        method: 'post',
-        data: {
-          query: `{ 
-            favorites {
-              name,
-              place_id,
-              rating,
-              picture,
-              price,
-              id,
-            },
-          }`,
-        },
-      });
-      setState(prevState => ({
-        ...prevState,
-        favorites: favorites.map(favorite => ({ ...favorite, placeId: favorite.place_id })),
-        isLoading: false,
-      }));
-    } catch (error) {
-      console.log(error) // eslint-disable-line
-      if (error.status === 401) auth(setUser).logout();
-    }
-  };
+  // const getFavorites = async () => {
+  //   try {
+  //     const { data: { data: { favorites } } } = await axios({
+  //       url: `${process.env.REACT_APP_ENDPOINT}/gql`,
+  //       method: 'post',
+  //       data: {
+  //         query: `{ 
+  //           favorites {
+  //             name,
+  //             place_id,
+  //             rating,
+  //             picture,
+  //             price,
+  //             id,
+  //           },
+  //         }`,
+  //       },
+  //     });
+  //     setState(prevState => ({
+  //       ...prevState,
+  //       favorites: favorites.map(favorite => ({ ...favorite, placeId: favorite.place_id })),
+  //       isLoading: false,
+  //     }));
+  //   } catch (error) {
+  //     console.log(error) // eslint-disable-line
+  //     if (error.status === 401) auth(setUser).logout();
+  //   }
+  // };
 
   const showModal = async (place) => {
     setState(prevState => ({
@@ -196,36 +197,36 @@ function App() {
         // }));
 
         // TODO: Abstract initialFavorites out to a useEffect that updates on user
-        const initialFavorites = async () => {
-          try {
-            const { data: { data: { favorites } } } = await axios({
-              url: `${process.env.REACT_APP_ENDPOINT}/gql`,
-              method: 'post',
-              data: {
-                query: `{ 
-                  favorites {
-                    name,
-                    place_id,
-                    rating,
-                    picture,
-                    price,
-                    id,
-                  },
-                }`,
-              },
-            });
-            setState(prevState => ({
-              ...prevState,
-              favorites: favorites.map(favorite => ({ ...favorite, placeId: favorite.place_id })),
-              isLoading: false,
-            }));
-          } catch (error) {
-            console.log(error) // eslint-disable-line
-            if (error.status === 401) auth(setUser).logout();
-          }
-        };
+        // const initialFavorites = async () => {
+        //   try {
+        //     const { data: { data: { favorites } } } = await axios({
+        //       url: `${process.env.REACT_APP_ENDPOINT}/gql`,
+        //       method: 'post',
+        //       data: {
+        //         query: `{ 
+        //           favorites {
+        //             name,
+        //             place_id,
+        //             rating,
+        //             picture,
+        //             price,
+        //             id,
+        //           },
+        //         }`,
+        //       },
+        //     });
+        //     setState(prevState => ({
+        //       ...prevState,
+        //       favorites: favorites.map(favorite => ({ ...favorite, placeId: favorite.place_id })),
+        //       isLoading: false,
+        //     }));
+        //   } catch (error) {
+        //     console.log(error) // eslint-disable-line
+        //     if (error.status === 401) auth(setUser).logout();
+        //   }
+        // };
         await auth(setUser).login({ tokenId: token });
-        initialFavorites();
+        // initialFavorites();
         // } else {
         //   throw Error('Not Authorized');
         // }
@@ -276,25 +277,71 @@ function App() {
     getFlags();
   }, []);
 
-  // TODO: Remove this, it's temporary. cta and favorites should have a useEffect
-  const login = async (res) => {
-    try {
-      // DEBUG: This error may not bubble up to hit the catch
-      await auth(setUser).login(res);
+  useEffect(() => {
+    // cta
+    // favorites
+    const getFavorites = async () => {
+      try {
+        const { data: { data: { favorites } } } = await axios({
+          url: `${process.env.REACT_APP_ENDPOINT}/gql`,
+          method: 'post',
+          data: {
+            query: `{ 
+              favorites {
+                name,
+                place_id,
+                rating,
+                picture,
+                price,
+                id,
+              },
+            }`,
+          },
+        });
+        setState(prevState => ({
+          ...prevState,
+          favorites: favorites.map(favorite => ({ ...favorite, placeId: favorite.place_id })),
+          isLoading: false,
+          cta: {
+            ...prevState.cta,
+            show: false,
+          },
+        }));
+      } catch (error) {
+        console.log(error) // eslint-disable-line
+        if (error.status === 401) auth(setUser).logout();
+      }
+    };
 
-      // TODO: Move these to a use effect triggered on user updates
+    getFavorites();
+
+    return () => {
       setState(prevState => ({
         ...prevState,
-        cta: {
-          show: false,
-        },
+        favorites: [],
       }));
+    };
+  }, [user.googleId]);
 
-      getFavorites();
-    } catch (error) {
-      // handle telling the user auth error
-    }
-  }
+  // TODO: Remove this, it's temporary. cta and favorites should have a useEffect
+  // const login = async (res) => {
+  //   try {
+  //     // DEBUG: This error may not bubble up to hit the catch
+  //     await auth(setUser).login(res);
+
+  //     // TODO: Move these to a use effect triggered on user updates
+  //     setState(prevState => ({
+  //       ...prevState,
+  //       cta: {
+  //         show: false,
+  //       },
+  //     }));
+
+  //     getFavorites();
+  //   } catch (error) {
+  //     // handle telling the user auth error
+  //   }
+  // };
 
   // const responseGoogle = async (res) => {
   //   // TODO: Abstract this out to it's own file
@@ -376,7 +423,7 @@ function App() {
         loggedIn={!!user.name}
         logout={auth(setUser).logout}
         responseFail={auth().fail}
-        responseGoogle={login}
+        responseGoogle={auth(setUser).login}
         Feature={Feature}
       />
       <div className={AppClasses}>
@@ -434,7 +481,7 @@ function App() {
       {state.cta.show && (
         <FavCTA
           responseFail={auth().fail}
-          responseGoogle={login}
+          responseGoogle={auth(setUser).login}
           hideCTA={toggleCTA}
         />
       )}

@@ -34,6 +34,9 @@ const Modal = (props) => {
     removeFavorite,
   } = props;
 
+  // BUG: Console throwing invalid prop type awaitingFavorite in following flow:
+  // Be logged out > Favorite via modal > Login
+
   useEffect(() => {
     const getDescription = async () => {
       try {
