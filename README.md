@@ -3,9 +3,7 @@
 
 You can find the deployed project at [roamly.app](https://roamly.app/).
 
-<!-- https://github.com/JamieHall1962 -->
-
-# Contributors
+## Contributors
 
 |                                       [Ryan Matthews](https://github.com/Ryntak94)                                        |                                       [Arron Marshall](https://github.com/arronm)                                        |                                       [Josh Timmons](https://github.com/josh182014)                                        |                                       [Alyssa Hatfield](https://github.com/xCthaeh)                                        |                                       [Nguyen Vo](https://github.com/azinoVo)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
@@ -13,7 +11,7 @@ You can find the deployed project at [roamly.app](https://roamly.app/).
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Ryntak94)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/arronm)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/josh182014)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/xCthaeh)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/azinoVo)             |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
 
-# Past Contributors
+## Past Contributors
 
 |                                       [Jamie Hall](https://github.com/JamieHall1962)                                        |                                       [2](https://github.com/)                                        |                                       [3](https://github.com/)                                        |                                       [4](https://github.com/)                                        |                                       [5](https://github.com/)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
@@ -30,107 +28,78 @@ You can find the deployed project at [roamly.app](https://roamly.app/).
 As envisoned, Roamly is an itinerary builder built for Web and Android. The Web application should allow users to view, favorite, and un-favorite attractions for a destination and then add/remove those attractions to/from their itinerary. The Android counterpart should allow for users to easily view their itinerary on-the-go while they are roamly-ing. 
 
 ### Web Key Features
-
 -    Google Login
 -    Search Attractions for a Destination
 -    View Attractions and Relevant Info
 -    Favorite or Un-Favorite Attractions
 -    View Favorites in a User Profile
 
-## Tech Stack
+# Tech Stack - Front End
 
 ### Front End built using:
 - React with Hooks for Framework
 - Styled using CSS Modules and SASS Preprocessor
-- Unit Testing using Jest and Enzyme
-- End to End Testing using Cypress
 - Continuous Integration using Travis CI
 - Analytics using FullStory, Google Analytics, and Heap Analytics
-
+- Error Tracking using Sentry
 
 #### Framework: React with Hooks
-
-React Hooks benefit(s) :
 - Hooks provided better separation of business logic for long-term maintainability
 
 #### Styling: CSS Modules and SASS
-
-CSS Modules and SASS benefit(s) :
 - No library meant more unique/diverse styles
 - SASS is built into create-react-app
 - CSS Module gives better name-spacing to avoid className conflicts
 
-#### Unit Testing: Jest and Enzyme
-
-Jest and Enzyme benefit(s) :
-- Jest and React was made by same group
-- Jest offers powerful assertion tools
-- Enzyme offers powerful mounting and selector tools
-
-#### End to End Testing: Cypress
-
-Cypress benefit(s) :
-- 
-
 #### Continuous Integration: Travis CI
 
 Travis CI benefit(s) :
--
+- 🚫🚫🚫
 
 #### Analytics: FullStory, Google Analytics, and Heap Analytics
 
 These provide some benefit(s):
--
+- FullStory has great user interaction tools and statistics as well as easy to use UI
+- Heap Analytics similar to FullStory for extra coverage
+- Google Analytics works well with Google Login
+
+#### Error Tracking: Sentry
+- 🚫
 
 #### Front End deployed to [Netlify](https://www.netlify.com/)
 
+# Tech Stack - Back End
+
 ### [Back End](https://github.com/labs14-travel-website/backend) built using:
 - Framework as PostgreSQL
-- 
+- Query Builder using Knex
+- Data Access using GraphQL
 
 #### Framework: PostgreSQL
+-    🚫
+-    🚫
 
--    point one
--    point two
--    point three
+#### Query Builder: Knex
+-    🚫
+-    🚫
 
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+#### Data Access: GraphQL
+-    🚫
+-    🚫
 
 # APIs
 
-## 2️⃣ Authentication API here
+## Authentication: OAuth and Google Login
 
-🚫Replace text below with a description of the API
+🚫
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+## Content: Google Places API
 
-## 2️⃣ Payment API here
+🚫
 
-🚫Replace text below with a description of the API
+# Environment Variables
 
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
-
-## 3️⃣ Misc API here
-
-🚫Replace text below with a description of the API
-
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
-
-# 3️⃣ Environment Variables
-
-In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
+In order for the app to function correctly, the user must set up their own environment variables. There should be an .env file containing the following:
 
 🚫These are just examples, replace them with the specifics for your app
 
@@ -145,20 +114,29 @@ In order for the app to function correctly, the user must set up their own envir
     *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
     *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
 
-# 5️⃣ Content Licenses
-
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
+# Content Licenses
 
 | Image Filename | Source / Creator | License                                                                      |
 | -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
+| hero.jpg    |   🚫 | [Creative Commons]() |
+|       |     |      |
 
-# 4️⃣ Testing
+# Testing
 
-🚫Document what you used for testing and why
+### Testing done using:
+- Unit Testing using Jest and Enzyme
+- End to End Testing using Cypress
 
-# 4️⃣ Installation Instructions
+#### Unit Testing: Jest and Enzyme
+- Jest and React was made by same group
+- Jest offers powerful assertion tools
+- Enzyme offers powerful mounting and selector tools
+
+#### End to End Testing: Cypress
+- Excellent documentation and well supported
+- Stubbing is excelling tool for testing state
+
+# Installation Instructions
 
 🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
 
@@ -189,7 +167,7 @@ Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it 
 
 We would love to hear from you about new features which would improve this app and further the aims of our project. Please provide as much detail and information as possible to show us why you think your new feature should be implemented.
 
-### Pull Requests
+# Pull Requests
 
 If you have developed a patch, bug fix, or new feature that would improve this app, please submit a pull request. It is best to communicate your ideas with the developers first before investing a great deal of time into a pull request to ensure that it will mesh smoothly with the project.
 
@@ -203,10 +181,10 @@ Remember that this project is licensed under the MIT license, and by submitting 
 - Include the relevant issue number, if applicable.
 - You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
 
-### Attribution
+# Attribution
 
 These contribution guidelines have been adapted from [this good-Contributing.md-template](https://gist.github.com/PurpleBooth/b24679402957c63ec426).
 
-## Documentation
+# Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](https://github.com/labs14-travel-website/backend/blob/master/README.md) for details on the backend of our project.
