@@ -1,10 +1,11 @@
 # Roamly ("Travel Website")
+<img src="./src/assets/img/roamly.PNG" width = "1100" />
 
 You can find the deployed project at [roamly.app](https://roamly.app/).
 
 <!-- https://github.com/JamieHall1962 -->
 
-## Contributors
+# Contributors
 
 |                                       [Ryan Matthews](https://github.com/Ryntak94)                                        |                                       [Arron Marshall](https://github.com/arronm)                                        |                                       [Josh Timmons](https://github.com/josh182014)                                        |                                       [Alyssa Hatfield](https://github.com/xCthaeh)                                        |                                       [Nguyen Vo](https://github.com/azinoVo)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
@@ -12,7 +13,7 @@ You can find the deployed project at [roamly.app](https://roamly.app/).
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Ryntak94)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/arronm)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/josh182014)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/xCthaeh)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/azinoVo)             |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
 
-## Past Contributors
+# Past Contributors
 
 |                                       [Jamie Hall](https://github.com/JamieHall1962)                                        |                                       [2](https://github.com/)                                        |                                       [3](https://github.com/)                                        |                                       [4](https://github.com/)                                        |                                       [5](https://github.com/)                                        |
 | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
@@ -20,53 +21,74 @@ You can find the deployed project at [roamly.app](https://roamly.app/).
 |                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JamieHall1962)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)             |
 | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
 
-
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
-
-![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
-
-## Project Overview
+# Project Overview
 
 [Trello Board](https://trello.com/b/kBQIxBnm)
 
 [Product Canvas](https://www.notion.so/Travel-Website-Roamly-app-69b7026b663c4447b6ed95fb5b914fa8)
 
-As envisoned, Roamly is an itinerary builder built for Web and Android. The Web application should allow users to view attractions (and relevant information) for a destination, favorite/unfavorite attractions, and add/remove attractions from their itinerary. The Android counterpart should allow for users to easily view their itinerary on-the-go while they are roamly-ing. 
+As envisoned, Roamly is an itinerary builder built for Web and Android. The Web application should allow users to view, favorite, and un-favorite attractions for a destination and then add/remove those attractions to/from their itinerary. The Android counterpart should allow for users to easily view their itinerary on-the-go while they are roamly-ing. 
 
-### 4️⃣ Key Features
+### Web Key Features
 
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
+-    Google Login
+-    Search Attractions for a Destination
+-    View Attractions and Relevant Info
+-    Favorite or Un-Favorite Attractions
+-    View Favorites in a User Profile
 
-## 1️⃣ Tech Stack
+## Tech Stack
 
-### Front end built using:
+### Front End built using:
+- React with Hooks for Framework
+- Styled using CSS Modules and SASS Preprocessor
+- Unit Testing using Jest and Enzyme
+- End to End Testing using Cypress
+- Continuous Integration using Travis CI
+- Analytics using FullStory, Google Analytics, and Heap Analytics
 
-#### _Front end framework goes here_
 
-🚫 Why did you choose this framework?
+#### Framework: React with Hooks
 
--    point one
--    point two
--    point three
--    point four
+React Hooks benefit(s) :
+- Hooks provided better separation of business logic for long-term maintainability
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+#### Styling: CSS Modules and SASS
 
-#### Front end deployed to `🚫insert service here`
+CSS Modules and SASS benefit(s) :
+- No library meant more unique/diverse styles
+- SASS is built into create-react-app
+- CSS Module gives better name-spacing to avoid className conflicts
 
-#### [Back end](🚫link to back end repo here) built using:
+#### Unit Testing: Jest and Enzyme
 
-#### 🚫 back end framework goes here
+Jest and Enzyme benefit(s) :
+- Jest and React was made by same group
+- Jest offers powerful assertion tools
+- Enzyme offers powerful mounting and selector tools
+
+#### End to End Testing: Cypress
+
+Cypress benefit(s) :
+- 
+
+#### Continuous Integration: Travis CI
+
+Travis CI benefit(s) :
+-
+
+#### Analytics: FullStory, Google Analytics, and Heap Analytics
+
+These provide some benefit(s):
+-
+
+#### Front End deployed to [Netlify](https://www.netlify.com/)
+
+### [Back End](https://github.com/labs14-travel-website/backend) built using:
+- Framework as PostgreSQL
+- 
+
+#### Framework: PostgreSQL
 
 -    point one
 -    point two
