@@ -271,44 +271,64 @@ function App() {
     getFlags();
   }, []);
 
-  const responseGoogle = async (res) => {
-    // TODO: Abstract this out to it's own file
-    const { data: { message: authorization } } = await axios.post(
-      `${process.env.REACT_APP_ENDPOINT}/api/auth`,
-      {},
-      {
-        headers: {
-          Authorization: res.tokenId,
-        },
-      },
-    );
+  // TODO: Remove this, it's temporary. cta and favorites should have a useEffect
+  const login = async (res) => {
+    try {
+      // DEBUG: This error may not bubble up to hit the catch
+      await auth(setUser).login(res);
 
-    axios.defaults.headers.common['Authorization'] = res.tokenId; //eslint-disable-line
-
-
-    if (authorization === 'success auth') {
-      store.add(res.tokenId);
+      // TODO: Move these to a use effect triggered on user updates
       setState(prevState => ({
         ...prevState,
-        loggedIn: true,
         cta: {
           show: false,
         },
       }));
-      const { name, email, sub: googleId } = decode(res.tokenId);
 
-      setUser({
-        name,
-        email,
-        googleId,
-      });
       getFavorites();
+    } catch (error) {
+      // handle telling the user auth error
     }
-  };
+  }
 
-  const responseFail = (res) => {
-    console.log(res); // eslint-disable-line
-  };
+  // const responseGoogle = async (res) => {
+  //   // TODO: Abstract this out to it's own file
+  //   const { data: { message: authorization } } = await axios.post(
+  //     `${process.env.REACT_APP_ENDPOINT}/api/auth`,
+  //     {},
+  //     {
+  //       headers: {
+  //         Authorization: res.tokenId,
+  //       },
+  //     },
+  //   );
+
+  //   axios.defaults.headers.common['Authorization'] = res.tokenId; //eslint-disable-line
+
+
+  //   if (authorization === 'success auth') {
+  //     store.add(res.tokenId);
+  //     setState(prevState => ({
+  //       ...prevState,
+  //       loggedIn: true,
+  //       cta: {
+  //         show: false,
+  //       },
+  //     }));
+  //     const { name, email, sub: googleId } = decode(res.tokenId);
+
+  //     setUser({
+  //       name,
+  //       email,
+  //       googleId,
+  //     });
+  //     getFavorites();
+  //   }
+  // };
+
+  // const responseFail = (res) => {
+  //   console.log(res); // eslint-disable-line
+  // };
 
   const showCTA = (favId) => {
     setState({
@@ -338,8 +358,8 @@ function App() {
       <Nav
         loggedIn={!!user.name}
         logout={auth(setUser).logout}
-        responseFail={responseFail}
-        responseGoogle={responseGoogle}
+        responseFail={auth().fail}
+        responseGoogle={login}
         Feature={Feature}
       />
       <div className={wrapper}>
@@ -397,8 +417,8 @@ function App() {
       )}
       {state.cta.show && (
         <FavCTA
-          responseFail={responseFail}
-          responseGoogle={responseGoogle}
+          responseFail={auth().fail}
+          responseGoogle={login}
           hideCTA={hideCTA}
         />
       )}

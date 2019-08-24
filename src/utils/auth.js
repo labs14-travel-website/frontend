@@ -7,7 +7,7 @@ import store from './jwt-store';
  * @param {function} callback Callback function that the resulting user object gets passed to
  * @returns {object} Object of auth functions (login, logout, fail)
  */
-const auth = (callback) => {
+const auth = (callback = () => true) => {
   /**
    * Sets the authentication token for future axios requests
    * @param {string} token Authentication token for the user
@@ -54,6 +54,7 @@ const auth = (callback) => {
       });
     } catch (error) {
       logout();
+      throw new Error(error);
     }
   };
 
