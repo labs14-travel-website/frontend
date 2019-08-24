@@ -335,25 +335,25 @@ function App() {
   //   console.log(res); // eslint-disable-line
   // };
 
-  const showCTA = (favId) => {
-    setState({
-      ...state,
-      awaitingFavorite: favId,
-      cta: {
-        show: true,
-      },
-    });
-  };
+  // const showCTA = (favId) => {
+  //   setState({
+  //     ...state,
+  //     awaitingFavorite: favId,
+  //     cta: {
+  //       show: true,
+  //     },
+  //   });
+  // };
 
-  const hideCTA = () => {
-    setState({
-      ...state,
-      awaitingFavorite: false,
-      cta: {
-        show: false,
-      },
-    });
-  };
+  // const hideCTA = () => {
+  //   setState({
+  //     ...state,
+  //     awaitingFavorite: false,
+  //     cta: {
+  //       show: false,
+  //     },
+  //   });
+  // };
 
   const toggleCTA = (favId = false) => {
     setState(prevState => ({
@@ -366,7 +366,9 @@ function App() {
     }));
   };
 
-  const wrapper = !(state.modal.show || state.cta.show) ? styles.App : `${styles.App} ${styles.blur}`;
+  const AppClasses = !(state.modal.show || state.cta.show)
+    ? styles.App
+    : `${styles.App} ${styles.blur}`;
 
   return (
     <>
@@ -377,7 +379,7 @@ function App() {
         responseGoogle={login}
         Feature={Feature}
       />
-      <div className={wrapper}>
+      <div className={AppClasses}>
         <Route
           exact
           path="/"
