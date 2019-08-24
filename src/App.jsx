@@ -254,7 +254,7 @@ function App() {
     });
   }, []);
 
-  // For loading feature flags
+  // Handles loading feature flags
   useEffect(() => {
     const getFlags = async () => {
       const promise = new Promise((resolve) => {
@@ -403,6 +403,10 @@ function App() {
   //   });
   // };
 
+  /**
+   * Handles toggling a login CTA with an optional favorite ID to add once logged in
+   * @param {number} [favId] Optional favorite id to add for the loginCTA
+   */
   const toggleCTA = (favId = false) => {
     setState(prevState => ({
       ...prevState,
