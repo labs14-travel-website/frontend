@@ -9,8 +9,6 @@ const auth = (callback) => {
   };
 
   const logout = () => {
-    console.log('logging out');
-    // Remove user token, push logout to google
     store.remove();
     // return empty user object
     callback({});

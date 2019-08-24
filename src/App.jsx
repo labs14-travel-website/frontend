@@ -336,7 +336,7 @@ function App() {
   return (
     <>
       <Nav
-        loggedIn={state.loggedIn}
+        loggedIn={!!user.name}
         logout={auth(setUser).logout}
         responseFail={responseFail}
         responseGoogle={responseGoogle}
@@ -353,7 +353,7 @@ function App() {
               Feature={Feature}
               showCTA={showCTA}
               hideCTA={hideCTA}
-              loggedIn={state.loggedIn}
+              loggedIn={!!user.name}
               awaitingFavorite={state.awaitingFavorite}
               addFavorite={addFavorite}
               favorites={state.favorites}
@@ -367,7 +367,7 @@ function App() {
           render={props => (
             <Profile
               {...props}
-              loggedIn={state.loggedIn}
+              loggedIn={!!user.name}
               user={user}
               showModal={showModal}
               Feature={Feature}
@@ -386,7 +386,7 @@ function App() {
           showModal={showModal}
           show={state.modal.show}
           Feature={Feature}
-          loggedIn={state.loggedIn}
+          loggedIn={!!user.name}
           showCTA={showCTA}
           hideCTA={hideCTA}
           awaitingFavorite={state.awaitingFavorite}
