@@ -387,9 +387,9 @@ function App() {
             <Home
               {...props}
               showModal={showModal}
-              Feature={Feature}
-              showCTA={toggleCTA}
-              hideCTA={toggleCTA}
+              // showCTA={toggleCTA}
+              // hideCTA={toggleCTA}
+              toggleCTA={toggleCTA}
               loggedIn={!!user.name}
               awaitingFavorite={state.awaitingFavorite}
               addFavorite={addFavorite}
@@ -407,7 +407,6 @@ function App() {
               loggedIn={!!user.name}
               user={user}
               showModal={showModal}
-              Feature={Feature}
               favorites={state.favorites}
               isLoading={state.isLoading}
               removeFavorite={removeFavorite}
@@ -422,7 +421,6 @@ function App() {
           onClose={closeModal}
           showModal={showModal}
           show={state.modal.show}
-          Feature={Feature}
           loggedIn={!!user.name}
           // showCTA={toggleCTA}
           // hideCTA={toggleCTA}
