@@ -57,14 +57,13 @@ Travis CI benefit(s) :
 - 🚫🚫🚫
 
 #### Analytics: FullStory, Google Analytics, and Heap Analytics
-
-These provide some benefit(s):
 - FullStory has great user interaction tools and statistics as well as easy to use UI
 - Heap Analytics similar to FullStory for extra coverage
 - Google Analytics works well with Google Login
 
 #### Error Tracking: Sentry
-- 🚫
+- Supports React
+- Excellent Error Logs
 
 #### Front End deployed to [Netlify](https://www.netlify.com/)
 
@@ -76,16 +75,18 @@ These provide some benefit(s):
 - Data Access using GraphQL
 
 #### Framework: PostgreSQL
--    🚫
--    🚫
+-    Supported by Heroku
+-    Data won't be wiped like SQLite
 
 #### Query Builder: Knex
--    🚫
--    🚫
+- Familiarity and pairs well with SQL
+- Straight-forward migration/seeding
 
 #### Data Access: GraphQL
--    🚫
--    🚫
+- Request specific data without changing the endpoints
+
+#### Back End deployed to [Heroku](https://heroku.com)
+
 
 # APIs
 
@@ -93,9 +94,12 @@ These provide some benefit(s):
 
 🚫
 
+- Relieves the need for new user accounts managed on our server
+
 ## Content: Google Places API
 
 🚫
+- Returns most if not all the information we are looking for
 
 # Environment Variables
 
@@ -105,14 +109,6 @@ In order for the app to function correctly, the user must set up their own envir
 
     *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
     *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-    *  REACT_APP_databaseURL - in the Firebase dashboard
-    *  REACT_APP_projectID - in the Firebase dashboard
-    *  REACT_APP_storageBucket - in the Firebase dashboard
-    *  REACT_APP_messagingSenderId - in the Firebase dashboard
-    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-    *  REACT_APP_backendURL - optional for your local development server
-    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
 
 # Content Licenses
 
@@ -123,9 +119,10 @@ In order for the app to function correctly, the user must set up their own envir
 
 # Testing
 
-### Testing done using:
+## Testing done using:
 - Unit Testing using Jest and Enzyme
 - End to End Testing using Cypress
+- Code Quality using ESLint
 
 #### Unit Testing: Jest and Enzyme
 - Jest and React was made by same group
@@ -135,6 +132,9 @@ In order for the app to function correctly, the user must set up their own envir
 #### End to End Testing: Cypress
 - Excellent documentation and well supported
 - Stubbing is excelling tool for testing state
+
+#### Code Quality: ESLint
+- Industry Standard JS Code checker
 
 # Installation Instructions
 
@@ -146,8 +146,6 @@ In order for the app to function correctly, the user must set up their own envir
 
     * typecheck - runs the TypeScript compiler
     * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
 
 # Contributing
 
