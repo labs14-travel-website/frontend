@@ -16,7 +16,7 @@ function Attractions(props) {
   const {
     attractions,
     isLoading,
-    showModal,
+    toggleModal,
     // showCTA,
     // hideCTA,
     toggleCTA,
@@ -32,7 +32,7 @@ function Attractions(props) {
   const handleOnClick = ({ place }) => {
     // setIsLoadingData(true)
     // setModalAttraction(place);
-    showModal(place);
+    toggleModal(place);
     // setLoaded(true);
   };
 
@@ -122,7 +122,7 @@ Attractions.propTypes = {
     }),
   ).isRequired,
   isLoading: PropTypes.bool.isRequired,
-  showModal: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
   // showCTA: PropTypes.func,
   // hideCTA: PropTypes.func,
   toggleCTA: PropTypes.func,

@@ -75,7 +75,7 @@ function Home({
             <Attractions
               attractions={state.attractions}
               isLoading={state.isLoading}
-              showModal={toggleModal}
+              toggleModal={toggleModal}
               toggleCTA={toggleCTA}
               loggedIn={loggedIn}
               awaitingFavorite={awaitingFavorite}

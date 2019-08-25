@@ -24,7 +24,7 @@ const Profile = ({
             <Attractions
               attractions={favorites}
               isLoading={isLoading}
-              showModal={toggleModal}
+              toggleModal={toggleModal}
               favorites={favorites}
               loggedIn={loggedIn}
               removeFavorite={removeFavorite}
