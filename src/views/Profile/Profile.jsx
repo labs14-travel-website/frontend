@@ -6,7 +6,7 @@ import '../../config/interceptor';
 
 const Profile = ({
   user,
-  showModal,
+  toggleModal,
   favorites,
   isLoading,
   removeFavorite,
@@ -24,7 +24,7 @@ const Profile = ({
             <Attractions
               attractions={favorites}
               isLoading={isLoading}
-              showModal={showModal}
+              showModal={toggleModal}
               favorites={favorites}
               loggedIn={loggedIn}
               removeFavorite={removeFavorite}
@@ -54,7 +54,7 @@ Profile.propTypes = {
     googleId: PropTypes.string,
   }),
   loggedIn: PropTypes.bool.isRequired,
-  showModal: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
   favorites: PropTypes.arrayOf(
     PropTypes.shape({
       name: PropTypes.string,

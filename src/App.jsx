@@ -262,7 +262,7 @@ function App() {
           render={props => (
             <Home
               {...props}
-              showModal={toggleModal}
+              toggleModal={toggleModal}
               toggleCTA={toggleCTA}
               loggedIn={!!user.name}
               awaitingFavorite={state.awaitingFavorite}
@@ -280,7 +280,7 @@ function App() {
               {...props}
               loggedIn={!!user.name}
               user={user}
-              showModal={toggleModal}
+              toggleModal={toggleModal}
               favorites={state.favorites}
               isLoading={state.isLoading}
               removeFavorite={removeFavorite}
