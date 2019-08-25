@@ -9,9 +9,7 @@ import Hero from '../../components/Hero';
 import '../../config/interceptor';
 
 function Home({
-  showModal,
-  // showCTA,
-  // hideCTA,
+  toggleModal,
   toggleCTA,
   loggedIn,
   awaitingFavorite,
@@ -77,9 +75,7 @@ function Home({
             <Attractions
               attractions={state.attractions}
               isLoading={state.isLoading}
-              showModal={showModal}
-              // showCTA={toggleCTA}
-              // hideCTA={toggleCTA}
+              showModal={toggleModal}
               toggleCTA={toggleCTA}
               loggedIn={loggedIn}
               awaitingFavorite={awaitingFavorite}
@@ -94,9 +90,7 @@ function Home({
 }
 
 Home.propTypes = {
-  showModal: PropTypes.func.isRequired,
-  // showCTA: PropTypes.func.isRequired,
-  // hideCTA: PropTypes.func.isRequired,
+  toggleModal: PropTypes.func.isRequired,
   toggleCTA: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).isRequired,
