@@ -37,24 +37,35 @@ function App() {
   const Feature = feature(features.flags, features.loading);
 
   // TODO: This should be toggleModal
-  const showModal = async (place) => {
-    setState(prevState => ({
-      ...prevState,
-      modal: {
-        ...prevState.modal,
-        show: true,
-        attraction: place,
-      },
-    }));
-  };
+  // const showModal = async (place) => {
+  //   setState(prevState => ({
+  //     ...prevState,
+  //     modal: {
+  //       ...prevState.modal,
+  //       show: true,
+  //       attraction: place,
+  //     },
+  //   }));
+  // };
 
-  const closeModal = () => {
+  // const closeModal = () => {
+  //   setState(prevState => ({
+  //     ...prevState,
+  //     modal: {
+  //       ...prevState.modal,
+  //       show: false,
+  //       attraction: {},
+  //     },
+  //   }));
+  // };
+
+  const toggleModal = async (attraction = {}) => {
     setState(prevState => ({
       ...prevState,
       modal: {
         ...prevState.modal,
-        show: false,
-        attraction: {},
+        show: !prevState.modal.show,
+        attraction,
       },
     }));
   };
@@ -115,7 +126,7 @@ function App() {
         ...prevState,
         favorites: state.favorites.filter(favorite => favorite.id !== favId),
       }));
-      closeModal();
+      toggleModal();
     } catch (error) {
       console.log(error) // eslint-disable-line
     }
@@ -251,7 +262,7 @@ function App() {
           render={props => (
             <Home
               {...props}
-              showModal={showModal}
+              showModal={toggleModal}
               toggleCTA={toggleCTA}
               loggedIn={!!user.name}
               awaitingFavorite={state.awaitingFavorite}
@@ -269,7 +280,7 @@ function App() {
               {...props}
               loggedIn={!!user.name}
               user={user}
-              showModal={showModal}
+              showModal={toggleModal}
               favorites={state.favorites}
               isLoading={state.isLoading}
               removeFavorite={removeFavorite}
@@ -281,8 +292,8 @@ function App() {
       {state.modal.show && (
         <Modal
           attraction={state.modal.attraction}
-          onClose={closeModal}
-          showModal={showModal}
+          onClose={toggleModal}
+          showModal={toggleModal}
           show={state.modal.show}
           loggedIn={!!user.name}
           toggleCTA={toggleCTA}
