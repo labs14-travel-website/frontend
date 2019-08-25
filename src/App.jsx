@@ -36,29 +36,6 @@ function App() {
 
   const Feature = feature(features.flags, features.loading);
 
-  // TODO: This should be toggleModal
-  // const showModal = async (place) => {
-  //   setState(prevState => ({
-  //     ...prevState,
-  //     modal: {
-  //       ...prevState.modal,
-  //       show: true,
-  //       attraction: place,
-  //     },
-  //   }));
-  // };
-
-  // const closeModal = () => {
-  //   setState(prevState => ({
-  //     ...prevState,
-  //     modal: {
-  //       ...prevState.modal,
-  //       show: false,
-  //       attraction: {},
-  //     },
-  //   }));
-  // };
-
   const toggleModal = async (attraction = {}) => {
     setState(prevState => ({
       ...prevState,
