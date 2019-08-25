@@ -1,13 +1,10 @@
 import React from 'react';
-// import React, { useState } from 'react';
 import Loader from 'react-loader-spinner';
 import PropTypes from 'prop-types';
-// import Modal from '../Modal';
 import CardDisplay from '../CardDisplay';
 import styles from './Attractions.module.scss';
 import Favorite from '../Favorites';
 import Ratings from '../Ratings/Ratings';
-// import Ratings from '../Ratings/Ratings';
 
 /**
  * @description This will display the attraction cards component when they are ready
@@ -17,8 +14,6 @@ function Attractions(props) {
     attractions,
     isLoading,
     toggleModal,
-    // showCTA,
-    // hideCTA,
     toggleCTA,
     loggedIn,
     awaitingFavorite,
@@ -26,14 +21,9 @@ function Attractions(props) {
     favorites,
     removeFavorite,
   } = props;
-  // const [loaded, setLoaded] = useState(false);
-  // const [modalAttraction, setModalAttraction] = useState({});
 
   const handleOnClick = ({ place }) => {
-    // setIsLoadingData(true)
-    // setModalAttraction(place);
     toggleModal(place);
-    // setLoaded(true);
   };
 
   const showAttractions = (attractionList) => {
@@ -93,19 +83,11 @@ function Attractions(props) {
             )
         }
       </div>
-
-      {/* {loaded && (
-        <Modal attraction={modalAttraction} onClose={showModal} show={loaded}>
-          <p>Hello</p>
-        </Modal>
-      )} */}
     </>
   );
 }
 
 Attractions.defaultProps = {
-  // showCTA: () => true,
-  // hideCTA: () => true,
   toggleCTA: () => true,
   addFavorite: () => true,
   awaitingFavorite: false,
@@ -123,8 +105,6 @@ Attractions.propTypes = {
   ).isRequired,
   isLoading: PropTypes.bool.isRequired,
   toggleModal: PropTypes.func.isRequired,
-  // showCTA: PropTypes.func,
-  // hideCTA: PropTypes.func,
   toggleCTA: PropTypes.func,
   loggedIn: PropTypes.bool.isRequired,
   awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]),
