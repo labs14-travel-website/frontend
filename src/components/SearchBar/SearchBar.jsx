@@ -2,6 +2,9 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 // import styles from './SearchBar.module.scss';
 
+/**
+ * @description SearchBar is a component that returns an input form and attraction cards
+ */
 
 const SearchBar = ({ handleSearch }) => {
   // user-input state

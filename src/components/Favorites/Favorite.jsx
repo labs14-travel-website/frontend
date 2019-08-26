@@ -3,9 +3,15 @@ import './Favorite.modules.scss';
 import PropTypes from 'prop-types';
 
 /**
-   * @description Returns heart empty if favId is not within favList and heart full if
-   * favId is present within favList.
-   * @param {string} favId unique id associated with an attraction
+   * @description Returns heart empty if favorite is not within favorites and heart full if
+   * favorite is present within favorites.
+   * @param {string} favorite unique id associated with an attraction
+   * @param {bool} showCTA whether or not to show the login call to action
+   * @param {bool} loggedIn whether or not user is logged in
+   * @param {bool, string} awaitingFavorite false if false, place ID if true. 
+   * If there is a place ID, it will favorite the attraction on login
+   * @param {func} addFavorite adds attraction to favorites
+   * @param {func} removeFavorite removes attraction from favorites
    */
 
 const Favorite = ({

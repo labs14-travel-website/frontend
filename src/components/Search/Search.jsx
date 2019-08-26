@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import styles from './Search.module.scss';
 
 /**
- * @description Landing is a component that returns an input form and attraction cards
+ * @description Search is a component that returns an input form and attraction cards
  */
 const Search = ({ handleSearch }) => {
   // user-input state

@@ -4,7 +4,8 @@ import PropTypes from 'prop-types';
 import styles from './PopularDestinations.module.scss';
 import CardDisplay from '../CardDisplay';
 
-/** @description PopularDestinations is a component that returns 4 CardDisplays
+/**
+ * @description PopularDestinations is a component that returns 4 CardDisplays
  * containing 4 randomly chosen popular destinations to travel to
  */
 
