@@ -56,7 +56,7 @@ const PlaceDetails = (props) => {
   });
 
   useEffect(() => {
-    console.log('loading details', placeId);
+    console.log('placeId :', placeId);
     const getPlaceDetails = async (id) => {
       const details = await new Promise((resolve) => {
         setTimeout(() => {
@@ -70,14 +70,11 @@ const PlaceDetails = (props) => {
         }, 3500);
       });
 
-      // await details;
-      console.log(details);
-
       setPlace(details);
     };
 
     getPlaceDetails(placeId);
-  }, []);
+  }, [placeId]);
 
   useEffect(() => {
     document.addEventListener('keyup', onClose);
