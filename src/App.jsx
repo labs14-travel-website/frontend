@@ -6,6 +6,7 @@ import Profile from './views/Profile';
 import styles from './App.module.scss';
 import Home from './views/Home';
 import Modal from './components/Modal';
+import ModalTwo from './components/ModalTwo';
 import track from './utils/analytics';
 import store from './utils/jwt-store';
 import feature from './utils/flaggie';
@@ -287,6 +288,7 @@ function App() {
           hideCTA={toggleCTA}
         />
       )}
+      <Route path="*/place/:placeid" render={routeProps => <ModalTwo show {...routeProps} />} />
     </>
   );
 }
