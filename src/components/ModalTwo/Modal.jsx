@@ -75,10 +75,14 @@ const PlaceDetails = (props) => {
     getPlaceDetails(placeId);
   }, [placeId]);
 
+  const handleOnClose = () => {
+    props.history.push(props.match.url.split('/place/')[0]);
+  };
+
   useEffect(() => {
-    document.addEventListener('keyup', onClose);
+    document.addEventListener('keyup', handleOnClose);
     return () => {
-      document.removeEventListener('keyup', onClose);
+      document.removeEventListener('keyup', handleOnClose);
     };
   });
 
@@ -89,20 +93,15 @@ const PlaceDetails = (props) => {
     }
   }, [favorites, placeId]);
 
-  if (!show) {
-    // return null;
-  }
-
   // const modalPicture = `${attraction.picture.split('-w400')[0]}-w1200`; // eslint-disable-line
 
   const style = {
     // background: `url('${modalPicture}') 50% 50% / cover`,
   };
 
-
   return (
     <div className={styles.Modal_wrapper}>
-      <div className={styles.Modal_overlay} onClick={e => onClose(e)} />
+      <div className={styles.Modal_overlay} onClick={handleOnClose} />
       <div className={styles.Modal} id="modal">
         <div className={styles.Modal__image} style={style} />
         <div className={styles.Modal__information}>
@@ -128,15 +127,13 @@ const PlaceDetails = (props) => {
           </div>
 
           <div className={styles.PriceRating}>
-            <PriceRating price={place.price} />
-            {/* <PriceRating price={attraction.price ? attraction.price : 1} /> */}
+            <PriceRating price={place.price ? place.price : 1} />
           </div>
 
           <div className={styles.Modal__information__content}>
             {
               place.description
                 ? <p>{place.description}</p>
-                // ? <p>{description}</p>
                 : <Loader type="Puff" color="#00BFFF" height={100} width={100} />
             }
           </div>
@@ -144,7 +141,7 @@ const PlaceDetails = (props) => {
             <button
               type="button"
               className={styles.toggleButton}
-              onClick={e => onClose(e)}
+              onClick={handleOnClose}
             >
               Close
             </button>

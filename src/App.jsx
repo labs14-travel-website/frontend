@@ -236,7 +236,7 @@ function App() {
       />
       <div className={AppClasses}>
         <Route
-          exact
+          // exact
           path="/"
           render={props => (
             <Home
@@ -252,7 +252,7 @@ function App() {
           )}
         />
         <Route
-          exact
+          // exact
           path="/profile"
           render={props => (
             <Profile
