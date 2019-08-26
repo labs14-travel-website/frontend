@@ -56,7 +56,6 @@ const PlaceDetails = (props) => {
   });
 
   useEffect(() => {
-    console.log('placeId :', placeId);
     const getPlaceDetails = async (id) => {
       const details = await new Promise((resolve) => {
         setTimeout(() => {
@@ -83,6 +82,13 @@ const PlaceDetails = (props) => {
     };
   });
 
+  const [heart, setHeart] = useState(false);
+  useEffect(() => {
+    if (favorites.filter(favorite => favorite.placeId === placeId).length) {
+      setHeart(true);
+    }
+  }, [favorites, placeId]);
+
   if (!show) {
     // return null;
   }
@@ -102,6 +108,9 @@ const PlaceDetails = (props) => {
         <div className={styles.Modal__information}>
           <h2>{place.name}</h2>
           {/* <h2>{attraction.name}</h2> */}
+          {
+            heart ? (<span>&lt;3</span>) : (<span>&lt;/3</span>)
+          }
           {/* <Favorite
             favorite={attraction}
             loggedIn={loggedIn}

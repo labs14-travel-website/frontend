@@ -164,6 +164,7 @@ function App() {
   useEffect(() => {
     const getFavorites = async () => {
       try {
+        console.log('getting favorites');
         const { data: { data: { favorites } } } = await axios({
           url: `${process.env.REACT_APP_ENDPOINT}/gql`,
           method: 'post',
@@ -288,7 +289,7 @@ function App() {
           hideCTA={toggleCTA}
         />
       )}
-      <Route path="*/place/:placeid" render={routeProps => <ModalTwo show {...routeProps} />} />
+      <Route path="*/place/:placeid" render={routeProps => <ModalTwo show {...routeProps} favorites={state.favorites} />} />
     </>
   );
 }
