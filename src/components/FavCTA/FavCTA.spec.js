@@ -7,7 +7,7 @@ describe('Attractions Component', () => {
     responseFail: () => true,
     responseGoogle: () => true,
     hideCTA: () => true,
-  }
+  };
   it('tests true', () => {
     expect(1).toBe(1);
   });
