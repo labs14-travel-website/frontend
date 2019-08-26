@@ -20,8 +20,6 @@ import Favorite from '../Favorites';
 const PlaceDetails = (props) => {
   const [description, setDescription] = useState('');
   const {
-    onClose,
-    show,
     attraction,
     loggedIn,
     toggleCTA,
@@ -106,7 +104,6 @@ const PlaceDetails = (props) => {
         <div className={styles.Modal__image} style={style} />
         <div className={styles.Modal__information}>
           <h2>{place.name}</h2>
-          {/* <h2>{attraction.name}</h2> */}
           {
             heart ? (<span>&lt;3</span>) : (<span>&lt;/3</span>)
           }
@@ -123,7 +120,6 @@ const PlaceDetails = (props) => {
 
           <div className={styles.Ratings}>
             <Ratings rating={place.rating} />
-            {/* <Ratings rating={attraction.rating} /> */}
           </div>
 
           <div className={styles.PriceRating}>
@@ -153,8 +149,6 @@ const PlaceDetails = (props) => {
 };
 
 PlaceDetails.propTypes = {
-  onClose: PropTypes.func.isRequired,
-  show: PropTypes.bool.isRequired,
   // attraction: PropTypes.shape({
   //   name: PropTypes.string,
   //   rating: PropTypes.number,
