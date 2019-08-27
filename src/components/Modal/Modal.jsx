@@ -47,7 +47,8 @@ const Modal = (props) => {
     getDescription();
   }, [attraction.name]);
 
-  const handleOnClose = (e) => {
+  const handleOnClose = (event) => {
+    event.stopPropagation();
     onClose({});
   };
 
