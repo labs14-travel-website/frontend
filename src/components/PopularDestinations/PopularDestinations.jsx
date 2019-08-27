@@ -36,24 +36,11 @@ const PopularDestinations = ({ handleSearch, noResults }) => {
   const selectedLocations = shuffled.slice(0, 4);
 
   const [locationState] = useState(selectedLocations);
-  // const [locationStateIndex, setLocationStateIndex] = useState(0);
-
-  // useEffect(() => {
-  //   setLocationState(locations.slice(locationStateIndex, locationStateIndex + 4));
-  // }, [locations, locationStateIndex]);
 
   const handleOnClick = async (data) => {
     const query = `${data.place.city}, ${data.place.country}`;
     handleSearch(`${query}`);
   };
-
-  // const handleMoreClick = () => {
-  //   setLocationStateIndex(locationStateIndex + 4);
-  // };
-
-  // const handleLessClick = () => {
-  //   setLocationStateIndex(locationStateIndex - 4);
-  // };
 
   return (
     <div className={styles.container}>
@@ -61,13 +48,6 @@ const PopularDestinations = ({ handleSearch, noResults }) => {
         {noResults ? <div>No Results</div> : null}
         <h2 className={styles.PopularDestinations__title}>Popular Destinations</h2>
         <div className={styles.PopularDestinations__cards}>
-          {/* {locationStateIndex > 0
-            ? (
-              <div className={styles.PopularDestinations__minus} onClick={handleLessClick}>
-                <i className="fas fa-chevron-left fa-xs" />
-              </div>
-            )
-            : null} */}
           {
             locationState.map(location => (
               <CardDisplay
@@ -83,13 +63,6 @@ const PopularDestinations = ({ handleSearch, noResults }) => {
               />
             ))
           }
-          {/* {locationStateIndex < locations.length - 4
-            ? (
-              <div className={styles.PopularDestinations__plus} onClick={handleMoreClick}>
-                <i className="fas fa-chevron-right fa-xs" />
-              </div>
-            )
-            : null} */}
         </div>
       </div>
     </div>

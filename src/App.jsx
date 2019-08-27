@@ -28,7 +28,7 @@ function App() {
 
   const [user, setUser] = useState({});
 
-  // TODO: Shouldn't need a loading here !Object.keys(flags).length
+  // TODO: Shouldn't need a loading key here, use !Object.keys(flags).length
   const [features, setFeatures] = useState({
     loading: true,
     flags: {},
@@ -125,7 +125,7 @@ function App() {
       getUserInfo(token);
     }
 
-    // TODO: This is temporary tracking to validate setup
+    // TODO: This is temporary tracking to validate setup, update with routes
     track.pageview('/');
 
     // TODO: Remove this, it is giving us 0% bounce
