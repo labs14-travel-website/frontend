@@ -17,7 +17,8 @@ const Favorite = ({
     addFavorite(awaitingFavorite);
   }
 
-  const handleAddFavorite = () => {
+  const handleAddFavorite = (event) => {
+    event.stopPropagation();
     if (!loggedIn) {
       showCTA(placeId);
       // TODO look how to make showCTA a promise so the favorite

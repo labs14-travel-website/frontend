@@ -47,10 +47,14 @@ const Modal = (props) => {
     getDescription();
   }, [attraction.name]);
 
+  const handleOnClose = (e) => {
+    onClose({});
+  };
+
   useEffect(() => {
-    document.addEventListener('keyup', onClose);
+    document.addEventListener('keyup', handleOnClose);
     return () => {
-      document.removeEventListener('keyup', onClose);
+      document.removeEventListener('keyup', handleOnClose);
     };
   });
 
@@ -67,7 +71,7 @@ const Modal = (props) => {
 
   return (
     <div className={styles.Modal_wrapper}>
-      <div className={styles.Modal_overlay} onClick={e => onClose(e)} />
+      <div className={styles.Modal_overlay} onClick={handleOnClose} />
       <div className={styles.Modal} id="modal">
         <div className={styles.Modal__image} style={style} />
         <div className={styles.Modal__information}>
@@ -102,7 +106,7 @@ const Modal = (props) => {
             <button
               type="button"
               className={styles.toggleButton}
-              onClick={e => onClose(e)}
+              onClick={handleOnClose}
             >
               Close
             </button>
@@ -125,8 +129,6 @@ Modal.propTypes = {
     types: PropTypes.arrayOf(PropTypes.string),
   }).isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  // showCTA: PropTypes.func.isRequired,
-  // hideCTA: PropTypes.func.isRequired,
   toggleCTA: PropTypes.func.isRequired,
   awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
   addFavorite: PropTypes.func.isRequired,

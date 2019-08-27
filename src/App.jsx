@@ -6,7 +6,6 @@ import Profile from './views/Profile';
 import styles from './App.module.scss';
 import Home from './views/Home';
 import Modal from './components/Modal';
-import ModalTwo from './components/ModalTwo';
 import track from './utils/analytics';
 import store from './utils/jwt-store';
 import feature from './utils/flaggie';
@@ -38,11 +37,12 @@ function App() {
   const Feature = feature(features.flags, features.loading);
 
   const toggleModal = async (attraction = {}) => {
+    console.log('buggy', Object.keys(attraction).length, state.modal.show);
     setState(prevState => ({
       ...prevState,
       modal: {
         ...prevState.modal,
-        show: !prevState.modal.show,
+        show: Object.keys(attraction).length,
         attraction,
       },
     }));
@@ -128,7 +128,7 @@ function App() {
     // TODO: This is temporary tracking to validate setup
     track.pageview('/');
 
-    // TODO: LOL Remove this, it is giving us 0% bounce
+    // TODO: Remove this, it is giving us 0% bounce
     track.event({
       category: 'Main',
       action: 'Generic Action',
@@ -164,7 +164,6 @@ function App() {
   useEffect(() => {
     const getFavorites = async () => {
       try {
-        console.log('getting favorites');
         const { data: { data: { favorites } } } = await axios({
           url: `${process.env.REACT_APP_ENDPOINT}/gql`,
           method: 'post',
@@ -236,11 +235,10 @@ function App() {
       />
       <div className={AppClasses}>
         <Route
-          // exact
+          exact
           path="/"
-          render={props => (
+          render={() => (
             <Home
-              {...props}
               toggleModal={toggleModal}
               toggleCTA={toggleCTA}
               loggedIn={!!user.name}
@@ -252,11 +250,10 @@ function App() {
           )}
         />
         <Route
-          // exact
+          exact
           path="/profile"
-          render={props => (
+          render={() => (
             <Profile
-              {...props}
               loggedIn={!!user.name}
               user={user}
               toggleModal={toggleModal}
@@ -289,7 +286,6 @@ function App() {
           hideCTA={toggleCTA}
         />
       )}
-      <Route path="*/place/:placeid" render={routeProps => <ModalTwo show {...routeProps} favorites={state.favorites} />} />
     </>
   );
 }
