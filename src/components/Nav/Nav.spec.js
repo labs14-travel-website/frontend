@@ -12,7 +12,7 @@ describe('Nav Mounts', () => {
     responseFail: () => true,
     responseGoogle: () => true,
     logout: () => true,
-  }
+  };
   const Feature = { Toggle: () => true };
   it('renders', () => {
     const wrapper = mount(

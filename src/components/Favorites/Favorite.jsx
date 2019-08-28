@@ -8,7 +8,7 @@ import PropTypes from 'prop-types';
    * @param {string} favorite unique id associated with an attraction
    * @param {bool} showCTA whether or not to show the login call to action
    * @param {bool} loggedIn whether or not user is logged in
-   * @param {bool, string} awaitingFavorite false if false, place ID if true. 
+   * @param {bool, string} awaitingFavorite false if false, place ID if true.
    * If there is a place ID, it will favorite the attraction on login
    * @param {func} addFavorite adds attraction to favorites
    * @param {func} removeFavorite removes attraction from favorites

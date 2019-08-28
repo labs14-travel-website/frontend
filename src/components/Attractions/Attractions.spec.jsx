@@ -15,7 +15,6 @@ const attrractionsProps = {
   favorites: [],
 };
 describe('Attractions Component', () => {
-
   it('Component did mount', () => {
     const component = mount(<Attractions {...attrractionsProps} />);
     expect(component.find('[className^="Attractions__wrapper"]').length).toBe(1);

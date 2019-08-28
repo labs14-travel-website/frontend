@@ -10,7 +10,7 @@ describe('PopularDestinations', () => {
   const popularDestinationsProps = {
     handleSearch: () => true,
     noResults: false,
-  }
+  };
   it('mounts', () => {
     const wrapper = shallow(<PopularDestinations {...popularDestinationsProps} />);
     expect(wrapper.exists()).toBe(true);
