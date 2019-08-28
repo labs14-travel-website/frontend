@@ -156,7 +156,16 @@ This API lets us pull descriptions for the attractions. When a user clicks on a 
 
 # Installation Instructions
 
+**NOTES:**
+ - We are using Yarn, duplicate lock files will cause build failures
+ - You will need a local version of the server running as well
 
+Commands:
+
+    git clone https://github.com/labs14-travel-website/frontend.git
+    yarn
+    git checkout -b feature/new-feature
+    yarn start
 
 ## Other Scripts
 
