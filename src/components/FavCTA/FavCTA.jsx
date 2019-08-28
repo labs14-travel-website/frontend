@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import styles from './FavCTA.module.scss';
 
 /**
- * @description Returns a modal containing a call to action to login when user trys to
- * go someonewhere while logged out that only logged in users can go.
+ * @description Returns a modal containing a call to action to login when user tries to
+ * go somewhere while logged out that only logged in users can go.
  * @param {func} hideCTA a function that closes the call to action modal.
  */
 

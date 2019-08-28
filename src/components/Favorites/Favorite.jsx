@@ -23,10 +23,11 @@ const Favorite = ({
     addFavorite(awaitingFavorite);
   }
 
-  const handleAddFavorite = () => {
+  const handleAddFavorite = (event) => {
+    event.stopPropagation();
     if (!loggedIn) {
       showCTA(placeId);
-      // TODO look how to make showCTA a promise so the favorite
+      // TODO: look how to make showCTA a promise so the favorite
       // functionality will work after successfully logged in
     } else {
       addFavorite(placeId);
@@ -51,7 +52,6 @@ const Favorite = ({
 };
 
 Favorite.propTypes = {
-  // favId: PropTypes.string.isRequired,
   showCTA: PropTypes.func.isRequired,
   loggedIn: PropTypes.bool.isRequired,
   awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).isRequired,
