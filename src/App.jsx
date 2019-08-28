@@ -37,7 +37,6 @@ function App() {
   const Feature = feature(features.flags, features.loading);
 
   const toggleModal = async (attraction = {}) => {
-    console.log('buggy', Object.keys(attraction).length, state.modal.show);
     setState(prevState => ({
       ...prevState,
       modal: {
