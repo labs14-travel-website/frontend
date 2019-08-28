@@ -161,18 +161,25 @@ This API lets us pull descriptions for the attractions. When a user clicks on a 
  - You will need a local version of the server running as well
 
 Commands:
-
-    git clone https://github.com/labs14-travel-website/frontend.git
-    yarn
-    git checkout -b feature/new-feature
-    yarn start
+```
+$ git clone https://github.com/labs14-travel-website/frontend.git
+$ yarn
+$ git checkout -b feature/new-feature
+$ yarn start
+```
 
 ## Other Scripts
 
-🚫replace these examples with your own
-
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
+```
+start - Starts the create-react-app scripts
+build - Compiles the code into a production-ready build
+jest:coverage - Runs jest with coverage reporting
+jest:start - Runs standard jest tests
+cypress:start - Run cypress tests, primarily for CI
+lint:start - Run ESLint against files
+lint:fix - Automatically fixes lint errors where possible
+heroku-postbuild - Sets up db migrations for heroku deployment
+```
 
 # Contributing
 
