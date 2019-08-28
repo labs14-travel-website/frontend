@@ -54,36 +54,57 @@ As envisoned, Roamly is an itinerary builder built for Web and Android. The Web 
 #### Continuous Integration: Travis CI
 
 Travis CI benefit(s) :
-- 🚫🚫🚫
+- Prevents bad code from reaching production
+- Gives mandatory break time for nerf wars
+- Ensures your codebase passes all testing/linting/coverage requirements
 
-#### Analytics: FullStory, Google Analytics, and Heap Analytics
-- FullStory has great user interaction tools and statistics as well as easy to use UI
-- Heap Analytics similar to FullStory for extra coverage
-- Google Analytics works well with Google Login
+#### Analytics: FullStory, Google Analytics, Mixpanel, and Heap Analytics
+- FullStory lets you see how users are using your website
+  - It is a very powerful tool that acts as a user case study with real interaction
+  - Also shows potential issues with loading and rage clicks (e.g. elements that look like buttons)
+- Heap Analytics let's you look at event flows in the past
+  - If you forget to set up an event, with other analytics you will have lost data
+  - With Heap you can look at past data to recover the event that you wanted data on
+- Google Analytics is industry standard for website analytics, has a lot of beneficial features and insights
 
-#### Error Tracking: Sentry
-- Supports React
-- Excellent Error Logs
+
+#### Exception Tracking: Sentry
+- Sentry will automatically log session that throw exceptions for users
+  - Excellent Error Logs
+  - Can stack trace in the users browser
+  - Provides useful debugging information, such as browser, os, location experiencing an error
 
 #### Front End deployed to [Netlify](https://www.netlify.com/)
 
 # Tech Stack - Back End
 
 ### [Back End](https://github.com/labs14-travel-website/backend) built using:
-- Framework as PostgreSQL
-- Query Builder using Knex
+- Environment is Node.js
+- Framework is Express.js
+- Database is PostgreSQL
+- Query Builder using Knex.js
 - Data Access using GraphQL
 
-#### Framework: PostgreSQL
--    Supported by Heroku
--    Data won't be wiped like SQLite
+### Environment: Node.js
+- Easy to learn
+- Scalable
+- Benefit of fullstack JS
+- Fast / High Performance
+
+#### Database: PostgreSQL
+- Supported by Heroku
+- Data won't be wiped like SQLite
+- Diverse indexing
+- Flexible full-text search
 
 #### Query Builder: Knex
 - Familiarity and pairs well with SQL
+- Abstracts SQL queries into Javascript
 - Straight-forward migration/seeding
 
 #### Data Access: GraphQL
-- Request specific data without changing the endpoints
+- Request specific data from the endpoints
+- Receive data in a predictable way
 
 #### Back End deployed to [Heroku](https://heroku.com)
 
@@ -92,30 +113,25 @@ Travis CI benefit(s) :
 
 ## Authentication: OAuth and Google Login
 
-🚫
-
-- Relieves the need for new user accounts managed on our server
+We use Google SignOn to handle user authentication securely without having to store the information directly on our server. We considered using normal JSON Web Tokens, but OAuth is more secure and Google SignOn provides an easier login experience for users.
 
 ## Content: Google Places API
 
-🚫
-- Returns most if not all the information we are looking for
+This is the core of our application. It provides a lot of the information that we need such as: Destination search, points of interest, restaurants, etc. When a user searches for a destination we send a places request for that search which returns a list of attractions to visit near that location. In a future release this can be expanded upon to pull places to eat as well.
+
+We considered Sygic API which seemed like a perfect fit, but they stopped giving out API access to students.
+
+## Descriptions: Google Knowledge Graph
+
+This API lets us pull descriptions for the attractions. When a user clicks on a card we send a knowledge graph request for the attraction name.
 
 # Environment Variables
-
-In order for the app to function correctly, the user must set up their own environment variables. There should be an .env file containing the following:
-
-🚫These are just examples, replace them with the specifics for your app
-
-    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-
-# Content Licenses
-
-| Image Filename | Source / Creator | License                                                                      |
-| -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| hero.jpg    |   🚫 | [Creative Commons]() |
-|       |     |      |
+    *  REACT_APP_OAUTH_GOOGLE_ID - Your Google OAuth credentials ID
+    *  REACT_APP_ENDPOINT - The endpoint for the server, default for local is port 8000
+    *  REACT_APP_MP_TOKEN - Mixpanel account token
+    *  REACT_APP_GA_TOKEN - Google Analytics account token
+    *  REACT_APP_FS_TOKEN - Fullstory account token;
+    *  REACT_APP_HA_TOKEN - Heap Analytics account token;
 
 # Testing
 
@@ -131,14 +147,25 @@ In order for the app to function correctly, the user must set up their own envir
 
 #### End to End Testing: Cypress
 - Excellent documentation and well supported
-- Stubbing is excelling tool for testing state
+- Great for testing `golden path` for users to make sure future releases don't break anything
+- Stubbing is an excellent tool for testing state
 
 #### Code Quality: ESLint
 - Industry Standard JS Code checker
+- Using Airbnb styles
 
 # Installation Instructions
 
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+**NOTES:**
+ - We are using Yarn, duplicate lock files will cause build failures
+ - You will need a local version of the server running as well
+
+Commands:
+
+    git clone https://github.com/labs14-travel-website/frontend.git
+    yarn
+    git checkout -b feature/new-feature
+    yarn start
 
 ## Other Scripts
 
