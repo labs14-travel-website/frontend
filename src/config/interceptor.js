@@ -5,7 +5,7 @@ axios.interceptors.request.use((config) => {
     ...config,
     headers: {
       ...config.headers,
-      env: process.env.REACT_APP_ENV || 'development',
+      env: process.env.REACT_APP_ENV || 'production',
     },
   };
 
