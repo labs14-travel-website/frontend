@@ -1,7 +1,12 @@
+@import '../../assets/master';
+
 .wrapper {
     width: 100%;
     display: flex;
     justify-content: center;
+    background: $secondary;
+    position: relative;
+    z-index: 1;
 }
 
 .Nav {
@@ -22,9 +27,15 @@
     &__google {
         align-self: center;
     }
+
+    &__links {
+        display: flex;
+        align-items: center;
+    }
 }
 
 .Favorites {
     text-decoration: none;
-    color: white;
+    color: $mono-light;
+    padding: 0 40px;
 }

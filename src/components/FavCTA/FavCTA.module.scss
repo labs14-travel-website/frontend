@@ -1,9 +1,34 @@
-.FavCTA__wrapper {
-    width: 50%;
-    background-color: black;
-    position: fixed;
-    top: 80px;
-    left: 25%;
-    padding: 20px;
-    z-index: 2;
+@import '../../assets/master';
+
+.FavCTA {
+    &__wrapper {
+        background-color: $secondary;
+        position: fixed;
+        left: 50%;
+        padding: 20px;
+        z-index: 2;
+        top: 50%;
+        transform: translateY(-50%) translateX(-50%);
+    }
+
+    &_overlay {
+        background: rgba(0, 0, 0, 0.65);
+        position: fixed;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        overflow-y: scroll;
+        z-index: 1;
+    }
+
+    &__close {
+        position: absolute;
+        right: 10px;
+        top: 6px;
+        cursor: pointer;
+    }
 }

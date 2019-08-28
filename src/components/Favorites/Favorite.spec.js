@@ -4,6 +4,12 @@ import { mount } from '../../enzyme';
 
 
 describe('Favorites Component', () => {
+  const favoritesProps = {
+    awaitingFavorite: false,
+    favorites: [],
+    removeFavorite: () => true,
+    addFavorite: () => true,
+  };
   it('Component should mount', () => {
     const props = {
       favorite: {
@@ -13,7 +19,7 @@ describe('Favorites Component', () => {
       loggedIn: true,
 
     };
-    const wrapper = mount(<Favorite {...props} />);
+    const wrapper = mount(<Favorite {...props} {...favoritesProps} />);
     expect(wrapper).toBeDefined();
   });
 
@@ -25,7 +31,7 @@ describe('Favorites Component', () => {
       showCTA: () => true,
       loggedIn: true,
     };
-    const wrapper = mount(<Favorite {...props} />);
+    const wrapper = mount(<Favorite {...props} {...favoritesProps} />);
     const heart = wrapper.find('#heart-full');
     expect(heart.length).toBe(1);
   });
