@@ -126,7 +126,12 @@ We considered Sygic API which seemed like a perfect fit, but they stopped giving
 This API lets us pull descriptions for the attractions. When a user clicks on a card we send a knowledge graph request for the attraction name.
 
 # Environment Variables
-
+    *  REACT_APP_OAUTH_GOOGLE_ID - Your Google OAuth credentials ID
+    *  REACT_APP_ENDPOINT - The endpoint for the server, default for local is port 8000
+    *  REACT_APP_MP_TOKEN - Mixpanel account token
+    *  REACT_APP_GA_TOKEN - Google Analytics account token
+    *  REACT_APP_FS_TOKEN - Fullstory account token;
+    *  REACT_APP_HA_TOKEN - Heap Analytics account token;
 
 # Testing
 
