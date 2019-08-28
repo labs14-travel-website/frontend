@@ -22,17 +22,17 @@ const Modal = (props) => {
   const {
     onClose,
     show,
-    // children,
     attraction,
-    Feature,
     loggedIn,
-    showCTA,
-    hideCTA,
+    toggleCTA,
     awaitingFavorite,
     favorites,
     addFavorite,
     removeFavorite,
   } = props;
+
+  // BUG: Console throwing invalid prop type awaitingFavorite in following flow:
+  // Be logged out > Favorite via modal > Login
 
   useEffect(() => {
     const getDescription = async () => {
@@ -47,6 +47,18 @@ const Modal = (props) => {
     getDescription();
   }, [attraction.name]);
 
+  const handleOnClose = (event) => {
+    event.stopPropagation();
+    onClose({});
+  };
+
+  useEffect(() => {
+    document.addEventListener('keyup', handleOnClose);
+    return () => {
+      document.removeEventListener('keyup', handleOnClose);
+    };
+  });
+
   if (!show) {
     return null;
   }
@@ -60,24 +72,21 @@ const Modal = (props) => {
 
   return (
     <div className={styles.Modal_wrapper}>
-      <div className={styles.Modal_overlay} onClick={e => onClose(e)} />
+      <div className={styles.Modal_overlay} onClick={handleOnClose} />
       <div className={styles.Modal} id="modal">
         <div className={styles.Modal__image} style={style} />
         <div className={styles.Modal__information}>
           <h2>{attraction.name}</h2>
-
-          <Feature.Toggle flag="heart-fav">
-            <Favorite
-              favorite={attraction}
-              loggedIn={loggedIn}
-              showCTA={showCTA}
-              hideCTA={hideCTA}
-              awaitingFavorite={awaitingFavorite}
-              favorites={favorites}
-              addFavorite={addFavorite}
-              removeFavorite={removeFavorite}
-            />
-          </Feature.Toggle>
+          <Favorite
+            favorite={attraction}
+            loggedIn={loggedIn}
+            showCTA={toggleCTA}
+            hideCTA={toggleCTA}
+            awaitingFavorite={awaitingFavorite}
+            favorites={favorites}
+            addFavorite={addFavorite}
+            removeFavorite={removeFavorite}
+          />
 
           <div className={styles.Ratings}>
             <Ratings rating={attraction.rating} />
@@ -91,14 +100,14 @@ const Modal = (props) => {
             {
               description
                 ? <p>{description}</p>
-                : <Loader type="Puff" color="#00BFFF" height="100" width="100" />
+                : <Loader type="Puff" color="#00BFFF" height={100} width={100} />
             }
           </div>
           <div className={styles.actions}>
             <button
               type="button"
               className={styles.toggleButton}
-              onClick={e => onClose(e)}
+              onClick={handleOnClose}
             >
               Close
             </button>
@@ -112,21 +121,16 @@ const Modal = (props) => {
 Modal.propTypes = {
   onClose: PropTypes.func.isRequired,
   show: PropTypes.bool.isRequired,
-  Feature: PropTypes.func.isRequired,
-  // children: PropTypes.element.isRequired,
-  attraction: PropTypes.arrayOf(
-    PropTypes.shape({
-      name: PropTypes.string,
-      rating: PropTypes.number,
-      price: PropTypes.number,
-      placeId: PropTypes.string,
-      picture: PropTypes.string,
-      types: PropTypes.arrayOf(PropTypes.string),
-    }),
-  ).isRequired,
+  attraction: PropTypes.shape({
+    name: PropTypes.string,
+    rating: PropTypes.number,
+    price: PropTypes.number,
+    placeId: PropTypes.string,
+    picture: PropTypes.string,
+    types: PropTypes.arrayOf(PropTypes.string),
+  }).isRequired,
   loggedIn: PropTypes.bool.isRequired,
-  showCTA: PropTypes.func.isRequired,
-  hideCTA: PropTypes.func.isRequired,
+  toggleCTA: PropTypes.func.isRequired,
   awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.number]).isRequired,
   addFavorite: PropTypes.func.isRequired,
   favorites: PropTypes.arrayOf(
