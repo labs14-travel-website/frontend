@@ -18,7 +18,9 @@ if (env === 'production' || env === 'staging') {
 ReactDOM.render((
   <>
     <FullStory org={process.env.REACT_APP_FS_TOKEN} />
-    <Router><App /></Router>
+    <Router>
+      <App />
+    </Router>
   </>
 ), document.getElementById('root'));
 

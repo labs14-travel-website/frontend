@@ -4,7 +4,7 @@ import styles from './Hero.module.scss';
 
 /**
  * @description Styled div containing background image for search.
- * @param {element} children searchbar component that is displayed
+ * @param {element} children search bar component that is displayed
  * @param {string} background url of the background image displayed
  */
 

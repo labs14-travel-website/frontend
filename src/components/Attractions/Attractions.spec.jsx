@@ -6,14 +6,17 @@ const mountComp = (props = {}) => {
   const component = mount(<Attractions {...props} />);
   return component;
 };
-
+const attrractionsProps = {
+  attractions: [],
+  isLoading: false,
+  showModal: () => true,
+  loggedIn: false,
+  removeFavorite: () => true,
+  favorites: [],
+};
 describe('Attractions Component', () => {
-  it('tests true', () => {
-    expect(1).toBe(1);
-  });
-
   it('Component did mount', () => {
-    const component = mount(<Attractions />);
+    const component = mount(<Attractions {...attrractionsProps} />);
     expect(component.find('[className^="Attractions__wrapper"]').length).toBe(1);
   });
 
@@ -77,19 +80,15 @@ describe('Attractions Component', () => {
   describe('Testing No Attractions, Loading State', () => {
     let wrapper;
     beforeEach(() => {
-      const props = {
-        attractions: [],
-        isLoading: true,
-      };
-      wrapper = mountComp(props);
+      wrapper = mountComp({
+        ...attrractionsProps, isLoading: true,
+      });
     });
 
     it('Load the Spinner', () => {
-      const props = {
-        attractions: [],
-        isLoading: true,
-      };
-      wrapper = mountComp(props);
+      wrapper = mountComp({
+        ...attrractionsProps, isLoading: true,
+      });
       const loader = wrapper.find('[className^="Loader"]');
       expect(loader.length).toBe(1);
     });
