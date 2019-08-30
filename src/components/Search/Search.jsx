@@ -3,27 +3,11 @@ import PropTypes from 'prop-types';
 import styles from './Search.module.scss';
 
 /**
- * @description Landing is a component that returns an input form and attraction cards
+ * @description Search is a component that returns an input form and attraction cards
  */
 const Search = ({ handleSearch }) => {
   // user-input state
   const [destination, setDestination] = useState('');
-
-  // const example = [{
-  //   "name":"Escape My Room",
-  //   "placeId":"ChIJ-cdaX96lIIYReBSWpXVNalQ",
-  //   "rating":4.9,
-  //   "types":["museum","point_of_interest","establishment"],
-  //   "picture":"https://false/p/AF1QipOrLq7jYuMZ4OzEgYUWrrKkkFRnekQpB7mbnd_E=s1600-w400"
-  // },
-  // {
-  //   "name":"Escape My Room II",
-  //   "placeId":"ChIJ-cdaX96lIIYReBSWpXVNalQ123",
-  //   "rating":4.9,
-  //   "types":["museum","point_of_interest","establishment"],
-  //   "picture":"https://false/p/AF1QipOrLq7jYuMZ4OzEgYUWrrKkkFRnekQpB7mbnd_E=s1600-w400"
-  // }]
-
 
   // Sets the state to user-input
   const handleOnChange = ({ target: { value } }) => {
