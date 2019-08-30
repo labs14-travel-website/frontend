@@ -41,7 +41,7 @@ function App() {
       ...prevState,
       modal: {
         ...prevState.modal,
-        show: Object.keys(attraction).length,
+        show: !!Object.keys(attraction).length,
         attraction,
       },
     }));
