@@ -5,11 +5,11 @@ You can find the deployed project at [roamly.app](https://roamly.app/).
 
 ## Contributors
 
-| [Alyssa Hatfield](https://github.com/xCthaeh) | [Arron Marshall](https://github.com/arronm) | [Jamie Hall](https://github.com/JamieHall1962) | [Josh Timmons](https://github.com/josh182014) |
+| [Alyssa Saez](https://github.com/AlyssaSaez) | [Arron Marshall](https://github.com/arronm) | [Jamie Hall](https://github.com/JamieHall1962) | [Josh Timmons](https://github.com/josh182014) |
 |:-:|:-:|:-:|:-:|
 | [<img src="./src/assets/img/alyH.jpg" width="200" />](https://github.com/xCthaeh) | [<img src="./src/assets/img/arronM.jpg" width = "200" />](https://github.com/arronm) | [<img src="./src/assets/img/jamieH.jpg" width = "200" />](https://github.com/JamieHall1962) | [<img src="./src/assets/img/joshT.jpg" width = "200" />](https://github.com/josh182014) |
-| [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/xCthaeh) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/arronm) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JamieHall1962) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/josh182014) |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/alyssahatfield/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/arronm) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/josh-timmons-851216132) |
+| [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/AlyssaSaez) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/arronm) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JamieHall1962) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/josh182014) |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/alyssasaez/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/arronm) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/josh-timmons-851216132) |
 
 | [Nguyen Vo](https://github.com/azinoVo) | [Ryan Matthews](https://github.com/Ryntak94) | [3](https://github.com/) | [4](https://github.com/) |
 |:-:|:-:|:-:|:-:|
