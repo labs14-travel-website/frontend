@@ -5,7 +5,7 @@ You can find the deployed project at [roamly.app](https://roamly.app/).
 
 ## Contributors
 
-| [Alyssa Saez](https://github.com/xCthaeh) | [Arron Marshall](https://github.com/arronm) | [Jamie Hall](https://github.com/JamieHall1962) | [Josh Timmons](https://github.com/josh182014) |
+| [Alyssa Saez](https://github.com/AlyssaSaez) | [Arron Marshall](https://github.com/arronm) | [Jamie Hall](https://github.com/JamieHall1962) | [Josh Timmons](https://github.com/josh182014) |
 |:-:|:-:|:-:|:-:|
 | [<img src="./src/assets/img/alyH.jpg" width="200" />](https://github.com/xCthaeh) | [<img src="./src/assets/img/arronM.jpg" width = "200" />](https://github.com/arronm) | [<img src="./src/assets/img/jamieH.jpg" width = "200" />](https://github.com/JamieHall1962) | [<img src="./src/assets/img/joshT.jpg" width = "200" />](https://github.com/josh182014) |
 | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/xCthaeh) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/arronm) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JamieHall1962) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/josh182014) |
