@@ -8,7 +8,15 @@ import Attractions from '../../components/Attractions';
 import Hero from '../../components/Hero';
 import '../../config/interceptor';
 
-function Home({ showModal, Feature }) {
+function Home({
+  toggleModal,
+  toggleCTA,
+  loggedIn,
+  awaitingFavorite,
+  addFavorite,
+  favorites,
+  removeFavorite,
+}) {
   const [state, setState] = useState({
     clientId: process.env.REACT_APP_OAUTH_GOOGLE_ID,
     attractions: [],
@@ -67,8 +75,13 @@ function Home({ showModal, Feature }) {
             <Attractions
               attractions={state.attractions}
               isLoading={state.isLoading}
-              showModal={showModal}
-              Feature={Feature}
+              toggleModal={toggleModal}
+              toggleCTA={toggleCTA}
+              loggedIn={loggedIn}
+              awaitingFavorite={awaitingFavorite}
+              addFavorite={addFavorite}
+              favorites={favorites}
+              removeFavorite={removeFavorite}
             />
           )
       }
@@ -77,10 +90,22 @@ function Home({ showModal, Feature }) {
 }
 
 Home.propTypes = {
-  showModal: PropTypes.func.isRequired,
-  Feature: PropTypes.objectOf(
-    PropTypes.func,
+  toggleModal: PropTypes.func.isRequired,
+  toggleCTA: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).isRequired,
+  addFavorite: PropTypes.func.isRequired,
+  favorites: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      place_id: PropTypes.string,
+      rating: PropTypes.number,
+      picture: PropTypes.string,
+      price: PropTypes.number,
+      id: PropTypes.number,
+    }),
   ).isRequired,
+  removeFavorite: PropTypes.func.isRequired,
 };
 
 export default Home;

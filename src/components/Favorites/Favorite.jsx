@@ -1,22 +1,49 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './Favorite.modules.scss';
 import PropTypes from 'prop-types';
 
-const Favorite = ({ favId }) => {
-  const [favList, setFavList] = useState([]);
+/**
+   * @description Returns heart empty if favorite is not within favorites and heart full if
+   * favorite is present within favorites.
+   * @param {string} favorite unique id associated with an attraction
+   * @param {bool} showCTA whether or not to show the login call to action
+   * @param {bool} loggedIn whether or not user is logged in
+   * @param {bool, string} awaitingFavorite false if false, place ID if true.
+   * If there is a place ID, it will favorite the attraction on login
+   * @param {func} addFavorite adds attraction to favorites
+   * @param {func} removeFavorite removes attraction from favorites
+   */
 
-  /**
-     * @description Returns heart empty if favId is not within favList and heart full if
-     * favId is present within favList.
-     * @param {string} favId unique id associated with an attraction
-     */
+const Favorite = ({
+  favorite: { placeId }, showCTA, loggedIn,
+  awaitingFavorite, addFavorite, favorites, removeFavorite,
+}) => {
+  const favList = favorites && favorites.map(fav => fav.place_id);
+  if (loggedIn && awaitingFavorite && (placeId === awaitingFavorite)) {
+    addFavorite(awaitingFavorite);
+  }
 
+  const handleAddFavorite = (event) => {
+    event.stopPropagation();
+    if (!loggedIn) {
+      showCTA(placeId);
+      // TODO: look how to make showCTA a promise so the favorite
+      // functionality will work after successfully logged in
+    } else {
+      addFavorite(placeId);
+    }
+  };
+
+  const handleRemoveFavorite = () => {
+    const fav = favorites.filter(favorite => favorite.placeId === placeId);
+    removeFavorite(fav[0].id);
+  };
 
   return (
     <>
       {
-      favList.includes(favId) ? <i onClick={() => { setFavList(favList.filter(fav => fav !== favId)); }} className="fas fa-heart fa-2x" id="heart-ol" />
-        : <i onClick={() => { setFavList([...favList, favId]); }} className="far fa-heart fa-2x" id="heart-full" />
+      favorites && favList.includes(placeId) ? <i onClick={handleRemoveFavorite} className="fas fa-heart fa-2x" id="heart-ol" />
+        : <i onClick={handleAddFavorite} className="far fa-heart fa-2x" id="heart-full" />
 
       }
     </>
@@ -25,7 +52,25 @@ const Favorite = ({ favId }) => {
 };
 
 Favorite.propTypes = {
-  favId: PropTypes.string.isRequired,
+  showCTA: PropTypes.func.isRequired,
+  loggedIn: PropTypes.bool.isRequired,
+  awaitingFavorite: PropTypes.oneOfType([PropTypes.bool, PropTypes.string]).isRequired,
+  favorites: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string,
+      rating: PropTypes.number,
+      placeId: PropTypes.string,
+      picture: PropTypes.string,
+      types: PropTypes.arrayOf(PropTypes.string),
+    }),
+  ).isRequired,
+  removeFavorite: PropTypes.func.isRequired,
+  addFavorite: PropTypes.func.isRequired,
+  favorite: PropTypes.shape(
+    {
+      placeId: PropTypes.string,
+    },
+  ).isRequired,
 };
 
 

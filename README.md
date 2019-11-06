@@ -1,160 +1,184 @@
-🚫 Note: All lines that start with 🚫 are instructions and should be deleted before this is posted to your portfolio. This is intended to be a guideline, feel free to add your own flare to it.
+# Roamly ("Travel Website")
+<img src="./src/assets/img/roamly.PNG" width = "1100" />
 
-🚫 The numbers 1️⃣ through 5️⃣ next to each item represent the week that part of the docs needs to be comepleted by.  Make sure to delete the numbers by the end of Labs.
+You can find the deployed project at [roamly.app](https://roamly.app/).
 
-🚫 Each student has a required minimum number of meaningful PRs each week per the rubric. Contributing to docs does NOT count as a PR to meet your weekly requirements.
+## Contributors
 
-# 1️⃣ Title of project goes here
+| [Alyssa Saez](https://github.com/AlyssaSaez) | [Arron Marshall](https://github.com/arronm) | [Jamie Hall](https://github.com/JamieHall1962) | [Josh Timmons](https://github.com/josh182014) |
+|:-:|:-:|:-:|:-:|
+| [<img src="./src/assets/img/alyH.jpg" width="200" />](https://github.com/xCthaeh) | [<img src="./src/assets/img/arronM.jpg" width = "200" />](https://github.com/arronm) | [<img src="./src/assets/img/jamieH.jpg" width = "200" />](https://github.com/JamieHall1962) | [<img src="./src/assets/img/joshT.jpg" width = "200" />](https://github.com/josh182014) |
+| [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/AlyssaSaez) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/arronm) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/JamieHall1962) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/josh182014) |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/alyssasaez/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/arronm) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/josh-timmons-851216132) |
 
-1️⃣ You can find the deployed project at [🚫URL NAME GOES HERE](🚫copy and paste URL here).
-
-## 4️⃣ Contributors
-
-🚫Add contributor info below, make sure add images and edit the social links for each member. Add to or delete these place-holders as needed
-
-|                                       [Student 1](https://github.com/)                                        |                                       [Student 2](https://github.com/)                                        |                                       [Student 3](https://github.com/)                                        |                                       [Student 4](https://github.com/)                                        |                                       [Student 5](https://github.com/)                                        |
-| :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------------------------: |
-|                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/)                       |                      [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-male.png" width = "200" />](https://github.com/)                       |
-|                 [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/)                 |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/honda0306)             |           [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Mister-Corn)            |          [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/NandoTheessen)           |            [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/wvandolah)             |
-| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) |
-
-<br>
-<br>
-
-🚫 4️⃣ Optional examples of using images with links for your tech stack, make sure to change these to fit your project
-
-![MIT](https://img.shields.io/packagist/l/doctrine/orm.svg)
-![React](https://img.shields.io/badge/react-v16.7.0--alpha.2-blue.svg)
-![Typescript](https://img.shields.io/npm/types/typescript.svg?style=flat)
-[![Netlify Status](https://api.netlify.com/api/v1/badges/b5c4db1c-b10d-42c3-b157-3746edd9e81d/deploy-status)](netlify link goes in these parenthesis)
-[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
-
-🚫 more info on using badges [here](https://github.com/badges/shields)
-
-## Project Overview
-
-1️⃣ [Trello Board](🚫add link to trello board here)
-
-1️⃣ [Product Canvas](🚫add link to product canvas here)
-
-1️⃣ [UX Design files](🚫add link to design files here) - 🚫 delete if not applicable
-
-🚫 Replace lorem ipsum with a description of your project
-
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-
-Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+| [Nguyen Vo](https://github.com/azinoVo) | [Ryan Matthews](https://github.com/Ryntak94) | [3](https://github.com/) | [4](https://github.com/) |
+|:-:|:-:|:-:|:-:|
+| [<img src="./src/assets/img/nVo.png" width="200" />](https://github.com/azinoVo) | [<img src="./src/assets/img/ryanM.jpg" width = "200" />](https://github.com/Ryntak94) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/) | [<img src="https://www.dalesjewelers.com/wp-content/uploads/2018/10/placeholder-silhouette-female.png" width = "200" />](https://github.com/) |
+| [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/azinoVo) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/Ryntak94) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/) | [<img src="https://github.com/favicon.ico" width="15"> ](https://github.com/) |
+| [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/) | [ <img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15"> ](https://www.linkedin.com/in/ryntak94) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) | [<img src="https://static.licdn.com/sc/h/al2o9zrvru7aqj8e1x2rzsrca" width="15">](https://www.linkedin.com/) |
 
 
-### 4️⃣ Key Features
+# Project Overview
 
--    feature one
--    feature two
--    feature three
--    feature four
--    feature five
+[Trello Board](https://trello.com/b/kBQIxBnm)
 
-## 1️⃣ Tech Stack
+[Product Canvas](https://www.notion.so/Travel-Website-Roamly-app-69b7026b663c4447b6ed95fb5b914fa8)
 
-### Front end built using:
+As envisoned, Roamly is an itinerary builder built for Web and Android. The Web application should allow users to view, favorite, and un-favorite attractions for a destination and then add/remove those attractions to/from their itinerary. The Android counterpart should allow for users to easily view their itinerary on-the-go while they are roamly-ing. 
 
-#### _Front end framework goes here_
+### Web Key Features
+-    Google Login
+-    Search Attractions for a Destination
+-    View Attractions and Relevant Info
+-    Favorite or Un-Favorite Attractions
+-    View Favorites in a User Profile
 
-🚫 Why did you choose this framework?
+# Tech Stack - Front End
 
--    point one
--    point two
--    point three
--    point four
+### Front End built using:
+- React with Hooks for Framework
+- Styled using CSS Modules and SASS Preprocessor
+- Continuous Integration using Travis CI
+- Analytics using FullStory, Google Analytics, and Heap Analytics
+- Error Tracking using Sentry
 
-🚫List the rest of the front end features and libraries in the same format as the framework above.
+#### Framework: React with Hooks
+- Hooks provided better separation of business logic for long-term maintainability
 
-#### Front end deployed to `🚫insert service here`
+#### Styling: CSS Modules and SASS
+- No library meant more unique/diverse styles
+- SASS is built into create-react-app
+- CSS Module gives better name-spacing to avoid className conflicts
 
-#### [Back end](🚫link to back end repo here) built using:
+#### Continuous Integration: Travis CI
 
-#### 🚫 back end framework goes here
+Travis CI benefit(s) :
+- Prevents bad code from reaching production
+- Gives mandatory break time for nerf wars
+- Ensures your codebase passes all testing/linting/coverage requirements
 
--    point one
--    point two
--    point three
+#### Analytics: FullStory, Google Analytics, Mixpanel, and Heap Analytics
+- FullStory lets you see how users are using your website
+  - It is a very powerful tool that acts as a user case study with real interaction
+  - Also shows potential issues with loading and rage clicks (e.g. elements that look like buttons)
+- Heap Analytics let's you look at event flows in the past
+  - If you forget to set up an event, with other analytics you will have lost data
+  - With Heap you can look at past data to recover the event that you wanted data on
+- Google Analytics is industry standard for website analytics, has a lot of beneficial features and insights
 
-🚫 List the rest of the back end end features and libraries in the same format as the framework above
+
+#### Exception Tracking: Sentry
+- Sentry will automatically log session that throw exceptions for users
+  - Excellent Error Logs
+  - Can stack trace in the users browser
+  - Provides useful debugging information, such as browser, os, location experiencing an error
+
+#### Front End deployed to [Netlify](https://www.netlify.com/)
+
+# Tech Stack - Back End
+
+### [Back End](https://github.com/labs14-travel-website/backend) built using:
+- Environment is Node.js
+- Framework is Express.js
+- Database is PostgreSQL
+- Query Builder using Knex.js
+- Data Access using GraphQL
+
+### Environment: Node.js
+- Easy to learn
+- Scalable
+- Benefit of fullstack JS
+- Fast / High Performance
+
+#### Database: PostgreSQL
+- Supported by Heroku
+- Data won't be wiped like SQLite
+- Diverse indexing
+- Flexible full-text search
+
+#### Query Builder: Knex
+- Familiarity and pairs well with SQL
+- Abstracts SQL queries into Javascript
+- Straight-forward migration/seeding
+
+#### Data Access: GraphQL
+- Request specific data from the endpoints
+- Receive data in a predictable way
+
+#### Back End deployed to [Heroku](https://heroku.com)
+
 
 # APIs
 
-## 2️⃣ Authentication API here
+## Authentication: OAuth and Google Login
 
-🚫Replace text below with a description of the API
+We use Google SignOn to handle user authentication securely without having to store the information directly on our server. We considered using normal JSON Web Tokens, but OAuth is more secure and Google SignOn provides an easier login experience for users.
 
-Water's like me. It's laaazy ... Boy, it always looks for the easiest way to do things A little happy sunlight shining through there. Let all these little things happen. Don't fight them. Learn to use them. Even the worst thing we can do here is good.
+## Content: Google Places API
 
-## 2️⃣ Payment API here
+This is the core of our application. It provides a lot of the information that we need such as: Destination search, points of interest, restaurants, etc. When a user searches for a destination we send a places request for that search which returns a list of attractions to visit near that location. In a future release this can be expanded upon to pull places to eat as well.
 
-🚫Replace text below with a description of the API
+We considered Sygic API which seemed like a perfect fit, but they stopped giving out API access to students.
 
-This is the way you take out your flustrations. Get away from those little Christmas tree things we used to make in school. Isn't it fantastic that you can change your mind and create all these happy things? Everything's not great in life, but we can still find beauty in it.
+## Descriptions: Google Knowledge Graph
 
-## 3️⃣ Misc API here
+This API lets us pull descriptions for the attractions. When a user clicks on a card we send a knowledge graph request for the attraction name.
 
-🚫Replace text below with a description of the API
+# Environment Variables
+    *  REACT_APP_OAUTH_GOOGLE_ID - Your Google OAuth credentials ID
+    *  REACT_APP_ENDPOINT - The endpoint for the server, default for local is port 8000
+    *  REACT_APP_MP_TOKEN - Mixpanel account token
+    *  REACT_APP_GA_TOKEN - Google Analytics account token
+    *  REACT_APP_FS_TOKEN - Fullstory account token;
+    *  REACT_APP_HA_TOKEN - Heap Analytics account token;
 
-You can do anything your heart can imagine. In life you need colors. This is where you take out all your hostilities and frustrations. It's better than kicking the puppy dog around and all that so. I'm sort of a softy, I couldn't shoot Bambi except with a camera. Trees get lonely too, so we'll give him a little friend. We'll lay all these little funky little things in there.
+# Testing
 
-## 3️⃣ Misc API here
+## Testing done using:
+- Unit Testing using Jest and Enzyme
+- End to End Testing using Cypress
+- Code Quality using ESLint
 
-🚫Replace text below with a description of the API
+#### Unit Testing: Jest and Enzyme
+- Jest and React was made by same group
+- Jest offers powerful assertion tools
+- Enzyme offers powerful mounting and selector tools
 
-When you do it your way you can go anywhere you choose. Let your heart take you to wherever you want to be. If I paint something, I don't want to have to explain what it is. A tree needs to be your friend if you're going to paint him. That's a son of a gun of a cloud. Even the worst thing we can do here is good.
+#### End to End Testing: Cypress
+- Excellent documentation and well supported
+- Great for testing `golden path` for users to make sure future releases don't break anything
+- Stubbing is an excellent tool for testing state
 
-## 3️⃣ Misc API here
+#### Code Quality: ESLint
+- Industry Standard JS Code checker
+- Using Airbnb styles
 
-🚫Replace text below with a description of the API
+# Installation Instructions
 
-Volunteering your time; it pays you and your whole community fantastic dividends. Maybe there's a happy little waterfall happening over here. You can spend all day playing with mountains. We don't have to be committed. We are just playing here. You have freedom here. The only guide is your heart. It's cold, but it's beautiful.
+**NOTES:**
+ - We are using Yarn, duplicate lock files will cause build failures
+ - You will need a local version of the server running as well
 
-# 3️⃣ Environment Variables
-
-In order for the app to function correctly, the user must set up their own environment variables. There should be a .env file containing the following:
-
-🚫These are just examples, replace them with the specifics for your app
-
-    *  REACT_APP_apiKey - this is your Google API key, which can be generated in the Google Cloud Console
-    *  REACT_APP_authDomain - when you set up your Firebase project, this information will be in the dashboard
-    *  REACT_APP_databaseURL - in the Firebase dashboard
-    *  REACT_APP_projectID - in the Firebase dashboard
-    *  REACT_APP_storageBucket - in the Firebase dashboard
-    *  REACT_APP_messagingSenderId - in the Firebase dashboard
-    *  REACT_APP_stripe_API - this is your public Stripe API key, generated in the Stripe dashboard
-    *  REACT_APP_backendURL - optional for your local development server
-    *  REACT_APP_clientid - this is the Stripe_connect clientID, generated in Stripe_connect settings
-    *  REACT_APP_stripe_plan - this is the ID for a second Stripe subscription plan, generated under Stripe products
-
-# 5️⃣ Content Licenses
-
-🚫For all content - images, icons, etc, use this table to document permission of use. Remove the two placeholders and add you content to this table
-
-| Image Filename | Source / Creator | License                                                                      |
-| -------------- | ---------------- | ---------------------------------------------------------------------------- |
-| doodles.png    | Nicole Bennett   | [Creative Commons](https://www.toptal.com/designers/subtlepatterns/doodles/) |
-| rings.svg      | Sam Herbert      | [MIT](https://github.com/SamHerbert/SVG-Loaders)                             |
-
-# 4️⃣ Testing
-
-🚫Document what you used for testing and why
-
-# 4️⃣ Installation Instructions
-
-🚫explain how to install the required dependencies to get this project up and running with yarn and NPM
+Commands:
+```
+$ git clone https://github.com/labs14-travel-website/frontend.git
+$ yarn
+$ git checkout -b feature/new-feature
+$ yarn start
+```
 
 ## Other Scripts
 
-🚫replace these examples with your own
-
-    * typecheck - runs the TypeScript compiler
-    * build - creates a build of the application
-    * start - starts the production server after a build is created
-    * test - runs tests in **tests** directory \* eject - copy the configuration files and dependencies into the project so you have full control over them
+```
+start - Starts the create-react-app scripts
+build - Compiles the code into a production-ready build
+jest:coverage - Runs jest with coverage reporting
+jest:start - Runs standard jest tests
+cypress:start - Run cypress tests, primarily for CI
+lint:start - Run ESLint against files
+lint:fix - Automatically fixes lint errors where possible
+heroku-postbuild - Sets up db migrations for heroku deployment
+```
 
 # Contributing
 
@@ -174,7 +198,7 @@ Please note we have a [code of conduct](./CODE_OF_CONDUCT.md). Please follow it 
 
 We would love to hear from you about new features which would improve this app and further the aims of our project. Please provide as much detail and information as possible to show us why you think your new feature should be implemented.
 
-### Pull Requests
+# Pull Requests
 
 If you have developed a patch, bug fix, or new feature that would improve this app, please submit a pull request. It is best to communicate your ideas with the developers first before investing a great deal of time into a pull request to ensure that it will mesh smoothly with the project.
 
@@ -188,10 +212,10 @@ Remember that this project is licensed under the MIT license, and by submitting 
 - Include the relevant issue number, if applicable.
 - You may merge the Pull Request in once you have the sign-off of two other developers, or if you do not have permission to do that, you may request the second reviewer to merge it for you.
 
-### Attribution
+# Attribution
 
 These contribution guidelines have been adapted from [this good-Contributing.md-template](https://gist.github.com/PurpleBooth/b24679402957c63ec426).
 
-## Documentation
+# Documentation
 
-See [Backend Documentation](🚫_link to your backend readme here_) for details on the backend of our project.
+See [Backend Documentation](https://github.com/labs14-travel-website/backend/blob/master/README.md) for details on the backend of our project.

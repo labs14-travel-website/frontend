@@ -1,3 +1,4 @@
+// name of the localStorage object
 const RECORD = 'roamly-jwt';
 
 export const getAuth = () => JSON.parse(localStorage.getItem(RECORD));

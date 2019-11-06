@@ -15,7 +15,7 @@ import logo from '../../assets/img/logo.png';
  */
 
 const Nav = ({
-  loggedIn, responseFail, responseGoogle, logout, Feature,
+  loggedIn, responseFail, responseGoogle, logout,
 }) => {
   const [clientId] = useState(process.env.REACT_APP_OAUTH_GOOGLE_ID);
   return (
@@ -24,25 +24,23 @@ const Nav = ({
         <a href="/">
           <img className={styles.Nav__logo} alt="roamly logo" src={logo} />
         </a>
-        <Feature.Toggle flag="profile">
-          <div>
-            {loggedIn && <Link to="/profile" className={styles.Favorites}>My Favorites</Link>}
-          </div>
-        </Feature.Toggle>
-        {
-          !loggedIn
-            ? (
-              <GoogleLogin
-                className={styles.Nav__google}
-                clientId={clientId}
-                buttonText="Sign in with Google"
-                onSuccess={responseGoogle}
-                onFailure={responseFail}
-                cookiePolicy="single_host_origin"
-              />
-            )
-            : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} clientId={clientId} />)
-        }
+        <div className={styles.Nav__links}>
+          {loggedIn && <Link to="/profile" className={styles.Favorites}>favorites</Link>}
+          {
+            !loggedIn
+              ? (
+                <GoogleLogin
+                  className={styles.Nav__google}
+                  clientId={clientId}
+                  buttonText="Sign in with Google"
+                  onSuccess={responseGoogle}
+                  onFailure={responseFail}
+                  cookiePolicy="single_host_origin"
+                />
+              )
+              : (<GoogleLogout buttonText="Logout" onLogoutSuccess={logout} clientId={clientId} />)
+          }
+        </div>
       </div>
     </div>
   );
@@ -53,7 +51,6 @@ Nav.propTypes = {
   responseFail: PropTypes.func.isRequired,
   responseGoogle: PropTypes.func.isRequired,
   logout: PropTypes.func.isRequired,
-  Feature: PropTypes.objectOf(PropTypes.func).isRequired,
 };
 
 export default Nav;
